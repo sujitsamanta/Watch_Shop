@@ -1,5 +1,5 @@
 .search-input:focus {
-    box-shadow: 0 0 0 2px rgba(165, 181, 148, 0.5);
+    box-shadow: 0 0 0 2px rgba(139, 0, 0, 0.5);
 }
 
 .dropdown-menu {
@@ -20,10 +20,23 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-menu.active {
     max-height: 600px;
+    padding-bottom: 0.75rem;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure mobile menu is hidden on larger screens */
+@media (min-width: 1024px) {
+    .mobile-menu {
+        display: none !important;
+    }
 }
 
 .nav-link {
@@ -32,7 +45,7 @@
 }
 
 .nav-link:hover {
-    color: #a5b594;
+    color: #008080;
 }
 
 .nav-link::after {
@@ -42,7 +55,7 @@
     height: 2px;
     bottom: -5px;
     left: 50%;
-    background-color: #a5b594;
+    background-color: #008080;
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -61,7 +74,21 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f5f2f0;
+    padding-top: 4rem; /* 64px for mobile */
+    background-color: #F5F5F5;
+}
+
+/* Adjust padding for larger screens */
+@media (min-width: 640px) {
+    body {
+        padding-top: 4.5rem; /* 72px for tablet */
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding-top: 5rem; /* 80px for desktop */
+    }
 }
 
 nav {
@@ -96,6 +123,7 @@ nav {
 
 
 .active{
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+    background-color: #38bbbb;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-
 }

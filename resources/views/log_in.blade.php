@@ -6,22 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'flag-black': '#000000',
+                        'flag-maroon': '#8B0000',
+                        'flag-teal': '#008080',
+                        'flag-light-grey': '#F5F5F5'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         .gradient-bg {
-            background: linear-gradient(135deg, #1a4d2e 0%, #6b7280 50%, #f4a460 100%);
+            background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #008080 100%);
         }
         .succesful {
-            background-color: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-
+            background-color: #F5F5F5;
+            border: 1px solid #008080;
+            color: #000000;
         }
 
         .not_succesful {
-            background-color: #fffbeb;
-            border: 1px solid #fed7aa;
-            color: #92400e;
-
+            background-color: #F5F5F5;
+            border: 1px solid #8B0000;
+            color: #8B0000;
         }
 
         .alert {
@@ -73,7 +85,7 @@
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                 <input type="email" id="email" name="email"
-                    class="@error('email') border-red-500 @else border-gray-300 @enderror  w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition duration-200"
+                    class="@error('email') border-red-500 @else border-gray-300 @enderror  w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
                     placeholder="Enter your email" value="{{ old('email') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('email')
@@ -85,7 +97,7 @@
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input type="password" id="password" name="password"
-                    class="@error('password') border-red-500 @else border-gray-300 @enderror  w-full px-4 py-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent transition duration-200"
+                    class="@error('password') border-red-500 @else border-gray-300 @enderror  w-full px-4 py-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
                     placeholder="Enter your password" value="{{ old('password') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('password')
@@ -108,7 +120,7 @@
             </div> -->
 
             <button type="submit"
-                class="w-full bg-green-700 text-white py-3 px-4 rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200 font-medium">
+                class="w-full bg-flag-teal text-white py-3 px-4 rounded-lg hover:bg-flag-maroon focus:outline-none focus:ring-2 focus:ring-flag-teal focus:ring-offset-2 transition duration-200 font-medium">
                 LogIn
             </button>
         </form>
@@ -117,7 +129,7 @@
             <p class="text-gray-600">
                 Don't have an account?
                 <a href="/sign_in"
-                    class="text-green-600 hover:text-green-800 font-medium underline">Create Account</a>
+                    class="text-flag-teal hover:text-flag-maroon font-medium underline">Create Account</a>
             </p>
         </div>
 

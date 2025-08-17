@@ -1,5 +1,7 @@
-// Wait for DOM to be fully loaded
+ // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing mobile navigation...');
+    
     // Get all elements
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -10,13 +12,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileBrandsBtn = document.getElementById('mobile-brands-btn');
     const mobileBrandsMenu = document.getElementById('mobile-brands-menu');
     
+    console.log('Elements found:', {
+        mobileMenuBtn: !!mobileMenuBtn,
+        mobileMenu: !!mobileMenu,
+        searchToggle: !!searchToggle,
+        searchBarMobile: !!searchBarMobile
+    });
+    
     // Mobile menu toggle
     if (mobileMenuBtn && mobileMenu) {
+        console.log('Setting up mobile menu toggle...');
+        
+        // Test click handler
         mobileMenuBtn.addEventListener('click', function(e) {
+            console.log('Mobile menu button clicked!');
             e.preventDefault();
             e.stopPropagation();
             
             mobileMenu.classList.toggle('active');
+            console.log('Mobile menu active:', mobileMenu.classList.contains('active'));
+            
             const icon = mobileMenuBtn.querySelector('svg');
             if (mobileMenu.classList.contains('active')) {
                 // Change to X icon
@@ -33,6 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             }
         });
+        
+        // Also add a simple click test
+        mobileMenuBtn.onclick = function() {
+            console.log('Direct onclick handler triggered');
+        };
+        
+    } else {
+        console.error('Mobile menu elements not found!', { mobileMenuBtn, mobileMenu });
     }
     
     // Mobile search toggle
