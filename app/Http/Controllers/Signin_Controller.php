@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Notifications\UserMail;
 
 use function Laravel\Prompts\error;
 
@@ -22,7 +23,10 @@ class Signin_Controller extends Controller
 
         if ($signin_data) {
 
-            User::create($signin_data);
+            $user=User::create($signin_data);
+            
+            $user->notify(new UserMail());
+
             return redirect()->back()->with('alert', 'succesful');
 
 
