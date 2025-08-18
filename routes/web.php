@@ -19,15 +19,16 @@ Route::get('/log_out', [UserController::class,'log_out']);
 Route::view('/about', 'userpanel.about');
 Route::view('/contact', 'userpanel.contact');
 
+
 // User Panel End
 
 
 
 // Admin Panel Start
 
-Route::prefix('adminpanel')->group(function () {
+// Route::prefix('adminpanel')->group(function () {
 Route::view('/admin', 'adminpanel.admin_home');
     
-});
+// });
 
 // Admin Panel End
