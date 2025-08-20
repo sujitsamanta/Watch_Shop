@@ -6,6 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #008080 100%);
+        }
+
+        .succesful {
+            background-color: #F5F5F5;
+            border: 1px solid #008080;
+            color: #000000;
+        }
+
+        .not_succesful {
+            background-color: #F5F5F5;
+            border: 1px solid #8B0000;
+            color: #8B0000;
+        }
+
+        .alert {
+            border-radius: 0.5rem;
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-icon {
+            height: 1.25rem;
+            width: 1.25rem;
+            margin-top: 0.125rem;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 0;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {
@@ -44,6 +87,15 @@
             <!-- Login Form -->
             <form class="space-y-6" method="post" action="admin_login_submit">
                 @csrf
+                
+                @if (session('alert'))
+                @if (session('alert') == 'succesful')
+                    <x-alert alert="succesful" message="Account is succesfuly created.." />
+                @elseif(session('alert') == 'not_succesful')
+                    <x-alert alert="not_succesful" message="Invalid details.." />
+                @else
+                @endif
+            @endif
 
                 <!-- User ID Input -->
                 <div class="space-y-2">
@@ -57,7 +109,7 @@
                         </div>
                         <input type="text" id="email" name="email"
                             class="@error('email') border-red-500 @else border-purple-medium @enderror w-full pl-10 pr-4 py-3 border-2  rounded-lg focus:outline-none focus:border-purple-dark focus:ring-2 focus:ring-purple-dark/20 transition-all duration-200 bg-white/50"
-                            placeholder="Enter your email ID">
+                            placeholder="Enter your email ID" value="{{ old('email') }}">
                         <div class="text-sm text-red-500 h-2">
                             @error('email')
                                 {{ $message }}

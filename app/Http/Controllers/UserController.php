@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
+use Illuminate\Support\Facades\Notification;
 
 
 
@@ -23,15 +24,13 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            // $user = User::create($signin_data);
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
+            // $user = User::create($signin_data);`
+            $user =User::create($signin_data);
 
-            // $user->notify(new UserMail());
+            // $user = User::where('email', $request->email)->first();
 
+            $user->notify(new UserMail());
+            
             return redirect()->back()->with('alert', 'succesful');
 
 
@@ -50,7 +49,7 @@ class UserController extends Controller
         ]);
 
 
-        if (Auth::guard('user')->attempt($login_data)) {
+        if (Auth::attempt($login_data)) {
 
             return redirect('/home');
 
@@ -62,17 +61,13 @@ class UserController extends Controller
 
     public function logout()
     {
-        Auth::guard('user')->logout();
+        Auth::logout();
         return redirect('/login');
     }
 
     public function home_check()
     {
-        if (Auth::guard('user')->check()) {
-            return view('userpanel.home');
-        } else {
-            return redirect('/login');
-        }
+        return view('userpanel.home');
     }
 
 }

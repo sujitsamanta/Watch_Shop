@@ -98,7 +98,7 @@
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
                 <input type="password" id="password" name="password"
                     class="@error('password') border-red-500 @else border-gray-300 @enderror  w-full px-4 py-3 border  rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
-                    placeholder="Enter your password" value="{{ old('password') }}">
+                    placeholder="Enter your password" >
                 <div class="text-sm text-red-500 h-2">
                     @error('password')
                         {{ $message }}

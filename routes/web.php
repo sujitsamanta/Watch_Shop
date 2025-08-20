@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\UserMiddleware;
 
 // User Panel Start
-Route::get('/home', [UserController::class,'home_check']);
+Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 
 Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);
@@ -36,7 +36,7 @@ Route::post('/admin_login_submit', [AdminController::class,'admin_login']);
 Route::get('/admin_logout', [AdminController::class,'admin_logout']);
 
 
-Route::get('/admin_home', [AdminController::class,'admin_check']);
+Route::get('/admin_home', [AdminController::class,'admin_check'])->middleware('adminMiddleware');
 
     
 // });

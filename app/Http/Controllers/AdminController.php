@@ -31,11 +31,11 @@ class AdminController extends Controller
         return redirect('/admin_login');
      }
     public function admin_check()  {
-         if (Auth::guard('admin')->check()) {
+        //  if (Auth::guard('admin')->check()) {
         return view('adminpanel.admin_home');
             
-        } else {
-            return redirect('/admin_login');
-        }
+        // } else {
+        //     return redirect('/admin_login');
+        // }
     }
 }
