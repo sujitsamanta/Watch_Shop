@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
-use App\Http\Middleware\UserMiddleware;
+
 
 
 class UserController extends Controller
@@ -17,14 +18,19 @@ class UserController extends Controller
             'name' => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:4|confirmed',
-            
+
         ]);
 
         if ($signin_data) {
 
-            $user=User::create($signin_data);
-            
-            $user->notify(new UserMail());
+            // $user = User::create($signin_data);
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            // $user->notify(new UserMail());
 
             return redirect()->back()->with('alert', 'succesful');
 
@@ -44,29 +50,28 @@ class UserController extends Controller
         ]);
 
 
-        if (Auth::attempt($login_data)) {
-           
-            return redirect('/');
+        if (Auth::guard('user')->attempt($login_data)) {
 
-        }
+            return redirect('/home');
 
-        else {
+        } else {
             return redirect()->back()->with('alert', 'not_succesful');
         }
 
     }
 
-    public function log_out(Request $request){
-        Auth::logout();
-        return redirect('/log_in');
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+        return redirect('/login');
     }
 
-    public function home_check(){
-        if(Auth::check()){
+    public function home_check()
+    {
+        if (Auth::guard('user')->check()) {
             return view('userpanel.home');
-        }
-        else{
-            return redirect('/log_in');
+        } else {
+            return redirect('/login');
         }
     }
 

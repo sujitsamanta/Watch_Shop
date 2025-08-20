@@ -128,7 +128,7 @@
         <div class="mt-6 text-center">
             <p class="text-gray-600">
                 Don't have an account?
-                <a href="/sign_in"
+                <a href="/signin"
                     class="text-flag-teal hover:text-flag-maroon font-medium underline">Create Account</a>
             </p>
         </div>

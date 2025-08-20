@@ -104,7 +104,7 @@
 					</svg>
 					Settings
 				</a>
-				<a href="#" class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-medium text-indigo-50 transition-all duration-200 hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-md">
+				<a href="/admin_logout" class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-medium text-indigo-50 transition-all duration-200 hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-md">
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
 						<path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
 					</svg>

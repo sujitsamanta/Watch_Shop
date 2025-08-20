@@ -2,18 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+
 use App\Http\Middleware\UserMiddleware;
 
 // User Panel Start
-Route::get('/', [UserController::class,'home_check']);
+Route::get('/home', [UserController::class,'home_check']);
 
-Route::view('/sign_in', 'userpanel.sign_in');
+Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);
 
-Route::view('/log_in', 'userpanel.log_in');
+Route::view('/login', 'userpanel.login');
 Route::post('/login_submit', [UserController::class,'login_submit']);
 
-Route::get('/log_out', [UserController::class,'log_out']);
+Route::get('/logout', [UserController::class,'logout']);
 
 
 Route::view('/about', 'userpanel.about');
@@ -27,7 +29,15 @@ Route::view('/contact', 'userpanel.contact');
 // Admin Panel Start
 
 // Route::prefix('adminpanel')->group(function () {
-Route::view('/admin', 'adminpanel.admin_home');
+
+Route::view('/admin_login', 'adminpanel.admin_login');
+Route::post('/admin_login_submit', [AdminController::class,'admin_login']);
+
+Route::get('/admin_logout', [AdminController::class,'admin_logout']);
+
+
+Route::get('/admin_home', [AdminController::class,'admin_check']);
+
     
 // });
 

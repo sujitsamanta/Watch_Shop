@@ -159,7 +159,7 @@
         <div class="mt-6 text-center">
             <p class="text-gray-600">
                 Already have an account?
-                <a href="/log_in"
+                <a href="/login"
                     class="text-flag-teal hover:text-flag-maroon font-medium underline">login</a>
             </p>
         </div>
