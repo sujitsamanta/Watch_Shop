@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,10 +11,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'flag-black': '#000000',
-                        'flag-maroon': '#8B0000',
-                        'flag-teal': '#008080',
-                        'flag-light-grey': '#F5F5F5'
+                        'primary-light': '#E8E0FF',
+                        'primary-medium': '#C8B5FF',
+                        'primary-dark': '#8B7BC7',
+                        'primary-darker': '#5A4B8C'
                     }
                 }
             }
@@ -23,19 +22,19 @@
     </script>
     <style>
         .gradient-bg {
-            background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #008080 100%);
+            background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);
         }
 
         .succesful {
-            background-color: #F5F5F5;
-            border: 1px solid #008080;
-            color: #000000;
+            background-color: #E8E0FF;
+            border: 1px solid #8B7BC7;
+            color: #5A4B8C;
         }
 
         .not_succesful {
-            background-color: #F5F5F5;
-            border: 1px solid #8B0000;
-            color: #8B0000;
+            background-color: #FFEEF0;
+            border: 1px solid #DC2626;
+            color: #DC2626;
         }
 
         .alert {
@@ -69,7 +68,7 @@
 <body class="gradient-bg min-h-screen flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
+            <h1 class="text-3xl font-bold text-primary-darker mb-2">Create Account</h1>
             <!-- <p class="text-gray-600">Join us today and get started</p> -->
         </div>
 
@@ -86,10 +85,10 @@
             @endif
 
             <div>
-                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <label for="fullName" class="block text-sm font-medium text-primary-darker mb-2">Full Name</label>
                 <input type="text" id="fullName" name="name"
-                    class="@error('name') border-red-500 @else border-gray-300 @enderror
-                         w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-flag-teal focus:ring-2  focus:border-transparent transition duration-200"
+                    class="@error('name') border-red-500 @else border-primary-medium @enderror
+                         w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-primary-dark focus:ring-2  focus:border-transparent transition duration-200"
                     placeholder="Enter your full name" value="{{ old('name') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('name')
@@ -102,9 +101,9 @@
             
 
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <label for="email" class="block text-sm font-medium text-primary-darker mb-2">Email Address</label>
                 <input type="email" id="email" name="email"
-                    class="@error('email') border-red-500 @else border-gray-300 @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
+                    class="@error('email') border-red-500 @else border-primary-medium @enderror w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:border-transparent transition duration-200"
                     placeholder="Enter your email" value="{{ old('email') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('email')
@@ -116,9 +115,9 @@
              
 
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <label for="password" class="block text-sm font-medium text-primary-darker mb-2">Password</label>
                 <input type="password" id="password" name="password"
-                    class="@error('password') border-red-500 @else border-gray-300 @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
+                    class="@error('password') border-red-500 @else border-primary-medium @enderror w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:border-transparent transition duration-200"
                     placeholder="Create a password" value="{{ old('password') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('password')
@@ -128,10 +127,10 @@
             </div>
 
             <div>
-                <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm
+                <label for="confirmPassword" class="block text-sm font-medium text-primary-darker mb-2">Confirm
                     Password</label>
                 <input type="password" id="confirmPassword" name="password_confirmation"
-                    class="@error('password_confirmation') border-red-500 @else border-gray-300 @enderror w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-flag-teal focus:border-transparent transition duration-200"
+                    class="@error('password_confirmation') border-red-500 @else border-primary-medium @enderror w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:border-transparent transition duration-200"
                     placeholder="Confirm your password" value="{{ old('password_confirmation') }}">
                 <div class="text-sm text-red-500 h-2">
                     @error('password_confirmation')
@@ -151,7 +150,7 @@
             </div> -->
 
             <button type="submit"
-                class="w-full bg-flag-teal text-white py-3 px-4 rounded-lg hover:bg-flag-maroon focus:outline-none focus:ring-2 focus:ring-flag-teal  focus:ring-offset-2 transition duration-200 font-medium">
+                class="w-full bg-primary-dark text-white py-3 px-4 rounded-lg hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-primary-dark  focus:ring-offset-2 transition duration-200 font-medium">
                 Create Account
             </button>
         </form>
@@ -160,7 +159,7 @@
             <p class="text-gray-600">
                 Already have an account?
                 <a href="/login"
-                    class="text-flag-teal hover:text-flag-maroon font-medium underline">login</a>
+                    class="text-primary-dark hover:text-primary-darker font-medium underline">login</a>
             </p>
         </div>
 
