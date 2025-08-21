@@ -17,6 +17,8 @@
                         'purple-medium': '#9D8DF1',
                         'purple-dark': '#4C4B7C',
                         'purple-darkest': '#2D2A4A',
+
+                        // hearo
                         lav1: '#F4EFFF',
                         lav2: '#E4DEFF',
                         peri: '#A9B4E6',
@@ -122,7 +124,7 @@
                             </svg>
                         </button>
                         <div class="dropdown-menu absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-purple-light">
-                            <a href="#" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">My Profile</a>
+                            <a href="/account" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">My Profile</a>
                             <a href="#" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Orders</a>
                             <a href="#" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Wishlist</a>
                             <hr class="my-2 border-purple-light">
@@ -253,7 +255,7 @@
     </nav>
     
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 py-6 sm:py-8">
+    <div class="max-w-full mx-auto">
 
 
         {{ $body }}
@@ -282,7 +284,99 @@
     </div>
 
   <script src="js/user_script.js"></script>
+ <script>
 
+ // account start
+
+
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const photoInput = document.getElementById("photoInput");
+    const profilePhoto = document.getElementById("profilePhoto");
+
+    // Select only visible inputs & textareas (exclude file input)
+    
+   // New → Exclude file & hidden inputs
+
+// const inputs = document.querySelectorAll("input:not([type=file]):not([type=hidden]), textarea");
+// Select only inputs inside the form (exclude hidden & file)
+
+const form = document.querySelector("form[action='/account_upadate']");
+const inputs = form.querySelectorAll("input:not([type=file]):not([type=hidden]), textarea");
+
+
+
+    // Save original values
+    let originalValues = {};
+    inputs.forEach(input => originalValues[input.id] = input.value);
+
+    let isEditing = false;
+
+    editBtn.addEventListener("click", () => {
+      isEditing = true;
+      editBtn.classList.add("hidden");
+      saveBtn.classList.remove("hidden");
+      cancelBtn.classList.remove("hidden");
+
+      inputs.forEach(input => {
+        // Keep Email field readonly
+        if (input.id === "email") return;
+
+        input.removeAttribute("readonly");
+        input.classList.add("edit-mode");
+      });
+    });
+
+    saveBtn.addEventListener("click", () => {
+      inputs.forEach(input => {
+        // Skip Email field
+        if (input.id === "email") return;
+
+        originalValues[input.id] = input.value;
+        input.setAttribute("readonly", "true");
+        input.classList.remove("edit-mode");
+      });
+      exitEditMode();
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      inputs.forEach(input => {
+        // Skip Email field
+        if (input.id === "email") return;
+
+        input.value = originalValues[input.id];
+        input.setAttribute("readonly", "true");
+        input.classList.remove("edit-mode");
+      });
+      exitEditMode();
+    });
+
+    function exitEditMode() {
+      isEditing = false;
+      editBtn.classList.remove("hidden");
+      saveBtn.classList.add("hidden");
+      cancelBtn.classList.add("hidden");
+    }
+
+    // Profile photo change
+    photoInput.addEventListener("change", e => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => profilePhoto.src = e.target.result;
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function resetPhoto() {
+      profilePhoto.src = "https://via.placeholder.com/150";
+    }
+
+
+
+        // account end
+  </script>
   
 </body>
 </html>

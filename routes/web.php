@@ -7,7 +7,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\UserMiddleware;
 
 // User Panel Start
+
+// home page
 Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
+
+// account page
+Route::get('/account', [UserController::class,'account_check'])->middleware('userMiddleware');
+Route::post('/account_upadate', [UserController::class,'account_upadate']);
 
 Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);
@@ -23,6 +29,8 @@ Route::view('/contact', 'userpanel.contact');
 
 
 // User Panel End
+
+Route::view('/a', 'a');
 
 
 

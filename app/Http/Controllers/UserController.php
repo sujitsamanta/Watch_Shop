@@ -25,12 +25,12 @@ class UserController extends Controller
         if ($signin_data) {
 
             // $user = User::create($signin_data);`
-            $user =User::create($signin_data);
+            $user = User::create($signin_data);
 
             // $user = User::where('email', $request->email)->first();
 
             $user->notify(new UserMail());
-            
+
             return redirect()->back()->with('alert', 'succesful');
 
 
@@ -70,4 +70,18 @@ class UserController extends Controller
         return view('userpanel.home');
     }
 
+
+    public function account_check()
+    {
+
+        return view('userpanel.account');
+
+    }
+
+    public function account_upadate(Request $request)
+    {
+
+        return $request;
+
+    }
 }

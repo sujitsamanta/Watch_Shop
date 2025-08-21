@@ -1,3 +1,6 @@
+  
+        /* navbar start */
+  
   .search-input:focus {
             box-shadow: 0 0 0 2px rgba(157, 141, 241, 0.5);
         }
@@ -137,3 +140,24 @@
             border: 1px solid rgba(157, 141, 241, 0.2);
             box-shadow: 0 8px 32px rgba(157, 141, 241, 0.1);
         }
+
+        /* navbar end */
+
+
+        /* account start */
+      .gradient-bg {
+      background: linear-gradient(135deg, #f8f6ff 0%, #e8e2ff 25%, #d1c4ff 50%, #a78bfa 75%, #7c3aed 100%);
+    }
+    .glass {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .edit-mode {
+      background: rgba(124, 58, 237, 0.08);
+      border: 2px dashed #7c3aed;
+    }
+    .profile-photo:hover {
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+        /* account end */

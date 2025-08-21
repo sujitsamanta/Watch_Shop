@@ -17,9 +17,15 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+     protected $fillable = [
         'name',
         'email',
+        'photo',
+        'phone',
+        'dob',
+        'username',
+        'address',
+        'bio',
         'password',
     ];
 
@@ -45,4 +51,18 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            if (empty($user->username)) {
+                $user->username = $user->name;  // copy name into username
+            }
+        });
+    }
+
 }
+

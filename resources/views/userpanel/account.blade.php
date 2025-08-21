@@ -1,30 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Account</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .gradient-bg {
-      background: linear-gradient(135deg, #f8f6ff 0%, #e8e2ff 25%, #d1c4ff 50%, #a78bfa 75%, #7c3aed 100%);
-    }
-    .glass {
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .edit-mode {
-      background: rgba(124, 58, 237, 0.08);
-      border: 2px dashed #7c3aed;
-    }
-    .profile-photo:hover {
-      transform: scale(1.05);
-      transition: 0.3s;
-    }
-  </style>
-</head>
-<body class="gradient-bg min-h-screen py-8 px-4">
-    <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 my-12">
+<x-user_navbar>
+    <x-slot name="body">
+        <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 my-12">
 
             <!-- Header -->
             <!-- <div class="text-center mb-8">
@@ -124,7 +100,7 @@ United States</textarea>
                                     class="hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
                                     Save
                                 </button>
-                                <button id="cancelBtn"
+                                <button id="cancelBtn" type="button"
                                     class="hidden bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition shadow">
                                     Cancel
                                 </button>
@@ -144,72 +120,6 @@ United States</textarea>
         </div>
 
 
-  <script>
-    const editBtn = document.getElementById("editBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
-    const photoInput = document.getElementById("photoInput");
-    const profilePhoto = document.getElementById("profilePhoto");
 
-    // Select only visible inputs & textareas (exclude file input)
-    const inputs = document.querySelectorAll("input:not([type=file]), textarea");
-
-    // Save original values
-    let originalValues = {};
-    inputs.forEach(input => originalValues[input.id] = input.value);
-
-    let isEditing = false;
-
-    editBtn.addEventListener("click", () => {
-      isEditing = true;
-      editBtn.classList.add("hidden");
-      saveBtn.classList.remove("hidden");
-      cancelBtn.classList.remove("hidden");
-
-      inputs.forEach(input => {
-        input.removeAttribute("readonly");
-        input.classList.add("edit-mode");
-      });
-    });
-
-    saveBtn.addEventListener("click", () => {
-      inputs.forEach(input => {
-        originalValues[input.id] = input.value;
-        input.setAttribute("readonly", "true");
-        input.classList.remove("edit-mode");
-      });
-      exitEditMode();
-    });
-
-    cancelBtn.addEventListener("click", () => {
-      inputs.forEach(input => {
-        input.value = originalValues[input.id];
-        input.setAttribute("readonly", "true");
-        input.classList.remove("edit-mode");
-      });
-      exitEditMode();
-    });
-
-    function exitEditMode() {
-      isEditing = false;
-      editBtn.classList.remove("hidden");
-      saveBtn.classList.add("hidden");
-      cancelBtn.classList.add("hidden");
-    }
-
-    // Profile photo change
-    photoInput.addEventListener("change", e => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => profilePhoto.src = e.target.result;
-        reader.readAsDataURL(file);
-      }
-    });
-
-    function resetPhoto() {
-      profilePhoto.src = "https://via.placeholder.com/150";
-    }
-  </script>
-</body>
-</html>
+    </x-slot>
+</x-user_navbar>

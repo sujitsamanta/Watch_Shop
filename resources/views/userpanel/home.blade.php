@@ -1,15 +1,15 @@
 <x-user_navbar>
     <x-slot name="body">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden">
+    <section class="relative  flex items-center justify-center px-8 py-12 overflow-hidden">
         <!-- Background Elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-lav1/80 via-peri/40 to-side/20"></div>
+        <!-- <div class="absolute inset-0 bg-gradient-to-br from-lav1/80 via-peri/40 to-side/20"></div>
         <div class="absolute top-20 left-10 w-72 h-72 bg-lav2/30 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-peri/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-peri/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div> -->
         
-        <div class="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10 max-w-full mx-auto grid lg:grid-cols-2 gap-9 items-center">
             <!-- Left Content -->
-            <div class="text-center lg:text-left">
+            <div class="text-center lg:text-left mt-9">
                 <!-- Real-time Clock Component -->
                 <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/30 shadow-lg">
                     <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -64,13 +64,13 @@
             </div>
 
             <!-- Right Content - Realistic Watch Display -->
-            <div class="relative flex items-center justify-center">
+            <div class="relative flex items-center justify-center mt-9">
                 <!-- Premium Watch -->
                 <div class="relative group">
                     <!-- Watch Case Outer Ring -->
                     <div class="w-80 h-80 rounded-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 p-4 shadow-2xl">
                         <!-- Watch Bezel -->
-                        <div class="w-full h-full rounded-full bg-gradient-to-br from-gray-600 via-gray-500 to-gray-800 p-2 relative">
+                        <div   class="w-full h-full rounded-full bg-gradient-to-br from-gray-600 via-gray-500 to-gray-800 p-2 relative">
                             <!-- Bezel Markings -->
                             <div class="absolute inset-0 rounded-full">
                                 <!-- 60 minute markers -->
@@ -169,7 +169,7 @@
                 <div class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl border border-white/50 z-10">
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                        <span class="text-side text-sm font-semibold">Free Shipping</span>
+                        <span class="text-side text-sm font-semibold">Shipping Now</span>
                     </div>
                 </div>
 
