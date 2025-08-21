@@ -10,13 +10,19 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
                     colors: {
                         'purple-lightest': '#F3F0FF',
                         'purple-light': '#E2D8FF',
                         'purple-medium': '#9D8DF1',
                         'purple-dark': '#4C4B7C',
-                        'purple-darkest': '#2D2A4A'
-                    }
+                        'purple-darkest': '#2D2A4A',
+                        lav1: '#F4EFFF',
+                        lav2: '#E4DEFF',
+                        peri: '#A9B4E6',
+                        side: '#3F4673',
+                    },
+
                 }
             }
         }
@@ -121,7 +127,7 @@
                             <a href="#" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Wishlist</a>
                             <hr class="my-2 border-purple-light">
                             <a href="#" class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
+                            <a href="/logout" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
                         </div>
                     </div>
                     
@@ -248,8 +254,12 @@
     
     <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 py-6 sm:py-8">
+
+
         {{ $body }}
-        <div class="content-card rounded-2xl p-8 mb-8">
+
+
+        <!-- <div class="content-card rounded-2xl p-8 mb-8">
             <h1 class="text-4xl font-bold text-purple-dark mb-6">Welcome to Hand Watch Shop</h1>
             <p class="text-purple-darkest text-lg mb-4">Discover our exquisite collection of timepieces with our new elegant purple theme.</p>
             <p class="text-purple-dark">This responsive navbar now features a beautiful gradient color scheme that transitions from light purple to deep purple tones, creating a sophisticated and modern look for your watch shop.</p>
@@ -268,10 +278,11 @@
                 <h3 class="text-xl font-semibold text-purple-dark mb-3">Lifetime Warranty</h3>
                 <p class="text-purple-darkest">Comprehensive coverage for all our timepieces.</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
   <script src="js/user_script.js"></script>
 
+  
 </body>
 </html>

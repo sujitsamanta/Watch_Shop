@@ -1,3 +1,5 @@
+ 
+ //                                               navbar section start 
  document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -112,3 +114,76 @@
         }
     });
 });
+
+ //                                               navbar section end
+
+
+            //                                        hearo section start
+       // Real-time clock functionality
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('realtime-clock').textContent = timeString;
+        }
+
+        // Analog watch functionality
+        function updateAnalogWatch() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Calculate angles (subtract 90 degrees to start from 12 o'clock)
+            const hourAngle = (hours * 30) + (minutes * 0.5) - 90;
+            const minuteAngle = (minutes * 6) - 90;
+            const secondAngle = (seconds * 6) - 90;
+
+            // Update hands
+            const hourHand = document.getElementById('hour-hand');
+            const minuteHand = document.getElementById('minute-hand');
+            const secondHand = document.getElementById('second-hand');
+
+            if (hourHand) {
+                hourHand.style.transform = `rotate(${hourAngle}deg)`;
+                hourHand.style.transition = 'transform 0.5s ease-in-out';
+            }
+            if (minuteHand) {
+                minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
+                minuteHand.style.transition = 'transform 0.5s ease-in-out';
+            }
+            if (secondHand) {
+                secondHand.style.transform = `rotate(${secondAngle}deg)`;
+                secondHand.style.transition = seconds === 0 ? 'none' : 'transform 0.1s ease-out';
+            }
+        }
+
+        // Update both clocks every second
+        function updateAllClocks() {
+            updateClock();
+            updateAnalogWatch();
+        }
+
+        updateAllClocks();
+        setInterval(updateAllClocks, 1000);
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to brand logos
+            const brands = document.querySelectorAll('.bg-white\\/60');
+            brands.forEach(brand => {
+                brand.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                brand.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+            //                                        hearo section end
