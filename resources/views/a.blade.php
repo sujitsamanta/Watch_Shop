@@ -1,215 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Account</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .gradient-bg {
-      background: linear-gradient(135deg, #f8f6ff 0%, #e8e2ff 25%, #d1c4ff 50%, #a78bfa 75%, #7c3aed 100%);
-    }
-    .glass {
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-    .edit-mode {
-      background: rgba(124, 58, 237, 0.08);
-      border: 2px dashed #7c3aed;
-    }
-    .profile-photo:hover {
-      transform: scale(1.05);
-      transition: 0.3s;
-    }
-  </style>
-</head>
-<body class="gradient-bg min-h-screen py-8 px-4">
-    <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 my-12">
+<!-- Profile Photo -->
+<form action="{{ route('account.photo.update') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="text-center">
 
-            <!-- Header -->
-            <!-- <div class="text-center mb-8">
-      <h1 class="text-4xl font-bold text-purple-800">My Account</h1>
-      <p class="text-purple-600">Manage your profile and personal information</p>
-    </div> -->
-
-
-    <form action="/account_upadate" method="post">
-        @csrf
- <div class="grid lg:grid-cols-3 gap-10">
-
-                <!-- Profile Photo -->
-                <div class="text-center">
-                    <div
-                        class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl profile-photo cursor-pointer group">
-                        <img id="profilePhoto"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80"
-                            alt="Profile Photo" class="w-full h-full object-cover">
-                        <div
-                            class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-                            <span class="text-white font-semibold">Change Photo</span>
-                        </div>
-                    </div>
-                    <input name="photo" type="file" id="photoInput" accept="image/*" class="hidden mt-3">
-                    <div class="flex flex-col gap-3 mt-6">
-                        <button onclick="photoInput.click()"
-                            class="bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition shadow" type="button">
-                            Upload New Photo
-                        </button>
-                        <button onclick="resetPhoto()"
-                            class="bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition shadow" type="button">
-                            Remove Photo
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Account Info -->
-                <div class="lg:col-span-2">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-bold text-purple-800">Account Information</h2>
-
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- Left side -->
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Full Name</label>
-                                <input name="name" type="text" id="fullName" value="John Alexander Smith"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Email</label>
-                                <input name="email" type="email" id="email" value="john.smith@example.com"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Phone</label>
-                                <input name="phone" type="tel" id="phone" value="+1 (555) 123-4567"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Date of Birth</label>
-                                <input name="dob" type="date" id="dob" value="1990-05-15"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
-                            </div>
-                        </div>
-
-                        <!-- Right side -->
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Username</label>
-                                <input name="username" type="text" id="username" value="johnsmith90"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Address</label>
-                                <textarea name="address" id="address" rows="3"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none"
-                                    readonly>123 Main Street, Apt 4B
-New York, NY 10001
-United States</textarea>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Bio</label>
-                                <textarea name="bio" id="bio" rows="3"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none"
-                                    readonly>Software developer passionate about creating innovative solutions. Love hiking and photography.</textarea>
-                            </div>
-                            <div class="flex gap-3">
-                                <button id="editBtn" type="button"
-                                    class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
-                                    Update Profile
-                                </button>
-                                <button id="saveBtn" type="submit"
-                                    class="hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
-                                    Save
-                                </button>
-                                <button id="cancelBtn"
-                                    class="hidden bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition shadow">
-                                    Cancel
-                                </button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+        <!-- Photo Preview -->
+        <div class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl profile-photo cursor-pointer group text-center">
+            <img id="profilePhoto" src="{{ $user_data->photo ?? 'https://via.placeholder.com/150' }}" 
+                 alt="👦🏼" class="w-full h-full object-cover text-center">
+            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+                <span class="text-white font-semibold">Change Photo</span>
             </div>
-    </form>
-           
-
-
         </div>
 
+        <!-- Hidden file input -->
+        <input name="photo" type="file" id="photoInput" accept="image/*" class="hidden mt-3">
 
-  <script>
-    const editBtn = document.getElementById("editBtn");
-    const saveBtn = document.getElementById("saveBtn");
-    const cancelBtn = document.getElementById("cancelBtn");
-    const photoInput = document.getElementById("photoInput");
-    const profilePhoto = document.getElementById("profilePhoto");
+        <!-- Action buttons -->
+        <div class="flex flex-col gap-3 mt-6">
+            <button type="button" onclick="document.getElementById('photoInput').click()" 
+                    class="bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition shadow">
+                Upload New Photo
+            </button>
 
-    // Select only visible inputs & textareas (exclude file input)
-    const inputs = document.querySelectorAll("input:not([type=file]), textarea");
+            <button type="button" onclick="resetPhoto()" 
+                    class="bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition shadow">
+                Remove Photo
+            </button>
 
-    // Save original values
-    let originalValues = {};
-    inputs.forEach(input => originalValues[input.id] = input.value);
+            <!-- Submit button -->
+            <button type="submit" 
+                    class="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition shadow">
+                Save Photo
+            </button>
+        </div>
+    </div>
+</form>
 
-    let isEditing = false;
-
-    editBtn.addEventListener("click", () => {
-      isEditing = true;
-      editBtn.classList.add("hidden");
-      saveBtn.classList.remove("hidden");
-      cancelBtn.classList.remove("hidden");
-
-      inputs.forEach(input => {
-        input.removeAttribute("readonly");
-        input.classList.add("edit-mode");
-      });
+<script>
+    // Preview selected photo
+    document.getElementById("photoInput").addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = e => document.getElementById("profilePhoto").src = e.target.result;
+            reader.readAsDataURL(file);
+        }
     });
 
-    saveBtn.addEventListener("click", () => {
-      inputs.forEach(input => {
-        originalValues[input.id] = input.value;
-        input.setAttribute("readonly", "true");
-        input.classList.remove("edit-mode");
-      });
-      exitEditMode();
-    });
-
-    cancelBtn.addEventListener("click", () => {
-      inputs.forEach(input => {
-        input.value = originalValues[input.id];
-        input.setAttribute("readonly", "true");
-        input.classList.remove("edit-mode");
-      });
-      exitEditMode();
-    });
-
-    function exitEditMode() {
-      isEditing = false;
-      editBtn.classList.remove("hidden");
-      saveBtn.classList.add("hidden");
-      cancelBtn.classList.add("hidden");
-    }
-
-    // Profile photo change
-    photoInput.addEventListener("change", e => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = e => profilePhoto.src = e.target.result;
-        reader.readAsDataURL(file);
-      }
-    });
-
+    // Reset to placeholder
     function resetPhoto() {
-      profilePhoto.src = "https://via.placeholder.com/150";
+        document.getElementById("profilePhoto").src = "https://via.placeholder.com/150";
+        document.getElementById("photoInput").value = ""; // Clear file input
     }
-  </script>
-</body>
-</html>
+</script>

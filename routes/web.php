@@ -14,6 +14,7 @@ Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddl
 // account page
 Route::get('/account', [UserController::class,'account_check'])->middleware('userMiddleware');
 Route::post('/account_upadate', [UserController::class,'account_upadate']);
+Route::post('/account_photo_update', [UserController::class,'account_photo_update']);
 
 Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);

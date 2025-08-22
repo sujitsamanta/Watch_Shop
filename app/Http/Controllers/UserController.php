@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -73,15 +74,72 @@ class UserController extends Controller
 
     public function account_check()
     {
-
-        return view('userpanel.account');
+        $user_data = Auth::user();
+        return view('userpanel.account', compact('user_data'));
 
     }
 
     public function account_upadate(Request $request)
     {
+        $account_data = $request->validate([
+            'name' => 'string|max:50',
+            'phone' => 'nullable|integer|min:15',
+            'dob' => 'nullable|date',
+            'address' => 'nullable|string|max:100',
+            'bio' => 'nullable|string|max:100',
+        ]);
 
-        return $request;
+        $user = Auth::user();
+        // return $user->id;
+        $user = DB::table('users')->where('id', $user->id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'dob' => $request->dob,
+            'username' => $request->username,
+            'address' => $request->address,
+            'bio' => $request->bio,
+        ]);
+
+        // /** @var \App\Models\User $user */
+        // auth()->user()?->update([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        // ]);
+
+
+        return redirect()->back()->with('alert', 'succesful');
+
+    }
+
+    public function account_photo_update(Request $request)
+    {
+
+        //  $request->validate([
+        // 'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        // ]);
+
+
+
+        $path = $request->file('photo')->store('photos', 'public');
+        ;
+
+        $patharrey = explode('/', $path);
+
+        $img_name = $patharrey[1];
+
+        $user = Auth::user();
+
+        // return $user->id;
+
+        $user = DB::table('users')->where('id', $user->id)->update([
+            'photo' => $patharrey[1],
+
+        ]);
+
+        return redirect()->back()->with('alert', 'succesful');
+
+
+
 
     }
 }
