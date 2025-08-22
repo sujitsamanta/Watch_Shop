@@ -82,9 +82,10 @@ class UserController extends Controller
     public function account_upadate(Request $request)
     {
         $account_data = $request->validate([
-            'name' => 'string|max:50',
+            'name' => 'required|string|max:50',
             'phone' => 'nullable|integer|min:15',
             'dob' => 'nullable|date',
+            'username' => 'required|string|max:50',
             'address' => 'nullable|string|max:100',
             'bio' => 'nullable|string|max:100',
         ]);
@@ -114,32 +115,32 @@ class UserController extends Controller
     public function account_photo_update(Request $request)
     {
 
-        //  $request->validate([
-        // 'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // ]);
+        if ($request->photo) {
+            $path = $request->file('photo')->store('photos', 'public');
+            $patharrey = explode('/', $path);
+            $img_name = $patharrey[1];
 
+            $user = Auth::user();
+            $user = DB::table('users')->where('id', $user->id)->update([
+                'photo' => $img_name,
 
+            ]);
 
-        $path = $request->file('photo')->store('photos', 'public');
-        ;
+            return redirect()->back()->with('alert', 'succesful');
 
-        $patharrey = explode('/', $path);
+        } 
+        else {
+            $user = Auth::user();
+            $user = DB::table('users')->where('id', $user->id)->update([
+                'photo' => null,
 
-        $img_name = $patharrey[1];
+            ]);
 
-        $user = Auth::user();
-
-        // return $user->id;
-
-        $user = DB::table('users')->where('id', $user->id)->update([
-            'photo' => $patharrey[1],
-
-        ]);
-
-        return redirect()->back()->with('alert', 'succesful');
-
-
+            return redirect()->back()->with('alert', 'succesful');
+        }
 
 
     }
+
+
 }

@@ -284,7 +284,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="mobile-menu lg:hidden border-t border-purple-medium border-opacity-30">
             <div class="px-4 py-4 space-y-4 max-w-7xl mx-auto">
-                <a href="/"
+                <a href="/home"
                     class="block text-white hover:text-purple-medium transition-colors duration-300 py-2 text-base">Home</a>
 
                 <!-- Mobile Products Section -->
@@ -407,8 +407,8 @@
         const editBtn = document.getElementById("editBtn");
         const saveBtn = document.getElementById("saveBtn");
         const cancelBtn = document.getElementById("cancelBtn");
-        const photoInput = document.getElementById("photoInput");
-        const profilePhoto = document.getElementById("profilePhoto");
+        // const photoInput = document.getElementById("photoInput");
+        // const profilePhoto = document.getElementById("profilePhoto");
 
         // Select only visible inputs & textareas (exclude file input)
 
@@ -474,19 +474,41 @@
             cancelBtn.classList.add("hidden");
         }
 
-      photoInput.addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = e => profilePhoto.src = e.target.result;
-        reader.readAsDataURL(file);
-    }
-});
+        //  account photo start
+        const photoInput = document.getElementById("photoInput");
+        const profilePhoto = document.getElementById("profilePhoto");
+        const saveButton = document.getElementById("saveButton");
+        const photoModal = document.getElementById("photoModal");
+        const popupPhoto = document.getElementById("popupPhoto");
 
-function resetPhoto() {
-    profilePhoto.src = "https://via.placeholder.com/150";
-}
+        photoInput.addEventListener("change", e => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    profilePhoto.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                saveButton.classList.remove("hidden"); // Show Save button
+            }
+        });
 
+        function resetPhoto() {
+            profilePhoto.src = "https://via.placeholder.com/150";
+            saveButton.classList.remove("hidden"); // Show Save button
+        }
+
+        function openPhotoPopup() {
+            popupPhoto.src = profilePhoto.src;
+            photoModal.classList.remove("hidden");
+            photoModal.classList.add("flex");
+        }
+
+        function closePhotoPopup() {
+            photoModal.classList.add("hidden");
+            photoModal.classList.remove("flex");
+        }
+        //  account photo end
 
         // account end
     </script>
