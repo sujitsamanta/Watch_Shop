@@ -53,6 +53,8 @@ Route::get('/admin_logout', [AdminController::class,'admin_logout']);
 
 Route::get('/admin_home', [AdminController::class,'admin_check'])->middleware('adminMiddleware');
 
+Route::get('/admin_customer_accounts_view', [AdminController::class,'admin_customer_accounts_view'])->middleware('adminMiddleware');
+
     
 // });
 

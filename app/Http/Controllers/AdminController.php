@@ -34,17 +34,17 @@ class AdminController extends Controller
     public function admin_logout()
     {
         Auth::guard('admin')->logout();
-        
-        notify()->error('Account Log Out Succesful ⚡️');
+
+        notify()->success('Account Log Out Succesful ⚡️');
         return redirect('/admin_login');
     }
     public function admin_check()
     {
-        //  if (Auth::guard('admin')->check()) {
         return view('adminpanel.admin_home');
+    }
+    public function admin_customer_accounts_view()
+    {
+        return view('adminpanel.admin_customer_accounts_view');
 
-        // } else {
-        //     return redirect('/admin_login');
-        // }
     }
 }

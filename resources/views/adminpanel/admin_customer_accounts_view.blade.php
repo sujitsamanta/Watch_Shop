@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch E-Shop - Customer List</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'purple-light': '#E8E2F4',
-                        'purple-medium': '#C8B8E0',
-                        'purple-dark': '#8B7BAD',
-                        'purple-darkest': '#4A4461'
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-
-<body class="bg-gradient-to-br from-purple-light via-purple-medium to-purple-dark min-h-screen">
-    <div class="container mx-auto px-4 py-8">
+<x-admin_navbar>
+    <x-slot name="body">
+       
+         <div class="container mx-auto px-4 py-8">
         <!-- Header -->
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-purple-darkest mb-2">Customer Management</h1>
@@ -350,7 +328,6 @@
         </div>
     </div>
 
-    
-</body>
+    </x-slot>
 
-</html>
+</x-admin_navbar>
