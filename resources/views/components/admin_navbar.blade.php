@@ -9,6 +9,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/admin_style.css">
+	        @notifyCss
+
 	<script>
 		tailwind.config = {
 			theme: {
@@ -25,10 +27,14 @@
 		}
 	</script>
 	<style>
-		
+		.notify{
+            z-index: 1001 !important;
+        }
 	</style>
 </head>
 <body class="min-h-screen font-sans text-slate-900 bg-gradient-to-b from-lav1 via-peri to-side">
+	        @include('notify::components.notify')
+
 	<div class="min-h-screen relative">
 		<!-- Mobile Menu Overlay -->
 		<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-40 md:hidden opacity-0 pointer-events-none transition-opacity duration-300"></div>
@@ -251,5 +257,8 @@
 	</div>
 
 	<script src="js/admin_script.js"></script>
+
+	        @notifyJs
+
 </body>
 </html>

@@ -9,7 +9,12 @@ use App\Http\Middleware\UserMiddleware;
 // User Panel Start
 
 // home page
-Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
+
+// Route::view('/home-x', 'userpanel.home-x');
+Route::get('/home', [UserController::class,'home_check']);
+
+
+// Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 
 // account page
 Route::get('/account', [UserController::class,'account_check'])->middleware('userMiddleware');
@@ -26,8 +31,8 @@ Route::post('/login_submit', [UserController::class,'login_submit']);
 Route::get('/logout', [UserController::class,'logout']);
 
 
-Route::view('/about', 'userpanel.about');
-Route::view('/contact', 'userpanel.contact');
+Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
+Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
 
 // User Panel End

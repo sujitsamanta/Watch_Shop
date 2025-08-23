@@ -9,31 +9,40 @@ use App\Models\Admin;
 
 class AdminController extends Controller
 {
-     public function admin_login(Request $request)  {
+    public function admin_login(Request $request)
+    {
         // view('admin_home');
         $login_data = $request->validate([
             'email' => 'required',
             'password' => 'required',
 
         ]);
-         if (Auth::guard('admin')->attempt($login_data)) {
+        if (Auth::guard('admin')->attempt($login_data)) {
+
+            notify()->success('Account Login Succesful..⚡️');
 
             return redirect('/admin_home');
 
         } else {
-            return redirect()->back()->with('alert', 'not_succesful');
+
+            notify()->error('Enter Curect Data ⚡️');
+            return redirect()->back();
         }
 
     }
 
-     public function admin_logout(){
+    public function admin_logout()
+    {
         Auth::guard('admin')->logout();
+        
+        notify()->error('Account Log Out Succesful ⚡️');
         return redirect('/admin_login');
-     }
-    public function admin_check()  {
+    }
+    public function admin_check()
+    {
         //  if (Auth::guard('admin')->check()) {
         return view('adminpanel.admin_home');
-            
+
         // } else {
         //     return redirect('/admin_login');
         // }

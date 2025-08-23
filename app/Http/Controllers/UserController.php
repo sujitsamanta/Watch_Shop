@@ -31,12 +31,17 @@ class UserController extends Controller
             // $user = User::where('email', $request->email)->first();
 
             $user->notify(new UserMail());
-
-            return redirect()->back()->with('alert', 'succesful');
+            notify()->success('Account created succesfuly ⚡️');
+            return redirect('/login');
+            // return redirect()->back();
 
 
         } else {
-            return redirect()->back()->with('alert', 'not_succesful');
+
+            notify()->error('Enter curect data ⚡️');
+
+            return redirect()->back();
+            // return redirect()->back()->with('alert', 'not_succesful');
 
         }
 
@@ -52,10 +57,15 @@ class UserController extends Controller
 
         if (Auth::attempt($login_data)) {
 
+            notify()->success('Welcome to Watch Shop..⚡️');
             return redirect('/home');
 
         } else {
-            return redirect()->back()->with('alert', 'not_succesful');
+
+            notify()->error('Enter curect data ⚡️');
+
+            return redirect()->back();
+            // return redirect()->back()->with('alert', 'not_succesful');
         }
 
     }
@@ -63,12 +73,23 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
+
+        notify()->success('Sign Out Succesfuly..⚡️');
         return redirect('/login');
     }
 
     public function home_check()
     {
-        return view('userpanel.home');
+        if (Auth::check()) {
+            // notify()->success('Welcome to Watch Shop.. ⚡️');
+            return view('userpanel.home');
+        } else {
+
+            notify()->error('Login now ⚡️');
+            return view('userpanel.home-x');
+        }
+
+        // return view('userpanel.home');
     }
 
 
@@ -107,8 +128,8 @@ class UserController extends Controller
         //     'email' => $request->email,
         // ]);
 
-
-        return redirect()->back()->with('alert', 'succesful');
+        notify()->success('Account Update Succesfuly..⚡️');
+        return redirect()->back();
 
     }
 
@@ -126,17 +147,18 @@ class UserController extends Controller
 
             ]);
 
-            return redirect()->back()->with('alert', 'succesful');
+            notify()->success('Photo Update Succesful..⚡️');
+            return redirect()->back();
 
-        } 
-        else {
+        } else {
             $user = Auth::user();
             $user = DB::table('users')->where('id', $user->id)->update([
                 'photo' => null,
 
             ]);
 
-            return redirect()->back()->with('alert', 'succesful');
+            notify()->success('Photo Update Succesful..⚡️');
+            return redirect()->back();
         }
 
 

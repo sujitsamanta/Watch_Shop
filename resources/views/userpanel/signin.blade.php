@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    @notifyCss
     <script>
         tailwind.config = {
             theme: {
@@ -62,10 +63,12 @@
             font-weight: 500;
             margin: 0;
         }
+
     </style>
 </head>
 
 <body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+    @include('notify::components.notify')
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-primary-darker mb-2">Create Account</h1>
@@ -165,6 +168,8 @@
 
         
     </div>
+    @notifyJs
+    
 </body>
 
 </html>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+        @notifyCss
+
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #000000 0%, #8B0000 50%, #008080 100%);
@@ -67,6 +69,8 @@
 
 <body
     class="min-h-screen bg-gradient-to-b from-purple-light via-purple-medium to-purple-dark flex items-center justify-center p-4">
+            @include('notify::components.notify')
+
     <div class="w-full max-w-md">
         <!-- Login Card -->
         <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
@@ -180,6 +184,7 @@
 
 
         </div>
+        
 
         <script>
             function togglePassword() {
@@ -228,6 +233,8 @@
                 }, 100);
             });
         </script>
+                @notifyJs
+
 </body>
 
 </html>
