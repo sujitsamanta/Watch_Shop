@@ -85,7 +85,7 @@ class UserController extends Controller
             return view('userpanel.home');
         } else {
 
-            notify()->error('Login now ⚡️');
+            // notify()->error('Login now ⚡️');
             return view('userpanel.home-x');
         }
 

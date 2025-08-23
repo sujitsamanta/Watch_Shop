@@ -7,7 +7,7 @@
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
-            @notifyCss
+    @notifyCss
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <script>
@@ -75,7 +75,8 @@
             font-weight: 500;
             margin: 0;
         }
-        .notify{
+
+        .notify {
             z-index: 1001 !important;
         }
     </style>
@@ -83,7 +84,7 @@
 </head>
 
 <body>
-            @include('notify::components.notify')
+    @include('notify::components.notify')
 
     <!-- Navbar -->
     <nav class="shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -237,7 +238,7 @@
 
                 <!-- Tablet and Mobile Icons -->
                 <div class="flex items-center space-x-2 lg:hidden">
-                   
+
                     <!-- Search Icon for Tablet/Mobile -->
                     <button id="search-toggle"
                         class="text-white hover:text-purple-medium transition-colors duration-300 p-2">
@@ -248,16 +249,20 @@
                         </svg>
                     </button>
 
-                     <button
-                        class="flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </button>
+                    <a href="/account">
+                        <button
+                            class="flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </button>
+                    </a>
 
-                    
+
+
 
                     <!-- Mobile menu button -->
                     <button id="mobile-menu-btn"
@@ -290,8 +295,7 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="mobile-menu lg:hidden border-t border-purple-medium border-opacity-30">
             <div class="px-4 py-4 space-y-4 max-w-7xl mx-auto">
-                <a href="/home"
-                    class="block text-white  transition-colors duration-300 py-2 text-base">Home</a>
+                <a href="/home" class="block text-white  transition-colors duration-300 py-2 text-base">Home</a>
 
                 <!-- Mobile Products Section -->
                 <div class="py-1">
@@ -343,14 +347,12 @@
                     </div>
                 </div>
 
-                <a href="/about"
-                    class="block text-white  transition-colors duration-300 py-2 text-base">About</a>
-                <a href="/contact"
-                    class="block text-white  transition-colors duration-300 py-2 text-base">Contact</a>
+                <a href="/about" class="block text-white  transition-colors duration-300 py-2 text-base">About</a>
+                <a href="/contact" class="block text-white  transition-colors duration-300 py-2 text-base">Contact</a>
 
                 <!-- Mobile Account Section -->
                 <div class="border-t border-purple-medium border-opacity-30 pt-4 mt-4 space-y-3">
-                     <!-- Cart Icon for Tablet/Mobile -->
+                    <!-- Cart Icon for Tablet/Mobile -->
                     <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -362,8 +364,8 @@
                         <span
                             class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
                     </button>
-                    
-                    <a href="/sign_in"
+
+                    <a href="/logout"
                         class="flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -371,10 +373,10 @@
                             <polyline points="10,17 15,12 10,7" />
                             <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
-                        <span class="text-base">Sign In</span>
+                        <span class="text-base">Log Out</span>
                     </a>
 
-                   
+
                 </div>
             </div>
         </div>
@@ -408,9 +410,9 @@
             </div>
         </div> -->
 
-        
+
     </div>
-        @notifyJs
+    @notifyJs
 
     <script src="js/user_script.js"></script>
     <script>

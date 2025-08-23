@@ -7,6 +7,8 @@
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
+    @notifyCss
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <script>
         tailwind.config = {
@@ -73,11 +75,17 @@
             font-weight: 500;
             margin: 0;
         }
+
+        .notify {
+            z-index: 1001 !important;
+        }
     </style>
 
 </head>
 
 <body>
+    @include('notify::components.notify')
+
     <!-- Navbar -->
     <nav class="shadow-lg fixed top-0 left-0 right-0 z-50">
         <div class="navbar-container max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -214,7 +222,7 @@
                     </div> -->
 
                     <!-- Cart -->
-                    <button
+                    <!-- <button
                         class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -225,7 +233,7 @@
                         </svg>
                         <span
                             class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
-                    </button>
+                    </button> -->
 
                 </div>
 
@@ -241,8 +249,23 @@
                         </svg>
                     </button>
 
+                    <!-- Log In Button -->
+                    <a href="login">
+                        <button
+                            class="text-white hover:text-purple-medium transition-colors duration-300 flex items-center space-x-1 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                <polyline points="10,17 15,12 10,7" />
+                                <line x1="15" x2="3" y1="12" y2="12" />
+                            </svg>
+                            <!-- <span>Log In</span> -->
+                        </button>
+                    </a>
+
                     <!-- Cart Icon for Tablet/Mobile -->
-                    <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
+                    <!-- <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="8" cy="21" r="1" />
@@ -252,7 +275,7 @@
                         </svg>
                         <span
                             class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
-                    </button>
+                    </button> -->
 
                     <!-- Mobile menu button -->
                     <button id="mobile-menu-btn"
@@ -671,6 +694,7 @@
 
     <script src="js/user_script.js"></script>
 
+    @notifyJs
 
 </body>
 
