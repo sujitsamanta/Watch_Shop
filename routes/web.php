@@ -33,8 +33,6 @@ Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
 Route::view('/a', 'a');
 
-
-
 // Admin Panel Start
 
 // Route::prefix('adminpanel')->group(function () {

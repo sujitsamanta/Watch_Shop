@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
-use Flasher\Prime\FlasherInterface;
+
 
 
 
@@ -49,7 +49,7 @@ class UserController extends Controller
         }
 
     }
-    public function login_submit(Request $request,FlasherInterface $flasher){
+    public function login_submit(Request $request){
     
         $login_data = $request->validate([
             'email' => 'required|email',

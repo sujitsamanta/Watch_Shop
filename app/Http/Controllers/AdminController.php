@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
-use Flasher\Prime\FlasherInterface;
-
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -52,7 +51,11 @@ class AdminController extends Controller
     }
     public function admin_customer_accounts_view()
     {
-        return view('adminpanel.admin_customer_accounts_view');
+        //  $users_data = User::simplePaginate(7);
+
+        $users_data = User::paginate(7);
+
+        return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
 
     }
 }
