@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" href="css/admin_style.css">
-	@notifyCss
+	<!-- @notifyCss -->
 
 	<script>
 		tailwind.config = {
@@ -39,7 +39,7 @@
 </head>
 
 <body class="min-h-screen font-sans text-slate-900 bg-gradient-to-b from-lav1 via-peri to-side">
-	@include('notify::components.notify')
+	<!-- @include('notify::components.notify') -->
 
 	<div class="min-h-screen relative">
 		<!-- Mobile Menu Overlay -->
@@ -212,7 +212,7 @@
 
 	<script src="js/admin_script.js"></script>
 
-	@notifyJs
+	<!-- @notifyJs -->
 
 </body>
 

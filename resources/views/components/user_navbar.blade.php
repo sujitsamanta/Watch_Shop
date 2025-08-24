@@ -7,8 +7,10 @@
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
-    @notifyCss
-
+    <!-- @notifyCss -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <script>
         tailwind.config = {
@@ -79,12 +81,17 @@
         .notify {
             z-index: 1001 !important;
         }
+
+        .fl-wrapper {
+            z-index: 1001 !important;
+
+        }
     </style>
 
 </head>
 
 <body>
-    @include('notify::components.notify')
+    <!-- @include('notify::components.notify') -->
 
     <!-- Navbar -->
     <nav class="shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -217,7 +224,8 @@
                             <hr class="my-2 border-purple-light">
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
-                            <a href="/logout" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
+                            <a href="/logout"
+                                class="logout-link block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
                         </div>
                     </div>
 
@@ -412,9 +420,35 @@
 
 
     </div>
-    @notifyJs
+    <!-- @notifyJs -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="js/user_script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".logout-link").on("click", function (e) {
+                e.preventDefault(); // Stop default logout immediately
+
+                let url = $(this).attr("href"); // /logout
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will be logged out from the system.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, log me out!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to logout
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
     <script>
 
         // account start

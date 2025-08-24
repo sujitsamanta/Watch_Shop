@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
-        @notifyCss
+        <!-- @notifyCss -->
 
     <style>
         .gradient-bg {
@@ -69,7 +69,7 @@
 
 <body
     class="min-h-screen bg-gradient-to-b from-purple-light via-purple-medium to-purple-dark flex items-center justify-center p-4">
-            @include('notify::components.notify')
+            <!-- @include('notify::components.notify') -->
 
     <div class="w-full max-w-md">
         <!-- Login Card -->
@@ -233,7 +233,7 @@
                 }, 100);
             });
         </script>
-                @notifyJs
+                <!-- @notifyJs -->
 
 </body>
 

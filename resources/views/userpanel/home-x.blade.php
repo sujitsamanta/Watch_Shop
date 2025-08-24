@@ -7,7 +7,7 @@
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
-    @notifyCss
+    <!-- @notifyCss -->
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <script>
@@ -84,7 +84,7 @@
 </head>
 
 <body>
-    @include('notify::components.notify')
+    <!-- @include('notify::components.notify') -->
 
     <!-- Navbar -->
     <nav class="shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -694,7 +694,7 @@
 
     <script src="js/user_script.js"></script>
 
-    @notifyJs
+    <!-- @notifyJs -->
 
 </body>
 
