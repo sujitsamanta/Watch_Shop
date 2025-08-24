@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
+use Flasher\Prime\FlasherInterface;
+
 
 class AdminController extends Controller
 {
@@ -19,13 +21,17 @@ class AdminController extends Controller
         ]);
         if (Auth::guard('admin')->attempt($login_data)) {
 
-            notify()->success('Account Login Succesful..⚡️');
+            // notify()->success('Account Login Succesful..⚡️');
+            flash()->addSuccess('Account Login Succesful..⚡️');
+
 
             return redirect('/admin_home');
 
         } else {
 
-            notify()->error('Enter Curect Data ⚡️');
+            // notify()->error('Enter Curect Data ⚡️');
+            flash()->addError('Enter Curect Data ⚡️');
+
             return redirect()->back();
         }
 
@@ -35,7 +41,9 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        notify()->success('Account Log Out Succesful ⚡️');
+        // notify()->success('Account Log Out Succesful ⚡️');
+        flash()->addSuccess('Account Log Out Succesful ⚡️');
+
         return redirect('/admin_login');
     }
     public function admin_check()

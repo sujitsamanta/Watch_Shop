@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use Flasher\Prime\FlasherInterface;
 
 
 
@@ -46,8 +47,8 @@ class UserController extends Controller
         }
 
     }
-    public function login_submit(Request $request)
-    {
+    public function login_submit(Request $request,FlasherInterface $flasher){
+    
         $login_data = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -57,12 +58,20 @@ class UserController extends Controller
 
         if (Auth::attempt($login_data)) {
 
-            notify()->success('Welcome to Watch Shop..⚡️');
+            // notify()->success('Welcome to Watch Shop..⚡️');
+            // flash('Your account has been reactivated.');
+
+            // flash('Your account has been reactivated.');
+
+            flash()->addSuccess('Welcome to Watch Shop..⚡️');
+
             return redirect('/home');
 
         } else {
 
-            notify()->error('Enter curect data ⚡️');
+            // notify()->error('Enter curect data ⚡️');
+            flash()->addError('Enter curect data ⚡️');
+
 
             return redirect()->back();
             // return redirect()->back()->with('alert', 'not_succesful');
@@ -74,7 +83,9 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        notify()->success('Sign Out Succesfuly..⚡️');
+        // notify()->success('Sign Out Succesfuly..⚡️');
+        flash()->addSuccess('Sign Out Succesfuly..⚡️');
+
         return redirect('/login');
     }
 
@@ -128,7 +139,9 @@ class UserController extends Controller
         //     'email' => $request->email,
         // ]);
 
-        notify()->success('Account Update Succesfuly..⚡️');
+        // notify()->success('Account Update Succesfuly..⚡️');
+        flash()->addSuccess('Account Update Succesfuly..⚡️');
+
         return redirect()->back();
 
     }
@@ -147,7 +160,8 @@ class UserController extends Controller
 
             ]);
 
-            notify()->success('Photo Update Succesful..⚡️');
+            // notify()->success('Photo Update Succesful..⚡️');
+            flash()->addSuccess('Photo Update Succesful..⚡️');
             return redirect()->back();
 
         } else {
@@ -157,7 +171,9 @@ class UserController extends Controller
 
             ]);
 
-            notify()->success('Photo Update Succesful..⚡️');
+            // notify()->success('Photo Update Succesful..⚡️');
+            flash()->addSuccess('Photo Update Succesful..⚡️');
+
             return redirect()->back();
         }
 
