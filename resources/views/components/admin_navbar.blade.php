@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 
 <head>
 	<meta charset="UTF-8">
@@ -26,6 +26,12 @@
 						'purple-medium': '#C8B8E0',
 						'purple-dark': '#8B7BAD',
 						'purple-darkest': '#4A4461',
+						// Dark mode colors
+						'dark-bg': '#0f172a',
+						'dark-sidebar': '#1e293b',
+						'dark-card': '#334155',
+						'dark-text': '#f1f5f9',
+						'dark-border': '#475569',
 					}
 				}
 			}
@@ -35,10 +41,58 @@
 		.notify {
 			z-index: 1001 !important;
 		}
+
+		/* Dark mode styles */
+		:root {
+			--bg-primary: #F4EFFF;
+			--bg-secondary: #E4DEFF;
+			--bg-tertiary: #A9B4E6;
+			--bg-sidebar: #3F4673;
+			--text-primary: #1e293b;
+			--text-secondary: #475569;
+			--card-bg: rgba(255, 255, 255, 0.7);
+			--border-color: rgba(71, 85, 105, 0.3);
+		}
+
+		[data-theme="dark"] {
+			--bg-primary: #0f172a;
+			--bg-secondary: #1e293b;
+			--bg-tertiary: #334155;
+			--bg-sidebar: #1e293b;
+			--text-primary: #f1f5f9;
+			--text-secondary: #cbd5e1;
+			--card-bg: rgba(51, 65, 85, 0.7);
+			--border-color: rgba(71, 85, 105, 0.5);
+		}
+
+		body {
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+
+		.dark-mode-toggle {
+			transition: all 0.3s ease;
+		}
+
+		/* Dark mode specific overrides */
+		[data-theme="dark"] .bg-white\/70 {
+			background-color: var(--card-bg);
+		}
+
+		[data-theme="dark"] .text-slate-900 {
+			color: var(--text-primary);
+		}
+
+		[data-theme="dark"] .border-indigo-100 {
+			border-color: var(--border-color);
+		}
+
+		[data-theme="dark"] .bg-white {
+			background-color: var(--card-bg);
+		}
 	</style>
 </head>
 
-<body class="min-h-screen font-sans text-slate-900 bg-gradient-to-b from-lav1 via-peri to-side">
+<body class="min-h-screen font-sans transition-all duration-300" data-theme="light">
 	<!-- @include('notify::components.notify') -->
 
 	<div class="min-h-screen relative">
@@ -95,7 +149,7 @@
 					</svg>
 					Orders
 				</a>
-				<a href="#"
+				<a href="/admin_customer_accounts_view"
 					class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-medium text-indigo-50 transition-all duration-200 hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-md">
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
 						<path
@@ -157,7 +211,7 @@
 		</aside>
 
 		<!-- Main Content -->
-		<main class="relative min-h-screen backdrop-blur-sm bg-white/70 p-3 sm:p-4 md:p-6 md:ml-[260px]">
+		<main class="relative min-h-screen backdrop-blur-sm bg-white/70 p-3 sm:p-4 md:p-6 md:ml-[260px] transition-all duration-300" id="main-content">
 			<!-- Header -->
 			<div class="mb-4 md:mb-6 flex items-center gap-3 md:gap-4 justify-between flex-wrap">
 				<div class="flex items-center gap-3">
@@ -168,8 +222,20 @@
 								d="M4 6h16M4 12h16M4 18h16"></path>
 						</svg>
 					</button>
-					<h1 class="text-lg sm:text-xl md:text-2xl font-bold">Dashboard</h1>
+					<h1 class="text-lg sm:text-xl md:text-2xl font-bold transition-colors duration-300">Dashboard</h1>
 				</div>
+
+				<!-- Dark Mode Toggle -->
+				<button id="dark-mode-toggle" class="p-2 rounded-lg transition-all duration-300 hover:bg-white/50 dark-mode-toggle">
+					<!-- Sun Icon (Light Mode) -->
+					<svg id="sun-icon" class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+					</svg>
+					<!-- Moon Icon (Dark Mode) -->
+					<svg id="moon-icon" class="w-6 h-6 text-blue-400 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+					</svg>
+				</button>
 
 				<!-- Search Bar -->
 				<div
@@ -180,7 +246,7 @@
 							d="M21 21L16.65 16.65M18 10.5C18 14.0899 15.0899 17 11.5 17C7.91015 17 5 14.0899 5 10.5C5 6.91015 7.91015 4 11.5 4C15.0899 4 18 6.91015 18 10.5Z"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 					</svg>
-					<input class="w-full border-0 outline-none bg-transparent text-sm"
+					<input class="w-full border-0 outline-none bg-transparent text-sm transition-colors duration-300"
 						placeholder="Search watches, orders..." />
 				</div>
 
@@ -201,21 +267,110 @@
 							d="M21 21L16.65 16.65M18 10.5C18 14.0899 15.0899 17 11.5 17C7.91015 17 5 14.0899 5 10.5C5 6.91015 7.91015 4 11.5 4C15.0899 4 18 6.91015 18 10.5Z"
 							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 					</svg>
-					<input class="w-full border-0 outline-none bg-transparent text-sm" placeholder="Search..." />
+					<input class="w-full border-0 outline-none bg-transparent text-sm transition-colors duration-300" placeholder="Search..." />
 				</div>
 			</div>
 
-
 			{{$body}}
-			
 		</main>
-
-
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/admin_script.js"></script>
+
+	<!-- Dark Mode Script -->
+	<script>
+		// Dark mode functionality
+		function initDarkMode() {
+			const darkModeToggle = document.getElementById('dark-mode-toggle');
+			const sunIcon = document.getElementById('sun-icon');
+			const moonIcon = document.getElementById('moon-icon');
+			const body = document.body;
+			const mainContent = document.getElementById('main-content');
+			
+			// Check for saved theme preference or default to light mode
+			const currentTheme = localStorage.getItem('admin-theme') || 'light';
+			body.setAttribute('data-theme', currentTheme);
+			
+			// Update UI based on current theme
+			updateThemeUI(currentTheme);
+			
+			// Toggle theme function
+			darkModeToggle.addEventListener('click', () => {
+				const currentTheme = body.getAttribute('data-theme');
+				const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+				
+				body.setAttribute('data-theme', newTheme);
+				localStorage.setItem('admin-theme', newTheme);
+				
+				updateThemeUI(newTheme);
+				applyThemeStyles(newTheme);
+			});
+			
+			// Apply initial theme
+			applyThemeStyles(currentTheme);
+		}
+		
+		function updateThemeUI(theme) {
+			const sunIcon = document.getElementById('sun-icon');
+			const moonIcon = document.getElementById('moon-icon');
+			
+			if (theme === 'dark') {
+				sunIcon.classList.add('hidden');
+				moonIcon.classList.remove('hidden');
+			} else {
+				sunIcon.classList.remove('hidden');
+				moonIcon.classList.add('hidden');
+			}
+		}
+		
+		function applyThemeStyles(theme) {
+			const mainContent = document.getElementById('main-content');
+			
+			if (theme === 'dark') {
+				// Dark mode styles
+				mainContent.classList.remove('bg-white/70');
+				mainContent.classList.add('bg-dark-card/70');
+				mainContent.classList.add('text-dark-text');
+				
+				// Update search bars
+				const searchBars = document.querySelectorAll('.border-indigo-100, .bg-white');
+				searchBars.forEach(bar => {
+					bar.classList.remove('border-indigo-100', 'bg-white');
+					bar.classList.add('border-dark-border', 'bg-dark-card');
+				});
+				
+				// Update text colors
+				const textElements = document.querySelectorAll('.text-slate-900');
+				textElements.forEach(text => {
+					text.classList.remove('text-slate-900');
+					text.classList.add('text-dark-text');
+				});
+			} else {
+				// Light mode styles
+				mainContent.classList.remove('bg-dark-card/70', 'text-dark-text');
+				mainContent.classList.add('bg-white/70');
+				
+				// Restore search bars
+				const searchBars = document.querySelectorAll('.border-dark-border, .bg-dark-card');
+				searchBars.forEach(bar => {
+					bar.classList.remove('border-dark-border', 'bg-dark-card');
+					bar.classList.add('border-indigo-100', 'bg-white');
+				});
+				
+				// Restore text colors
+				const textElements = document.querySelectorAll('.text-dark-text');
+				textElements.forEach(text => {
+					text.classList.remove('text-dark-text');
+					text.classList.add('text-slate-900');
+				});
+			}
+		}
+		
+		// Initialize dark mode when DOM is loaded
+		document.addEventListener('DOMContentLoaded', initDarkMode);
+	</script>
 
 	<!-- sweet alert2 start -->
 	<script>

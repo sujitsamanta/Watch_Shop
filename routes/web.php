@@ -46,6 +46,8 @@ Route::get('/admin_logout', [AdminController::class,'admin_logout']);
 
 Route::get('/admin_customer_accounts_view', [AdminController::class,'admin_customer_accounts_view'])->middleware('adminMiddleware');
 
+Route::get('/admin_setting', [AdminController::class,'admin_setting'])->middleware('adminMiddleware');
+
     
 // });
 

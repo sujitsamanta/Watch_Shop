@@ -10,7 +10,7 @@
                     <div class="flex justify-between items-center">
                         <h2 class="text-xl font-semibold text-white">Customer List</h2>
                         <div class="text-white/80 text-sm">
-                            Total Customers: <span class="font-bold text-white">8</span>
+                            Total Customers: <span class="font-bold text-white">{{ $users_data->total() }}</span>
                         </div>
                     </div>
                 </div>
@@ -79,56 +79,51 @@
                 <div class="bg-gradient-to-r from-lav2 to-peri p-4 border-t border-lav2/30">
 
                     <div class="flex justify-between items-center">
-    <div class="text-sm text-side">
-        Showing {{ $users_data->firstItem() }}–{{ $users_data->lastItem() }}
-        of {{ $users_data->total() }} users
-    </div>
-    <div class="flex space-x-2">
-        {{-- Previous --}}
-        @if ($users_data->onFirstPage())
-            <button
-                class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium"
-                disabled>
-                Previous
-            </button>
-        @else
-            <a href="{{ $users_data->previousPageUrl() }}"
-               class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
-                Previous
-            </a>
-        @endif
+                        <div class="text-sm text-side">
+                            Showing {{ $users_data->firstItem() }}–{{ $users_data->lastItem() }}
+                            of {{ $users_data->total() }} users
+                        </div>
+                        <div class="flex space-x-2">
+                            {{-- Previous --}}
+                            @if ($users_data->onFirstPage())
+                                <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
+                                    Previous
+                                </button>
+                            @else
+                                <a href="{{ $users_data->previousPageUrl() }}"
+                                    class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
+                                    Previous
+                                </a>
+                            @endif
 
-        {{-- Only 3 Page Numbers --}}
-        @php
-            $current = $users_data->currentPage();
-            $last = $users_data->lastPage();
-            $start = max($current - 1, 1);
-            $end = min($current + 1, $last);
-        @endphp
+                            {{-- Only 3 Page Numbers --}}
+                            @php
+                                $current = $users_data->currentPage();
+                                $last = $users_data->lastPage();
+                                $start = max($current - 1, 1);
+                                $end = min($current + 1, $last);
+                            @endphp
 
-        @for ($page = $start; $page <= $end; $page++)
-            <a href="{{ $users_data->url($page) }}"
-               class="px-3 py-1 rounded-md text-sm font-medium
-               {{ $page == $current ? 'bg-side text-white' : 'bg-white/50 text-side hover:bg-white/70' }}">
-                {{ $page }}
-            </a>
-        @endfor
+                            @for ($page = $start; $page <= $end; $page++)
+                                                <a href="{{ $users_data->url($page) }}" class="px-3 py-1 rounded-md text-sm font-medium
+                                   {{ $page == $current ? 'bg-side text-white' : 'bg-white/50 text-side hover:bg-white/70' }}">
+                                                    {{ $page }}
+                                                </a>
+                            @endfor
 
-        {{-- Next --}}
-        @if ($users_data->hasMorePages())
-            <a href="{{ $users_data->nextPageUrl() }}"
-               class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
-                Next
-            </a>
-        @else
-            <button
-                class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium"
-                disabled>
-                Next
-            </button>
-        @endif
-    </div>
-</div>
+                            {{-- Next --}}
+                            @if ($users_data->hasMorePages())
+                                <a href="{{ $users_data->nextPageUrl() }}"
+                                    class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
+                                    Next
+                                </a>
+                            @else
+                                <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
+                                    Next
+                                </button>
+                            @endif
+                        </div>
+                    </div>
 
 
                     {{-- $users_data->links() --}}

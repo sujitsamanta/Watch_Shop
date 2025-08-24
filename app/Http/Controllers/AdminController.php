@@ -58,4 +58,9 @@ class AdminController extends Controller
         return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
 
     }
+    public function admin_setting()
+    {
+        return view('adminpanel.admin_setting');
+
+    }
 }
