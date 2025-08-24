@@ -225,7 +225,7 @@
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
                             <a href="/logout"
-                                class="logout-link block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
+                                class="logout_link block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
                         </div>
                     </div>
 
@@ -374,7 +374,7 @@
                     </button>
 
                     <a href="/logout"
-                        class="flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
+                        class="logout_link flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -427,7 +427,7 @@
     <script src="js/user_script.js"></script>
     <script>
         $(document).ready(function () {
-            $(".logout-link").on("click", function (e) {
+            $(".logout_link").on("click", function (e) {
                 e.preventDefault(); // Stop default logout immediately
 
                 let url = $(this).attr("href"); // /logout

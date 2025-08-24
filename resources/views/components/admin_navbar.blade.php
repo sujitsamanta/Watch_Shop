@@ -145,7 +145,7 @@
 					Settings
 				</a>
 				<a href="/admin_logout"
-					class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-medium text-indigo-50 transition-all duration-200 hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-md">
+					class="logout_link flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 font-medium text-indigo-50 transition-all duration-200 hover:bg-white/15 hover:-translate-y-0.5 hover:shadow-md">
 					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
 						<path fill-rule="evenodd"
 							d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
@@ -210,7 +210,33 @@
 
 	</div>
 
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/admin_script.js"></script>
+	<script>
+		 $(document).ready(function () {
+            $(".logout_link").on("click", function (e) {
+                e.preventDefault(); // Stop default logout immediately
+
+                let url = $(this).attr("href"); // /logout
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will be logged out from the system.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, log me out!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to logout
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+	</script>
 
 	<!-- @notifyJs -->
 

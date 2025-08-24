@@ -181,7 +181,7 @@
                                     </form> -->
                                     <a href="/logout">
                                          <button id="editBtn" type="button"
-                                        class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
+                                        class="logout_link bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
                                         Log out
                                     </button>
                                     </a>
