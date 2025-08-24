@@ -21,7 +21,8 @@ class UserMiddleware
             return $next($request);
 
         }
-        
-        return redirect('/login')->with('alert', 'Please login first.');
+
+        flash()->addInfo('Please login first.');
+        return redirect('/login');
     }
 }

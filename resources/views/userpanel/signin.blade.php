@@ -75,7 +75,7 @@
             <!-- <p class="text-gray-600">Join us today and get started</p> -->
         </div>
 
-        <form class="space-y-6" action="signin_submit" method="post">
+        <form class="space-y-6" action="/signin_submit" method="post">
             @csrf
 
             @if (session('alert'))

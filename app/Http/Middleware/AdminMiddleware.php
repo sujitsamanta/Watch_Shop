@@ -23,6 +23,7 @@ class AdminMiddleware
 
         }
         
-        return redirect('/admin_login')->with('alert', 'Please login first.');
+        flash()->addInfo('Please login first.');
+        return redirect('/admin_login');
     }
 }

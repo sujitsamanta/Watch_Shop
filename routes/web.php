@@ -8,11 +8,8 @@ use App\Http\Middleware\UserMiddleware;
 
 // User Panel Start
 
-// home page
-
 // Route::view('/home-x', 'userpanel.home-x');
 Route::get('/home', [UserController::class,'home_check']);
-
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 
@@ -20,7 +17,6 @@ Route::get('/home', [UserController::class,'home_check']);
 Route::get('/account', [UserController::class,'account_check'])->middleware('userMiddleware');
 Route::post('/account_upadate', [UserController::class,'account_upadate']);
 Route::post('/account_photo_update', [UserController::class,'account_photo_update']);
-
 
 Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);
@@ -30,10 +26,8 @@ Route::post('/login_submit', [UserController::class,'login_submit']);
 
 Route::get('/logout', [UserController::class,'logout']);
 
-
 Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
 Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
-
 
 // User Panel End
 
@@ -45,13 +39,12 @@ Route::view('/a', 'a');
 
 // Route::prefix('adminpanel')->group(function () {
 
+Route::get('/admin_home', [AdminController::class,'admin_check'])->middleware('adminMiddleware');
+
 Route::view('/admin_login', 'adminpanel.admin_login');
 Route::post('/admin_login_submit', [AdminController::class,'admin_login']);
 
 Route::get('/admin_logout', [AdminController::class,'admin_logout']);
-
-
-Route::get('/admin_home', [AdminController::class,'admin_check'])->middleware('adminMiddleware');
 
 Route::get('/admin_customer_accounts_view', [AdminController::class,'admin_customer_accounts_view'])->middleware('adminMiddleware');
 

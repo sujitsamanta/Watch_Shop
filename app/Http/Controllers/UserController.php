@@ -30,16 +30,18 @@ class UserController extends Controller
             $user = User::create($signin_data);
 
             // $user = User::where('email', $request->email)->first();
-
             $user->notify(new UserMail());
-            notify()->success('Account created succesfuly ⚡️');
+
+            // notify()->success('Account created succesfuly ⚡️');
+            flash()->addSuccess('Account created succesfuly ⚡️');
+
             return redirect('/login');
             // return redirect()->back();
 
 
         } else {
-
-            notify()->error('Enter curect data ⚡️');
+            // notify()->error('Enter curect data ⚡️');
+            flash()->addError('Account created succesfuly ⚡️');
 
             return redirect()->back();
             // return redirect()->back()->with('alert', 'not_succesful');

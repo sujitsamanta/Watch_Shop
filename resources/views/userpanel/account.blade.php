@@ -44,7 +44,7 @@
 
 
                             <button id="saveButton" type="submit"
-                                class="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition shadow hidden w-full">
+                                class="update_save_photo bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition shadow hidden w-full">
                                 Save Photo
                             </button>
 
@@ -84,7 +84,7 @@
                                     Update Profile
                                 </button>
                                 <button id="saveBtn" type="submit"
-                                    class="hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
+                                    class="update_save hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
                                     Save
                                 </button>
                                 <button id="cancelBtn" type="button"
@@ -181,7 +181,7 @@
                                     </form> -->
                                     <a href="/logout">
                                          <button id="editBtn" type="button"
-                                        class="logout_link bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
+                                        class="logout bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
                                         Log out
                                     </button>
                                     </a>

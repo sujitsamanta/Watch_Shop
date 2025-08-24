@@ -224,8 +224,8 @@
                             <hr class="my-2 border-purple-light">
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
-                            <a href="/logout"
-                                class="logout_link block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign Out</a>
+                            <a href="/logout" class="logout block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign
+                                Out</a>
                         </div>
                     </div>
 
@@ -374,7 +374,7 @@
                     </button>
 
                     <a href="/logout"
-                        class="logout_link flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
+                        class="logout flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -422,16 +422,15 @@
     </div>
     <!-- @notifyJs -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/user_script.js"></script>
+
+    <!-- sweet alert2 start -->
     <script>
         $(document).ready(function () {
-            $(".logout_link").on("click", function (e) {
+            $(".logout").on("click", function (e) {
                 e.preventDefault(); // Stop default logout immediately
-
                 let url = $(this).attr("href"); // /logout
-
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You will be logged out from the system.",
@@ -439,7 +438,7 @@
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, log me out!"
+                    confirmButtonText: "Yes, log me out!",
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Redirect to logout
@@ -447,13 +446,65 @@
                     }
                 });
             });
+
+
+            $(".update_save").on("click", function (e) {
+                e.preventDefault(); // Stop default logout immediately
+
+                // let url = $(this).attr("href"); 
+                var form = $(this).parents("form"); // /logout
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to update your account details?",
+                    icon: "question",   // use "question" or "info" instead of "warning"
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, update it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to logout
+                        // window.location.href = url;
+                        form.submit();
+                    }
+                    else {
+                        window.location.href = "/account";
+                    }
+                });
+            });
+
+             $(".update_save_photo").on("click", function (e) {
+                e.preventDefault(); // Stop default logout immediately
+
+                // let url = $(this).attr("href"); 
+                var form = $(this).parents("form"); // /logout
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to update your account Photo?",
+                    icon: "question",   // use "question" or "info" instead of "warning"
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, update it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to logout
+                        // window.location.href = url;
+                        form.submit();
+                    }
+                    else {
+                        window.location.href = "/account";
+                    }
+                });
+            });
+
         });
     </script>
+    <!-- sweet alert2 end -->
     <script>
-
         // account start
-
-
         const editBtn = document.getElementById("editBtn");
         const saveBtn = document.getElementById("saveBtn");
         const cancelBtn = document.getElementById("cancelBtn");
