@@ -7,6 +7,11 @@
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- @vite(['../resources/css/app.css', '../resources/css/user_style.css']) -->
+
+
     <!-- @notifyCss -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
@@ -30,6 +35,9 @@
                         peri: '#A9B4E6',
                         side: '#3F4673',
                     },
+                    boxShadow: {
+                        card: '0 10px 30px -12px rgba(88, 28, 135, 0.35)'
+                    }
 
                 }
             }
@@ -94,7 +102,7 @@
     <!-- @include('notify::components.notify') -->
 
     <!-- Navbar -->
-    <nav class="shadow-lg fixed top-0 left-0 right-0 z-50">
+    <nav class="shadow-lg fixed top-0 left-0 right-0 z-50 p-2">
         <div class="navbar-container max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
             <div class="flex justify-between items-center h-14 sm:h-16">
                 <!-- Logo -->
@@ -393,33 +401,176 @@
     <!-- Main Content -->
     <div class="max-w-full mx-auto">
 
-
         {{ $body }}
 
+    </div>
 
-        <!-- <div class="content-card rounded-2xl p-8 mb-8">
-            <h1 class="text-4xl font-bold text-purple-dark mb-6">Welcome to Hand Watch Shop</h1>
-            <p class="text-purple-darkest text-lg mb-4">Discover our exquisite collection of timepieces with our new elegant purple theme.</p>
-            <p class="text-purple-dark">This responsive navbar now features a beautiful gradient color scheme that transitions from light purple to deep purple tones, creating a sophisticated and modern look for your watch shop.</p>
+    <!-- Footer Section -->
+    <footer class="bg-purple-darkest text-white mt-10">
+        <!-- Newsletter Section -->
+        <div class="bg-side py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                    <div class="text-center md:text-left">
+                        <h4 class="text-lg font-semibold text-purple-light mb-2">Stay Updated</h4>
+                        <p class="text-peri">Subscribe to our newsletter for the latest updates and offers</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                        <input type="email" placeholder="Enter your email"
+                            class="px-4 py-3 bg-purple-dark text-white placeholder-peri rounded-lg border border-purple-medium focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent w-64">
+                        <button
+                            class="px-6 py-3 bg-purple-medium hover:bg-purple-light text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-card">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="content-card rounded-xl p-6">
-                <h3 class="text-xl font-semibold text-purple-dark mb-3">Premium Quality</h3>
-                <p class="text-purple-darkest">Handpicked luxury watches from renowned brands worldwide.</p>
+        <!-- Main Footer Content -->
+        <div class="container mx-auto px-6 py-12">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Company Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-purple-medium rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-sm"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-purple-light">cyber</h3>
+                    </div>
+                    <p class="text-peri leading-relaxed max-w-sm">
+                        We are a residential interior design firm located in Portland. Our boutique studio offers
+                        more
+                        than traditional design services.
+                    </p>
+                    <!-- Social Media Icons -->
+                    <div class="flex space-x-4 pt-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-side rounded-lg flex items-center justify-center hover:bg-purple-medium transition-all duration-300 group">
+                            <i class="fab fa-twitter text-peri group-hover:text-white transition-colors"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-side rounded-lg flex items-center justify-center hover:bg-purple-medium transition-all duration-300 group">
+                            <i class="fab fa-facebook-f text-peri group-hover:text-white transition-colors"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-side rounded-lg flex items-center justify-center hover:bg-purple-medium transition-all duration-300 group">
+                            <i class="fab fa-tiktok text-peri group-hover:text-white transition-colors"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-side rounded-lg flex items-center justify-center hover:bg-purple-medium transition-all duration-300 group">
+                            <i class="fab fa-instagram text-peri group-hover:text-white transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Services Column -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-light mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Bonus program
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Gift cards
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Credit and payment
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Service contracts
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Non-cash account
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Payment
+                            </a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Support Column -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-purple-light mb-6">Assistance to the buyer</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Find an order
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Terms of delivery
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Exchange and return of goods
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Guarantee
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Frequently asked questions
+                            </a></li>
+                        <li><a href="#"
+                                class="text-peri hover:text-purple-light transition-colors duration-300 flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 text-purple-medium group-hover:translate-x-1 transition-transform"></i>
+                                Terms of use of the site
+                            </a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="content-card rounded-xl p-6">
-                <h3 class="text-xl font-semibold text-purple-dark mb-3">Expert Service</h3>
-                <p class="text-purple-darkest">Professional consultation and after-sales support.</p>
-            </div>
-            <div class="content-card rounded-xl p-6">
-                <h3 class="text-xl font-semibold text-purple-dark mb-3">Lifetime Warranty</h3>
-                <p class="text-purple-darkest">Comprehensive coverage for all our timepieces.</p>
+
+        </div>
+
+
+
+        <!-- Bottom Copyright -->
+        <!-- <div class="bg-purple-dark py-4 border-t border-side">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
+                    <p class="text-peri text-sm">© 2024 Cyber. All rights reserved.</p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-peri hover:text-purple-light transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-peri hover:text-purple-light transition-colors">Terms of Service</a>
+                        <a href="#" class="text-peri hover:text-purple-light transition-colors">Cookies</a>
+                    </div>
+                </div>
             </div>
         </div> -->
+    </footer>
 
 
-    </div>
     <!-- @notifyJs -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -474,7 +625,7 @@
                 });
             });
 
-             $(".update_save_photo").on("click", function (e) {
+            $(".update_save_photo").on("click", function (e) {
                 e.preventDefault(); // Stop default logout immediately
 
                 // let url = $(this).attr("href"); 

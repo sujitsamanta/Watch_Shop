@@ -193,3 +193,65 @@ document.addEventListener('DOMContentLoaded', function () {
 //                                        confirmaction button start
 //                                        confirmaction button end
 
+// Popular Products Row (Horizontal Carousel) start
+(function () {
+    const scroller = document.getElementById('carousel');
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
+    const slideWidth = () => scroller.querySelector('div > div').offsetWidth || 320;
+    let timer;
+
+    function scrollByDir(dir) {
+        scroller.scrollBy({ left: dir * (slideWidth() + 16), behavior: 'smooth' });
+    }
+    function start() { timer = setInterval(() => scrollByDir(1), 3500); }
+    function stop() { clearInterval(timer); }
+
+    prev && prev.addEventListener('click', () => scrollByDir(-1));
+    next && next.addEventListener('click', () => scrollByDir(1));
+
+    scroller.addEventListener('mouseenter', stop);
+    scroller.addEventListener('mouseleave', start);
+    start();
+})();
+
+// Popular Products Row (Horizontal Carousel) end
+
+
+// Auto Carousel functionality start
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-item');
+const indicators = document.querySelectorAll('.carousel-indicator');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    // Hide all slides
+    slides.forEach(slide => slide.classList.remove('active'));
+    indicators.forEach(indicator => {
+        indicator.classList.remove('active', 'bg-purple-light/70');
+        indicator.classList.add('bg-white/30');
+    });
+
+    // Show current slide
+    slides[index].classList.add('active');
+    indicators[index].classList.remove('bg-white/30');
+    indicators[index].classList.add('active', 'bg-purple-light/70');
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Auto-advance carousel every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Manual indicator controls
+indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+    });
+});
+
+// Auto Carousel functionality end
