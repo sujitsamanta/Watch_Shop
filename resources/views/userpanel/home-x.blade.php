@@ -83,6 +83,10 @@
         .notify {
             z-index: 1001 !important;
         }
+        .fl-wrapper {
+            z-index: 1001 !important;
+
+        }
     </style>
 
 </head>
@@ -380,6 +384,9 @@
             </div>
         </div>
 
+        <!-- Black Shadow Overlay -->
+        <div class="absolute inset-0 z-5 bg-black/60"></div>
+
         <!-- Gradient Overlay -->
         <div class="absolute inset-0 z-10 gradient-overlay"></div>
 
@@ -395,24 +402,24 @@
             <div class="text-center lg:text-left mt-12">
                 <!-- Real-time Clock Component -->
                 <div
-                    class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/30 shadow-lg">
+                    class="inline-flex items-center gap-3 bg-white/30 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/50 shadow-lg">
                     <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <div class="text-side font-mono text-lg font-semibold" id="realtime-clock">
+                    <div class="text-white font-mono text-lg font-semibold" id="realtime-clock">
                         00:00:00
                     </div>
-                    <span class="text-side/70 text-sm">Live Time</span>
+                    <span class="text-white/80 text-sm">Live Time</span>
                 </div>
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-side mb-6 leading-tight">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                     Premium
-                    <span class="bg-gradient-to-r from-peri to-side bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                         Watches
                     </span>
                     <br>
                     Collection
                 </h1>
 
-                <p class="text-lg md:text-xl text-side/80 mb-8 max-w-xl mx-auto lg:mx-0">
+                <p class="text-lg md:text-xl text-white/90 mb-8 max-w-xl mx-auto lg:mx-0">
                     Discover luxury timepieces from world's most prestigious brands.
                     Each watch tells a story of craftsmanship and elegance.
                 </p>
@@ -430,21 +437,21 @@
 
                 <!-- Brand Logos -->
                 <div class="mb-8">
-                    <p class="text-side/60 text-sm mb-4 uppercase tracking-wider">Featured Luxury Brands</p>
-                    <div class="flex flex-wrap justify-center lg:justify-start items-center gap-6 opacity-70">
+                    <p class="text-white/80 text-sm mb-4 uppercase tracking-wider">Featured Luxury Brands</p>
+                    <div class="flex flex-wrap justify-center lg:justify-start items-center gap-6 opacity-90">
                         <div
-                            class="bg-white/60 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-side text-sm shadow-sm">
+                            class="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-gray-800 text-sm shadow-sm">
                             ROLEX</div>
                         <div
-                            class="bg-white/60 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-side text-sm shadow-sm">
+                            class="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-gray-800 text-sm shadow-sm">
                             OMEGA</div>
                         <div
-                            class="bg-white/60 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-side text-sm shadow-sm hover:bg-white/80 transition-colors">
+                            class="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-gray-800 text-sm shadow-sm hover:bg-white transition-colors">
                             <a href="https://www.3watches.com/" target="_blank"
-                                class="text-side hover:text-purple-darkest">3WATCHES</a>
+                                class="text-gray-800 hover:text-purple-darkest">3WATCHES</a>
                         </div>
                         <div
-                            class="bg-white/60 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-side text-sm shadow-sm">
+                            class="bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 font-bold text-gray-800 text-sm shadow-sm">
                             PATEK</div>
                     </div>
                 </div>
@@ -452,11 +459,11 @@
                 <!-- CTA Buttons -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <button
-                        class="bg-gradient-to-r from-side to-peri text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:scale-105">
+                        class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 hover:scale-105">
                         Shop Now
                     </button>
                     <button
-                        class="bg-white/80 backdrop-blur-sm text-side px-8 py-4 rounded-full font-semibold text-lg border-2 border-white/50 hover:bg-white hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                        class="bg-white/90 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-semibold text-lg border-2 border-white/70 hover:bg-white hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                         View Collections
                     </button>
                 </div>
@@ -633,10 +640,10 @@
                 </div>
 
                 <div
-                    class="absolute -bottom-6 -left-6 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-xl border border-white/50 z-10">
+                    class="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-xl border border-white/70 z-10">
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                        <span class="text-side text-sm font-semibold">Shipping Now</span>
+                        <span class="text-gray-800 text-sm font-semibold">Shipping Now</span>
                     </div>
                 </div>
 
@@ -792,55 +799,164 @@
         </div>
     </section>
 
+
     <!-- Spotlight Grid -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Playstation 5 Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card">
-                <div class="absolute inset-0 bg-gradient-to-br from-lav2 via-white to-white"></div>
+            <section
+                class="relative overflow-hidden rounded-2xl bg-white shadow-card hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-lav2 via-white to-white group-hover:from-emerald-50 group-hover:via-teal-50 group-hover:to-cyan-50 transition-all duration-500">
+                </div>
+
+                <!-- Geometric shapes effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-4 left-4 w-8 h-8 border-2 border-emerald-400 rotate-45 animate-spin"
+                        style="animation-duration: 4s;"></div>
+                    <div class="absolute top-8 right-6 w-6 h-6 bg-teal-400 rounded-full animate-pulse"></div>
+                    <div
+                        class="absolute bottom-6 left-8 w-4 h-4 border-2 border-cyan-400 transform rotate-12 animate-bounce">
+                    </div>
+                    <div class="absolute bottom-4 right-4 w-3 h-3 bg-emerald-400 transform rotate-45 animate-ping">
+                    </div>
+                </div>
+
                 <div class="relative p-8 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
                     <div class="order-2 sm:order-1">
-                        <h2 class="text-3xl sm:text-4xl font-semibold">Luxury Watch</h2>
-                        <p class="mt-3 text-sm text-side/70 max-w-md">Premium craftsmanship meets timeless elegance.
+                        <h2
+                            class="text-3xl sm:text-4xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text transition-all duration-300">
+                            Luxury Watch</h2>
+                        <p
+                            class="mt-3 text-sm text-side/70 max-w-md group-hover:text-side/90 transition-colors duration-300">
+                            Premium craftsmanship meets timeless elegance.
                             Discover our exclusive collection of luxury timepieces.</p>
                     </div>
                     <div class="order-1 sm:order-2 h-48 sm:h-56 md:h-64">
-                        <img src="images/x1.jpg" alt="Luxury Watch" class="h-full w-full object-cover rounded-xl">
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="images/x1.jpg" alt="Luxury Watch"
+                                class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:brightness-110 transition-all duration-700">
+                            <!-- Geometric overlay -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-tr from-emerald-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                            </div>
+                            <!-- Corner triangles -->
+                            <div
+                                class="absolute top-2 left-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-emerald-400 border-t-transparent border-r-transparent border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-transparent border-t-transparent border-r-teal-400 border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Macbook Air Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card md:row-span-2">
-                <div class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white"></div>
+            <section
+                class="relative overflow-hidden rounded-2xl bg-white shadow-card md:row-span-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-purple-50 group-hover:via-blue-50 group-hover:to-pink-50 transition-all duration-500">
+                </div>
+
+                <!-- Floating elements effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-8 left-8 w-3 h-3 bg-purple-400 rounded-full animate-bounce"></div>
+                    <div class="absolute top-16 right-12 w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-20 left-16 w-2.5 h-2.5 bg-pink-400 rounded-full animate-bounce"
+                        style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-12 right-8 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"
+                        style="animation-delay: 1.5s;"></div>
+                </div>
+
                 <div class="relative grid grid-cols-1 h-full">
                     <div class="p-5 md:p-12 lg:p-14 flex flex-col justify-center max-w-xl">
-                        <h3 class="text-5xl leading-none font-light">Premium</h3>
-                        <h3 class="text-6xl sm:text-7xl font-semibold -mt-2">Collection</h3>
-                        <p class="mt-4 text-side/70 text-sm">Exclusive timepieces from world-renowned brands. Each
+                        <h3
+                            class="text-5xl leading-none font-light group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                            Premium</h3>
+                        <h3
+                            class="text-6xl sm:text-7xl font-semibold -mt-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">
+                            Collection</h3>
+                        <p class="mt-4 text-side/70 text-sm group-hover:text-side/90 transition-colors duration-300">
+                            Exclusive timepieces from world-renowned brands. Each
                             watch tells a story of heritage and innovation.</p>
                         <button
-                            class="mt-6 self-start px-5 py-2.5 rounded-full border border-purple-medium hover:border-purple-dark text-side hover:text-purple-darkest">Shop
+                            class="mt-6 self-start px-5 py-2.5 rounded-full border border-purple-medium hover:border-purple-dark text-side hover:text-purple-darkest group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
                             Now</button>
                     </div>
                     <div class="px-6 pb-6 md:px-10 md:pb-10">
-                        <img src="images/x3.jpg" alt="Premium Watch Collection"
-                            class="h-44 sm:h-56 md:h-72 w-full object-cover rounded-xl">
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="images/x3.jpg" alt="Premium Watch Collection"
+                                class="h-44 sm:h-56 md:h-72 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-700">
+                            <!-- Glow overlay -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                            </div>
+                            <!-- Corner highlights -->
+                            <div
+                                class="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                            <div
+                                class="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- AirPods Max Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card grid grid-cols-2">
-                <div class="p-8">
-                    <p class="uppercase text-xs tracking-wider text-side/70">Swiss Made</p>
-                    <h4 class="text-2xl font-semibold leading-tight">Automatic<br>Movement</h4>
-                    <p class="mt-2 text-sm text-side/70">Precision engineering meets traditional watchmaking
+            <section
+                class="relative overflow-hidden rounded-2xl bg-white shadow-card grid grid-cols-2 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 group cursor-pointer">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-amber-50 group-hover:via-orange-50 group-hover:to-red-50 transition-all duration-500">
+                </div>
+
+                <!-- Mechanical gears effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-6 left-6 w-12 h-12 border-4 border-amber-400 rounded-full animate-spin"
+                        style="animation-duration: 3s;"></div>
+                    <div class="absolute top-6 left-6 w-8 h-8 border-2 border-orange-400 rounded-full animate-spin"
+                        style="animation-duration: 2s; animation-direction: reverse;"></div>
+                    <div class="absolute bottom-6 right-6 w-10 h-10 border-3 border-red-400 rounded-full animate-spin"
+                        style="animation-duration: 4s;"></div>
+                    <div class="absolute bottom-6 right-6 w-6 h-6 border-2 border-amber-400 rounded-full animate-spin"
+                        style="animation-duration: 1.5s; animation-direction: reverse;"></div>
+                </div>
+
+                <div class="p-8 relative z-10">
+                    <p
+                        class="uppercase text-xs tracking-wider text-side/70 group-hover:text-amber-600 transition-colors duration-300">
+                        Swiss Made</p>
+                    <h4
+                        class="text-2xl font-semibold leading-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-orange-600 group-hover:bg-clip-text transition-all duration-300">
+                        Automatic<br>Movement</h4>
+                    <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">
+                        Precision engineering meets traditional watchmaking
                         excellence.</p>
                 </div>
-                <div class="p-6">
-                    <img src="images/x2.jpg" alt="Automatic Watch Movement"
-                        class="h-full w-full object-cover rounded-xl">
+                <div class="p-6 relative z-10">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="images/x2.jpg" alt="Automatic Watch Movement"
+                            class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:contrast-125 transition-all duration-700">
+                        <!-- Mechanical overlay -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-bl from-amber-400/20 via-transparent to-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                        </div>
+                        <!-- Gear indicators -->
+                        <div
+                            class="absolute top-2 left-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute top-2 right-2 w-3 h-3 border-2 border-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-2 left-2 w-3 h-3 border-2 border-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-2 right-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -882,205 +998,153 @@
 
             <!-- Product Card 1 -->
             <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w1.jpg" alt="Luxury Watch" class="w-full h-64 object-cover">
+                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
+                <div class="relative overflow-hidden">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                     <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
+                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
                         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                             </path>
                         </svg>
                     </button>
+                    <div
+                        class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <button
+                            class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
+                            Quick View
+                        </button>
+                    </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Luxury Watch Collection</h3>
+                    <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">Luxury
+                        Watch Collection</h3>
                     <p class="text-side/70 text-sm mb-3">Premium craftsmanship meets timeless elegance</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$899</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
+                        <span
+                            class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">$899</span>
+                        <button
+                            class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
                             Now</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Product Card 2 -->
+            <!-- Product Card 1 -->
             <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w2.jpg" alt="Premium Watch" class="w-full h-64 object-cover">
+                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
+                <div class="relative overflow-hidden">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                     <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
+                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
                         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                             </path>
                         </svg>
                     </button>
+                    <div
+                        class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <button
+                            class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
+                            Quick View
+                        </button>
+                    </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Swiss Made Timepiece</h3>
-                    <p class="text-side/70 text-sm mb-3">Automatic movement with precision engineering</p>
+                    <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">Luxury
+                        Watch Collection</h3>
+                    <p class="text-side/70 text-sm mb-3">Premium craftsmanship meets timeless elegance</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$1,299</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
+                        <span
+                            class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">$899</span>
+                        <button
+                            class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
                             Now</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Product Card 3 -->
+            <!-- Product Card 1 -->
             <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w3.jpg" alt="Classic Watch" class="w-full h-64 object-cover">
+                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
+                <div class="relative overflow-hidden">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                     <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
-                        <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Classic Elegance</h3>
-                    <p class="text-side/70 text-sm mb-3">Timeless design with modern sophistication</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$799</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
-                            Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Card 4 -->
-            <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w4.jpg" alt="Sport Watch" class="w-full h-64 object-cover">
-                    <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
+                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
                         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                             </path>
                         </svg>
                     </button>
+                    <div
+                        class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <button
+                            class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
+                            Quick View
+                        </button>
+                    </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Sport Chronograph</h3>
-                    <p class="text-side/70 text-sm mb-3">Performance meets style in every detail</p>
+                    <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">Luxury
+                        Watch Collection</h3>
+                    <p class="text-side/70 text-sm mb-3">Premium craftsmanship meets timeless elegance</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$649</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
+                        <span
+                            class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">$899</span>
+                        <button
+                            class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
                             Now</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Product Card 5 -->
+            <!-- Product Card 1 -->
             <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w5.jpg" alt="Luxury Watch" class="w-full h-64 object-cover">
+                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
+                <div class="relative overflow-hidden">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
                     <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
+                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
                         <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                             </path>
                         </svg>
                     </button>
+                    <div
+                        class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                        <button
+                            class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
+                            Quick View
+                        </button>
+                    </div>
                 </div>
                 <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Premium Collection</h3>
-                    <p class="text-side/70 text-sm mb-3">Exclusive timepieces for discerning collectors</p>
+                    <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">Luxury
+                        Watch Collection</h3>
+                    <p class="text-side/70 text-sm mb-3">Premium craftsmanship meets timeless elegance</p>
                     <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$1,899</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
+                        <span
+                            class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">$899</span>
+                        <button
+                            class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
                             Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Product Card 6 -->
-            <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w6.jpg" alt="Modern Watch" class="w-full h-64 object-cover">
-                    <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
-                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Modern Minimalist</h3>
-                    <p class="text-side/70 text-sm mb-3">Clean lines and contemporary aesthetics</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$549</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
-                            Now</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Product Card 7 -->
-            <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w7.jpg" alt="Vintage Watch" class="w-full h-64 object-cover">
-                    <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
-                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Vintage Heritage</h3>
-                    <p class="text-side/70 text-sm mb-3">Timeless classics with rich history</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$2,199</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
-                            Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Card 8 -->
-            <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                <div class="relative">
-                    <img src="images/w8.jpg" alt="Limited Edition" class="w-full h-64 object-cover">
-                    <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50">
-                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2">Limited Edition</h3>
-                    <p class="text-side/70 text-sm mb-3">Rare and exclusive collector's piece</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side">$3,499</span>
-                        <button class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-colors">Buy
-                            Now</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
+
 
     <!-- Promotional Banner Section -->
     <section class="w-full py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
@@ -1167,7 +1231,6 @@
             style="animation-delay: 1s;"></div>
     </section>
 
-
     <div class="container mx-auto px-4">
         <!-- Section Header -->
         <div class="text-center my-12">
@@ -1179,47 +1242,136 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Slide -->
             <div
-                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200">
-                <img src="images/w1.jpg" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full">
-                <h5 class="text-2xl font-semibold">Luxury Watch</h5>
-                <p class="mt-2 text-sm text-side/70">Premium craftsmanship meets timeless elegance.</p>
+                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                <!-- Floating particles effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                    <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping"
+                        style="animation-delay: 1s;"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                    <!-- Glow effect overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                    </div>
+                </div>
+
+                <h5
+                    class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                    Luxury Watch</h5>
+                <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Premium
+                    craftsmanship meets timeless elegance.</p>
                 <button
-                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side">Shop
-                    Now</button>
-            </div>
-            <!-- Slide -->
-            <div
-                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200">
-                <img src="images/w1.jpg" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full">
-                <h5 class="text-2xl font-semibold">Luxury Watch</h5>
-                <p class="mt-2 text-sm text-side/70">Premium craftsmanship meets timeless elegance.</p>
-                <button
-                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side">Shop
-                    Now</button>
-            </div>
-            <!-- Slide -->
-            <div
-                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200">
-                <img src="images/w1.jpg" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full">
-                <h5 class="text-2xl font-semibold">Luxury Watch</h5>
-                <p class="mt-2 text-sm text-side/70">Premium craftsmanship meets timeless elegance.</p>
-                <button
-                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side">Shop
-                    Now</button>
-            </div>
-            <!-- Slide -->
-            <div
-                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200">
-                <img src="images/w1.jpg" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full">
-                <h5 class="text-2xl font-semibold">Luxury Watch</h5>
-                <p class="mt-2 text-sm text-side/70">Premium craftsmanship meets timeless elegance.</p>
-                <button
-                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side">Shop
+                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
                     Now</button>
             </div>
 
+            <!-- Slide -->
+            <div
+                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                <!-- Floating particles effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                    <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping"
+                        style="animation-delay: 1s;"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                    <!-- Glow effect overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                    </div>
+                </div>
+
+                <h5
+                    class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                    Luxury Watch</h5>
+                <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Premium
+                    craftsmanship meets timeless elegance.</p>
+                <button
+                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                    Now</button>
+            </div>
+
+            <!-- Slide -->
+            <div
+                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                <!-- Floating particles effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                    <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping"
+                        style="animation-delay: 1s;"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                    <!-- Glow effect overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                    </div>
+                </div>
+
+                <h5
+                    class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                    Luxury Watch</h5>
+                <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Premium
+                    craftsmanship meets timeless elegance.</p>
+                <button
+                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                    Now</button>
+            </div>
+
+
+            <!-- Slide -->
+            <div
+                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                <!-- Floating particles effect -->
+                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                    <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping"
+                        style="animation-delay: 0.5s;"></div>
+                    <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping"
+                        style="animation-delay: 1s;"></div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-xl">
+                    <img src="images/w1.jpg" alt="Luxury Watch"
+                        class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                    <!-- Glow effect overlay -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl">
+                    </div>
+                </div>
+
+                <h5
+                    class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">
+                    Luxury Watch</h5>
+                <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Premium
+                    craftsmanship meets timeless elegance.</p>
+                <button
+                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                    Now</button>
+            </div>
+
+
+
+
+
         </div>
     </div>
+
 
     <!-- Footer Section -->
     <footer class="bg-purple-darkest text-white mt-10">

@@ -88,7 +88,7 @@ class UserController extends Controller
         // notify()->success('Sign Out Succesfuly..⚡️');
         flash()->addSuccess('Sign Out Succesfuly..⚡️');
 
-        return redirect('/login');
+        return redirect('/home');
     }
 
     public function home_check()
