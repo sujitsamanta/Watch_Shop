@@ -829,9 +829,10 @@
         </section>
 
         <div class="container mx-auto px-4">
-            <!-- Header -->
-            <div class="mb-8">
-                <h1 class="text-2xl font-semibold text-gray-900">Discounts up to -50%</h1>
+             <!-- Section Header -->
+            <div class="text-center my-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
             </div>
 
             <!-- Products Grid -->
@@ -879,24 +880,6 @@
 
             </div>
         </div>
-
-       
-
-
-        <!-- <div class="flex-auto">
-            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-flag-black mb-4 sm:mb-6">Home Page</h1>
-            <a href="/logout">
-                <button
-                    class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-neutral-950 px-6 font-medium text-neutral-200 transition hover:scale-110"><span>Log
-                        out</span>
-                    <div
-                        class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]">
-                        <div class="relative h-full w-8 bg-white/20"></div>
-                    </div>
-                </button>
-            </a>
-        </div> -->
-
 
 
     </x-slot>

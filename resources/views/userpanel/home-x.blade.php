@@ -8,13 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/user_style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- @vite(['../resources/css/app.css','../resources/css/user_style.css']) -->
-    
-
     <!-- @notifyCss -->
 
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-    <!-- <script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -36,7 +35,8 @@
                 }
             }
         }
-    </script> -->
+    </script>
+
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);
@@ -189,7 +189,7 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                             <polyline points="10,17 15,12 10,7" />
-                            <line x1="15" x2="3" y1="12" y2="12" /> 
+                            <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
                         <span class="text-base">Log in</span>
                     </a>
@@ -209,10 +209,10 @@
                     </a> -->
 
                     <!-- Account Dropdown -->
-                    
+
 
                     <!-- Cart -->
-                   
+
                 </div>
 
                 <!-- Tablet and Mobile Icons -->
@@ -228,13 +228,13 @@
                         </svg>
                     </button>
 
-                   <a href="/login"
+                    <a href="/login"
                         class="logout flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                             <polyline points="10,17 15,12 10,7" />
-                            <line x1="15" x2="3" y1="12" y2="12" /> 
+                            <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
                         <span class="text-base">Log in</span>
                     </a>
@@ -331,7 +331,7 @@
                 <!-- Mobile Account Section -->
                 <div class="border-t border-purple-medium border-opacity-30 pt-4 mt-4 space-y-3">
                     <!-- Cart Icon for Tablet/Mobile -->
-                   
+
 
                     <a href="/signin"
                         class="logout flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
@@ -339,7 +339,7 @@
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                             <polyline points="10,17 15,12 10,7" />
-                            <line x1="15" x2="3" y1="12" y2="12" /> 
+                            <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
                         <span class="text-base">Sign in</span>
                     </a>
@@ -792,7 +792,6 @@
         </div>
     </section>
 
-
     <!-- Spotlight Grid -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1083,7 +1082,6 @@
         </div>
     </section>
 
-
     <!-- Promotional Banner Section -->
     <section class="w-full py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
         <!-- Background Elements -->
@@ -1169,10 +1167,12 @@
             style="animation-delay: 1s;"></div>
     </section>
 
+
     <div class="container mx-auto px-4">
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-2xl font-semibold text-gray-900">Discounts up to -50%</h1>
+        <!-- Section Header -->
+        <div class="text-center my-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+            <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
         </div>
 
         <!-- Products Grid -->
@@ -1220,7 +1220,6 @@
 
         </div>
     </div>
-
 
     <!-- Footer Section -->
     <footer class="bg-purple-darkest text-white mt-10">
@@ -1386,9 +1385,6 @@
             </div>
         </div> -->
     </footer>
-
-
-
 
     <script src="js/user_script.js"></script>
 
