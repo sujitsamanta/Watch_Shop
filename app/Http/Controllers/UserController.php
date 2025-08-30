@@ -42,7 +42,7 @@ class UserController extends Controller
 
         } else {
             // notify()->error('Enter curect data ⚡️');
-            flash()->addError('Account created succesfuly ⚡️');
+            flash()->addError('Account Created Faild ⚡️');
 
             return redirect()->back();
             // return redirect()->back()->with('alert', 'not_succesful');

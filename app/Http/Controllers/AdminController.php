@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Categorie;
+use App\Models\Product;
+
 
 class AdminController extends Controller
 {
@@ -64,17 +67,42 @@ class AdminController extends Controller
 
     }
 
-     public function admin_add_categorie()
+    public function admin_add_categorie()
     {
+
         return view('adminpanel.admin_add_categorie');
 
     }
-     public function admin_add_product()
+
+    public function admin_add_categorie_submit(Request $request)
+    {
+
+        $add_categorie_data = $request->validate([
+            'name' => 'required|unique:categories,name',
+            'slug' => 'required|unique:categories,slug',
+            'description' => 'required',
+
+        ]);
+
+        $result = Categorie::create($add_categorie_data);
+
+        if ($result) {
+            flash()->addSuccess('Categorie Add Succesful ⚡️');
+            return redirect()->back();
+        } else {
+            flash()->addError('Categorie Not Add ⚡️');
+            return redirect()->back();
+        }
+
+    }
+
+    public function admin_add_product()
     {
         return view('adminpanel.admin_add_product');
 
     }
-     public function admin_products_view()
+
+    public function admin_products_view()
     {
         return view('adminpanel.admin_products_view');
 

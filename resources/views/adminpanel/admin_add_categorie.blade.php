@@ -9,7 +9,8 @@
         </div>
 
         <!-- Professional Form Layout -->
-        <form class="space-y-8">
+        <form class="space-y-8" method="post" action="/admin_add_categorie__submit">
+            @csrf
             <!-- Basic Information Section -->
             <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
                 <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Category Information</h2>
@@ -20,8 +21,14 @@
                         <label for="name" class="block text-sm font-semibold text-side mb-2">
                             Category Name <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" id="name" name="name" required placeholder="e.g., Smart Watches"
-                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                        <input value="{{ old('name') }}" type="text" id="name" name="name" placeholder="e.g., Smart Watches"
+                            class="@error('name') border-red-500 @else border-primary-medium @enderror
+                             w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                             <div class="text-sm text-red-500 h-2">
+                    @error('name')
+                        {{ $message }}
+                    @enderror
+                </div>
                     </div>
 
                     <!-- Slug -->
@@ -29,8 +36,14 @@
                         <label for="slug" class="block text-sm font-semibold text-side mb-2">
                             URL Slug <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" id="slug" name="slug" required placeholder="e.g., smart-watches"
-                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                        <input value="{{ old('slug') }}" type="text" id="slug" name="slug" placeholder="e.g., smart-watches"
+                            class="@error('slug') border-red-500 @else border-primary-medium @enderror
+                            w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                             <div class="text-sm text-red-500 h-2">
+                    @error('slug')
+                        {{ $message }}
+                    @enderror
+                </div>
                         <p class="text-xs text-purple-dark mt-2">This will be used in the category URL. Auto-generated
                             from category name.</p>
                     </div>
@@ -41,10 +54,17 @@
                     <label for="description" class="block text-sm font-semibold text-side mb-2">
                         Category Description <span class="text-purple-dark">(Optional)</span>
                     </label>
-                    <textarea id="description" name="description" rows="4"
+                    <textarea value="{{ old('description') }}" id="description" name="description" rows="4"
                         placeholder="e.g., All types of smartwatches and wearable technology devices including fitness trackers, luxury smartwatches, and sports watches."
-                        class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 resize-none"></textarea>
-                    <div class="flex justify-between items-center mt-2">
+                        class="@error('description') border-red-500 @else border-primary-medium @enderror
+                        w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 resize-none"></textarea>
+
+                         <div class="text-sm text-red-500 h-2">
+                    @error('description')
+                        {{ $message }}
+                    @enderror
+                </div>
+                    <div class="flex justify-between items-center mt-3">
                         <p class="text-xs text-purple-dark">Provide a brief description of what products belong in this
                             category</p>
                         <span id="charCount" class="text-xs text-purple-dark">0 characters</span>
@@ -53,7 +73,7 @@
             </div>
 
             <!-- Preview Section -->
-            <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
+            <!-- <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
                 <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Category Preview</h2>
 
                 <div class="bg-lav1 rounded-lg p-6 border border-purple-medium">
@@ -73,12 +93,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Form Actions -->
             <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-4">
+
                         <button type="button"
                             class="px-8 py-3 bg-purple-light text-side font-semibold rounded-lg border border-purple-medium hover:bg-purple-medium transition-all duration-200">
                             <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,7 +120,7 @@
                         </button>
                     </div>
 
-                    <button type="submit"
+                    <button type="submit" name="submit"
                         class="px-12 py-3 bg-side text-white font-bold rounded-lg hover:bg-purple-darkest transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                         <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -107,11 +128,14 @@
                         </svg>
                         Add Category
                     </button>
+
                 </div>
             </div>
         </form>
     </div>
+    
 <script>
+
            // Auto-generate slug from category name
         document.getElementById('name').addEventListener('input', function (e) {
             const name = e.target.value;
@@ -126,20 +150,22 @@
             updatePreview();
         });
 
+        
         // Update preview when slug changes
-        document.getElementById('slug').addEventListener('input', updatePreview);
-        document.getElementById('description').addEventListener('input', updatePreview);
+        // document.getElementById('slug').addEventListener('input', updatePreview);
+        // document.getElementById('description').addEventListener('input', updatePreview);
 
-        // Update preview function
-        function updatePreview() {
-            const name = document.getElementById('name').value || 'Category Name';
-            const slug = document.getElementById('slug').value || 'category-slug';
-            const description = document.getElementById('description').value || 'Category description will appear here';
+        // // Update preview function
+        // function updatePreview() {
+        //     const name = document.getElementById('name').value || 'Category Name';
+        //     const slug = document.getElementById('slug').value || 'category-slug';
+        //     const description = document.getElementById('description').value || 'Category description will appear here';
 
-            document.getElementById('previewName').textContent = name;
-            document.getElementById('previewSlug').textContent = `/category/${slug}`;
-            document.getElementById('previewDescription').textContent = description;
-        }
+        //     document.getElementById('previewName').textContent = name;
+        //     document.getElementById('previewSlug').textContent = `/category/${slug}`;
+        //     document.getElementById('previewDescription').textContent = description;
+        // }
+
 
         // Character counter for description
         const descriptionField = document.getElementById('description');
