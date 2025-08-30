@@ -76,11 +76,12 @@ class AdminController extends Controller
 
     public function admin_add_categorie_submit(Request $request)
     {
+        // return $request;
 
         $add_categorie_data = $request->validate([
             'name' => 'required|unique:categories,name',
             'slug' => 'required|unique:categories,slug',
-            'description' => 'required',
+            'description' => 'nullable',
 
         ]);
 

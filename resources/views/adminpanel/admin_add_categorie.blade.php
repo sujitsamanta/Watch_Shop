@@ -9,7 +9,7 @@
         </div>
 
         <!-- Professional Form Layout -->
-        <form class="space-y-8" method="post" action="/admin_add_categorie__submit">
+        <form class="space-y-8" action="/admin_add_categorie_submit" method="post" >
             @csrf
             <!-- Basic Information Section -->
             <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
@@ -100,7 +100,7 @@
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-4">
 
-                        <button type="button"
+                        <!-- <button type="button"
                             class="px-8 py-3 bg-purple-light text-side font-semibold rounded-lg border border-purple-medium hover:bg-purple-medium transition-all duration-200">
                             <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -117,11 +117,11 @@
                                 </path>
                             </svg>
                             Reset
-                        </button>
+                        </button> -->
                     </div>
 
-                    <button type="submit" name="submit"
-                        class="px-12 py-3 bg-side text-white font-bold rounded-lg hover:bg-purple-darkest transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <button type="submit" 
+                        class="add_category px-12 py-3 bg-side text-white font-bold rounded-lg hover:bg-purple-darkest transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
                         <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -133,22 +133,24 @@
             </div>
         </form>
     </div>
-    
+
 <script>
 
-           // Auto-generate slug from category name
-        document.getElementById('name').addEventListener('input', function (e) {
-            const name = e.target.value;
-            const slug = name.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-+|-+$/g, '');
-            document.getElementById('slug').value = slug;
+  
+        //    // Auto-generate slug from category name
+        // document.getElementById('name').addEventListener('input', function (e) {
+        //     const name = e.target.value;
+        //     const slug = name.toLowerCase()
+        //         .replace(/[^\w\s-]/g, '')
+        //         .replace(/\s+/g, '-')
+        //         .replace(/-+/g, '-')
+        //         .replace(/^-+|-+$/g, '');
+        //     document.getElementById('slug').value = slug;
 
-            // Update preview
-            updatePreview();
-        });
+        //     // Update preview
+        //     // updatePreview();
+        // });
+
 
         
         // Update preview when slug changes

@@ -225,7 +225,7 @@
 
 
 			{{$body}}
-			
+
 		</main>
 
 
@@ -238,6 +238,8 @@
 	<!-- sweet alert2 start -->
 	<script>
 		$(document).ready(function () {
+
+		// log out start
 			$(".admin_logout").on("click", function (e) {
 				e.preventDefault(); // Stop default logout immediately
 
@@ -256,11 +258,38 @@
 				}).then((result) => {
 					if (result.isConfirmed) {
 						// Redirect to logout
-                        // form.submit();
+						// form.submit();
 						window.location.href = url;
 					}
 				});
 			});
+		// log out end
+
+
+		// catagory add start
+
+			$(".add_category").on("click", function (e) {
+				e.preventDefault(); // stop direct submit
+
+				let form = $(this).closest("form")[0]; // get native form element
+
+				Swal.fire({
+					title: "Are you sure?",
+					text: "Do you want to add this category?",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Yes, add it!",
+					cancelButtonText: "Cancel"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit(); // ✅ native submit
+					}
+				});
+			});
+		// catagory add end
+
 		});
 	</script>
 	<!-- sweet alert2 end -->
