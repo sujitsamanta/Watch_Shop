@@ -1,0 +1,357 @@
+<x-admin_navbar>
+    <x-slot name="body">
+        <!-- Full Width Professional Form -->
+    <div class="w-full min-h-screen    ">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-4xl font-bold text-side mb-3">Add New Product</h1>
+            <p class="text-lg text-purple-dark">Create and configure a new product for your e-watch store</p>
+        </div>
+
+        <!-- Professional Form Layout -->
+        <form class="space-y-8">
+            <!-- Basic Information Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
+                <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Basic Information</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Category -->
+                    <div>
+                        <label for="category" class="block text-sm font-semibold text-side mb-2">
+                            Category <span class="text-red-500">*</span>
+                        </label>
+                        <select id="category" name="category_id" required
+                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                            <option value="">Select Category</option>
+                            <option value="1">Smart Watches</option>
+                            <option value="2">Fitness Trackers</option>
+                            <option value="3">Luxury Watches</option>
+                            <option value="4">Sports Watches</option>
+                            <option value="5">Kids Watches</option>
+                            <option value="6">Watch Accessories</option>
+                        </select>
+                    </div>
+
+                    <!-- Product Name -->
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-side mb-2">
+                            Product Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" required placeholder="Apple Watch Series 9"
+                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                    </div>
+
+                    <!-- SKU -->
+                    <div>
+                        <label for="sku" class="block text-sm font-semibold text-side mb-2">
+                            SKU <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="sku" name="sku" required placeholder="AW9-001"
+                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                    </div>
+                </div>
+
+                <!-- Slug (Full Width) -->
+                <div class="mt-6">
+                    <label for="slug" class="block text-sm font-semibold text-side mb-2">
+                        URL Slug <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="slug" name="slug" required placeholder="apple-watch-series-9"
+                        class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
+                    <p class="text-xs text-purple-dark mt-2">This will be used in the product URL. Auto-generated from
+                        product name.</p>
+                </div>
+            </div>
+
+            <!-- Pricing & Inventory Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
+                <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Pricing & Inventory</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Price -->
+                    <div>
+                        <label for="price" class="block text-sm font-semibold text-side mb-2">
+                            Selling Price <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-dark font-medium">$</span>
+                            <input type="number" id="price" name="price" required step="0.01" min="0"
+                                placeholder="799.00"
+                                class="w-full pl-10 pr-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 text-lg">
+                        </div>
+                    </div>
+
+                    <!-- Stock -->
+                    <div>
+                        <label for="stock" class="block text-sm font-semibold text-side mb-2">
+                            Stock Quantity <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="stock" name="stock" required min="0" placeholder="50"
+                            class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 text-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Section -->
+            <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
+                <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Product Details</h2>
+
+                <!-- Description -->
+                <div class="mb-8">
+                    <label for="description" class="block text-sm font-semibold text-side mb-2">
+                        Product Description <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="description" name="description" required rows="6"
+                        placeholder="Provide a detailed description of the product including key features, specifications, and benefits. For example: Latest smartwatch with advanced health monitoring, GPS tracking, and 18-hour battery life. Features include heart rate monitoring, sleep tracking, and water resistance up to 50 meters."
+                        class="w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 resize-none"></textarea>
+                    <div class="flex justify-between items-center mt-2">
+                        <p class="text-xs text-purple-dark">Provide detailed product information for customers</p>
+                        <span id="charCount" class="text-xs text-purple-dark">0 characters</span>
+                    </div>
+                </div>
+
+                <!-- Image Upload -->
+                <div>
+                    <label class="block text-sm font-semibold text-side mb-2">
+                        Product Image <span class="text-red-500">*</span>
+                    </label>
+                    <div
+                        class="border-2 border-dashed border-purple-medium rounded-xl bg-lav2 hover:bg-purple-light transition-all duration-200">
+                        <input type="file" id="image" name="image" accept="image/*" required class="hidden">
+                        <div class="p-12 text-center cursor-pointer" onclick="document.getElementById('image').click()">
+                            <div id="uploadContent">
+                                <svg class="w-16 h-16 text-purple-dark mx-auto mb-4" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                <h3 class="text-lg font-semibold text-side mb-2">Upload Product Image</h3>
+                                <p class="text-purple-dark mb-4">Drag and drop your image here, or click to browse</p>
+                                <div
+                                    class="inline-flex items-center px-6 py-3 bg-side text-white rounded-lg hover:bg-purple-darkest transition-colors">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                        </path>
+                                    </svg>
+                                    Choose File
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mt-3">
+                        <p class="text-xs text-purple-dark">Supported formats: PNG, JPG, JPEG • Max size: 10MB • Saved
+                            to: /storage/products/</p>
+                        <p class="text-xs text-purple-dark font-medium">Recommended: 800x800px</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <!-- <button type="button"
+                            class="px-8 py-3 bg-purple-light text-side font-semibold rounded-lg border border-purple-medium hover:bg-purple-medium transition-all duration-200">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            Cancel
+                        </button>
+                        <button type="button"
+                            class="px-8 py-3 bg-lav2 text-side font-semibold rounded-lg border border-purple-medium hover:bg-purple-light transition-all duration-200">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12">
+                                </path>
+                            </svg>
+                            Save as Draft
+                        </button> -->
+                        <button type="button" onclick="resetForm()"
+                                class="px-8 py-3 bg-lav2 text-side font-semibold rounded-lg border border-purple-medium hover:bg-purple-light transition-all duration-200">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                            Reset
+                        </button>
+                    </div>
+
+                    <button type="submit"
+                        class="px-12 py-3 bg-side text-white font-bold rounded-lg hover:bg-purple-darkest transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                        <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Add Product
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+<script>
+    //admin_add_product_form start
+
+document.getElementById('name').addEventListener('input', function (e) {
+	const name = e.target.value;
+	const slug = name.toLowerCase()
+		.replace(/[^\w\s-]/g, '')
+		.replace(/\s+/g, '-')
+		.replace(/-+/g, '-')
+		.replace(/^-+|-+$/g, '');
+	document.getElementById('slug').value = slug;
+});
+
+
+// Character counter for description
+const descriptionField = document.getElementById('description');
+const charCount = document.getElementById('charCount');
+
+descriptionField.addEventListener('input', function (e) {
+	const count = e.target.value.length;
+	charCount.textContent = `${count} characters`;
+
+	if (count > 500) {
+		charCount.classList.add('text-orange-500');
+	} else {
+		charCount.classList.remove('text-orange-500');
+	}
+});
+
+// Enhanced file upload with preview
+document.getElementById('image').addEventListener('change', function (e) {
+	const file = e.target.files[0];
+	const uploadContent = document.getElementById('uploadContent');
+
+	if (file) {
+		// Validate file size (10MB)
+		if (file.size > 10 * 1024 * 1024) {
+			alert('File size must be less than 10MB');
+			return;
+		}
+
+		// Validate file type
+		if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
+			alert('Please select a valid image file (PNG, JPG, JPEG)');
+			return;
+		}
+
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			uploadContent.innerHTML = `
+                        <div class="flex items-center justify-center space-x-6">
+                            <img src="${e.target.result}" alt="Preview" class="w-24 h-24 object-cover rounded-lg border-2 border-purple-medium">
+                            <div class="text-left">
+                                <div class="flex items-center mb-2">
+                                    <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-side font-semibold">File Selected</span>
+                                </div>
+                                <p class="text-purple-dark font-medium">${file.name}</p>
+                                <p class="text-sm text-purple-dark">${(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                <button type="button" onclick="clearImage()" class="text-sm text-red-500 hover:text-red-700 mt-2 underline">Remove</button>
+                            </div>
+                        </div>
+                    `;
+		};
+		reader.readAsDataURL(file);
+	}
+});
+
+// Function to clear image
+function clearImage() {
+	document.getElementById('image').value = '';
+	document.getElementById('uploadContent').innerHTML = `
+                <svg class="w-16 h-16 text-purple-dark mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <h3 class="text-lg font-semibold text-side mb-2">Upload Product Image</h3>
+                <p class="text-purple-dark mb-4">Drag and drop your image here, or click to browse</p>
+                <div class="inline-flex items-center px-6 py-3 bg-side text-white rounded-lg hover:bg-purple-darkest transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    Choose File
+                </div>
+            `;
+}
+
+// Reset Form Function
+function resetForm() {
+	// Reset all form fields
+	document.querySelector('form').reset();
+
+	// Clear character counter
+	document.getElementById('charCount').textContent = '0 characters';
+
+	// Reset image upload area
+	clearImage();
+
+	// Remove any validation styling
+	const labels = document.querySelectorAll('label');
+	labels.forEach(label => {
+		label.classList.remove('text-green-600');
+		label.classList.add('text-side');
+	});
+
+	// Show reset confirmation
+	const resetDiv = document.createElement('div');
+	resetDiv.className = 'fixed top-4 right-4 bg-blue-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+	resetDiv.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    <span class="font-semibold">Form has been reset!</span>
+                </div>
+            `;
+	document.body.appendChild(resetDiv);
+
+	setTimeout(() => {
+		resetDiv.classList.remove('translate-x-full');
+	}, 100);
+
+	setTimeout(() => {
+		resetDiv.classList.add('translate-x-full');
+		setTimeout(() => resetDiv.remove(), 300);
+	}, 2000);
+}
+
+// Professional input interactions
+const inputs = document.querySelectorAll('input, select, textarea');
+inputs.forEach(input => {
+	input.addEventListener('focus', function () {
+		this.parentElement.classList.add('transform', 'scale-[1.01]');
+		this.classList.add('shadow-lg');
+	});
+
+	input.addEventListener('blur', function () {
+		this.parentElement.classList.remove('transform', 'scale-[1.01]');
+		this.classList.remove('shadow-lg');
+	});
+});
+
+// Real-time validation indicators
+const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+requiredFields.forEach(field => {
+	field.addEventListener('input', function () {
+		const label = this.parentElement.querySelector('label');
+		if (this.value.trim()) {
+			label.classList.add('text-green-600');
+			label.classList.remove('text-side');
+		} else {
+			label.classList.remove('text-green-600');
+			label.classList.add('text-side');
+		}
+	});
+});
+
+//admin_add_product_form end
+</script>
+
+    </x-slot>
+
+</x-admin_navbar>

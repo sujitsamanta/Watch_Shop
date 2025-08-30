@@ -63,4 +63,20 @@ class AdminController extends Controller
         return view('adminpanel.admin_setting');
 
     }
+
+     public function admin_add_categorie()
+    {
+        return view('adminpanel.admin_add_categorie');
+
+    }
+     public function admin_add_product()
+    {
+        return view('adminpanel.admin_add_product');
+
+    }
+     public function admin_products_view()
+    {
+        return view('adminpanel.admin_products_view');
+
+    }
 }

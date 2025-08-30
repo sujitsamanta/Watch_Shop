@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Notifications\UserMail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 
 
@@ -49,8 +50,9 @@ class UserController extends Controller
         }
 
     }
-    public function login_submit(Request $request){
-    
+    public function login_submit(Request $request)
+    {
+
         $login_data = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -157,6 +159,17 @@ class UserController extends Controller
             $img_name = $patharrey[1];
 
             $user = Auth::user();
+
+              if ($user->photo) {
+                $oldPath = public_path('storage/photos/' . $user->photo);
+
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
+            }
+
+
+
             $user = DB::table('users')->where('id', $user->id)->update([
                 'photo' => $img_name,
 
@@ -168,6 +181,16 @@ class UserController extends Controller
 
         } else {
             $user = Auth::user();
+
+            if ($user->photo) {
+                $oldPath = public_path('storage/photos/' . $user->photo);
+
+                if (File::exists($oldPath)) {
+                    File::delete($oldPath);
+                }
+            }
+
+            
             $user = DB::table('users')->where('id', $user->id)->update([
                 'photo' => null,
 

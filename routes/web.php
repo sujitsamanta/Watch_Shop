@@ -48,6 +48,13 @@ Route::get('/admin_customer_accounts_view', [AdminController::class,'admin_custo
 
 Route::get('/admin_setting', [AdminController::class,'admin_setting'])->middleware('adminMiddleware');
 
+Route::get('/admin_add_categorie', [AdminController::class,'admin_add_categorie'])->middleware('adminMiddleware');
+
+Route::get('/admin_add_product', [AdminController::class,'admin_add_product'])->middleware('adminMiddleware');
+
+Route::get('/admin_products_view', [AdminController::class,'admin_products_view'])->middleware('adminMiddleware');
+
+
     
 // });
 
