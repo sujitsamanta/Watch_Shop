@@ -10,6 +10,7 @@ use App\Notifications\UserMail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use App\Models\Product;
 
 
 
@@ -48,7 +49,6 @@ class UserController extends Controller
             // return redirect()->back()->with('alert', 'not_succesful');
 
         }
-
     }
     public function login_submit(Request $request)
     {
@@ -70,7 +70,6 @@ class UserController extends Controller
             flash()->addSuccess('Welcome to Watch Shop..⚡️');
 
             return redirect('/home');
-
         } else {
 
             // notify()->error('Enter curect data ⚡️');
@@ -80,7 +79,6 @@ class UserController extends Controller
             return redirect()->back();
             // return redirect()->back()->with('alert', 'not_succesful');
         }
-
     }
 
     public function logout()
@@ -97,11 +95,22 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             // notify()->success('Welcome to Watch Shop.. ⚡️');
-            return view('userpanel.home');
+
+            // $products_data = Product::with('category')->get()->random(8);
+            $products_data = Product::with('category')
+                ->inRandomOrder()
+                ->get();
+
+
+            return view('userpanel.home', compact('products_data'));
         } else {
 
-            // notify()->error('Login now ⚡️');
-            return view('userpanel.home-x');
+             $products_data = Product::with('category')
+                ->inRandomOrder()
+                ->get();
+
+            return view('userpanel.home-x', compact('products_data'));
+
         }
 
         // return view('userpanel.home');
@@ -112,7 +121,6 @@ class UserController extends Controller
     {
         $user_data = Auth::user();
         return view('userpanel.account', compact('user_data'));
-
     }
 
     public function account_upadate(Request $request)
@@ -147,7 +155,6 @@ class UserController extends Controller
         flash()->addSuccess('Account Update Succesfuly..⚡️');
 
         return redirect()->back();
-
     }
 
     public function account_photo_update(Request $request)
@@ -160,7 +167,7 @@ class UserController extends Controller
 
             $user = Auth::user();
 
-              if ($user->photo) {
+            if ($user->photo) {
                 $oldPath = public_path('storage/photos/' . $user->photo);
 
                 if (File::exists($oldPath)) {
@@ -178,7 +185,6 @@ class UserController extends Controller
             // notify()->success('Photo Update Succesful..⚡️');
             flash()->addSuccess('Photo Update Succesful..⚡️');
             return redirect()->back();
-
         } else {
             $user = Auth::user();
 
@@ -190,7 +196,7 @@ class UserController extends Controller
                 }
             }
 
-            
+
             $user = DB::table('users')->where('id', $user->id)->update([
                 'photo' => null,
 
@@ -201,9 +207,5 @@ class UserController extends Controller
 
             return redirect()->back();
         }
-
-
     }
-
-
 }
