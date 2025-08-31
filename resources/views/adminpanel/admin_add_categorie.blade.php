@@ -137,19 +137,19 @@
 <script>
 
   
-        //    // Auto-generate slug from category name
-        // document.getElementById('name').addEventListener('input', function (e) {
-        //     const name = e.target.value;
-        //     const slug = name.toLowerCase()
-        //         .replace(/[^\w\s-]/g, '')
-        //         .replace(/\s+/g, '-')
-        //         .replace(/-+/g, '-')
-        //         .replace(/^-+|-+$/g, '');
-        //     document.getElementById('slug').value = slug;
+           // Auto-generate slug from category name
+        document.getElementById('name').addEventListener('input', function (e) {
+            const name = e.target.value;
+            const slug = name.toLowerCase()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-+|-+$/g, '');
+            document.getElementById('slug').value = slug;
 
-        //     // Update preview
-        //     // updatePreview();
-        // });
+            // Update preview
+            // updatePreview();
+        });
 
 
         

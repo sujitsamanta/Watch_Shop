@@ -28,7 +28,6 @@ class AdminController extends Controller
 
 
             return redirect('/admin_home');
-
         } else {
 
             // notify()->error('Enter Curect Data ⚡️');
@@ -36,7 +35,6 @@ class AdminController extends Controller
 
             return redirect()->back();
         }
-
     }
 
     public function admin_logout()
@@ -59,19 +57,16 @@ class AdminController extends Controller
         $users_data = User::paginate(7);
 
         return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
-
     }
     public function admin_setting()
     {
         return view('adminpanel.admin_setting');
-
     }
 
     public function admin_add_categorie()
     {
 
         return view('adminpanel.admin_add_categorie');
-
     }
 
     public function admin_add_categorie_submit(Request $request)
@@ -94,18 +89,55 @@ class AdminController extends Controller
             flash()->addError('Categorie Not Add ⚡️');
             return redirect()->back();
         }
-
     }
 
     public function admin_add_product()
     {
-        return view('adminpanel.admin_add_product');
-
+        $categories_data = Categorie::all();
+        return view('adminpanel.admin_add_product', compact('categories_data'));
     }
+
+    public function admin_add_product_submit(Request $request)
+    {
+        $validated = $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:products,slug',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'required|string',
+            'image' => 'required|max:10240', // 10MB
+        ]);
+
+        $path = $request->file('image')->store('products_images', 'public');
+        $patharrey = explode('/', $path);
+        $img_name = $patharrey[1];
+        $result = Product::create([
+            'category_id' => $request->category_id,
+            'name'        => $request->name,
+            'slug'        => $request->slug,
+            'sku'         => $request->sku,
+            'price'       => $request->price,
+            'stock'       => $request->stock,
+            'description' => $request->description,
+            'image'       => $img_name,
+        ]);
+
+        if ($result) {
+            flash()->addSuccess('Product Add Succesful ⚡️');
+            return redirect()->back();
+        } else {
+            flash()->addError('Product Not Add ⚡️');
+            return redirect()->back();
+        }
+    }
+
 
     public function admin_products_view()
     {
-        return view('adminpanel.admin_products_view');
+        $products_data = Product::with('category')->paginate(7);
 
+        return view('adminpanel.admin_products_view', compact('products_data'));
     }
 }

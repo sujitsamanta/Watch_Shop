@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('sku')->unique(); // Stock keeping unit
             $table->decimal('price', 10, 2); // Example: 999.99
             $table->integer('stock')->default(1); // Quantity available
-            $table->text('description')->nullable(); // Product details
-            $table->string('image')->nullable();
+            $table->text('description'); // Product details
+            $table->string('image');
             $table->timestamps();
         });
     }

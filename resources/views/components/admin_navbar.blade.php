@@ -290,6 +290,29 @@
 			});
 		// catagory add end
 
+		// catagory add start
+
+			$(".add_product").on("click", function (e) {
+				e.preventDefault(); // stop direct submit
+
+				let form = $(this).closest("form")[0]; // get native form element
+
+				Swal.fire({
+					title: "Are you sure?",
+					text: "Do you want to add this Product?",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Yes, add it!",
+					cancelButtonText: "Cancel"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit(); // ✅ native submit
+					}
+				});
+			});
+		// catagory add end
 		});
 	</script>
 	<!-- sweet alert2 end -->
