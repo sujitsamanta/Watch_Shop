@@ -32,10 +32,10 @@
             </div>
 
             <!-- Black Shadow Overlay -->
-            <div class="absolute inset-0 z-5 bg-black/60"></div>
+            <div class="absolute inset-0 z-5 bg-black/50"></div>
 
             <!-- Gradient Overlay -->
-            <div class="absolute inset-0 z-10 gradient-overlay"></div>
+            <div class="absolute inset-0 z-10 bg-gradient-to-br from-black/20 via-black/30 to-black/50"></div>
 
             <!-- Floating Background Elements -->
             <div class="absolute top-20 left-10 w-72 h-72 bg-purple-light/20 rounded-full blur-3xl animate-pulse z-20">
@@ -328,7 +328,13 @@
         </section>
 
         <!-- Spotlight Grid -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 my-12">
+              <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Playstation 5 Card -->
                 <section class="relative overflow-hidden rounded-2xl bg-white shadow-card hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer">
@@ -445,8 +451,6 @@
             </div>
         </main>
 
-
-    
         <!-- Product Grid Section -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <!-- Section Header -->

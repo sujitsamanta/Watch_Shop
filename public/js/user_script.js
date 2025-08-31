@@ -187,6 +187,57 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// Background Carousel functionality
+function initCarousel() {
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    let currentIndex = 0;
+    
+    if (carouselItems.length === 0) return;
+    
+    function showSlide(index) {
+        // Hide all slides
+        carouselItems.forEach((item, i) => {
+            item.classList.remove('active');
+            if (i === index) {
+                item.classList.add('active');
+            }
+        });
+        
+        // Update indicators
+        indicators.forEach((indicator, i) => {
+            indicator.classList.remove('active');
+            if (i === index) {
+                indicator.classList.add('active');
+            }
+        });
+    }
+    
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        showSlide(currentIndex);
+    }
+    
+    // Auto-advance carousel every 4 seconds
+    setInterval(nextSlide, 4000);
+    
+    // Add click functionality to indicators
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            showSlide(currentIndex);
+        });
+    });
+    
+    // Initialize first slide
+    showSlide(0);
+}
+
+// Initialize carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initCarousel();
+});
+
 //                                        hearo section end
 
 
