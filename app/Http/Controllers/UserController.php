@@ -28,26 +28,16 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            // $user = User::create($signin_data);`
             $user = User::create($signin_data);
 
-            // $user = User::where('email', $request->email)->first();
             $user->notify(new UserMail());
-
-            // notify()->success('Account created succesfuly ⚡️');
             flash()->addSuccess('Account created succesfuly ⚡️');
 
             return redirect('/login');
-            // return redirect()->back();
-
-
         } else {
-            // notify()->error('Enter curect data ⚡️');
             flash()->addError('Account Created Faild ⚡️');
 
             return redirect()->back();
-            // return redirect()->back()->with('alert', 'not_succesful');
-
         }
     }
     public function login_submit(Request $request)
@@ -62,11 +52,6 @@ class UserController extends Controller
 
         if (Auth::attempt($login_data)) {
 
-            // notify()->success('Welcome to Watch Shop..⚡️');
-            // flash('Your account has been reactivated.');
-
-            // flash('Your account has been reactivated.');
-
             flash()->addSuccess('Welcome to Watch Shop..⚡️');
 
             return redirect('/home');
@@ -77,7 +62,6 @@ class UserController extends Controller
 
 
             return redirect()->back();
-            // return redirect()->back()->with('alert', 'not_succesful');
         }
     }
 
@@ -85,7 +69,6 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        // notify()->success('Sign Out Succesfuly..⚡️');
         flash()->addSuccess('Sign Out Succesfuly..⚡️');
 
         return redirect('/home');
@@ -94,9 +77,6 @@ class UserController extends Controller
     public function home_check()
     {
         if (Auth::check()) {
-            // notify()->success('Welcome to Watch Shop.. ⚡️');
-
-            // $products_data = Product::with('category')->get()->random(8);
             $products_data = Product::with('category')
                 ->inRandomOrder()
                 ->get();
@@ -105,15 +85,12 @@ class UserController extends Controller
             return view('userpanel.home', compact('products_data'));
         } else {
 
-             $products_data = Product::with('category')
+            $products_data = Product::with('category')
                 ->inRandomOrder()
                 ->get();
 
             return view('userpanel.home-x', compact('products_data'));
-
         }
-
-        // return view('userpanel.home');
     }
 
 
@@ -145,13 +122,6 @@ class UserController extends Controller
             'bio' => $request->bio,
         ]);
 
-        // /** @var \App\Models\User $user */
-        // auth()->user()?->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        // ]);
-
-        // notify()->success('Account Update Succesfuly..⚡️');
         flash()->addSuccess('Account Update Succesfuly..⚡️');
 
         return redirect()->back();
@@ -161,6 +131,8 @@ class UserController extends Controller
     {
 
         if ($request->photo) {
+            // $path = $request->file('photo')->store('user/user_account_images', 'public');
+
             $path = $request->file('photo')->store('photos', 'public');
             $patharrey = explode('/', $path);
             $img_name = $patharrey[1];
@@ -175,14 +147,11 @@ class UserController extends Controller
                 }
             }
 
-
-
             $user = DB::table('users')->where('id', $user->id)->update([
                 'photo' => $img_name,
 
             ]);
 
-            // notify()->success('Photo Update Succesful..⚡️');
             flash()->addSuccess('Photo Update Succesful..⚡️');
             return redirect()->back();
         } else {
@@ -202,10 +171,15 @@ class UserController extends Controller
 
             ]);
 
-            // notify()->success('Photo Update Succesful..⚡️');
             flash()->addSuccess('Photo Update Succesful..⚡️');
 
             return redirect()->back();
         }
     }
+    public function single_product_view(){
+        return view('userpanel.single_product_view');
+    }
+
+
+
 }

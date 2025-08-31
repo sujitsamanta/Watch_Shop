@@ -11,6 +11,11 @@ use App\Http\Middleware\UserMiddleware;
 // Route::view('/home-x', 'userpanel.home-x');
 Route::get('/home', [UserController::class,'home_check']);
 
+
+// single_product_view
+Route::get('/single_product_view', [UserController::class,'single_product_view']);
+
+
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 
 // account page

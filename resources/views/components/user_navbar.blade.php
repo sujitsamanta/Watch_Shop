@@ -94,6 +94,31 @@
             z-index: 1001 !important;
 
         }
+
+
+
+         .reviews-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .reviews-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .reviews-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .reviews-container::-webkit-scrollbar-thumb {
+            background: #9333EA;
+            border-radius: 10px;
+        }
+
+        .reviews-container::-webkit-scrollbar-thumb:hover {
+            background: #7C3AED;
+        }
     </style>
 
 </head>
