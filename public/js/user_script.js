@@ -192,9 +192,9 @@ function initCarousel() {
     const carouselItems = document.querySelectorAll('.carousel-item');
     const indicators = document.querySelectorAll('.carousel-indicator');
     let currentIndex = 0;
-    
+
     if (carouselItems.length === 0) return;
-    
+
     function showSlide(index) {
         // Hide all slides
         carouselItems.forEach((item, i) => {
@@ -203,7 +203,7 @@ function initCarousel() {
                 item.classList.add('active');
             }
         });
-        
+
         // Update indicators
         indicators.forEach((indicator, i) => {
             indicator.classList.remove('active');
@@ -212,15 +212,15 @@ function initCarousel() {
             }
         });
     }
-    
+
     function nextSlide() {
         currentIndex = (currentIndex + 1) % carouselItems.length;
         showSlide(currentIndex);
     }
-    
+
     // Auto-advance carousel every 4 seconds
     setInterval(nextSlide, 4000);
-    
+
     // Add click functionality to indicators
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
@@ -228,45 +228,22 @@ function initCarousel() {
             showSlide(currentIndex);
         });
     });
-    
+
     // Initialize first slide
     showSlide(0);
 }
 
 // Initialize carousel when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initCarousel();
 });
 
 //                                        hearo section end
 
 
-//                                        confirmaction button start
-//                                        confirmaction button end
 
-// Popular Products Row (Horizontal Carousel) start
-(function () {
-    const scroller = document.getElementById('carousel');
-    const prev = document.getElementById('prevBtn');
-    const next = document.getElementById('nextBtn');
-    const slideWidth = () => scroller.querySelector('div > div').offsetWidth || 320;
-    let timer;
 
-    function scrollByDir(dir) {
-        scroller.scrollBy({ left: dir * (slideWidth() + 16), behavior: 'smooth' });
-    }
-    function start() { timer = setInterval(() => scrollByDir(1), 3500); }
-    function stop() { clearInterval(timer); }
 
-    prev && prev.addEventListener('click', () => scrollByDir(-1));
-    next && next.addEventListener('click', () => scrollByDir(1));
-
-    scroller.addEventListener('mouseenter', stop);
-    scroller.addEventListener('mouseleave', start);
-    start();
-})();
-
-// Popular Products Row (Horizontal Carousel) end
 
 
 // Auto Carousel functionality start
@@ -306,3 +283,76 @@ indicators.forEach((indicator, index) => {
 });
 
 // Auto Carousel functionality end
+
+
+
+// small carasol section start
+class Carousel {
+    constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.totalSlides = this.slides.length;
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.dotIndicators = document.querySelectorAll('.dot-indicator');
+
+        this.init();
+    }
+
+    init() {
+        this.prevBtn.addEventListener('click', () => this.prevSlide());
+        this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+        this.dotIndicators.forEach((dot, index) => {
+            dot.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Auto-play every 5 seconds
+        setInterval(() => this.nextSlide(), 5000);
+    }
+
+    updateSlides() {
+        this.slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev');
+
+            if (index === this.currentSlide) {
+                slide.classList.add('active');
+            } else if (index < this.currentSlide) {
+                slide.classList.add('prev');
+            }
+        });
+
+        // Update dot indicators
+        this.dotIndicators.forEach((dot, index) => {
+            if (index === this.currentSlide) {
+                dot.classList.remove('bg-white/30');
+                dot.classList.add('bg-white/50', 'active-dot');
+            } else {
+                dot.classList.remove('bg-white/50', 'active-dot');
+                dot.classList.add('bg-white/30');
+            }
+        });
+    }
+
+    nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        this.updateSlides();
+    }
+
+    prevSlide() {
+        this.currentSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+        this.updateSlides();
+    }
+
+    goToSlide(slideIndex) {
+        this.currentSlide = slideIndex;
+        this.updateSlides();
+    }
+}
+
+// Initialize carousel when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new Carousel();
+});
+
+// small carasol section end

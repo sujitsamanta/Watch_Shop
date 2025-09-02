@@ -358,7 +358,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+     <!-- Hero Section -->
         <section class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
 
             <!-- Auto Carousel Background -->
@@ -685,111 +685,432 @@
 
         </section>
 
-    <!-- Spotlight Grid -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Playstation 5 Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-br from-lav2 via-white to-white group-hover:from-emerald-50 group-hover:via-teal-50 group-hover:to-cyan-50 transition-all duration-500"></div>
+        <!-- category start  -->
+        <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-6 my-12">
+            <!-- Header Section -->
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center">
+                    <!-- <h2 class="text-2xl font-semibold mr-2" style="color: #3F4673;">Shop From</h2> -->
+                    <h2 class="text-2xl font-semibold" style="color: #3F4673;">Top Categories</h2>
+                    <div class="ml-2 h-0.5 w-4" style="background-color: #3F4673;"></div>
+                </div>
+                <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
+                    View All
+                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
 
-                <!-- Geometric shapes effect -->
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div class="absolute top-4 left-4 w-8 h-8 border-2 border-emerald-400 rotate-45 animate-spin" style="animation-duration: 4s;"></div>
-                    <div class="absolute top-8 right-6 w-6 h-6 bg-teal-400 rounded-full animate-pulse"></div>
-                    <div class="absolute bottom-6 left-8 w-4 h-4 border-2 border-cyan-400 transform rotate-12 animate-bounce"></div>
-                    <div class="absolute bottom-4 right-4 w-3 h-3 bg-emerald-400 transform rotate-45 animate-ping"></div>
+            <!-- Categories Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+                <!-- Mobile Category (Highlighted) -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 2H7C5.9 2 5 2.9 5 4v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-5 18c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm3-3H9V5h6v12z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Cosmetics</span>
                 </div>
 
-                <div class="relative p-8 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                    <div class="order-2 sm:order-1">
-                        <h2 class="text-3xl sm:text-4xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text transition-all duration-300">Luxury Watch</h2>
-                        <p class="mt-3 text-sm text-side/70 max-w-md group-hover:text-side/90 transition-colors duration-300">Premium craftsmanship meets timeless elegance.
-                            Discover our exclusive collection of luxury timepieces.</p>
+                <!-- Cosmetics Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16a6.5 6.5 0 0 1 0-13zm0 2C7.01 5 5 7.01 5 9.5S7.01 14 9.5 14 14 11.99 14 9.5 11.99 5 9.5 5z" />
+                        </svg>
                     </div>
-                    <div class="order-1 sm:order-2 h-48 sm:h-56 md:h-64">
-                        <div class="relative overflow-hidden rounded-xl">
-                            <img src="images/x1.jpg" alt="Luxury Watch" class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:brightness-110 transition-all duration-700">
-                            <!-- Geometric overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                            <!-- Corner triangles -->
-                            <div class="absolute top-2 left-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-emerald-400 border-t-transparent border-r-transparent border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-2 right-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-transparent border-t-transparent border-r-teal-400 border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Cosmetics</span>
+                </div>
+
+                <!-- Electronics Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Electronics</span>
+                </div>
+
+                <!-- Furniture Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 9L12 2 2 9h3v12h14V9h3zM12 17.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM16 15h-8v-2h8v2z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Furniture</span>
+                </div>
+
+                <!-- Watches Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Watches</span>
+                </div>
+
+                <!-- Decor Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 22c4.97 0 9-4.03 9-9-4.97 0 9 4.03-9 9z" />
+                            <path d="M7 2v3h2V3h6v2h2V2h-2V1h-6v1H7z" />
+                            <path d="M12 6L7 11l5 5 5-5-5-5z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Decor</span>
+                </div>
+
+                <!-- Accessories Category -->
+                <div class="category-item flex flex-col items-center p-4 rounded-xl" style="background-color: #F4EFFF;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background-color: #E4DEFF;">
+                        <svg class="w-8 h-8" style="color: #4C4B7C;" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium" style="color: #3F4673;">Accessories</span>
+                </div>
+            </div>
+        </div>
+        <!-- category end  -->
+
+        <!-- Grab the best deal start  -->
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
+                        Grab the best deal on
+                        <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
+                    </h2>
+                </div>
+                <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
+                    View All
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Carousel -->
+            <div class="relative">
+                <!-- Product Cards Container -->
+                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
+
+                    <!-- Product 1: Galaxy S22 Ultra -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                56% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
+                                        <div class="text-xs text-center">
+                                            <div class="mb-2">📱</div>
+                                            <div class="text-xs">Galaxy</div>
+                                            <div class="text-xs">S22 Ultra</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy S22 Ultra</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹32999</span>
+                            <span class="text-sm text-gray-500 line-through">₹74999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹32999</p>
                     </div>
+
+                    <!-- Product 2: Galaxy M13 -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                56% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold text-white">M13</div>
+                                            <div class="text-xs mt-1">4GB | 64GB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M13 (4GB | 64 GB )</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹10499</span>
+                            <span class="text-sm text-gray-500 line-through">₹14999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹4500</p>
+                    </div>
+
+                    <!-- Product 3: Galaxy M33 -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                56% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-orange-400 to-red-500 rounded-lg flex items-center justify-center relative">
+                                        <div class="text-center">
+                                            <div class="text-white text-xs mb-1">5G</div>
+                                            <div class="text-white font-bold">M33</div>
+                                            <div class="text-xs mt-1">4GB | 64GB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M33 (4GB | 64 GB )</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹16999</span>
+                            <span class="text-sm text-gray-500 line-through">₹24999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹8000</p>
+                    </div>
+
+                    <!-- Product 4: Galaxy M53 -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                56% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-purple-300 to-purple-600 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <div class="text-white font-bold">M53</div>
+                                            <div class="text-xs mt-1">4GB | 64GB</div>
+                                            <div class="text-xs mt-2 bg-white/20 rounded px-1">Ultra</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M53 (4GB | 64 GB )</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹31999</span>
+                            <span class="text-sm text-gray-500 line-through">₹40999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹9000</p>
+                    </div>
+
+                    <!-- Product 5: Galaxy S22 Ultra -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                56% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #2d5016 0%, #4CAF50 100%);">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-green-300 to-green-700 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <div class="text-white font-bold">S22</div>
+                                            <div class="text-xs mt-1">Ultra</div>
+                                            <div class="text-xs mt-2 bg-white/20 rounded px-1">Pro</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy S22 Ultra</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹67999</span>
+                            <span class="text-sm text-gray-500 line-through">₹85999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹18000</p>
+                    </div>
+
+                    <!-- Product 6: Additional phones for scrolling -->
+                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                        <div class="relative mb-4">
+                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                45% OFF
+                            </div>
+                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);">
+                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
+                                        <div class="text-center">
+                                            <div class="text-white font-bold">A54</div>
+                                            <div class="text-xs mt-1">5G</div>
+                                            <div class="text-xs mt-2">128GB</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy A54 5G (8GB | 128GB)</h3>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xl font-bold text-gray-900">₹25999</span>
+                            <span class="text-sm text-gray-500 line-through">₹47999</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹22000</p>
+                    </div>
+
                 </div>
-            </section>
+            </div>
+        </div>
 
-            <!-- Macbook Air Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card md:row-span-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-purple-50 group-hover:via-blue-50 group-hover:to-pink-50 transition-all duration-500"></div>
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center my-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
 
-                <!-- Floating elements effect -->
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div class="absolute top-8 left-8 w-3 h-3 bg-purple-400 rounded-full animate-bounce"></div>
-                    <div class="absolute top-16 right-12 w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
-                    <div class="absolute bottom-20 left-16 w-2.5 h-2.5 bg-pink-400 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
-                    <div class="absolute bottom-12 right-8 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
-                </div>
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                <div class="relative grid grid-cols-1 h-full">
-                    <div class="p-5 md:p-12 lg:p-14 flex flex-col justify-center max-w-xl">
-                        <h3 class="text-5xl leading-none font-light group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">Premium</h3>
-                        <h3 class="text-6xl sm:text-7xl font-semibold -mt-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">Collection</h3>
-                        <p class="mt-4 text-side/70 text-sm group-hover:text-side/90 transition-colors duration-300">Exclusive timepieces from world-renowned brands. Each
-                            watch tells a story of heritage and innovation.</p>
+                @foreach($products_data->take(4) as $product)
+                <!-- Slide -->
+                <a href="#">
+                    <div
+                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                        <!-- Floating particles effect -->
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                        </div>
+
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                            <!-- Glow effect overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        </div>
+
+                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
+                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
                         <button
-                            class="mt-6 self-start px-5 py-2.5 rounded-full border border-purple-medium hover:border-purple-dark text-side hover:text-purple-darkest group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
                             Now</button>
                     </div>
-                    <div class="px-6 pb-6 md:px-10 md:pb-10">
-                        <div class="relative overflow-hidden rounded-xl">
-                            <img src="images/x3.jpg" alt="Premium Watch Collection"
-                                class="h-44 sm:h-56 md:h-72 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-700">
-                            <!-- Glow overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                            <!-- Corner highlights -->
-                            <div class="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Spotlight Grid -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 my-12">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Playstation 5 Card -->
+                <section class="relative overflow-hidden rounded-2xl bg-white shadow-card hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-br from-lav2 via-white to-white group-hover:from-emerald-50 group-hover:via-teal-50 group-hover:to-cyan-50 transition-all duration-500"></div>
+
+                    <!-- Geometric shapes effect -->
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute top-4 left-4 w-8 h-8 border-2 border-emerald-400 rotate-45 animate-spin" style="animation-duration: 4s;"></div>
+                        <div class="absolute top-8 right-6 w-6 h-6 bg-teal-400 rounded-full animate-pulse"></div>
+                        <div class="absolute bottom-6 left-8 w-4 h-4 border-2 border-cyan-400 transform rotate-12 animate-bounce"></div>
+                        <div class="absolute bottom-4 right-4 w-3 h-3 bg-emerald-400 transform rotate-45 animate-ping"></div>
+                    </div>
+
+                    <div class="relative p-8 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                        <div class="order-2 sm:order-1">
+                            <h2 class="text-3xl sm:text-4xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-emerald-600 group-hover:to-teal-600 group-hover:bg-clip-text transition-all duration-300">Luxury Watch</h2>
+                            <p class="mt-3 text-sm text-side/70 max-w-md group-hover:text-side/90 transition-colors duration-300">Premium craftsmanship meets timeless elegance.
+                                Discover our exclusive collection of luxury timepieces.</p>
+                        </div>
+                        <div class="order-1 sm:order-2 h-48 sm:h-56 md:h-64">
+                            <div class="relative overflow-hidden rounded-xl">
+                                <img src="images/x1.jpg" alt="Luxury Watch" class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:brightness-110 transition-all duration-700">
+                                <!-- Geometric overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                                <!-- Corner triangles -->
+                                <div class="absolute top-2 left-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-emerald-400 border-t-transparent border-r-transparent border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-2 right-2 w-0 h-0 border-l-4 border-t-4 border-r-4 border-b-4 border-l-transparent border-t-transparent border-r-teal-400 border-b-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- AirPods Max Card -->
-            <section class="relative overflow-hidden rounded-2xl bg-white shadow-card grid grid-cols-2 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 group cursor-pointer">
-                <div class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-amber-50 group-hover:via-orange-50 group-hover:to-red-50 transition-all duration-500"></div>
+                <!-- Macbook Air Card -->
+                <section class="relative overflow-hidden rounded-2xl bg-white shadow-card md:row-span-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-purple-50 group-hover:via-blue-50 group-hover:to-pink-50 transition-all duration-500"></div>
 
-                <!-- Mechanical gears effect -->
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div class="absolute top-6 left-6 w-12 h-12 border-4 border-amber-400 rounded-full animate-spin" style="animation-duration: 3s;"></div>
-                    <div class="absolute top-6 left-6 w-8 h-8 border-2 border-orange-400 rounded-full animate-spin" style="animation-duration: 2s; animation-direction: reverse;"></div>
-                    <div class="absolute bottom-6 right-6 w-10 h-10 border-3 border-red-400 rounded-full animate-spin" style="animation-duration: 4s;"></div>
-                    <div class="absolute bottom-6 right-6 w-6 h-6 border-2 border-amber-400 rounded-full animate-spin" style="animation-duration: 1.5s; animation-direction: reverse;"></div>
-                </div>
-
-                <div class="p-8 relative z-10">
-                    <p class="uppercase text-xs tracking-wider text-side/70 group-hover:text-amber-600 transition-colors duration-300">Swiss Made</p>
-                    <h4 class="text-2xl font-semibold leading-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-orange-600 group-hover:bg-clip-text transition-all duration-300">Automatic<br>Movement</h4>
-                    <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Precision engineering meets traditional watchmaking
-                        excellence.</p>
-                </div>
-                <div class="p-6 relative z-10">
-                    <div class="relative overflow-hidden rounded-xl">
-                        <img src="images/x2.jpg" alt="Automatic Watch Movement"
-                            class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:contrast-125 transition-all duration-700">
-                        <!-- Mechanical overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-bl from-amber-400/20 via-transparent to-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        <!-- Gear indicators -->
-                        <div class="absolute top-2 left-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute top-2 right-2 w-3 h-3 border-2 border-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-2 left-2 w-3 h-3 border-2 border-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-2 right-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <!-- Floating elements effect -->
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute top-8 left-8 w-3 h-3 bg-purple-400 rounded-full animate-bounce"></div>
+                        <div class="absolute top-16 right-12 w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.5s;"></div>
+                        <div class="absolute bottom-20 left-16 w-2.5 h-2.5 bg-pink-400 rounded-full animate-bounce" style="animation-delay: 1s;"></div>
+                        <div class="absolute bottom-12 right-8 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 1.5s;"></div>
                     </div>
-                </div>
-            </section>
 
-            <!-- Vision Pro Card -->
-            <!-- <section
+                    <div class="relative grid grid-cols-1 h-full">
+                        <div class="p-5 md:p-12 lg:p-14 flex flex-col justify-center max-w-xl">
+                            <h3 class="text-5xl leading-none font-light group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">Premium</h3>
+                            <h3 class="text-6xl sm:text-7xl font-semibold -mt-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-pink-600 group-hover:bg-clip-text transition-all duration-300">Collection</h3>
+                            <p class="mt-4 text-side/70 text-sm group-hover:text-side/90 transition-colors duration-300">Exclusive timepieces from world-renowned brands. Each
+                                watch tells a story of heritage and innovation.</p>
+                            <button
+                                class="mt-6 self-start px-5 py-2.5 rounded-full border border-purple-medium hover:border-purple-dark text-side hover:text-purple-darkest group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                                Now</button>
+                        </div>
+                        <div class="px-6 pb-6 md:px-10 md:pb-10">
+                            <div class="relative overflow-hidden rounded-xl">
+                                <img src="images/x3.jpg" alt="Premium Watch Collection"
+                                    class="h-44 sm:h-56 md:h-72 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-700">
+                                <!-- Glow overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                                <!-- Corner highlights -->
+                                <div class="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AirPods Max Card -->
+                <section class="relative overflow-hidden rounded-2xl bg-white shadow-card grid grid-cols-2 hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 group cursor-pointer">
+                    <div class="absolute inset-0 bg-gradient-to-br from-white via-lav2 to-white group-hover:from-amber-50 group-hover:via-orange-50 group-hover:to-red-50 transition-all duration-500"></div>
+
+                    <!-- Mechanical gears effect -->
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div class="absolute top-6 left-6 w-12 h-12 border-4 border-amber-400 rounded-full animate-spin" style="animation-duration: 3s;"></div>
+                        <div class="absolute top-6 left-6 w-8 h-8 border-2 border-orange-400 rounded-full animate-spin" style="animation-duration: 2s; animation-direction: reverse;"></div>
+                        <div class="absolute bottom-6 right-6 w-10 h-10 border-3 border-red-400 rounded-full animate-spin" style="animation-duration: 4s;"></div>
+                        <div class="absolute bottom-6 right-6 w-6 h-6 border-2 border-amber-400 rounded-full animate-spin" style="animation-duration: 1.5s; animation-direction: reverse;"></div>
+                    </div>
+
+                    <div class="p-8 relative z-10">
+                        <p class="uppercase text-xs tracking-wider text-side/70 group-hover:text-amber-600 transition-colors duration-300">Swiss Made</p>
+                        <h4 class="text-2xl font-semibold leading-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-orange-600 group-hover:bg-clip-text transition-all duration-300">Automatic<br>Movement</h4>
+                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">Precision engineering meets traditional watchmaking
+                            excellence.</p>
+                    </div>
+                    <div class="p-6 relative z-10">
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="images/x2.jpg" alt="Automatic Watch Movement"
+                                class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:contrast-125 transition-all duration-700">
+                            <!-- Mechanical overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-bl from-amber-400/20 via-transparent to-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                            <!-- Gear indicators -->
+                            <div class="absolute top-2 left-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute top-2 right-2 w-3 h-3 border-2 border-orange-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-2 left-2 w-3 h-3 border-2 border-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-2 right-2 w-4 h-4 border-2 border-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Vision Pro Card -->
+                <!-- <section
                     class="relative overflow-hidden rounded-2xl bg-purple-darkest text-white shadow-card grid grid-cols-2">
                     <div class="p-8">
                         <p class="uppercase text-xs tracking-wider text-white/70">Apple</p>
@@ -800,205 +1121,295 @@
                         <div class="h-full w-full rounded-xl bg-gradient-to-b from-white/30 to-white/10"></div>
                     </div>
                 </section> -->
-        </div>
-    </main>
+            </div>
+        </main>
+
+        <!-- Product Grid Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
+
+            <!-- Product Tabs -->
+            <div class="flex justify-center mb-8">
+                <div class="flex space-x-8 border-b border-gray-200">
+                    <button class="pb-2 px-1 border-b-2 border-side font-medium text-side">New Arrival</button>
+                    <button class="pb-2 px-1 text-gray-500 hover:text-side">Bestseller</button>
+                    <button class="pb-2 px-1 text-gray-500 hover:text-side">Featured Products</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5"> -->
+
+
+                @foreach($products_data->take(8) as $product)
+
+                <!-- Product Card 1 -->
+                <div
+                    class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
+                    <div class="relative overflow-hidden">
+                        <img src="{{ url('storage/products_images/' . $product->image) }}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
+                        <button
+                            class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                </path>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            <button class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
+                                Quick View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">{{ $product->name }}</h3>
+                        <p class="text-side/70 text-sm mb-3">{{ $product->description }}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">${{ $product->price }}</span>
+                            <button
+                                class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                @endforeach
 
 
 
-    <!-- Product Grid Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Section Header -->
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-            <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
-        </div>
+            </div>
+        </section>
 
-        <!-- Product Tabs -->
-        <div class="flex justify-center mb-8">
-            <div class="flex space-x-8 border-b border-gray-200">
-                <button class="pb-2 px-1 border-b-2 border-side font-medium text-side">New Arrival</button>
-                <button class="pb-2 px-1 text-gray-500 hover:text-side">Bestseller</button>
-                <button class="pb-2 px-1 text-gray-500 hover:text-side">Featured Products</button>
+        <!-- small carasol -->
+        <div class="w-full">
+            <div class="relative bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 shadow-2xl">
+                <!-- Carousel Container -->
+                <div class="relative h-96 md:h-[500px] overflow-hidden">
+
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
+                        <div class="text-white z-10 max-w-md lg:max-w-lg">
+                            <p class="text-sm md:text-base lg:text-lg text-blue-300 mb-2">Best Deal Online on smart watches</p>
+                            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">SMART WEARABLE.</h1>
+                            <p class="text-xl md:text-2xl lg:text-3xl text-orange-400 font-semibold">UP to 80% OFF</p>
+                        </div>
+                        <div class="relative">
+                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-orange-400 to-orange-600 rounded-3xl transform rotate-12 watch-glow flex items-center justify-center">
+                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
+                                    <div class="text-xs md:text-sm lg:text-base text-blue-400 mb-1">08:26:00</div>
+                                    <div class="text-xs md:text-sm text-red-400">SAT 04/06</div>
+                                    <div class="mt-2 text-xs md:text-sm">
+                                        <span class="text-green-400">♥</span>
+                                        <span class="text-white ml-1">102</span>
+                                    </div>
+                                    <div class="text-xs md:text-sm mt-1 text-white">254 ⚡</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
+                        <div class="text-white z-10 max-w-md lg:max-w-lg">
+                            <p class="text-sm md:text-base lg:text-lg text-purple-300 mb-2">Premium Collection Available</p>
+                            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">FITNESS TRACKER.</h1>
+                            <p class="text-xl md:text-2xl lg:text-3xl text-green-400 font-semibold">UP to 70% OFF</p>
+                        </div>
+                        <div class="relative">
+                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl transform -rotate-12 watch-glow flex items-center justify-center">
+                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
+                                    <div class="text-xs md:text-sm text-purple-400 mb-1">STEPS</div>
+                                    <div class="text-lg md:text-xl lg:text-2xl font-bold">8,247</div>
+                                    <div class="text-xs md:text-sm text-pink-400 mt-2">CALORIES</div>
+                                    <div class="text-sm md:text-base lg:text-lg font-semibold">342</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
+                        <div class="text-white z-10 max-w-md lg:max-w-lg">
+                            <p class="text-sm md:text-base lg:text-lg text-cyan-300 mb-2">Latest Technology Inside</p>
+                            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">HEALTH MONITOR.</h1>
+                            <p class="text-xl md:text-2xl lg:text-3xl text-yellow-400 font-semibold">UP to 60% OFF</p>
+                        </div>
+                        <div class="relative">
+                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl transform rotate-6 watch-glow flex items-center justify-center">
+                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
+                                    <div class="text-xs md:text-sm text-cyan-400 mb-1">HEART RATE</div>
+                                    <div class="text-lg md:text-xl lg:text-2xl font-bold text-red-400">72 BPM</div>
+                                    <div class="text-xs md:text-sm text-cyan-400 mt-2">OXYGEN</div>
+                                    <div class="text-sm md:text-base lg:text-lg font-semibold text-green-400">98%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button id="prevBtn" class="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+
+                <button id="nextBtn" class="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200">
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <!-- Dot Indicators -->
+                <div class="absolute bottom-6 md:bottom-8 left-8 md:left-20 lg:left-32 flex space-x-2">
+                    <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/50 transition-all duration-200 active-dot" data-slide="0"></button>
+                    <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="1"></button>
+                    <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="2"></button>
+                </div>
             </div>
         </div>
 
-        <!-- Product Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5"> -->
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center my-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
 
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            @foreach($products_data->take(8) as $product)
+                @foreach($products_data->take(4) as $product)
+                <!-- Slide -->
+                <a href="#">
+                    <div
+                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                        <!-- Floating particles effect -->
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                        </div>
 
-            <!-- Product Card 1 -->
-            <div
-                class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
-                <div class="relative overflow-hidden">
-                    <img src="{{ url('storage/products_images/' . $product->image) }}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                    <button
-                        class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
-                        <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                        <button class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
-                            Quick View
-                        </button>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">{{ $product->name }}</h3>
-                    <p class="text-side/70 text-sm mb-3">{{ $product->description }}</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">${{ $product->price }}</span>
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                            <!-- Glow effect overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        </div>
+
+                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
+                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
                         <button
-                            class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
+                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
                             Now</button>
                     </div>
+                </a>
+                @endforeach
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <!-- Promotional Banner Section -->
+        <section class="w-full py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-black/20"></div>
+
+            <!-- Decorative Devices Left Side -->
+            <div class="absolute left-8 top-8 w-32 h-32 opacity-60">
+                <div
+                    class="w-full h-full bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg transform rotate-12 shadow-2xl">
+                </div>
+            </div>
+            <div class="absolute left-16 top-24 w-24 h-24 opacity-50">
+                <div
+                    class="w-full h-full bg-gradient-to-br from-blue-300 to-white rounded-lg transform -rotate-6 shadow-xl">
                 </div>
             </div>
 
-            @endforeach
-
-
-
-        </div>
-    </section>
-
-
-    <!-- Promotional Banner Section -->
-    <section class="w-full py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 bg-black/20"></div>
-
-        <!-- Decorative Devices Left Side -->
-        <div class="absolute left-8 top-8 w-32 h-32 opacity-60">
-            <div
-                class="w-full h-full bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg transform rotate-12 shadow-2xl">
-            </div>
-        </div>
-        <div class="absolute left-16 top-24 w-24 h-24 opacity-50">
-            <div
-                class="w-full h-full bg-gradient-to-br from-blue-300 to-white rounded-lg transform -rotate-6 shadow-xl">
-            </div>
-        </div>
-
-        <!-- Decorative Devices Right Side -->
-        <div class="absolute right-12 top-12 w-20 h-32 opacity-70">
-            <div
-                class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-400 rounded-2xl transform rotate-12 shadow-2xl">
-            </div>
-        </div>
-        <div class="absolute right-8 top-32 w-16 h-16 opacity-60">
-            <div class="w-full h-full bg-gradient-to-br from-rose-300 to-pink-300 rounded-full shadow-xl"></div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
-            <!-- Main Title -->
-            <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Big
-                    Summer</span>
-                <span class="text-white"> Sale</span>
-            </h2>
-
-            <!-- Subtitle -->
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Discover exclusive luxury timepieces with incredible discounts. Premium craftsmanship meets
-                unbeatable prices.
-            </p>
-
-            <!-- Call to Action Button -->
-            <button
-                class="bg-gray-700 text-white px-8 py-4 rounded-lg border-2 border-white/30 hover:bg-gray-600 hover:border-white/50 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                Shop Now
-            </button>
-
-            <!-- Additional Info -->
-            <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-gray-400">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Free Shipping</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Limited Time Offer</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Premium Quality</span>
+            <!-- Decorative Devices Right Side -->
+            <div class="absolute right-12 top-12 w-20 h-32 opacity-70">
+                <div
+                    class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-400 rounded-2xl transform rotate-12 shadow-2xl">
                 </div>
             </div>
-        </div>
+            <div class="absolute right-8 top-32 w-16 h-16 opacity-60">
+                <div class="w-full h-full bg-gradient-to-br from-rose-300 to-pink-300 rounded-full shadow-xl"></div>
+            </div>
 
-        <!-- Bottom Decorative Elements -->
-        <div
-            class="absolute bottom-8 left-1/4 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-40 animate-pulse">
-        </div>
-        <div class="absolute bottom-12 right-1/4 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-50 animate-pulse"
-            style="animation-delay: 1s;"></div>
-    </section>
+            <!-- Main Content -->
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
+                <!-- Main Title -->
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Big
+                        Summer</span>
+                    <span class="text-white"> Sale</span>
+                </h2>
 
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Discover exclusive luxury timepieces with incredible discounts. Premium craftsmanship meets
+                    unbeatable prices.
+                </p>
 
-    <div class="container mx-auto px-4">
-        <!-- Section Header -->
-        <div class="text-center my-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-            <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            @foreach($products_data->take(4) as $product)
-            <!-- Slide -->
-            <div
-                class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-                <!-- Floating particles effect -->
-                <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-                    <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
-                    <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
-                </div>
-
-                <div class="relative overflow-hidden rounded-xl">
-                    <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-                    <!-- Glow effect overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                </div>
-
-                <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
-                <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
+                <!-- Call to Action Button -->
                 <button
-                    class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
-                    Now</button>
+                    class="bg-gray-700 text-white px-8 py-4 rounded-lg border-2 border-white/30 hover:bg-gray-600 hover:border-white/50 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Shop Now
+                </button>
+
+                <!-- Additional Info -->
+                <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Limited Time Offer</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Premium Quality</span>
+                    </div>
+                </div>
             </div>
-            @endforeach
 
+            <!-- Bottom Decorative Elements -->
+            <div
+                class="absolute bottom-8 left-1/4 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-40 animate-pulse">
+            </div>
+            <div class="absolute bottom-12 right-1/4 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-50 animate-pulse"
+                style="animation-delay: 1s;"></div>
+        </section>
 
-
-
-
-
-
-
-        </div>
-    </div>
 
     <!-- Footer Section -->
     <footer class="bg-purple-darkest text-white mt-10">

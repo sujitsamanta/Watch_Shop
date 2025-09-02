@@ -123,7 +123,7 @@
 
 </head>
 
-<body>
+<body class="bg-lav1">
     <!-- @include('notify::components.notify') -->
 
     <!-- Navbar -->
@@ -424,7 +424,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="max-w-full mx-auto">
+    <div class="max-w-full mx-auto bg-lav1">
 
         {{ $body }}
 

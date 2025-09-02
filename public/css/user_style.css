@@ -133,20 +133,122 @@
 
 
 
-/* hearo section start */
-   .carousel-item {
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
+  /* hearo section start */
+  .carousel-item {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+  }
 
-        .carousel-item.active {
-            opacity: 1;
-        }
+  .carousel-item.active {
+      opacity: 1;
+  }
 
-        .gradient-overlay {
-            background: linear-gradient(135deg, rgba(63, 70, 115, 0.85) 0%, rgba(169, 180, 230, 0.65) 50%, rgba(228, 222, 255, 0.45) 100%);
-        }
-/* hearo section start */
+  .gradient-overlay {
+      background: linear-gradient(135deg, rgba(63, 70, 115, 0.85) 0%, rgba(169, 180, 230, 0.65) 50%, rgba(228, 222, 255, 0.45) 100%);
+  }
+
+  /* hearo section start */
+
+
+  /* category start */
+
+  .category-item {
+      transition: all 0.3s ease;
+      cursor: pointer;
+  }
+
+  .category-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(169, 180, 230, 0.15);
+  }
+
+  .mobile-highlight {
+      border: 3px solid #A9B4E6;
+      box-shadow: 0 4px 15px rgba(169, 180, 230, 0.2);
+  }
+
+  .view-all-btn {
+      transition: all 0.3s ease;
+      cursor: pointer;
+  }
+
+  .view-all-btn:hover {
+      color: #A9B4E6 !important;
+  }
+
+  /* category end */
+
+  /* Grab the best deal start */
+  .carousel-container {
+      scroll-behavior: smooth;
+  }
+
+  .carousel-container::-webkit-scrollbar {
+      display: none;
+  }
+
+  .carousel-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+  }
+
+  .product-card {
+      min-width: 280px;
+      flex-shrink: 0;
+  }
+
+  .phone-image {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+  }
+
+  .phone-screen {
+      background: #000;
+      border-radius: 15px;
+      position: relative;
+  }
+
+  .discount-badge {
+      background: linear-gradient(135deg, #9D8DF1 0%, #4C4B7C 100%);
+  }
+
+  /* Grab the best deal end */
+
+
+
+
+
+
+
+  /* small carasol section start */
+  .carousel-slide {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.5s ease-in-out;
+  }
+
+  .carousel-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+  }
+
+  .carousel-slide.prev {
+      transform: translateX(-100%);
+  }
+
+  .watch-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  }
+
+  /* small carasol section end */
+
+
+
+
+
+
 
 
 
@@ -185,33 +287,3 @@
   }
 
   /* account end */
-
-
-  /* Popular Products Row (Horizontal Carousel) start */
-
-  .clip-laptop {
-      clip-path: inset(0 0 0 0 round 20px);
-  }
-
-  .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-  }
-
-  .no-scrollbar::-webkit-scrollbar {
-      display: none;
-  }
-
-  /* Increase carousel card and image heights */
-  #carousel .flex>div {
-      min-height: 10rem;
-  }
-
-  #carousel .flex>div>div:first-child {
-      height: 12rem !important;
-  }
-
-  /* Popular Products Row (Horizontal Carousel) end */
-
-
-  

@@ -18,6 +18,15 @@ return [
     |
     */
 
+
+    
+
+    // 'lifetime' => 43200, // minutes (30 days) Cookie Lifetime Configuration
+    // 'expire_on_close' => false,
+
+
+
+
     'driver' => env('SESSION_DRIVER', 'database'),
 
     /*
@@ -129,7 +138,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel')).'-session'
+        Str::slug(env('APP_NAME', 'laravel')) . '-session'
     ),
 
     /*

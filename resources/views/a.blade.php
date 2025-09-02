@@ -1,574 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details & Reviews</title>
+    <title>Apple Products Showcase</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'purple-light': '#E5D9FF',
-                        'purple-medium': '#9333EA',
-                        'purple-dark': '#7C3AED',
-                        'purple-darkest': '#4C1D95',
-                        'lav2': '#F3F0FF'
+                        'purple-lightest': '#F3F0FF',
+                        'purple-light': '#E2D8FF',
+                        'purple-medium': '#9D8DF1',
+                        'purple-dark': '#4C4B7C',
+                        'purple-darkest': '#2D2A4A',
+                        'lav1': '#F4EFFF',
+                        'lav2': '#E4DEFF',
+                        'peri': '#A9B4E6',
+                        'side': '#3F4673',
                     }
                 }
             }
         }
     </script>
     <style>
-        .reviews-container {
-            max-height: 600px;
-            overflow-y: auto;
+        .heart-icon {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .reviews-container::-webkit-scrollbar {
-            width: 6px;
+        .heart-icon:hover {
+            fill: #ef4444;
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 4px 8px rgba(239, 68, 68, 0.3));
         }
-
-        .reviews-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-
-        .reviews-container::-webkit-scrollbar-thumb {
-            background: #9333EA;
-            border-radius: 10px;
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(77, 75, 124, 0.25), 
+                        0 0 0 1px rgba(157, 141, 241, 0.1),
+                        0 0 20px rgba(157, 141, 241, 0.2);
         }
-
-        .reviews-container::-webkit-scrollbar-thumb:hover {
-            background: #7C3AED;
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .buy-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: linear-gradient(45deg, #9D8DF1, #A9B4E6);
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        .buy-btn:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(45, 42, 74, 0.4);
+            color: white;
+        }
+        .buy-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-image {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05) rotate(2deg);
+        }
+        
+        .price {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .price {
+            color: #9D8DF1;
+            transform: scale(1.05);
+        }
+        
+        .product-title {
+            transition: all 0.3s ease;
+        }
+        .product-card:hover .product-title {
+            color: #4C4B7C;
+        }
+        
+        /* Shimmer effect for cards */
+        .product-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+        }
+        .product-card:hover {
+            background: linear-gradient(145deg, #ffffff, #F4EFFF);
+        }
+        
+        /* Floating animation for heart */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(2deg); }
+        }
+        .heart-icon:hover {
+            animation: float 0.6s ease-in-out;
+        }
+        
+        /* Pulse effect for prices */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Glow effect */
+        .product-card:hover {
+            background: radial-gradient(circle at center, rgba(244, 239, 255, 0.8), white);
         }
     </style>
 </head>
-
-<body class="bg-gray-50 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Main Grid Layout -->
-        <div class="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto"
-
-            <!-- Left Side - Product Details -->
-            <div class="bg-white rounded-xl shadow-lg p-6 border border-purple-light h-fit">
-                <h2 class="text-2xl font-bold text-purple-darkest mb-6">Product Details</h2>
-
-                <!-- Introduction Text -->
-                <div class="mb-6">
-                    <p class="text-gray-700 text-sm leading-relaxed">
-                        Advanced technology meets premium design. The 1.9-inch Always-On Retina display delivers exceptional clarity and vibrant colors for the ultimate smartwatch experience.
-                    </p>
+<body class="bg-lav1 min-h-screen py-12">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-purple-darkest mb-12">Related Products</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- iPhone 14 Pro 512GB Gold -->
+            <div class="product-card bg-white rounded-2xl p-6 shadow-lg relative">
+                <div class="absolute top-4 right-4">
+                    <svg class="heart-icon w-6 h-6 text-gray-300 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
                 </div>
-
-                <!-- Display Specifications -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-purple-darkest mb-4">Display</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                            <span class="text-gray-700 text-sm">Display diagonal</span>
-                            <span class="font-medium text-purple-darkest text-sm">1.9"</span>
-                        </div>
-
-                        <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                            <span class="text-gray-700 text-sm">Resolution</span>
-                            <span class="font-medium text-purple-darkest text-sm">484×396</span>
-                        </div>
-
-                        <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                            <span class="text-gray-700 text-sm">Display type</span>
-                            <span class="font-medium text-purple-darkest text-sm">LTPO OLED</span>
-                        </div>
-
-                        <div class="flex justify-between items-start py-2">
-                            <span class="text-gray-700 text-sm">Additionally</span>
-                            <div class="text-right text-sm">
-                                <div class="font-medium text-purple-darkest">Always-On display</div>
-                                <div class="font-medium text-purple-darkest">1000 nits brightness</div>
-                                <div class="font-medium text-purple-darkest">True Tone</div>
-                            </div>
-                        </div>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-32 h-40 bg-gradient-to-br from-yellow-300 via-orange-400 to-orange-500 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-2 bg-black rounded-2xl"></div>
+                        <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-black rounded-full"></div>
+                        <div class="absolute top-3 left-4 w-2 h-2 bg-gray-800 rounded-full"></div>
+                        <div class="absolute top-3 right-4 w-2 h-2 bg-gray-800 rounded-full"></div>
+                        <div class="absolute top-3 right-8 w-2 h-2 bg-gray-800 rounded-full"></div>
                     </div>
                 </div>
-
-                <!-- Processor Specifications -->
-                <div class="mb-6">
-                    <h3 class="text-lg font-semibold text-purple-darkest mb-4">Processor</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                            <span class="text-gray-700 text-sm">Chip</span>
-                            <span class="font-medium text-purple-darkest text-sm">S9 SiP</span>
-                        </div>
-
-                        <div class="flex justify-between items-center py-2">
-                            <span class="text-gray-700 text-sm">Number of cores</span>
-                            <span class="font-medium text-purple-darkest text-sm">Dual-core</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- View More Button -->
+                
                 <div class="text-center">
-                    <button id="viewMoreBtn" onclick="toggleAdditionalSpecs()" class="px-6 py-2 border border-purple-medium text-purple-darkest rounded-lg text-sm font-medium hover:bg-lav2 transition-colors inline-flex items-center space-x-2">
-                        <span id="viewMoreText">View More</span>
-                        <svg id="chevronIcon" class="w-4 h-4 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Hidden Additional Specs -->
-                <div id="additionalSpecs" class="mt-6 space-y-6 hidden">
-                    <!-- Health & Fitness -->
-                    <div>
-                        <h3 class="text-lg font-semibold text-purple-darkest mb-4">Health & Fitness</h3>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                                <span class="text-gray-700 text-sm">Health sensors</span>
-                                <span class="font-medium text-purple-darkest text-sm">Heart rate, ECG, Blood oxygen</span>
-                            </div>
-
-                            <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                                <span class="text-gray-700 text-sm">Water resistance</span>
-                                <span class="font-medium text-purple-darkest text-sm">50 meters</span>
-                            </div>
-
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-700 text-sm">GPS</span>
-                                <span class="font-medium text-purple-darkest text-sm">Precision dual-frequency</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Connectivity -->
-                    <div>
-                        <h3 class="text-lg font-semibold text-purple-darkest mb-4">Connectivity</h3>
-                        <div class="space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-purple-light">
-                                <span class="text-gray-700 text-sm">Wireless</span>
-                                <span class="font-medium text-purple-darkest text-sm">Wi-Fi, Bluetooth 5.3, 4G LTE</span>
-                            </div>
-
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-700 text-sm">NFC</span>
-                                <span class="font-medium text-purple-darkest text-sm">Apple Pay</span>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="text-purple-darkest font-semibold text-sm mb-2">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
+                    <p class="text-2xl font-bold text-purple-darkest mb-4">$1437</p>
+                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">Buy Now</button>
                 </div>
             </div>
 
-            <!-- Right Side - Reviews & Feedback -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-purple-darkest mb-6">Customer Reviews</h2>
-
-                <!-- Rating Overview -->
-                <div class="flex items-center gap-6 mb-6 p-4 bg-purple-light rounded-lg">
-                    <div class="text-center">
-                        <div class="text-4xl font-bold text-purple-darkest mb-1">4.8</div>
-                        <div class="text-gray-600 text-sm mb-1">125 reviews</div>
-                        <div class="flex justify-center">
-                            <div class="flex text-yellow-400 text-lg">
-                                ★★★★★
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Rating Breakdown -->
-                    <div class="flex-1">
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-2 text-xs">
-                                <span class="text-purple-dark font-medium w-16">Excellent</span>
-                                <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-medium h-full rounded-full transition-all duration-500" style="width: 80%"></div>
-                                </div>
-                                <span class="text-purple-dark font-medium w-6">100</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-xs">
-                                <span class="text-purple-dark font-medium w-16">Good</span>
-                                <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-medium h-full rounded-full transition-all duration-500" style="width: 8.8%"></div>
-                                </div>
-                                <span class="text-purple-dark font-medium w-6">11</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-xs">
-                                <span class="text-purple-dark font-medium w-16">Average</span>
-                                <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-medium h-full rounded-full transition-all duration-500" style="width: 2.4%"></div>
-                                </div>
-                                <span class="text-purple-dark font-medium w-6">3</span>
-                            </div>
-                            <div class="flex items-center gap-2 text-xs">
-                                <span class="text-purple-dark font-medium w-16">Poor</span>
-                                <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                    <div class="bg-purple-medium h-full rounded-full transition-all duration-500" style="width: 6.4%"></div>
-                                </div>
-                                <span class="text-purple-dark font-medium w-6">9</span>
+            <!-- AirPods Max Silver -->
+            <div class="product-card bg-white rounded-2xl p-6 shadow-lg relative">
+                <div class="absolute top-4 right-4">
+                    <svg class="heart-icon w-6 h-6 text-gray-300 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-32 h-40 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="w-24 h-6 bg-gray-300 rounded-full mb-2"></div>
+                            <div class="flex justify-between">
+                                <div class="w-10 h-12 bg-gray-200 rounded-2xl"></div>
+                                <div class="w-10 h-12 bg-gray-200 rounded-2xl"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Leave Comment Section -->
-                <div class="mb-6">
-                    <textarea
-                        id="commentInput"
-                        placeholder="Leave your review..."
-                        class="w-full p-3 border border-gray-300 rounded-lg resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent placeholder-gray-400 text-sm"></textarea>
-                    <div class="flex justify-end mt-2">
-                        <button
-                            onclick="submitComment()"
-                            class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm">
-                            Submit Review
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Reviews List with Scroll -->
-                <div class="reviews-container">
-                    <div class="space-y-4" id="reviewsList">
-                        <!-- Grace Carey Review -->
-                        <div class="border-b border-gray-100 pb-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                    GC
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-semibold text-purple-darkest text-sm">Grace Carey</h4>
-                                        <span class="text-gray-400 text-xs">24 Jan 2024</span>
-                                    </div>
-                                    <div class="flex text-yellow-400 mb-2 text-sm">
-                                        ★★★★★
-                                    </div>
-                                    <p class="text-gray-700 leading-relaxed text-sm">
-                                        I was a bit nervous to be buying a secondhand phone from Amazon, but I couldn't be happier with my purchase!! I have a pre-paid data plan so I was worried that this phone wouldn't connect with my data plan, since the new phones don't have the physical Sim tray anymore, but couldn't have been easier! I bought an Unlocked black iPhone 14 Pro Max in excellent condition and everything is PERFECT. It was super easy to set up and the phone works and looks great. It truly was in excellent condition. Highly recommend!! 🖤
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ronald Richards Review -->
-                        <div class="border-b border-gray-100 pb-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                    RR
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-semibold text-purple-darkest text-sm">Ronald Richards</h4>
-                                        <span class="text-gray-400 text-xs">24 Jan 2024</span>
-                                    </div>
-                                    <div class="flex text-yellow-400 mb-2 text-sm">
-                                        ★★★★★
-                                    </div>
-                                    <p class="text-gray-700 leading-relaxed text-sm">
-                                        This phone has fast storage and is durable. Plus all the new iPhones have a C port! Apple is phasing out the current ones! (All about the Benjamins) So if you want a phone that's going to last grab an iPhone 14 pro max and get several cords and plugs.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Darcy King Review -->
-                        <div class="border-b border-gray-100 pb-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                    DK
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-semibold text-purple-darkest text-sm">Darcy King</h4>
-                                        <span class="text-gray-400 text-xs">24 Jan 2024</span>
-                                    </div>
-                                    <div class="flex text-yellow-400 mb-2 text-sm">
-                                        ★★★★☆
-                                    </div>
-                                    <p class="text-gray-700 leading-relaxed text-sm mb-3">
-                                        I might be the only one to say this but the camera is a little funky. Hoping it will change with a software update; otherwise, love this phone! Came in great condition
-                                    </p>
-                                    <!-- Product Images -->
-                                    <div class="flex gap-2">
-                                        <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                                            <span class="text-gray-500 text-xs">📱</span>
-                                        </div>
-                                        <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                                            <span class="text-gray-500 text-xs">📱</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Additional Sample Reviews -->
-                        <div class="border-b border-gray-100 pb-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                    MJ
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-semibold text-purple-darkest text-sm">Mike Johnson</h4>
-                                        <span class="text-gray-400 text-xs">22 Jan 2024</span>
-                                    </div>
-                                    <div class="flex text-yellow-400 mb-2 text-sm">
-                                        ★★★★★
-                                    </div>
-                                    <p class="text-gray-700 leading-relaxed text-sm">
-                                        Amazing smartwatch! The battery life is incredible and the health tracking features are spot on. The always-on display is a game changer for quick glances throughout the day.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-b border-gray-100 pb-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                    SA
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-semibold text-purple-darkest text-sm">Sarah Anderson</h4>
-                                        <span class="text-gray-400 text-xs">20 Jan 2024</span>
-                                    </div>
-                                    <div class="flex text-yellow-400 mb-2 text-sm">
-                                        ★★★★☆
-                                    </div>
-                                    <p class="text-gray-700 leading-relaxed text-sm">
-                                        Great build quality and the display is gorgeous. Only complaint is that some apps can be a bit slow to load, but overall very satisfied with the purchase.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- View More Button -->
-                    <div class="text-center mt-6">
-                        <button
-                            onclick="loadMoreReviews()"
-                            class="border border-purple-medium text-purple-dark hover:bg-purple-light px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 mx-auto text-sm">
-                            View More Reviews
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                    </div>
+                
+                <div class="text-center">
+                    <h3 class="text-purple-darkest font-semibold text-sm mb-2">AirPods Max Silver Starlight Aluminium</h3>
+                    <p class="text-2xl font-bold text-purple-darkest mb-4">$549</p>
+                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">Buy Now</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Related Products Section -->
-        <div class="col-span-full mt-12">
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-purple-darkest mb-8">Related Products</h2>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- iPhone 14 Pro 512GB Gold -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">📱</div>
+            <!-- Apple Watch Series 9 GPS -->
+            <div class="product-card bg-white rounded-2xl p-6 shadow-lg relative">
+                <div class="absolute top-4 right-4">
+                    <svg class="heart-icon w-6 h-6 text-gray-300 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-32 h-40 flex items-center justify-center">
+                        <div class="relative">
+                            <div class="w-20 h-24 bg-gray-300 rounded-2xl flex items-center justify-center">
+                                <div class="w-16 h-20 bg-black rounded-xl relative">
+                                    <div class="absolute inset-1 bg-gradient-to-br from-red-500 via-yellow-400 to-green-500 rounded-lg"></div>
+                                </div>
                             </div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-3 bg-gray-400 rounded-full"></div>
                         </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$1437</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
                     </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-purple-darkest font-semibold text-sm mb-2">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h3>
+                    <p class="text-2xl font-bold text-purple-darkest mb-4">$399</p>
+                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">Buy Now</button>
+                </div>
+            </div>
 
-                    <!-- AirPods Max Silver -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">🎧</div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">AirPods Max Silver Starlight Aluminium</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$549</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
+            <!-- iPhone 14 Pro 1TB Gold -->
+            <div class="product-card bg-white rounded-2xl p-6 shadow-lg relative">
+                <div class="absolute top-4 right-4">
+                    <svg class="heart-icon w-6 h-6 text-gray-300 cursor-pointer" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="w-32 h-40 bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-2 bg-black rounded-2xl"></div>
+                        <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-black rounded-full"></div>
+                        <div class="absolute top-3 left-4 w-2 h-2 bg-gray-800 rounded-full"></div>
+                        <div class="absolute top-3 right-4 w-2 h-2 bg-gray-800 rounded-full"></div>
+                        <div class="absolute top-3 right-8 w-2 h-2 bg-gray-800 rounded-full"></div>
                     </div>
-
-                    <!-- Apple Watch Series 9 -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">⌚</div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$399</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
-                    </div>
-
-                    <!-- iPhone 14 Pro 1TB Gold -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">📱</div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$1499</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
-                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="text-purple-darkest font-semibold text-sm mb-2">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
+                    <p class="text-2xl font-bold text-purple-darkest mb-4">$1499</p>
+                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">Buy Now</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function toggleAdditionalSpecs() {
-            const additionalSpecs = document.getElementById('additionalSpecs');
-            const chevronIcon = document.getElementById('chevronIcon');
-            const viewMoreText = document.getElementById('viewMoreText');
-
-            if (additionalSpecs.classList.contains('hidden')) {
-                additionalSpecs.classList.remove('hidden');
-                chevronIcon.style.transform = 'rotate(180deg)';
-                viewMoreText.textContent = 'View Less';
-            } else {
-                additionalSpecs.classList.add('hidden');
-                chevronIcon.style.transform = 'rotate(0deg)';
-                viewMoreText.textContent = 'View More';
-            }
-        }
-
-        function submitComment() {
-            const commentInput = document.getElementById('commentInput');
-            const comment = commentInput.value.trim();
-
-            if (comment === '') {
-                alert('Please enter a review before submitting.');
-                return;
-            }
-
-            // Create new review element
-            const reviewsList = document.getElementById('reviewsList');
-            const newReview = document.createElement('div');
-            newReview.className = 'border-b border-gray-100 pb-4';
-            newReview.innerHTML = `
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                        YU
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-semibold text-purple-darkest text-sm">You</h4>
-                            <span class="text-gray-400 text-xs">Just now</span>
-                        </div>
-                        <div class="flex text-yellow-400 mb-2 text-sm">
-                            ★★★★★
-                        </div>
-                        <p class="text-gray-700 leading-relaxed text-sm">
-                            ${comment}
-                        </p>
-                    </div>
-                </div>
-            `;
-
-            // Insert at the top of reviews list
-            reviewsList.insertBefore(newReview, reviewsList.firstChild);
-
-            // Clear the input
-            commentInput.value = '';
-
-            // Show success message
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = 'Review Added!';
-            button.classList.remove('bg-purple-medium', 'hover:bg-purple-dark');
-            button.classList.add('bg-green-500');
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-500');
-                button.classList.add('bg-purple-medium', 'hover:bg-purple-dark');
-            }, 2000);
-        }
-
-        function loadMoreReviews() {
-            const additionalReviews = [{
-                    name: "Alex Thompson",
-                    initials: "AT",
-                    date: "18 Jan 2024",
-                    rating: "★★★★★",
-                    comment: "Exceptional build quality and the health monitoring features are incredibly accurate. Best smartwatch I've owned!"
-                },
-                {
-                    name: "Lisa Chen",
-                    initials: "LC",
-                    date: "15 Jan 2024",
-                    rating: "★★★★☆",
-                    comment: "Love the design and functionality. Battery could be better but overall very happy with this purchase."
-                }
-            ];
-
-            const reviewsList = document.getElementById('reviewsList');
-
-            additionalReviews.forEach(review => {
-                const reviewElement = document.createElement('div');
-                reviewElement.className = 'border-b border-gray-100 pb-4';
-                reviewElement.innerHTML = `
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                            ${review.initials}
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-semibold text-purple-darkest text-sm">${review.name}</h4>
-                                <span class="text-gray-400 text-xs">${review.date}</span>
-                            </div>
-                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                ${review.rating}
-                            </div>
-                            <p class="text-gray-700 leading-relaxed text-sm">
-                                ${review.comment}
-                            </p>
-                        </div>
-                    </div>
-                `;
-                reviewsList.appendChild(reviewElement);
-            });
-
-            // Hide the "View More" button after loading
-            event.target.style.display = 'none';
-        }
-
-        // Add enter key support for comment submission
-        document.getElementById('commentInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && e.ctrlKey) {
-                submitComment();
-            }
-        });
-    </script>
 </body>
-
 </html>
