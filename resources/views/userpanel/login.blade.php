@@ -109,6 +109,19 @@
                     @enderror
                 </div>
             </div>
+              <!-- ✅ Remember Me -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <input type="checkbox" id="remember" name="remember"
+                    class="h-4 w-4 text-primary-dark focus:ring-primary-dark border-gray-300 rounded">
+                <label for="remember" class="ml-2 block text-sm text-gray-700">
+                    Remember me
+                </label>
+            </div>
+            <a href="#" class="text-sm text-primary-dark hover:text-primary-darker underline">
+                Forgot password?
+            </a>
+        </div>
 
             <!-- <div class="flex items-center justify-between">
                 <div class="flex items-center">

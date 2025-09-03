@@ -26,119 +26,25 @@
     </script>
     <style>
         .heart-icon {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
         .heart-icon:hover {
             fill: #ef4444;
-            transform: scale(1.2) rotate(10deg);
-            filter: drop-shadow(0 4px 8px rgba(239, 68, 68, 0.3));
+            transform: scale(1.1);
         }
-        
         .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
         .product-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(77, 75, 124, 0.25), 
-                        0 0 0 1px rgba(157, 141, 241, 0.1),
-                        0 0 20px rgba(157, 141, 241, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s;
-        }
-        .product-card:hover::before {
-            left: 100%;
-        }
-        
         .buy-btn {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .buy-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: linear-gradient(45deg, #9D8DF1, #A9B4E6);
-            border-radius: 50%;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-        .buy-btn:hover::before {
-            width: 300%;
-            height: 300%;
+            transition: all 0.3s ease;
         }
         .buy-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(45, 42, 74, 0.4);
-            color: white;
-        }
-        .buy-btn span {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .product-image {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover .product-image {
-            transform: scale(1.05) rotate(2deg);
-        }
-        
-        .price {
-            transition: all 0.3s ease;
-        }
-        .product-card:hover .price {
-            color: #9D8DF1;
-            transform: scale(1.05);
-        }
-        
-        .product-title {
-            transition: all 0.3s ease;
-        }
-        .product-card:hover .product-title {
-            color: #4C4B7C;
-        }
-        
-        /* Shimmer effect for cards */
-        .product-card {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-        }
-        .product-card:hover {
-            background: linear-gradient(145deg, #ffffff, #F4EFFF);
-        }
-        
-        /* Floating animation for heart */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(2deg); }
-        }
-        .heart-icon:hover {
-            animation: float 0.6s ease-in-out;
-        }
-        
-        /* Pulse effect for prices */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        /* Glow effect */
-        .product-card:hover {
-            background: radial-gradient(circle at center, rgba(244, 239, 255, 0.8), white);
+            background-color: #2D2A4A;
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -236,7 +142,7 @@
                 </div>
                 
                 <div class="flex justify-center mb-6">
-                    <div class="w-32 h-40 bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                    <div class="product-image w-32 h-40 bg-gradient-to-br from-blue-400 via-blue-600 to-blue-800 rounded-3xl flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-2 bg-black rounded-2xl"></div>
                         <div class="absolute top-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-black rounded-full"></div>
                         <div class="absolute top-3 left-4 w-2 h-2 bg-gray-800 rounded-full"></div>
@@ -246,9 +152,11 @@
                 </div>
                 
                 <div class="text-center">
-                    <h3 class="text-purple-darkest font-semibold text-sm mb-2">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
-                    <p class="text-2xl font-bold text-purple-darkest mb-4">$1499</p>
-                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">Buy Now</button>
+                    <h3 class="product-title text-purple-darkest font-semibold text-sm mb-2">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
+                    <p class="price text-2xl font-bold text-purple-darkest mb-4">$1499</p>
+                    <button class="buy-btn w-full bg-black text-white py-3 rounded-xl font-medium">
+                        <span>Buy Now</span>
+                    </button>
                 </div>
             </div>
         </div>

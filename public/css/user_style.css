@@ -75,7 +75,7 @@
       margin: 0;
       padding: 0;
       padding-top: 4rem;
-      background: linear-gradient(135deg, #F3F0FF 0%, #E2D8FF 30%, #9D8DF1 70%, #4C4B7C 100%);
+      /* background: linear-gradient(135deg, #F3F0FF 0%, #E2D8FF 30%, #9D8DF1 70%, #4C4B7C 100%); */
       min-height: 100vh;
   }
 

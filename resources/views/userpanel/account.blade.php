@@ -1,6 +1,6 @@
 <x-user_navbar>
     <x-slot name="body">
-        <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 my-12">
+        <!-- <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 "> -->
 
             <!-- Header -->
             <!-- <div class="text-center mb-8">
@@ -10,7 +10,7 @@
 
 
 
-            <div class="grid lg:grid-cols-3 gap-10">
+            <div class="grid lg:grid-cols-3 gap-10 my-12 px-20 py-10">
 
                 <!-- Profile Photo -->
                 <div class="text-center">
@@ -202,7 +202,7 @@
 
 
 
-        </div>
+        <!-- </div> -->
 
 
 

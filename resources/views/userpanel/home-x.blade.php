@@ -685,6 +685,45 @@
 
         </section>
 
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center my-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                @foreach($products_data->take(4) as $product)
+                <!-- Slide -->
+                <a href="#">
+                    <div
+                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                        <!-- Floating particles effect -->
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                        </div>
+
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                            <!-- Glow effect overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        </div>
+
+                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
+                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
+                        <button
+                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                            Now</button>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+
         <!-- category start  -->
         <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-6 my-12">
             <!-- Header Section -->
@@ -802,6 +841,7 @@
                 <!-- Product Cards Container -->
                 <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
 
+                    @foreach($products_data->take(12) as $product)
                     <!-- Product 1: Galaxy S22 Ultra -->
                     <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                         <div class="relative mb-4">
@@ -809,7 +849,7 @@
                                 56% OFF
                             </div>
                             <div class="phone-image w-full h-48 flex items-center justify-center">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
                                     <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
                                         <div class="text-xs text-center">
                                             <div class="mb-2">📱</div>
@@ -817,186 +857,24 @@
                                             <div class="text-xs">S22 Ultra</div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy S22 Ultra</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹32999</span>
-                            <span class="text-sm text-gray-500 line-through">₹74999</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹32999</p>
-                    </div>
+                                </div> -->
+                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
 
-                    <!-- Product 2: Galaxy M13 -->
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                56% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                                        <div class="text-center">
-                                            <div class="text-2xl font-bold text-white">M13</div>
-                                            <div class="text-xs mt-1">4GB | 64GB</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M13 (4GB | 64 GB )</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹10499</span>
-                            <span class="text-sm text-gray-500 line-through">₹14999</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹4500</p>
-                    </div>
 
-                    <!-- Product 3: Galaxy M33 -->
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                56% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-orange-400 to-red-500 rounded-lg flex items-center justify-center relative">
-                                        <div class="text-center">
-                                            <div class="text-white text-xs mb-1">5G</div>
-                                            <div class="text-white font-bold">M33</div>
-                                            <div class="text-xs mt-1">4GB | 64GB</div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M33 (4GB | 64 GB )</h3>
+                        <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹16999</span>
-                            <span class="text-sm text-gray-500 line-through">₹24999</span>
+                            <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
+                            <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
                         </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹8000</p>
+                        <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                     </div>
+                    @endforeach
 
-                    <!-- Product 4: Galaxy M53 -->
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                56% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-purple-300 to-purple-600 rounded-lg flex items-center justify-center">
-                                        <div class="text-center">
-                                            <div class="text-white font-bold">M53</div>
-                                            <div class="text-xs mt-1">4GB | 64GB</div>
-                                            <div class="text-xs mt-2 bg-white/20 rounded px-1">Ultra</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy M53 (4GB | 64 GB )</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹31999</span>
-                            <span class="text-sm text-gray-500 line-through">₹40999</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹9000</p>
-                    </div>
 
-                    <!-- Product 5: Galaxy S22 Ultra -->
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                56% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #2d5016 0%, #4CAF50 100%);">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-green-300 to-green-700 rounded-lg flex items-center justify-center">
-                                        <div class="text-center">
-                                            <div class="text-white font-bold">S22</div>
-                                            <div class="text-xs mt-1">Ultra</div>
-                                            <div class="text-xs mt-2 bg-white/20 rounded px-1">Pro</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy S22 Ultra</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹67999</span>
-                            <span class="text-sm text-gray-500 line-through">₹85999</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹18000</p>
-                    </div>
-
-                    <!-- Product 6: Additional phones for scrolling -->
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                45% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center" style="background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);">
-                                <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
-                                        <div class="text-center">
-                                            <div class="text-white font-bold">A54</div>
-                                            <div class="text-xs mt-1">5G</div>
-                                            <div class="text-xs mt-2">128GB</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Galaxy A54 5G (8GB | 128GB)</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹25999</span>
-                            <span class="text-sm text-gray-500 line-through">₹47999</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹22000</p>
-                    </div>
 
                 </div>
-            </div>
-        </div>
-
-        <div class="container mx-auto px-4">
-            <!-- Section Header -->
-            <div class="text-center my-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                @foreach($products_data->take(4) as $product)
-                <!-- Slide -->
-                <a href="#">
-                    <div
-                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-                        <!-- Floating particles effect -->
-                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
-                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
-                        </div>
-
-                        <div class="relative overflow-hidden rounded-xl">
-                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-                            <!-- Glow effect overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        </div>
-
-                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
-                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
-                        <button
-                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
-                            Now</button>
-                    </div>
-                </a>
-                @endforeach
             </div>
         </div>
 
@@ -1193,6 +1071,8 @@
                 <!-- Carousel Container -->
                 <div class="relative h-96 md:h-[500px] overflow-hidden">
 
+
+                    @foreach($products_data->take(5) as $product)
                     <!-- Slide 1 -->
                     <div class="carousel-slide active absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
                         <div class="text-white z-10 max-w-md lg:max-w-lg">
@@ -1201,8 +1081,9 @@
                             <p class="text-xl md:text-2xl lg:text-3xl text-orange-400 font-semibold">UP to 80% OFF</p>
                         </div>
                         <div class="relative">
-                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-orange-400 to-orange-600 rounded-3xl transform rotate-12 watch-glow flex items-center justify-center">
-                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
+                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl transform -rotate-12 watch-glow flex items-center justify-center">
+
+                                <!-- <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
                                     <div class="text-xs md:text-sm lg:text-base text-blue-400 mb-1">08:26:00</div>
                                     <div class="text-xs md:text-sm text-red-400">SAT 04/06</div>
                                     <div class="mt-2 text-xs md:text-sm">
@@ -1210,48 +1091,16 @@
                                         <span class="text-white ml-1">102</span>
                                     </div>
                                     <div class="text-xs md:text-sm mt-1 text-white">254 ⚡</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </div> -->
+                                <img src="{{ url('storage/products_images/' . $product->image) }}" class="rounded-full" alt="">
 
-                    <!-- Slide 2 -->
-                    <div class="carousel-slide absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
-                        <div class="text-white z-10 max-w-md lg:max-w-lg">
-                            <p class="text-sm md:text-base lg:text-lg text-purple-300 mb-2">Premium Collection Available</p>
-                            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">FITNESS TRACKER.</h1>
-                            <p class="text-xl md:text-2xl lg:text-3xl text-green-400 font-semibold">UP to 70% OFF</p>
-                        </div>
-                        <div class="relative">
-                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl transform -rotate-12 watch-glow flex items-center justify-center">
-                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
-                                    <div class="text-xs md:text-sm text-purple-400 mb-1">STEPS</div>
-                                    <div class="text-lg md:text-xl lg:text-2xl font-bold">8,247</div>
-                                    <div class="text-xs md:text-sm text-pink-400 mt-2">CALORIES</div>
-                                    <div class="text-sm md:text-base lg:text-lg font-semibold">342</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Slide 3 -->
-                    <div class="carousel-slide absolute inset-0 flex items-center justify-between px-8 md:px-20 lg:px-32">
-                        <div class="text-white z-10 max-w-md lg:max-w-lg">
-                            <p class="text-sm md:text-base lg:text-lg text-cyan-300 mb-2">Latest Technology Inside</p>
-                            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">HEALTH MONITOR.</h1>
-                            <p class="text-xl md:text-2xl lg:text-3xl text-yellow-400 font-semibold">UP to 60% OFF</p>
-                        </div>
-                        <div class="relative">
-                            <div class="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl transform rotate-6 watch-glow flex items-center justify-center">
-                                <div class="w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-black rounded-2xl flex flex-col items-center justify-center text-white">
-                                    <div class="text-xs md:text-sm text-cyan-400 mb-1">HEART RATE</div>
-                                    <div class="text-lg md:text-xl lg:text-2xl font-bold text-red-400">72 BPM</div>
-                                    <div class="text-xs md:text-sm text-cyan-400 mt-2">OXYGEN</div>
-                                    <div class="text-sm md:text-base lg:text-lg font-semibold text-green-400">98%</div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
+                    @endforeach
+
                 </div>
 
                 <!-- Navigation Arrows -->
@@ -1272,11 +1121,15 @@
                     <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/50 transition-all duration-200 active-dot" data-slide="0"></button>
                     <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="1"></button>
                     <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="2"></button>
+                    <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="3"></button>
+                    <button class="dot-indicator w-3 h-3 md:w-4 md:h-4 rounded-full bg-white/30 transition-all duration-200" data-slide="4"></button>
+
                 </div>
             </div>
         </div>
 
-        <div class="container mx-auto px-4">
+        
+        <div class="container mx-auto px-4 py-12">
             <!-- Section Header -->
             <div class="text-center my-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>

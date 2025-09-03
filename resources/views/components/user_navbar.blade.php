@@ -431,7 +431,7 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="bg-purple-darkest text-white mt-10">
+    <footer class="bg-purple-darkest text-white ">
         <!-- Newsletter Section -->
         <div class="bg-side py-4">
             <div class="container mx-auto px-6">
@@ -603,6 +603,38 @@
 
     <!-- sweet alert2 start -->
     <script>
+
+
+ document.addEventListener("DOMContentLoaded", function () {
+        const tabs = document.querySelectorAll(".tab-btn");
+        const products = document.querySelectorAll(".product-card");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                // Remove active style from all tabs
+                tabs.forEach(t => t.classList.remove("border-side", "text-side", "border-b-2", "font-medium"));
+                tabs.forEach(t => t.classList.add("text-gray-500"));
+
+                // Add active style to clicked tab
+                tab.classList.add("border-side", "text-side", "border-b-2", "font-medium");
+                tab.classList.remove("text-gray-500");
+
+                const category = tab.getAttribute("data-category");
+
+                products.forEach(product => {
+                    if (product.getAttribute("data-category") === category || category === "all") {
+                        product.style.display = "block";
+                    } else {
+                        product.style.display = "none";
+                    }
+                });
+            });
+        });
+    });
+
+
+
+    
         $(document).ready(function () {
             $(".logout").on("click", function (e) {
                 e.preventDefault(); // Stop default logout immediately

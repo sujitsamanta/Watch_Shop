@@ -46,15 +46,14 @@ class UserController extends Controller
         $login_data = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-
         ]);
 
 
-        if (Auth::attempt($login_data)) {
+        if (Auth::attempt($login_data, $request->remember)) {
 
             flash()->addSuccess('Welcome to Watch Shop..⚡️');
-
             return redirect('/home');
+
         } else {
 
             // notify()->error('Enter curect data ⚡️');
