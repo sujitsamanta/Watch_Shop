@@ -13,7 +13,11 @@ Route::get('/home', [UserController::class,'home_check']);
 
 
 // single_product_view
-Route::get('/single_product_view', [UserController::class,'single_product_view']);
+Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view']);
+
+// add to cart
+Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart']);
+
 
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
@@ -37,6 +41,9 @@ Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 // User Panel End
 
 Route::view('/a', 'a');
+
+
+
 
 // Admin Panel Start
 

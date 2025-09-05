@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hand Watch Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/user_style.css" />
+    <link rel="stylesheet" href="{{ asset('css/user_style.css') }}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-   
+
 
 
     <!-- @notifyCss -->
@@ -21,7 +21,9 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                    },
                     colors: {
                         'purple-lightest': '#F3F0FF',
                         'purple-light': '#E2D8FF',
@@ -97,7 +99,7 @@
 
 
 
-         .reviews-container {
+        .reviews-container {
             max-height: 500px;
             overflow-y: auto;
         }
@@ -599,44 +601,42 @@
     <!-- @notifyJs -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/user_script.js"></script>
+    <script src="{{ asset('js/user_script.js') }}"></script>
 
     <!-- sweet alert2 start -->
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tabs = document.querySelectorAll(".tab-btn");
+            const products = document.querySelectorAll(".product-card");
 
+            tabs.forEach(tab => {
+                tab.addEventListener("click", () => {
+                    // Remove active style from all tabs
+                    tabs.forEach(t => t.classList.remove("border-side", "text-side", "border-b-2", "font-medium"));
+                    tabs.forEach(t => t.classList.add("text-gray-500"));
 
- document.addEventListener("DOMContentLoaded", function () {
-        const tabs = document.querySelectorAll(".tab-btn");
-        const products = document.querySelectorAll(".product-card");
+                    // Add active style to clicked tab
+                    tab.classList.add("border-side", "text-side", "border-b-2", "font-medium");
+                    tab.classList.remove("text-gray-500");
 
-        tabs.forEach(tab => {
-            tab.addEventListener("click", () => {
-                // Remove active style from all tabs
-                tabs.forEach(t => t.classList.remove("border-side", "text-side", "border-b-2", "font-medium"));
-                tabs.forEach(t => t.classList.add("text-gray-500"));
+                    const category = tab.getAttribute("data-category");
 
-                // Add active style to clicked tab
-                tab.classList.add("border-side", "text-side", "border-b-2", "font-medium");
-                tab.classList.remove("text-gray-500");
-
-                const category = tab.getAttribute("data-category");
-
-                products.forEach(product => {
-                    if (product.getAttribute("data-category") === category || category === "all") {
-                        product.style.display = "block";
-                    } else {
-                        product.style.display = "none";
-                    }
+                    products.forEach(product => {
+                        if (product.getAttribute("data-category") === category || category === "all") {
+                            product.style.display = "block";
+                        } else {
+                            product.style.display = "none";
+                        }
+                    });
                 });
             });
         });
-    });
 
 
 
-    
-        $(document).ready(function () {
-            $(".logout").on("click", function (e) {
+
+        $(document).ready(function() {
+            $(".logout").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
                 let url = $(this).attr("href"); // /logout
                 Swal.fire({
@@ -656,7 +656,7 @@
             });
 
 
-            $(".update_save").on("click", function (e) {
+            $(".update_save").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
 
                 // let url = $(this).attr("href"); 
@@ -664,7 +664,7 @@
                 Swal.fire({
                     title: "Are you sure?",
                     text: "Do you want to update your account details?",
-                    icon: "question",   // use "question" or "info" instead of "warning"
+                    icon: "question", // use "question" or "info" instead of "warning"
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
@@ -675,14 +675,13 @@
                         // Redirect to logout
                         // window.location.href = url;
                         form.submit();
-                    }
-                    else {
+                    } else {
                         window.location.href = "/account";
                     }
                 });
             });
 
-            $(".update_save_photo").on("click", function (e) {
+            $(".update_save_photo").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
 
                 // let url = $(this).attr("href"); 
@@ -690,7 +689,7 @@
                 Swal.fire({
                     title: "Are you sure?",
                     text: "Do you want to update your account Photo?",
-                    icon: "question",   // use "question" or "info" instead of "warning"
+                    icon: "question", // use "question" or "info" instead of "warning"
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
@@ -701,8 +700,7 @@
                         // Redirect to logout
                         // window.location.href = url;
                         form.submit();
-                    }
-                    else {
+                    } else {
                         window.location.href = "/account";
                     }
                 });

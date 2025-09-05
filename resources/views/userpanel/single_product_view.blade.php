@@ -1,9 +1,6 @@
-<div>
-    <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
-</div>
 <x-user_navbar>
     <x-slot name="body">
-       
+
         <!-- Main Single Product view -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -15,33 +12,12 @@
                         <div class="aspect-square bg-gradient-to-br from-lav1 to-purple-light rounded-xl flex items-center justify-center relative overflow-hidden">
                             <!-- Watch Face -->
                             <div class="relative">
-                                <!-- Watch Band -->
-                                <div class="w-64 h-80 bg-gradient-to-b from-purple-dark to-purple-darkest rounded-full mx-auto relative">
-                                    <!-- Watch Case -->
-                                    <div class="absolute top-12 left-1/2 transform -translate-x-1/2 w-40 h-48 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl border-4 border-gray-700">
-                                        <!-- Digital Crown -->
-                                        <div class="absolute -right-1 top-16 w-3 h-8 bg-gray-600 rounded-full"></div>
-                                        <div class="absolute -right-1 top-28 w-3 h-6 bg-gray-600 rounded-full"></div>
 
-                                        <!-- Screen -->
-                                        <div class="m-2 h-44 bg-black rounded-2xl p-2 relative overflow-hidden">
-                                            <!-- Watch Face Display -->
-                                            <div class="w-full h-full bg-gradient-to-br from-purple-medium to-purple-dark rounded-xl flex flex-col items-center justify-center text-white">
-                                                <div class="text-xs opacity-75 mb-1">MON 31</div>
-                                                <div class="text-2xl font-bold">14:30</div>
-                                                <div class="text-xs opacity-75 mt-1">Heart Rate: 72</div>
-                                                <!-- Activity Rings -->
-                                                <div class="mt-3 flex space-x-1">
-                                                    <div class="w-6 h-6 border-2 border-red-400 rounded-full border-t-red-600 border-r-red-600"></div>
-                                                    <div class="w-6 h-6 border-2 border-green-400 rounded-full border-t-green-600 border-r-green-600"></div>
-                                                    <div class="w-6 h-6 border-2 border-blue-400 rounded-full border-t-blue-600 border-r-blue-600"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <img src="{{ url('storage/products_images/' . $product_details->image) }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
+
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Thumbnail Images -->
@@ -64,9 +40,9 @@
                 <!-- Product Info -->
                 <div class="space-y-6">
                     <div>
-                        <h1 class="text-4xl font-bold text-purple-darkest mb-2">Apple Smart Watch Pro</h1>
+                        <h1 class="text-4xl font-bold text-purple-darkest mb-2">{{ $product_details->name }}</h1>
                         <p class="text-gray-700 leading-relaxed">
-                            Enhanced capabilities thanks to innovative design and cutting-edge technology.
+                            {{ $product_details->name }}
                         </p>
                         <div class="flex items-center space-x-4">
                             <span class="text-3xl font-bold text-purple-dark">$399</span>
@@ -214,9 +190,12 @@
                         <button class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
                             Add to Wishlist
                         </button>
+                         <a href="/add_to_cart/{{ $product_details->id }}">
                         <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
                             Add to Cart
                         </button>
+                        </a>
+
                     </div>
 
                     <!-- Delivery Info -->
@@ -290,6 +269,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="container mx-auto px-4 py-8">
                 <!-- Main Grid Layout -->
                 <div class="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
@@ -629,160 +609,93 @@
                 </div>
             </div>
 
-             <!-- Related Products Section -->
-        <div class="col-span-full mt-12">
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <h2 class="text-2xl font-bold text-purple-darkest mb-8">Related Products</h2>
+            <!-- Related Products Section -->
+            <div class="col-span-full mt-12">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-purple-darkest mb-8">Related Products</h2>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- iPhone 14 Pro 512GB Gold -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">📱</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- iPhone 14 Pro 512GB Gold -->
+                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
+                            <div class="relative mb-4">
+                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <div class="h-32 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg flex items-center justify-center">
+                                    <div class="text-4xl">📱</div>
+                                </div>
                             </div>
+                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
+                            <div class="text-xl font-bold text-purple-darkest mb-3">$1437</div>
+                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
+                                Buy Now
+                            </button>
                         </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$1437</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
-                    </div>
 
-                    <!-- AirPods Max Silver -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">🎧</div>
+                        <!-- AirPods Max Silver -->
+                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
+                            <div class="relative mb-4">
+                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <div class="h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
+                                    <div class="text-4xl">🎧</div>
+                                </div>
                             </div>
+                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">AirPods Max Silver Starlight Aluminium</h3>
+                            <div class="text-xl font-bold text-purple-darkest mb-3">$549</div>
+                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
+                                Buy Now
+                            </button>
                         </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">AirPods Max Silver Starlight Aluminium</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$549</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
-                    </div>
 
-                    <!-- Apple Watch Series 9 -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">⌚</div>
+                        <!-- Apple Watch Series 9 -->
+                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
+                            <div class="relative mb-4">
+                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <div class="h-32 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg flex items-center justify-center">
+                                    <div class="text-4xl">⌚</div>
+                                </div>
                             </div>
+                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h3>
+                            <div class="text-xl font-bold text-purple-darkest mb-3">$399</div>
+                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
+                                Buy Now
+                            </button>
                         </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$399</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
-                    </div>
 
-                    <!-- iPhone 14 Pro 1TB Gold -->
-                    <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                        <div class="relative mb-4">
-                            <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                            </button>
-                            <div class="h-32 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
-                                <div class="text-4xl">📱</div>
+                        <!-- iPhone 14 Pro 1TB Gold -->
+                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
+                            <div class="relative mb-4">
+                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </button>
+                                <div class="h-32 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
+                                    <div class="text-4xl">📱</div>
+                                </div>
                             </div>
+                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
+                            <div class="text-xl font-bold text-purple-darkest mb-3">$1499</div>
+                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
+                                Buy Now
+                            </button>
                         </div>
-                        <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
-                        <div class="text-xl font-bold text-purple-darkest mb-3">$1499</div>
-                        <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                            Buy Now
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-        </div>
-
         <script>
-            // Main Single Product view start
-
-            // Color selection functionality
-            // const colorButtons = document.querySelectorAll('button[class*="rounded-full"]');
-            // colorButtons.forEach(button => {
-            //     button.addEventListener('click', function() {
-            //         // Remove active border from all buttons
-            //         colorButtons.forEach(btn => {
-            //             btn.classList.remove('border-purple-dark');
-            //             btn.classList.add('border-transparent');
-            //         });
-
-            //         // Add active border to clicked button
-            //         this.classList.remove('border-transparent');
-            //         this.classList.add('border-purple-dark');
-            //     });
-            // });
-
-            // Size selection functionality
-
-            // const sizeButtons = document.querySelectorAll('button[class*="px-4 py-3"]');
-            // sizeButtons.forEach(button => {
-            //     button.addEventListener('click', function() {
-            //         // Remove active state from all size buttons
-            //         sizeButtons.forEach(btn => {
-            //             btn.classList.remove('bg-purple-medium', 'text-white', 'shadow-md');
-            //             btn.classList.add('border', 'border-purple-light', 'hover:border-purple-medium', 'hover:bg-lav2');
-            //             btn.querySelector('div').classList.remove('text-white');
-            //             btn.querySelector('div').classList.add('text-purple-darkest');
-            //         });
-
-            //         // Add active state to clicked button
-            //         this.classList.add('bg-purple-medium', 'text-white', 'shadow-md');
-            //         this.classList.remove('border', 'border-purple-light', 'hover:border-purple-medium', 'hover:bg-lav2');
-            //         this.querySelector('div').classList.add('text-white');
-            //         this.querySelector('div').classList.remove('text-purple-darkest');
-            //     });
-            // });
-
-            // Add to cart functionality
-            const addToCartBtn = document.querySelector('button[class*="bg-purple-darkest"]');
-            addToCartBtn.addEventListener('click', function() {
-                // Create notification
-                const notification = document.createElement('div');
-                notification.className = 'fixed top-4 right-4 bg-purple-medium text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
-                notification.textContent = 'Added to cart successfully!';
-                document.body.appendChild(notification);
-
-                // Animate in
-                setTimeout(() => {
-                    notification.classList.remove('translate-x-full');
-                }, 100);
-
-                // Animate out and remove
-                setTimeout(() => {
-                    notification.classList.add('translate-x-full');
-                    setTimeout(() => {
-                        document.body.removeChild(notification);
-                    }, 300);
-                }, 2000);
-            });
-            // Main Single Product view end
-
-
-
             // Details and rating and feed back section start
             function toggleAdditionalSpecs() {
                 const additionalSpecs = document.getElementById('additionalSpecs');
@@ -910,5 +823,7 @@
 
             // Details and rating and feed back section end
         </script>
+
+
     </x-slot>
 </x-user_navbar>

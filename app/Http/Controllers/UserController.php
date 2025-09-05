@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Models\Product;
+use App\Models\Cart;
 
 
 
@@ -175,10 +176,39 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function single_product_view(){
-        return view('userpanel.single_product_view');
+    public function single_product_view($product_id){
+        
+        $product_details = Product::findOrFail($product_id);
+        return view('userpanel.single_product_view',compact('product_details'));
+        // return $request->id;
     }
 
 
+     public function add_to_cart($product_id)
+    {
+        $user_id = Auth::id(); // current logged-in user
+
+        // check if product already in cart
+        $cart = Cart::where('user_id', $user_id)
+                    ->where('product_id', $product_id)
+                    ->first();
+
+        if ($cart) {
+            // update quantity
+            $cart->quantity += 1;
+            $cart->save();
+        } else {
+            // create new cart entry
+            Cart::create([
+                'user_id' => $user_id,
+                'product_id' => $product_id,
+                'quantity' => 1,
+            ]);
+        }
+
+        flash()->addSuccess('Product added to cart!..⚡️');
+        // return redirect()->back()->with('success', 'Product added to cart!');
+        return redirect()->back();
+    }
 
 }

@@ -356,3 +356,99 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // small carasol section end
+
+
+
+// Main Single Product view start
+
+// Color selection functionality
+// const colorButtons = document.querySelectorAll('button[class*="rounded-full"]');
+// colorButtons.forEach(button => {
+//     button.addEventListener('click', function() {
+//         // Remove active border from all buttons
+//         colorButtons.forEach(btn => {
+//             btn.classList.remove('border-purple-dark');
+//             btn.classList.add('border-transparent');
+//         });
+
+//         // Add active border to clicked button
+//         this.classList.remove('border-transparent');
+// this.classList.add('border-purple-dark');
+//     });
+// });
+
+// Size selection functionality
+
+// const sizeButtons = document.querySelectorAll('button[class*="px-4 py-3"]');
+// sizeButtons.forEach(button => {
+//     button.addEventListener('click', function() {
+//         // Remove active state from all size buttons
+//         sizeButtons.forEach(btn => {
+//             btn.classList.remove('bg-purple-medium', 'text-white', 'shadow-md');
+//             btn.classList.add('border', 'border-purple-light', 'hover:border-purple-medium', 'hover:bg-lav2');
+//             btn.querySelector('div').classList.remove('text-white');
+//             btn.querySelector('div').classList.add('text-purple-darkest');
+//         });
+
+//         // Add active state to clicked button
+//         this.classList.add('bg-purple-medium', 'text-white', 'shadow-md');
+//         this.classList.remove('border', 'border-purple-light', 'hover:border-purple-medium', 'hover:bg-lav2');
+//         this.querySelector('div').classList.add('text-white');
+//         this.querySelector('div').classList.remove('text-purple-darkest');
+//     });
+// });
+
+// Add to cart functionality
+const addToCartBtn = document.querySelector('button[class*="bg-purple-darkest"]');
+addToCartBtn.addEventListener('click', function () {
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-purple-medium text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+    notification.textContent = 'Added to cart successfully!';
+    document.body.appendChild(notification);
+
+    // Animate in
+    setTimeout(() => {
+        notification.classList.remove('translate-x-full');
+    }, 100);
+
+    // Animate out and remove
+    setTimeout(() => {
+        notification.classList.add('translate-x-full');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 2000);
+});
+// Main Single Product view end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
