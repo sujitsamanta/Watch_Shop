@@ -16,7 +16,8 @@ Route::get('/home', [UserController::class,'home_check']);
 Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view']);
 
 // add to cart
-Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart']);
+Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart'])->middleware('userMiddleware');
+Route::get('/add_to_cart_view', [UserController::class,'add_to_cart_view'])->middleware('userMiddleware');
 
 
 

@@ -42,10 +42,10 @@
                     <div>
                         <h1 class="text-4xl font-bold text-purple-darkest mb-2">{{ $product_details->name }}</h1>
                         <p class="text-gray-700 leading-relaxed">
-                            {{ $product_details->name }}
+                            {{ $product_details->description }}
                         </p>
                         <div class="flex items-center space-x-4">
-                            <span class="text-3xl font-bold text-purple-dark">$399</span>
+                            <span class="text-3xl font-bold text-purple-dark">${{ $product_details->price }}</span>
                             <span class="text-xl text-gray-500 line-through">$499</span>
                         </div>
                     </div>

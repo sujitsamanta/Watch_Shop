@@ -208,7 +208,17 @@ class UserController extends Controller
 
         flash()->addSuccess('Product added to cart!..⚡️');
         // return redirect()->back()->with('success', 'Product added to cart!');
-        return redirect()->back();
+        return redirect('add_to_cart_view');
     }
 
+
+    public function add_to_cart_view(){
+
+        $user_id = Auth::id();
+        $cart_product = Cart::with('product')->where('user_id', $user_id)->get();
+
+        return view('userpanel.add_to_cart_view', compact('cart_product'));
+
+        // return view('userpanel.add_to_cart_view');
+    }
 }

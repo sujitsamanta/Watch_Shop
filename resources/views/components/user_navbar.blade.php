@@ -8,9 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ asset('css/user_style.css') }}" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
+       
+    <!-- add to cart view need this cdn -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
     <!-- @notifyCss -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -97,7 +99,7 @@
 
         }
 
-
+        /* reviews-container start */
 
         .reviews-container {
             max-height: 500px;
@@ -120,6 +122,36 @@
 
         .reviews-container::-webkit-scrollbar-thumb:hover {
             background: #7C3AED;
+        }
+
+        /* reviews-container end */
+        .custom-scrollbar{
+            max-height: 35rem;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Firefox scrollbar */
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
         }
     </style>
 
@@ -265,7 +297,8 @@
                     </div>
 
                     <!-- Cart -->
-                    <button
+                     <a href="/add_to_cart_view">
+                         <button
                         class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -277,6 +310,8 @@
                         <span
                             class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
                     </button>
+                     </a>
+                   
                 </div>
 
                 <!-- Tablet and Mobile Icons -->
@@ -602,6 +637,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/user_script.js') }}"></script>
+
+
+    
 
     <!-- sweet alert2 start -->
     <script>
