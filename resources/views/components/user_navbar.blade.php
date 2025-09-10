@@ -671,6 +671,26 @@
         });
 
 
+        // $(document).ready(function() {
+        //     $(".confirm_order").on("click", function(e) {
+        //         e.preventDefault(); // Stop default logout immediately
+        //         let url = $(this).attr("href"); // /logout
+        //         Swal.fire({
+        //             title: "Are you sure?",
+        //             text: "You will be logged out from the system.",
+        //             icon: "warning",
+        //             showCancelButton: true,
+        //             confirmButtonColor: "#3085d6",
+        //             cancelButtonColor: "#d33",
+        //             confirmButtonText: "Yes, log me out!",
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 // Redirect to logout
+        //                 window.location.href = url;
+        //             }
+        //         });
+        //     });
+
 
 
         $(document).ready(function() {

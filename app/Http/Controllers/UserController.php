@@ -305,4 +305,7 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+    public function order_checkout(Request $request ){
+        return $request;
+    }
 }

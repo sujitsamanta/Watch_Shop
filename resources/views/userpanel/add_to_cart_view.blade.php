@@ -169,9 +169,13 @@
 
 
                             <!-- Checkout Button -->
-                            <button id="checkout-btn" class="w-full mt-6 bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 font-medium text-lg transition-colors duration-200 transform hover:scale-105">
-                                Proceed to Checkout
-                            </button>
+                            <form action="/order_checkout" method="post">
+                                @csrf
+                                <button id="checkout-btn" class="w-full mt-6 bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 font-medium text-lg transition-colors duration-200 transform hover:scale-105">
+                                    Proceed to Checkout
+                                </button>
+                            </form>
+
 
                             <!-- Payment Methods -->
                             <!-- <div class="mt-6 pt-6 border-t border-gray-200">

@@ -27,6 +27,7 @@ Route::post('/add_to_cart_delete_product', [UserController::class,'add_to_cart_d
 
 Route::post('/add_to_cart_clear_all_product', [UserController::class,'add_to_cart_clear_all_product'])->middleware('userMiddleware');
 
+Route::post('/order_checkout', [UserController::class,'order_checkout'])->middleware('userMiddleware');
 
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
