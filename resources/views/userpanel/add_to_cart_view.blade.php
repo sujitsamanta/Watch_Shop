@@ -19,52 +19,74 @@
                         <!-- Scrollable Products Container -->
                         <div class=" overflow-y-auto custom-scrollbar">
                             <div class="divide-y divide-gray-200" id="products-container">
-                                  @foreach($cart_product as $product)
+                                @foreach($cart_product as $product)
                                 <!-- Product 1 - iPhone -->
-                                <div class="p-6 flex items-center space-x-4 product-item" data-price="{{ $product->product->price }}">
-                                    <div class="flex-shrink-0">
-                                <img class="w-20 h-20 rounded-lg object-cover" src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
+                                <a href="/single_product_view/{{ $product->product->id }}">
 
-                                        <!-- <img class="w-20 h-20 rounded-lg object-cover" src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop" alt="iPhone 14 Pro Max"> -->
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <h3 class="text-lg font-medium text-gray-900">{{ $product->product->name }}</h3>
-                                        <p class="text-sm text-gray-500">{{ $product->product->description }}</p>
-                                        <p class="text-sm text-gray-500">#25139526913984</p>
-                                        <!-- <div class="mt-2 flex items-center space-x-4">
+                                    <div class="p-6 flex items-center space-x-4 product-item" data-price="{{ $product->product->price }}">
+                                        <div class="flex-shrink-0">
+                                            <img class="w-20 h-20 rounded-lg object-cover" src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
+
+                                            <!-- <img class="w-20 h-20 rounded-lg object-cover" src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop" alt="iPhone 14 Pro Max"> -->
+                                        </div>
+                                        <div class="flex-1 min-w-0">
+                                            <h3 class="text-lg font-medium text-gray-900">{{ $product->product->name }}</h3>
+                                            <p class="text-sm text-gray-500">{{ $product->product->description }}</p>
+
+                                            <!-- <p class="text-sm text-gray-500">#25139526913984</p> -->
+
+                                            <!-- <div class="mt-2 flex items-center space-x-4">
                                             <button class="text-sm text-indigo-600 hover:text-indigo-500 font-medium">Edit</button>
                                             <button class="text-sm text-red-600 hover:text-red-500 font-medium remove-item">Remove</button>
                                         </div> -->
-                                    </div>
-                                    <div class="flex items-center space-x-4">
-                                        <div class="flex items-center border border-gray-300 rounded-md">
-                                            <button class="p-2 hover:bg-gray-100 quantity-btn" data-action="decrease">
-                                                <i class="fa-solid fa-minus text-xs"></i>
-                                            </button>
-                                            <span class="px-4 py-2 border-x border-gray-300 quantity-display">{{ $product->quantity }}</span>
-                                            <button class="p-2 hover:bg-gray-100 quantity-btn" data-action="increase">
-                                                <i class="fa-solid fa-plus text-xs"></i>
-                                            </button>
                                         </div>
-                                        <div class="text-right">
-                                            <p class="text-lg font-medium text-gray-900 item-price">{{ $product->product->price }}</p>
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex items-center border border-gray-300 rounded-md">
+                                                <form action="/add_to_cart_decrease_product_quantity" method="post">
+                                                    @csrf
+                                                    <button class="p-2 hover:bg-gray-100 quantity-btn" data-action="decrease" type="submit">
+                                                        <i class="fa-solid fa-minus text-xs"></i>
+                                                    </button>
+                                                    <input type="text" value="{{ $product->product->id }}" name="product_id" hidden>
+                                                </form>
+                                                <span class="px-4 py-2 border-x border-gray-300 quantity-display">{{ $product->quantity }}</span>
+                                                <form action="/add_to_cart_increash_product_quantity" method="post">
+                                                    @csrf
+                                                    <button class="p-2 hover:bg-gray-100 quantity-btn" data-action="increase">
+                                                        <i class="fa-solid fa-plus text-xs"></i>
+                                                    </button>
+                                                    <input type="text" value="{{ $product->product->id }}" name="product_id" hidden>
+                                                </form>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="text-lg font-medium text-gray-900 item-price">{{ $product->product->price * $product->quantity }}</p>
+                                            </div>
+                                            <form action="/add_to_cart_delete_product" method="post">
+                                                @csrf
+                                                <button class="text-gray-400 hover:text-red-500 remove-item">
+                                                    <i class="fa-solid fa-times w-5 h-5"></i>
+                                                </button>
+                                                <input type="text" value="{{ $product->product->id }}" name="product_id" hidden>
+                                            </form>
                                         </div>
-                                        <button class="text-gray-400 hover:text-red-500 remove-item">
-                                            <i class="fa-solid fa-times w-5 h-5"></i>
-                                        </button>
                                     </div>
-                                </div>
+                                </a>
                                 @endforeach
                             </div>
                         </div>
 
                         <!-- Cart Actions -->
                         <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center bg-white">
-                            <button class="text-indigo-600 hover:text-indigo-500 font-medium flex items-center transition-colors">
-                                <i class="fa-solid fa-arrow-left w-4 h-4 mr-2"></i>
-                                Continue Shopping
-                            </button>
-                            <button class="text-gray-600 hover:text-gray-500 font-medium transition-colors" id="clear-cart">Clear Cart</button>
+                            <a href="/home">
+                                <button class="text-indigo-600 hover:text-indigo-500 font-medium flex items-center transition-colors">
+                                    <i class="fa-solid fa-arrow-left w-4 h-4 mr-2"></i>
+                                    Continue Shopping
+                                </button>
+                            </a>
+                            <form action="/add_to_cart_clear_all_product" method="post">
+                                @csrf
+                                <button class="text-gray-600 hover:text-gray-500 font-medium transition-colors" id="clear-cart">Clear Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -78,50 +100,73 @@
 
                         <div class="p-6">
                             <!-- Discount Code -->
-                            <div class="mb-6">
+                            <!-- <div class="mb-6">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Discount code / Promo code</label>
                                 <div class="flex space-x-3">
                                     <input type="text" id="discount-code" placeholder="Enter code" class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                                     <button id="apply-discount" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 font-medium transition-colors">Apply</button>
                                 </div>
                                 <div id="discount-message" class="mt-2 text-sm hidden"></div>
-                            </div>
+                            </div> -->
 
                             <!-- Bonus Card -->
-                            <div class="mb-6">
+                            <!-- <div class="mb-6">
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Your bonus card number</label>
                                 <div class="flex space-x-3">
                                     <input type="text" id="bonus-card" placeholder="Enter Card Number" class="flex-1 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
                                     <button id="apply-bonus" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 font-medium transition-colors">Apply</button>
                                 </div>
                                 <div id="bonus-message" class="mt-2 text-sm hidden"></div>
-                            </div>
+                            </div> -->
 
                             <!-- Order Totals -->
                             <div class="space-y-4">
                                 <div class="flex justify-between text-base">
                                     <span class="text-gray-600">Subtotal</span>
-                                    <span class="font-medium" id="subtotal">$9,424</span>
+                                    <span class="font-medium" id="subtotal">{{ $subtotal }}</span>
                                 </div>
-                                <div class="flex justify-between text-base">
+
+                                <!-- <div class="flex justify-between text-base">
                                     <span class="text-gray-600">Discount</span>
                                     <span class="font-medium text-green-600" id="discount">-$0</span>
                                 </div>
                                 <div class="flex justify-between text-base">
                                     <span class="text-gray-600">Estimated Tax</span>
                                     <span class="font-medium" id="tax">$942</span>
-                                </div>
+                                </div> -->
+
                                 <div class="flex justify-between text-base">
-                                    <span class="text-gray-600">Estimated shipping & Handling</span>
-                                    <span class="font-medium" id="shipping">$29</span>
+                                    <span class="text-gray-600">Estimated shipping</span>
+                                    <span class="font-medium" id="shipping">{{ $shipping }}</span>
                                 </div>
                                 <div class="border-t border-gray-200 pt-4">
                                     <div class="flex justify-between text-lg font-semibold">
                                         <span>Total</span>
-                                        <span id="total">$10,395</span>
+                                        <span id="total">{{ $total }}</span>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <!-- <div class="space-y-4">
+                                <div class="flex justify-between text-base">
+                                    <span class="text-gray-600">Subtotal</span>
+                                    <span class="font-medium">{{ $subtotal }}</span>
+                                </div>
+
+                                <div class="flex justify-between text-base">
+                                    <span class="text-gray-600">Estimated shipping</span>
+                                    <span class="font-medium">{{ $shipping }}</span>
+                                </div>
+
+                                <div class="border-t border-gray-200 pt-4">
+                                    <div class="flex justify-between text-lg font-semibold">
+                                        <span>Total</span>
+                                        <span>{{ $total }}</span>
+                                    </div>
+                                </div>
+                            </div> -->
+
 
                             <!-- Checkout Button -->
                             <button id="checkout-btn" class="w-full mt-6 bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 font-medium text-lg transition-colors duration-200 transform hover:scale-105">
@@ -155,6 +200,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -180,25 +226,26 @@
             }
 
             // Update display
-            function updateDisplay() {
-                document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()}`;
-                document.getElementById('discount').textContent = `-${discount.toLocaleString()}`;
-                document.getElementById('tax').textContent = `${tax.toLocaleString()}`;
-                document.getElementById('shipping').textContent = `${shipping.toLocaleString()}`;
+            // function updateDisplay() {
+            //     document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()}`;
+            //     document.getElementById('discount').textContent = `-${discount.toLocaleString()}`;
+            //     document.getElementById('tax').textContent = `${tax.toLocaleString()}`;
+            //     document.getElementById('shipping').textContent = `${shipping.toLocaleString()}`;
 
-                const total = subtotal - discount + tax + shipping;
-                document.getElementById('total').textContent = `${total.toLocaleString()}`;
-            }
+            //     const total = subtotal - discount + tax + shipping;
+            //     document.getElementById('total').textContent = `${total.toLocaleString()}`;
+            // }
 
             // Update item count
-            function updateItemCount() {
-                let totalItems = 0;
-                document.querySelectorAll('.product-item').forEach(item => {
-                    const quantity = parseInt(item.querySelector('.quantity-display').textContent);
-                    totalItems += quantity;
-                });
-                document.getElementById('item-count').textContent = totalItems;
-            }
+
+            // function updateItemCount() {
+            //     let totalItems = 0;
+            //     document.querySelectorAll('.product-item').forEach(item => {
+            //         const quantity = parseInt(item.querySelector('.quantity-display').textContent);
+            //         totalItems += quantity;
+            //     });
+            //     // document.getElementById('item-count').textContent = totalItems;
+            // }
 
             // Update item price display
             function updateItemPrice(item) {
@@ -209,31 +256,34 @@
             }
 
             // Quantity controls
-            document.querySelectorAll('.quantity-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const action = this.dataset.action;
-                    const quantityDisplay = this.parentNode.querySelector('.quantity-display');
-                    const productItem = this.closest('.product-item');
-                    let quantity = parseInt(quantityDisplay.textContent);
 
-                    if (action === 'increase') {
-                        quantity += 1;
-                    } else if (action === 'decrease' && quantity > 1) {
-                        quantity -= 1;
-                    }
+            // document.querySelectorAll('.quantity-btn').forEach(btn => {
+            //     btn.addEventListener('click', function() {
+            //         const action = this.dataset.action;
+            //         const quantityDisplay = this.parentNode.querySelector('.quantity-display');
+            //         const productItem = this.closest('.product-item');
+            //         let quantity = parseInt(quantityDisplay.textContent);
 
-                    quantityDisplay.textContent = quantity;
-                    updateItemPrice(productItem);
-                    calculateSubtotal();
-                    updateItemCount();
+            //         if (action === 'increase') {
+            //             quantity += 1;
+            //         } else if (action === 'decrease' && quantity > 1) {
+            //             quantity -= 1;
+            //         }
 
-                    // Add animation effect
-                    productItem.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        productItem.style.transform = 'scale(1)';
-                    }, 150);
-                });
-            });
+            //         quantityDisplay.textContent = quantity;
+            //         updateItemPrice(productItem);
+            //         calculateSubtotal();
+            //         updateItemCount();
+
+            //         // Add animation effect
+
+            //          productItem.style.transform = 'scale(1.02)';
+            //          setTimeout(() => {
+            //              productItem.style.transform = 'scale(1)';
+            //          }, 150);
+
+            //     });
+            // });
 
             // Remove item functionality
             // document.querySelectorAll('.remove-item').forEach(btn => {
@@ -252,23 +302,24 @@
             //         }
             //     });
             // });
-            
+
 
             // Clear cart functionality
-            document.getElementById('clear-cart').addEventListener('click', function() {
-                if (confirm('Are you sure you want to clear all items from your cart?')) {
-                    const container = document.getElementById('products-container');
-                    container.style.opacity = '0';
-                    container.style.transition = 'opacity 0.3s ease-out';
 
-                    setTimeout(() => {
-                        container.innerHTML = '<div class="p-8 text-center text-gray-500">Your cart is empty</div>';
-                        container.style.opacity = '1';
-                        calculateSubtotal();
-                        updateItemCount();
-                    }, 300);
-                }
-            });
+            // document.getElementById('clear-cart').addEventListener('click', function() {
+            //     if (confirm('Are you sure you want to clear all items from your cart?')) {
+            //         const container = document.getElementById('products-container');
+            //         container.style.opacity = '0';
+            //         container.style.transition = 'opacity 0.3s ease-out';
+
+            //         setTimeout(() => {
+            //             container.innerHTML = '<div class="p-8 text-center text-gray-500">Your cart is empty</div>';
+            //             container.style.opacity = '1';
+            //             calculateSubtotal();
+            //             updateItemCount();
+            //         }, 300);
+            //     }
+            // });
 
             // Discount code functionality
             document.getElementById('apply-discount').addEventListener('click', function() {

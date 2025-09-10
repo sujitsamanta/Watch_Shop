@@ -54,7 +54,6 @@ class UserController extends Controller
 
             flash()->addSuccess('Welcome to Watch Shop..⚡️');
             return redirect('/home');
-
         } else {
 
             // notify()->error('Enter curect data ⚡️');
@@ -176,22 +175,23 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function single_product_view($product_id){
-        
+    public function single_product_view($product_id)
+    {
+
         $product_details = Product::findOrFail($product_id);
-        return view('userpanel.single_product_view',compact('product_details'));
+        return view('userpanel.single_product_view', compact('product_details'));
         // return $request->id;
     }
 
 
-     public function add_to_cart($product_id)
+    public function add_to_cart($product_id)
     {
         $user_id = Auth::id(); // current logged-in user
 
         // check if product already in cart
         $cart = Cart::where('user_id', $user_id)
-                    ->where('product_id', $product_id)
-                    ->first();
+            ->where('product_id', $product_id)
+            ->first();
 
         if ($cart) {
             // update quantity
@@ -212,13 +212,97 @@ class UserController extends Controller
     }
 
 
-    public function add_to_cart_view(){
-
+    public function add_to_cart_view()
+    {
         $user_id = Auth::id();
-        $cart_product = Cart::with('product')->where('user_id', $user_id)->get();
 
-        return view('userpanel.add_to_cart_view', compact('cart_product'));
+        // Get cart with related product
+        $cart_product = Cart::with('product')
+            ->where('user_id', $user_id)
+            ->get();
 
-        // return view('userpanel.add_to_cart_view');
+        // Calculate subtotal (sum of all products × their quantities)
+        $subtotal = $cart_product->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        // Shipping cost (you can set logic here)
+        $shipping = 40;
+
+        // Final total
+        $total = $subtotal + $shipping;
+
+        // Pass all values to view
+        return view('userpanel.add_to_cart_view', compact('cart_product', 'subtotal', 'shipping', 'total'));
+    }
+
+    public function add_to_cart_increash_product_quantity(Request $request)
+    {
+        // return $request;
+        $user_id = Auth::id(); // current logged-in user
+
+        // check if product already in cart
+        $cart = Cart::where('user_id', $user_id)
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if ($cart) {
+            // update quantity
+            $cart->quantity += 1;
+            $cart->save();
+        }
+
+        flash()->addSuccess('Product quantity increash!..⚡️');
+        // return redirect()->back()->with('success', 'Product added to cart!');
+        return redirect()->back();
+    }
+    public function add_to_cart_decrease_product_quantity(Request $request)
+    {
+        // return $request;
+        $user_id = Auth::id(); // current logged-in user
+
+        // check if product already in cart
+        $cart = Cart::where('user_id', $user_id)
+            ->where('product_id', $request->product_id)
+            ->first();
+
+        if ($cart) {
+            // update quantity
+            $cart->quantity -= 1;
+            $cart->save();
+
+            if ($cart->quantity == 0) {
+                Cart::where('user_id', $user_id)->where('product_id', $request->product_id)->delete();
+                flash()->addSuccess('Product deleted!..⚡️');
+                return redirect()->back();
+            } else {
+                flash()->addSuccess('Product quantity decrease!..⚡️');
+                // return redirect()->back()->with('success', 'Product added to cart!');
+                return redirect()->back();
+            }
+        }
+    }
+    public function add_to_cart_delete_product(Request $request)
+    {
+        $user_id = Auth::id();
+        Cart::where('user_id', $user_id)->where('product_id', $request->product_id)->delete();
+        flash()->addSuccess('Product deleted!..⚡️');
+        return redirect()->back();
+
+        // return $product_id;
+    }
+    public function add_to_cart_clear_all_product()
+    {
+        $user_id = Auth::id();
+
+        $hasProducts = Cart::where('user_id', $user_id)->exists();
+
+        if ($hasProducts) {
+            Cart::where('user_id', $user_id)->delete();
+            flash()->addSuccess('All product deleted!..⚡️');
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 }

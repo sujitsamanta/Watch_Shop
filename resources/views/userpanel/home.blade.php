@@ -339,7 +339,8 @@
 
                 @foreach($products_data->take(4) as $product)
                 <!-- Slide -->
-                <a href="#">
+
+                <a href="/single_product_view/{{ $product->id }}">
                     <div
                         class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
                         <!-- Floating particles effect -->
@@ -485,6 +486,7 @@
 
                     @foreach($products_data->take(12) as $product)
                     <!-- Product 1: Galaxy S22 Ultra -->
+                     <a href="/single_product_view/{{ $product->id }}">
                     <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
                         <div class="relative mb-4">
                             <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
@@ -512,6 +514,7 @@
                         </div>
                         <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                     </div>
+                    </a>
                     @endforeach
 
 

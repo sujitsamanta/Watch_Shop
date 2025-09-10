@@ -19,6 +19,14 @@ Route::get('/single_product_view/{product_id}', [UserController::class,'single_p
 Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart'])->middleware('userMiddleware');
 Route::get('/add_to_cart_view', [UserController::class,'add_to_cart_view'])->middleware('userMiddleware');
 
+Route::post('/add_to_cart_increash_product_quantity', [UserController::class,'add_to_cart_increash_product_quantity'])->middleware('userMiddleware');
+
+Route::post('/add_to_cart_decrease_product_quantity', [UserController::class,'add_to_cart_decrease_product_quantity'])->middleware('userMiddleware');
+
+Route::post('/add_to_cart_delete_product', [UserController::class,'add_to_cart_delete_product'])->middleware('userMiddleware');
+
+Route::post('/add_to_cart_clear_all_product', [UserController::class,'add_to_cart_clear_all_product'])->middleware('userMiddleware');
+
 
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
