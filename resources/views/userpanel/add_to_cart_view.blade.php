@@ -44,7 +44,7 @@
                                             <div class="flex items-center border border-gray-300 rounded-md">
                                                 <form action="/add_to_cart_decrease_product_quantity" method="post">
                                                     @csrf
-                                                    <button class="p-2 hover:bg-gray-100 quantity-btn" data-action="decrease" type="submit">
+                                                    <button id="ajaxBtn" class="p-2 hover:bg-gray-100 quantity-btn" data-action="decrease" type="submit">
                                                         <i class="fa-solid fa-minus text-xs"></i>
                                                     </button>
                                                     <input type="text" value="{{ $product->product->id }}" name="product_id" hidden>
@@ -118,6 +118,17 @@
                                 </div>
                                 <div id="bonus-message" class="mt-2 text-sm hidden"></div>
                             </div> -->
+                            <div class="border-b border-gray-200 pb-4">
+
+                                @foreach($cart_product as $product)
+                                <div class="flex justify-between text-base">
+                                    <span class="text-gray-600">{{ $product->product->name }} ({{ $product->quantity }})</span>
+                                    <!-- <span class="text-gray-600"></span> -->
+                                    <span class="font-medium" id="subtotal">{{ $product->product->price * $product->quantity }}</span>
+                                </div>
+                                @endforeach
+                            </div>
+
 
                             <!-- Order Totals -->
                             <div class="space-y-4">
@@ -169,8 +180,8 @@
 
 
                             <!-- Checkout Button -->
-                            <form action="/order_checkout" method="post">
-                                @csrf
+                            <form action="/order_checkout" method="get">
+                                
                                 <button id="checkout-btn" class="w-full mt-6 bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 font-medium text-lg transition-colors duration-200 transform hover:scale-105">
                                     Proceed to Checkout
                                 </button>

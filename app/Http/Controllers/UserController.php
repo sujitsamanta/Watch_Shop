@@ -281,6 +281,7 @@ class UserController extends Controller
                 return redirect()->back();
             }
         }
+        // return redirect('/add_to_cart_view');
     }
     public function add_to_cart_delete_product(Request $request)
     {
@@ -305,7 +306,30 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function order_checkout(Request $request ){
-        return $request;
+    public function order_checkout( Request $request){
+
+        $user_id = Auth::id();
+
+        // Get cart with related product
+        $cart_product = Cart::with('product')
+            ->where('user_id', $user_id)
+            ->get();
+
+        // Calculate subtotal (sum of all products × their quantities)
+        $subtotal = $cart_product->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        // Shipping cost (you can set logic here)
+        $shipping = 40;
+
+        // Final total
+        $total = $subtotal + $shipping;
+
+        // Pass all values to view
+        return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total'));
+        // return view('userpanel.order_checkout');
+        // return 
+
     }
 }
