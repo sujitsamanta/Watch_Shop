@@ -150,18 +150,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-purple-700 mb-1">Address</label>
-                                <textarea name="address" id="address" rows="3"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none"
-                                    readonly>{{ $user_data->address }}</textarea>
-                                <div class="text-sm text-red-500 h-2">
-                                    @error('address')
-                                    {{ $message }}
-                                    @enderror
-                                </div>
-
-                            </div>
+                           
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Bio</label>
                                 <textarea name="bio" id="bio" rows="3"

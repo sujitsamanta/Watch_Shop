@@ -111,7 +111,6 @@ class UserController extends Controller
             'phone' => 'nullable|integer|min:15',
             'dob' => 'nullable|date',
             'username' => 'required|string|max:50',
-            'address' => 'nullable|string|max:100',
             'bio' => 'nullable|string|max:100',
         ]);
 
@@ -122,7 +121,6 @@ class UserController extends Controller
             'phone' => $request->phone,
             'dob' => $request->dob,
             'username' => $request->username,
-            'address' => $request->address,
             'bio' => $request->bio,
         ]);
 
