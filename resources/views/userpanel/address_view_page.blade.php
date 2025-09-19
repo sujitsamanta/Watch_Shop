@@ -115,9 +115,9 @@
                             </button>
                         </form>
 
-                        <form action="" method="post">
+                        <form action="/addresses_delete/{{ $address->id }}" method="post">
                             @csrf
-                            <button class=" px-10 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
+                            <button class="addresses_delete_btn px-10 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
                                 Delete
                             </button>
                         </form>

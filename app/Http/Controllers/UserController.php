@@ -271,6 +271,36 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function addresses_delete($product_id)
+    {
+
+        $user = Auth::user();
+
+        // Find address
+        $address = Address::where('user_id', $user->id)->findOrFail($product_id);
+
+        $wasDefault = $address->is_default;
+
+        // Delete the address
+        $address->delete();
+
+        // If deleted address was default → set another as default
+        if ($wasDefault) {
+            $newDefault = Address::where('user_id', $user->id)->first();
+            if ($newDefault) {
+                $newDefault->is_default = true;
+                $newDefault->save();
+
+                flash()->addSuccess('Address deleted Succesfuly!..⚡️');
+                return redirect()->back();
+            } else {
+
+                flash()->addSuccess('Address deleted Succesfuly!..⚡️');
+                return redirect()->back();
+            }
+        }
+    }
+
     public function single_product_view($product_id)
     {
 

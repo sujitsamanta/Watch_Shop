@@ -49,6 +49,7 @@ Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
 Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
 
+
 // address page
 Route::get('/add_address_form', [UserController::class,'add_address_form'])->middleware('userMiddleware');
 Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
@@ -58,6 +59,7 @@ Route::get('/address_view_page', [UserController::class,'address_view_page'])->m
 // Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
 
 Route::post('/addresses_set_default/{address_id}', [UserController::class, 'addresses_set_default'])->middleware('userMiddleware');
+Route::post('/addresses_delete/{address_id}', [UserController::class, 'addresses_delete'])->middleware('userMiddleware');
 
 
 
