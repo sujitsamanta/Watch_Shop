@@ -7,7 +7,7 @@
         </style>
 
 
-        <div class=" max-w-none mx-8 my-8">
+        <div class=" max-w-none mx-16 my-8">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <!-- Header -->
                 <div class="bg-gradient-to-r from-side to-purple-darkest p-4">
@@ -45,72 +45,115 @@
 
                     <!-- Personal Information Row -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="fullName" class="block text-side font-semibold text-sm uppercase tracking-wide">Full Name *</label>
                             <input
                                 type="text"
                                 id="fullName"
                                 name="full_name"
 
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                                placeholder="Enter your full name">
+                                class="@error('full_name') border-red-500 @else border-purple-light @enderror
+                                 w-full px-3 py-3 border-2  rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="Enter your full name"
+                                value="{{ old('full_name') }}"
+                                >
+
+                            <div class="text-sm text-red-500 h-3">
+                                @error('full_name')
+                                {{ $message }}
+                                @enderror
+                            </div>
+                            
                         </div>
 
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="phone" class="block text-side font-semibold text-sm uppercase tracking-wide">Phone Number *</label>
                             <input
                                 type="tel"
                                 id="phone"
                                 name="phone_number"
+                                class="@error('phone_number') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="+91 12345-45678"
+                            value="{{ old('phone_number') }}"
+                            >
 
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                                placeholder="+1 (555) 123-4567">
+                                <div class="text-sm text-red-500 h-3">
+                                @error('phone_number')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
                     <!-- Address Information Row -->
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                        <div class="space-y-2 lg:col-span-2">
+                        <div class="space-y-1 lg:col-span-2">
                             <label for="streetAddress" class="block text-side font-semibold text-sm uppercase tracking-wide">Street Address *</label>
                             <input
                                 type="text"
                                 id="streetAddress"
                                 name="street_address"
 
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark text-lg"
-                                placeholder="123 Main Street">
+                                class="@error('street_address') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="123 Main Street"
+                            value="{{ old('street_address') }}"
+                            >
+
+                                <div class="text-sm text-red-500 h-3">
+                                @error('street_address')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="apartment" class="block text-side font-semibold text-sm uppercase tracking-wide">Apartment / Unit (Optional)</label>
                             <input
                                 type="text"
                                 id="apartment"
                                 name="apartment_unit"
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark text-lg"
-                                placeholder="Apt 4B, Unit 101, etc.">
+                                class="@error('apartment_unit') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="Apt 4B, Unit 101, etc."
+                            value="{{ old('apartment_unit') }}"
+                            >
+                                <div class="text-sm text-red-500 h-3">
+                                @error('apartment_unit')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
                     <!-- Location Details Row -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="city" class="block text-side font-semibold text-sm uppercase tracking-wide">City *</label>
                             <input
                                 type="text"
                                 id="city"
                                 name="city"
+                                class="@error('city') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="New York"
+                            value="{{ old('city') }}"
+                                >
 
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark text-lg"
-                                placeholder="New York">
+                                <div class="text-sm text-red-500 h-3">
+                                @error('city')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="state" class="block text-side font-semibold text-sm uppercase tracking-wide">State *</label>
                             <select
                                 id="state"
                                 name="state"
-
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest text-lg">
+                                class="@error('state') border-red-500 @else border-purple-light @enderror 
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest">
                                 <option value="">Select State</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -163,29 +206,50 @@
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
+
+                            <div class="text-sm text-red-500 h-3">
+                                @error('state')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="zipCode" class="block text-side font-semibold text-sm uppercase tracking-wide">ZIP Code *</label>
                             <input
                                 type="text"
                                 id="zipCode"
                                 name="zip_code"
+                                class="@error('zip_code') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="12345"
+                            value="{{ old('zip_code') }}"
+                                >
 
-
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark text-lg"
-                                placeholder="12345">
+                                <div class="text-sm text-red-500 h-3">
+                                @error('zip_code')
+                                {{ $message }}
+                                @enderror
+                            </div>
                             <!-- pattern="[0-9]{5}(-[0-9]{4})?" -->
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="pinNumber" class="block text-side font-semibold text-sm uppercase tracking-wide">PIN Number *</label>
                             <input
                                 type="text"
                                 id="pinNumber"
                                 name="pin_number"
-
                                 maxlength="6"
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark text-lg"
-                                placeholder="123456">
+                                class="@error('pin_number') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
+                                placeholder="123456"
+                            value="{{ old('pin_number') }}"
+                                >
+
+                                <div class="text-sm text-red-500 h-3">
+                                @error('pin_number')
+                                {{ $message }}
+                                @enderror
+                            </div>
                             <!-- pattern="[0-9]{6}" -->
 
                         </div>
@@ -193,13 +257,13 @@
 
                     <!-- Country Selection -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label for="country" class="block text-side font-semibold text-sm uppercase tracking-wide">Country *</label>
                             <select
                                 id="country"
                                 name="country"
-
-                                class="w-full px-3 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest">
+                                class="@error('country') border-red-500 @else border-purple-light @enderror
+                                w-full px-3 py-3 border-2 rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest">
                                 <option value="">Select Country</option>
                                 <option value="US">United States</option>
                                 <option value="CA">Canada</option>
@@ -212,8 +276,14 @@
                                 <option value="CN">China</option>
                                 <option value="BR">Brazil</option>
                             </select>
+
+                            <div class="text-sm text-red-500 h-3">
+                                @error('country')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-1">
                             <label class="block text-side font-semibold text-sm uppercase tracking-wide">Options</label>
                             <div class="flex items-center pt-3">
                                 <input
@@ -221,7 +291,9 @@
                                     id="is_default"
                                     name="is_default"
                                     value="1"
-                                    class="w-5 h-5 text-side bg-lav1 border-2 border-purple-light rounded focus:ring-peri focus:ring-2">
+                                    class="w-5 h-5 text-side bg-lav1 border-2 rounded focus:ring-peri focus:ring-2"
+                            value="{{ old('full_name') }}"
+                                    >
 
                                 <label for="is_default" class="ml-3 text-purple-darkest font-medium">Set as default shipping address</label>
                             </div>

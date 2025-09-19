@@ -78,7 +78,7 @@
                 </div> -->
 
                 @foreach ($addresses as $address)
-                <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md">
+                <div class="address-card bg-white rounded-xl  border border-lav2 p-2 relative max-w-md">
 
                     @if($address->is_default)
                     <div class="absolute top-3 right-3">
@@ -118,6 +118,20 @@
                         </button>
                     </div>
 
+                        <form action="/addresses_set_default/{{ $address->id }}" method="post">
+                            @csrf
+
+                    <div class="flex space-x-2 mb-3">
+
+                            <button class="flex-1 bg-purple-dark hover:bg-purple-light text-white hover:text-black px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                                Create Default Address
+                            </button>
+                    </div>
+                        </form>
+
+
+
+
                     <div class="pt-2 border-t border-lav2">
                         <div class="text-xs text-peri">
                             <p>Created: {{ $address->created_at }} • Updated: {{ $address->updated_at }}</p>
@@ -131,7 +145,7 @@
                 <a href="/add_address_form">
                     <div class="address-card bg-gradient-to-br from-lav1 to-lav2 rounded-xl border-2 border-dashed border-peri p-16 flex flex-col items-center justify-center max-w-md hover:border-purple-medium cursor-pointer">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-5 mx-auto">
                                 <svg class="w-8 h-8 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                 </svg>
