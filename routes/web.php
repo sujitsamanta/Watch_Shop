@@ -57,6 +57,8 @@ Route::post('/add_address_form_submit', [UserController::class,'add_address_form
 Route::get('/address_view_page', [UserController::class,'address_view_page'])->middleware('userMiddleware');
 // Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
 
+Route::post('/addresses_set_default/{address_id}', [UserController::class, 'addresses_set_default'])->middleware('userMiddleware');
+
 
 
 // User Panel End

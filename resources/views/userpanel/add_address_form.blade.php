@@ -213,7 +213,7 @@
                                 <option value="BR">Brazil</option>
                             </select>
                         </div>
-                        <!-- <div class="space-y-2">
+                        <div class="space-y-2">
                             <label class="block text-side font-semibold text-sm uppercase tracking-wide">Options</label>
                             <div class="flex items-center pt-3">
                                 <input
@@ -225,7 +225,7 @@
 
                                 <label for="is_default" class="ml-3 text-purple-darkest font-medium">Set as default shipping address</label>
                             </div>
-                        </div> -->
+                        </div>
 
 
                         <!-- Default Address -->

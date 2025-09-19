@@ -131,6 +131,7 @@ class UserController extends Controller
             'zip_code' => 'required|string',
             'pin_number' => 'required|string',
             'country' => 'required|string',
+            'is_default'     => 'nullable|boolean',
         ]);
 
         // 'is_default' => 'nullable|boolean',
@@ -147,7 +148,21 @@ class UserController extends Controller
         flash()->addSuccess('Address Add Succesfuly..⚡️');
         return redirect()->back();;
     }
+    public function addresses_set_default($address_id)
+    {
+        $user = Auth::user();
 
+        // Reset old defaults
+        Address::where('user_id', $user->id)->update(['is_default' => false]);
+
+        // Set new default
+        $address = Address::where('user_id', $user->id)->findOrFail($address_id);
+        $address->is_default = true;
+        $address->save();
+
+        flash()->addSuccess('Address Default Succesfuly dun..⚡️');
+        return redirect()->back();
+    }
     public function account_upadate(Request $request)
     {
         $account_data = $request->validate([

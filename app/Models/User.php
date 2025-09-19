@@ -35,6 +35,11 @@ class User extends Authenticatable
         return $this->hasMany(Address::class);
     }
 
+    public function defaultAddress()
+    {
+        return $this->hasOne(Address::class)->where('is_default', true);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

@@ -87,6 +87,15 @@
                         </span>
                     </div>
 
+                    @if($address->is_default)
+                    <div class="absolute top-4 right-4">
+                        <span class="default-badge bg-purple-medium text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Default
+                        </span>
+                    </div>
+                    @endif
+
+
                     <!-- Name -->
                     <h3 class="text-lg font-semibold text-purple-darkest mb-2">{{ $address->full_name }}</h3>
 
@@ -136,11 +145,16 @@
                     </div>
 
                     <!-- Set Default Button -->
-                    <div class="mt-4">
-                        <button class="w-full bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
-                            Set as Default
-                        </button>
-                    </div>
+
+                    <form action="/addresses_set_default/{{ $address->id }}" method="POST">
+                        @csrf
+                        <div class="mt-4">
+                            <button class="w-full bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                                Set as Default
+                            </button>
+                        </div>
+                    </form>
+
 
                     <!-- Timestamps -->
                     <!-- <div class="mt-4 pt-4 border-t border-lav2">
