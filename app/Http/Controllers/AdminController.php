@@ -132,12 +132,22 @@ class AdminController extends Controller
             return redirect()->back();
         }
     }
-
-
     public function admin_products_view()
     {
         $products_data = Product::with('category')->paginate(7);
 
         return view('adminpanel.admin_products_view', compact('products_data'));
+    }
+
+    public function admin_product_delete($product_id)
+    {
+
+        $product = Product::find($product_id); // Find product by id
+        if ($product) {
+            $product->delete(); // Delete product
+            flash()->addSuccess('Product Deleted Succesful ⚡️');
+            return redirect()->back();
+
+        }
     }
 }

@@ -104,9 +104,9 @@
                             <tr class="hover:bg-lav1/30 transition-all duration-200">
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div
-                                        class="h-12 w-12 rounded-full bg-lav2 flex items-center justify-center text-side font-semibold text-lg shadow-md">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}" class="rounded-full w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
-                                        
+                                        class="h-16 w-16 rounded-full bg-lav2 flex items-center justify-center text-side font-semibold text-lg shadow-md">
+                                        <img src="{{ url('storage/products_images/' . $product->image) }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
+
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -145,14 +145,21 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
                                     <div class="flex justify-center space-x-2">
-                                        <button
-                                            class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                            Update
-                                        </button>
-                                        <button
-                                            class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                            Delete
-                                        </button>
+                                        <form action="" method="post">
+                                            @csrf
+                                            <button
+                                                class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                                Update
+                                            </button>
+                                        </form>
+                                        <form action="/admin_product_delete/{{ $product->id }}" method="post">
+                                            @csrf
+                                            <button
+                                                class="product_delete bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                                Delete
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>

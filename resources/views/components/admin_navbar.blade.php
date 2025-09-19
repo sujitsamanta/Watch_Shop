@@ -37,6 +37,7 @@
 		.notify {
 			z-index: 1001 !important;
 		}
+
 		.active {
 			background-color: #8686f4;
 		}
@@ -318,6 +319,31 @@
 				});
 			});
 			// catagory add end
+
+			// product delete start
+
+			$(".product_delete").on("click", function(e) {
+				e.preventDefault(); // stop direct submit
+
+				let form = $(this).closest("form")[0]; // get native form element
+
+				Swal.fire({
+					title: "Are you sure?",
+					text: "Do you want to delete this Product?",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Yes, delete it!",
+					cancelButtonText: "Cancel"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit(); // ✅ native submit
+					}
+				});
+			});
+			// product delete end
+
 		});
 	</script>
 	<!-- sweet alert2 end -->

@@ -91,6 +91,7 @@ Route::post('/admin_add_product_submit', [AdminController::class,'admin_add_prod
 
 
 Route::get('/admin_products_view', [AdminController::class,'admin_products_view'])->middleware('adminMiddleware');
+Route::post('/admin_product_delete/{product_id}', [AdminController::class,'admin_product_delete'])->middleware('adminMiddleware');
 
     
 // });
