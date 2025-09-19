@@ -434,6 +434,7 @@
                 <!-- Mobile Account Section -->
                 <div class="border-t border-purple-medium border-opacity-30 pt-4 mt-4 space-y-3">
                     <!-- Cart Icon for Tablet/Mobile -->
+                     <a href="/add_to_cart_view">
                     <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -445,6 +446,7 @@
                         <span
                             class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
                     </button>
+                    </a>
 
                     <a href="/logout"
                         class="logout flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
