@@ -167,70 +167,6 @@
                                 </div>
                             </div>
 
-                            @if ($default_address)
-                            <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md">
-                                
-                            @if($default_address->is_default)
-                                <div class="absolute top-3 right-3">
-                                    <span class="default-badge bg-purple-medium text-white px-2 py-1 rounded-full text-xs font-medium">
-                                        Default
-                                    </span>
-                                </div>
-                                @endif
-
-                                <div class="mb-2">
-                                    <span class="bg-lav2 text-purple-dark px-2 py-1 rounded-full text-xs font-medium uppercase">
-                                        {{ $default_address->address_type }}
-                                    </span>
-                                </div>
-
-                                <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
-
-                                <!-- Compact address in two columns -->
-                                <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-side mb-3">
-                                    <p><span class="font-medium">Apt:</span> {{ $default_address->apartment_unit }}</p>
-                                    <p><span class="font-medium">ZIP:</span> {{ $default_address->zip_code }}</p>
-                                    <p><span class="font-medium">Street:</span> {{ $default_address->street_address }}</p>
-                                    <p><span class="font-medium">PIN:</span> {{ $default_address->pin_number }}</p>
-                                    <p><span class="font-medium">City:</span> {{ $default_address->city }}</p>
-                                    <p><span class="font-medium">Country:</span> {{ $default_address->country }}</p>
-                                    <p><span class="font-medium">State:</span> {{ $default_address->state }}</p>
-                                    <p><span class="font-medium">Phone:</span> {{ $default_address->phone_number }}</p>
-                                </div>
-
-                                <div class="flex space-x-2 mb-3">
-                                    <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
-                                        Edit
-                                    </button>
-                                   
-                                    <button class="flex-1 px-3 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
-                                        Delete
-                                    </button>
-                                </div>
-
-                                <div class="pt-2 border-t border-lav2">
-                                    <div class="text-xs text-peri">
-                                        <p>Created: {{ $default_address->created_at }} • Updated: {{ $default_address->updated_at }}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            @else
-
-                            <a href="/add_address_form">
-                                <div class="address-card bg-white hover:bg-red-50 rounded-xl  border border-lav2 p-4 relative max-w-md text-center">
-                                    <h3 class="px-3 py-1.5 text-red-500  rounded-lg text-xs font-medium transition-colors duration-200">
-                                        + Add Address
-                                    </h3>
-                                </div>
-                            </a>
-
-
-                            @endif
-
-
-
-
                             <div class="flex justify-end gap-3">
                                 <!-- <form action="/loout" method="post">
 
@@ -259,20 +195,69 @@
                     </div>
                 </form>
 
+                @if ($default_address)
+                <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md my-6 ">
+
+                    @if($default_address->is_default)
+                    <div class="absolute top-3 right-3">
+                        <span class="default-badge bg-purple-medium text-white px-2 py-1 rounded-full text-xs font-medium">
+                            Default
+                        </span>
+                    </div>
+                    @endif
+
+                    <div class="mb-2">
+                        <span class="bg-lav2 text-purple-dark px-2 py-1 rounded-full text-xs font-medium uppercase">
+                            {{ $default_address->address_type }}
+                        </span>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
+
+                    <!-- Compact address in two columns -->
+                    <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-side mb-3">
+                        <p><span class="font-medium">Apt:</span> {{ $default_address->apartment_unit }}</p>
+                        <p><span class="font-medium">ZIP:</span> {{ $default_address->zip_code }}</p>
+                        <p><span class="font-medium">Street:</span> {{ $default_address->street_address }}</p>
+                        <p><span class="font-medium">PIN:</span> {{ $default_address->pin_number }}</p>
+                        <p><span class="font-medium">City:</span> {{ $default_address->city }}</p>
+                        <p><span class="font-medium">Country:</span> {{ $default_address->country }}</p>
+                        <p><span class="font-medium">State:</span> {{ $default_address->state }}</p>
+                        <p><span class="font-medium">Phone:</span> {{ $default_address->phone_number }}</p>
+                    </div>
+
+                    <div class="flex space-x-2 mb-3">
+                        <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                            Edit
+                        </button>
+                        <form action="/addresses_delete/{{ $default_address->id }}" method="post">
+                            @csrf
+                            <button class="flex-1 addresses_delete_btn  px-3 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
+                                Delete
+                            </button>
+                        </form>
+
+                    </div>
+
+                    <div class="pt-2 border-t border-lav2">
+                        <div class="text-xs text-peri">
+                            <p>Created: {{ $default_address->created_at }} • Updated: {{ $default_address->updated_at }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                @else
+                <a href="/add_address_form">
+                    <div class="address-card bg-white hover:bg-red-50 rounded-xl  border border-lav2 p-4 relative max-w-md text-center">
+                        <h3 class="px-3 py-1.5 text-red-500  rounded-lg text-xs font-medium transition-colors duration-200">
+                            + Add Address
+                        </h3>
+                    </div>
+                </a>
+                @endif
+
             </div>
-
-
-
-
-
         </div>
-
-
-
-
-        <!-- </div> -->
-
-
 
     </x-slot>
 </x-user_navbar>
