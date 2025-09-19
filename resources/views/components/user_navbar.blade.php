@@ -811,6 +811,31 @@
             });
         });
         // add to cart clear all products end
+
+
+        // add to cart clear all products start
+
+        $(".addresses_set_default_btn").on("click", function(e) {
+            e.preventDefault(); // stop direct submit
+
+            let form = $(this).closest("form")[0]; // get native form element
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to confirm default address",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, default it!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // ✅ native submit
+                }
+            });
+        });
+        // add to cart clear all products end
     </script>
     <!-- sweet alert2 end -->
     <script>

@@ -109,25 +109,29 @@
                     </div>
 
                     <div class="flex space-x-2 mb-3">
-                        <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
-                            Edit
-                        </button>
+                        <form action="" method="post">
+                            <button class="px-10 bg-lav2 hover:bg-purple-light text-purple-dark py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                                Edit
+                            </button>
+                        </form>
 
-                        <button class="flex-1 px-3 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
-                            Delete
-                        </button>
+                        <form action="" method="post">
+                            @csrf
+                            <button class=" px-10 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
+                                Delete
+                            </button>
+                        </form>
+
                     </div>
 
-                        <form action="/addresses_set_default/{{ $address->id }}" method="post">
-                            @csrf
-
-                    <div class="flex space-x-2 mb-3">
-
-                            <button class="flex-1 bg-purple-dark hover:bg-purple-light text-white hover:text-black px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                    <form action="/addresses_set_default/{{ $address->id }}" method="post">
+                        @csrf
+                        <div class="flex space-x-2 mb-3">
+                            <button class="addresses_set_default_btn flex-1 bg-purple-dark hover:bg-purple-light text-white hover:text-black px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
                                 Create Default Address
                             </button>
-                    </div>
-                        </form>
+                        </div>
+                    </form>
 
 
 
