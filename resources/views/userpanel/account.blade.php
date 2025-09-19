@@ -83,10 +83,12 @@
                                 class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
                                 Update Profile
                             </button>
+
                             <button id="saveBtn" type="submit"
                                 class="update_save hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
                                 Save
                             </button>
+
                             <button id="cancelBtn" type="button"
                                 class="hidden bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition shadow">
                                 Cancel
@@ -136,6 +138,8 @@
                                     @enderror
                                 </div>
                             </div>
+
+
                         </div>
 
                         <!-- Right side -->
@@ -150,7 +154,7 @@
                                     @enderror
                                 </div>
                             </div>
-                           
+
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Bio</label>
                                 <textarea name="bio" id="bio" rows="3"
@@ -162,6 +166,69 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            @if ($default_address)
+                            <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md">
+                                
+                            @if($default_address->is_default)
+                                <div class="absolute top-3 right-3">
+                                    <span class="default-badge bg-purple-medium text-white px-2 py-1 rounded-full text-xs font-medium">
+                                        Default
+                                    </span>
+                                </div>
+                                @endif
+
+                                <div class="mb-2">
+                                    <span class="bg-lav2 text-purple-dark px-2 py-1 rounded-full text-xs font-medium uppercase">
+                                        {{ $default_address->address_type }}
+                                    </span>
+                                </div>
+
+                                <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
+
+                                <!-- Compact address in two columns -->
+                                <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-side mb-3">
+                                    <p><span class="font-medium">Apt:</span> {{ $default_address->apartment_unit }}</p>
+                                    <p><span class="font-medium">ZIP:</span> {{ $default_address->zip_code }}</p>
+                                    <p><span class="font-medium">Street:</span> {{ $default_address->street_address }}</p>
+                                    <p><span class="font-medium">PIN:</span> {{ $default_address->pin_number }}</p>
+                                    <p><span class="font-medium">City:</span> {{ $default_address->city }}</p>
+                                    <p><span class="font-medium">Country:</span> {{ $default_address->country }}</p>
+                                    <p><span class="font-medium">State:</span> {{ $default_address->state }}</p>
+                                    <p><span class="font-medium">Phone:</span> {{ $default_address->phone_number }}</p>
+                                </div>
+
+                                <div class="flex space-x-2 mb-3">
+                                    <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                                        Edit
+                                    </button>
+                                   
+                                    <button class="flex-1 px-3 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
+                                        Delete
+                                    </button>
+                                </div>
+
+                                <div class="pt-2 border-t border-lav2">
+                                    <div class="text-xs text-peri">
+                                        <p>Created: {{ $default_address->created_at }} • Updated: {{ $default_address->updated_at }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @else
+
+                            <a href="/add_address_form">
+                                <div class="address-card bg-white hover:bg-red-50 rounded-xl  border border-lav2 p-4 relative max-w-md text-center">
+                                    <h3 class="px-3 py-1.5 text-red-500  rounded-lg text-xs font-medium transition-colors duration-200">
+                                        + Add Address
+                                    </h3>
+                                </div>
+                            </a>
+
+
+                            @endif
+
+
 
 
                             <div class="flex justify-end gap-3">
@@ -175,7 +242,7 @@
                                     </button>
                                 </a>
 
-                                 
+
                                 <a href="/logout">
                                     <button id="editBtn" type="button"
                                         class="logout bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
@@ -193,6 +260,10 @@
                 </form>
 
             </div>
+
+
+
+
 
         </div>
 

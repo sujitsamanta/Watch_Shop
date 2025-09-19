@@ -1,7 +1,7 @@
 <x-user_navbar>
     <x-slot name="body">
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 my-16 ">
             <!-- Address Cards Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Address Card 1 -->
@@ -78,98 +78,58 @@
                 </div> -->
 
                 @foreach ($addresses as $address)
-                <!-- Sample Additional Address Cards -->
-                <div class="address-card bg-white rounded-xl shadow-lg border border-lav2 p-6 relative">
-                    <!-- Address Type -->
-                    <div class="mb-4">
-                        <span class="bg-lav2 text-purple-dark px-3 py-1 rounded-full text-sm font-medium uppercase">
-                            {{ $address->address_type }}
-                        </span>
-                    </div>
+                <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md">
 
                     @if($address->is_default)
-                    <div class="absolute top-4 right-4">
-                        <span class="default-badge bg-purple-medium text-white px-3 py-1 rounded-full text-sm font-medium">
+                    <div class="absolute top-3 right-3">
+                        <span class="default-badge bg-purple-medium text-white px-2 py-1 rounded-full text-xs font-medium">
                             Default
                         </span>
                     </div>
                     @endif
 
-
-                    <!-- Name -->
-                    <h3 class="text-lg font-semibold text-purple-darkest mb-2">{{ $address->full_name }}</h3>
-
-                    <!-- Address Details -->
-                    <div class="space-y-2 text-side mb-4">
-                        <p class="text-sm">
-                            <span class="font-medium">Apartment:</span> {{ $address->apartment_unit }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">Street:</span> {{ $address->street_address }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">City:</span> {{ $address->city }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">State:</span> {{ $address->state }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">ZIP:</span> {{ $address->zip_code }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">PIN:</span> {{ $address->pin_number }}
-                        </p>
-                        <p class="text-sm">
-                            <span class="font-medium">Country:</span> {{ $address->country }}
-                        </p>
+                    <div class="mb-2">
+                        <span class="bg-lav2 text-purple-dark px-2 py-1 rounded-full text-xs font-medium uppercase">
+                            {{ $address->address_type }}
+                        </span>
                     </div>
 
-                    <!-- Phone Number -->
-                    <div class="mb-4">
-                        <p class="text-sm text-side">
-                            <span class="font-medium">Phone:</span> {{ $address->phone_number }}
-                        </p>
+                    <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
+
+                    <!-- Compact address in two columns -->
+                    <div class="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-side mb-3">
+                        <p><span class="font-medium">Apt:</span> {{ $address->apartment_unit }}</p>
+                        <p><span class="font-medium">ZIP:</span> {{ $address->zip_code }}</p>
+                        <p><span class="font-medium">Street:</span> {{ $address->street_address }}</p>
+                        <p><span class="font-medium">PIN:</span> {{ $address->pin_number }}</p>
+                        <p><span class="font-medium">City:</span> {{ $address->city }}</p>
+                        <p><span class="font-medium">Country:</span> {{ $address->country }}</p>
+                        <p><span class="font-medium">State:</span> {{ $address->state }}</p>
+                        <p><span class="font-medium">Phone:</span> {{ $address->phone_number }}</p>
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex space-x-10">
-                        <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                    <div class="flex space-x-2 mb-3">
+                        <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
                             Edit
                         </button>
-                        <!-- <button class="flex-1 bg-purple-light hover:bg-purple-medium text-purple-dark hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
-                            View
-                        </button> -->
-                        <button class="flex-1 px-4 py-2 text-red-500 bg-red-50  hover:bg-red-100 rounded-lg text-sm font-medium transition-colors duration-200">
+
+                        <button class="flex-1 px-3 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
                             Delete
                         </button>
                     </div>
 
-                    <!-- Set Default Button -->
-
-                    <form action="/addresses_set_default/{{ $address->id }}" method="POST">
-                        @csrf
-                        <div class="mt-4">
-                            <button class="w-full bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
-                                Set as Default
-                            </button>
+                    <div class="pt-2 border-t border-lav2">
+                        <div class="text-xs text-peri">
+                            <p>Created: {{ $address->created_at }} • Updated: {{ $address->updated_at }}</p>
                         </div>
-                    </form>
-
-
-                    <!-- Timestamps -->
-                    <!-- <div class="mt-4 pt-4 border-t border-lav2">
-                        <div class="text-xs text-peri space-y-1">
-                            <p>Created: Sept 15, 2025 at 2:30 PM</p>
-                            <p>Updated: Sept 16, 2025 at 9:15 AM</p>
-                        </div>
-                    </div> -->
+                    </div>
                 </div>
                 @endforeach
 
                 <!-- Add New Address Card -->
 
                 <a href="/add_address_form">
-                    <div class="address-card bg-gradient-to-br from-lav1 to-lav2 rounded-xl border-2 border-dashed border-peri p-6 flex flex-col items-center justify-center min-h-[400px] hover:border-purple-medium cursor-pointer">
+                    <div class="address-card bg-gradient-to-br from-lav1 to-lav2 rounded-xl border-2 border-dashed border-peri p-16 flex flex-col items-center justify-center max-w-md hover:border-purple-medium cursor-pointer">
                         <div class="text-center">
                             <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
                                 <svg class="w-8 h-8 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,7 +146,7 @@
             </div>
 
             <!-- Address Statistics -->
-            <div class="mt-12 bg-white rounded-xl shadow-lg border border-lav2 p-6">
+            <!-- <div class="mt-12 bg-white rounded-xl shadow-lg border border-lav2 p-6">
                 <h2 class="text-xl font-semibold text-purple-darkest mb-6">Address Summary</h2>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div class="bg-lav1 rounded-lg p-4 text-center">
@@ -206,10 +166,12 @@
                         <div class="text-sm text-side">Default Address</div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
         </main>
 
 
-        
+
     </x-slot>
 </x-user_navbar>

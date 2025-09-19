@@ -211,6 +211,7 @@ class UserController extends Controller
             'country' => 'required|string',
             'is_default'     => 'nullable|boolean',
         ]);
+        
 
         $user = Auth::user();
 
