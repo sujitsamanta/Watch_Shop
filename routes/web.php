@@ -82,6 +82,7 @@ Route::post('/admin_login_submit', [AdminController::class,'admin_login']);
 Route::get('/admin_logout', [AdminController::class,'admin_logout']);
 
 Route::get('/admin_customer_accounts_view', [AdminController::class,'admin_customer_accounts_view'])->middleware('adminMiddleware');
+Route::post('/admin_user_account_delete/{user_id}', [AdminController::class,'admin_user_account_delete'])->middleware('adminMiddleware');
 
 Route::get('/admin_setting', [AdminController::class,'admin_setting'])->middleware('adminMiddleware');
 

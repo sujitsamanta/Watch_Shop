@@ -860,6 +860,7 @@
             });
         });
         // delete address end
+        
     </script>
     <!-- sweet alert2 end -->
     <script>

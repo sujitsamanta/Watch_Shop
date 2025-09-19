@@ -36,38 +36,45 @@
                         <tbody class="divide-y divide-lav2/30">
 
                             @foreach($users_data as $user)
-                                <!-- Customer Row 1 -->
-                                <tr class="hover:bg-lav1/50 transition-all duration-200">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div
-                                            class="h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                                            JD
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-side">{{ $user->name }}</div>
-                                        <div class="text-sm text-purple-dark">Customer ID: {{ $user->username }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-side">{{ $user->email }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-side">{{ $user->phone }}</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                                        <div class="flex justify-center space-x-2">
+                            <!-- Customer Row 1 -->
+                            <tr class="hover:bg-lav1/50 transition-all duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div
+                                        class="h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
+                                        JD
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm font-medium text-side">{{ $user->name }}</div>
+                                    <div class="text-sm text-purple-dark">Customer ID: {{ $user->username }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-side">{{ $user->email }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-side">{{ $user->phone }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="flex justify-center space-x-2">
+                                        <form action="/admin_user_account_update" method="post">
+                                            @csrf
+                                        <button
+                                            class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                            Update
+                                        </button>
+                                        </form>
+
+                                        <form action="/admin_user_account_delete/{{ $user->id }}" method="post">
+                                            @csrf
                                             <button
-                                                class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                                Update
-                                            </button>
-                                            <button
-                                                class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                                class="admin_user_account_delete_btn bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                                                 Delete
                                             </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- <p>{{ $user->name }} - {{ $user->email }}</p> -->
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <p>{{ $user->name }} - {{ $user->email }}</p> -->
                             @endforeach
 
 
@@ -86,42 +93,42 @@
                         <div class="flex space-x-2">
                             {{-- Previous --}}
                             @if ($users_data->onFirstPage())
-                                <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
-                                    Previous
-                                </button>
+                            <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
+                                Previous
+                            </button>
                             @else
-                                <a href="{{ $users_data->previousPageUrl() }}"
-                                    class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
-                                    Previous
-                                </a>
+                            <a href="{{ $users_data->previousPageUrl() }}"
+                                class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
+                                Previous
+                            </a>
                             @endif
 
                             {{-- Only 3 Page Numbers --}}
                             @php
-                                $current = $users_data->currentPage();
-                                $last = $users_data->lastPage();
-                                $start = max($current - 1, 1);
-                                $end = min($current + 1, $last);
+                            $current = $users_data->currentPage();
+                            $last = $users_data->lastPage();
+                            $start = max($current - 1, 1);
+                            $end = min($current + 1, $last);
                             @endphp
 
                             @for ($page = $start; $page <= $end; $page++)
-                                                <a href="{{ $users_data->url($page) }}" class="px-3 py-1 rounded-md text-sm font-medium
+                                <a href="{{ $users_data->url($page) }}" class="px-3 py-1 rounded-md text-sm font-medium
                                    {{ $page == $current ? 'bg-side text-white' : 'bg-white/50 text-side hover:bg-white/70' }}">
-                                                    {{ $page }}
-                                                </a>
-                            @endfor
+                                {{ $page }}
+                                </a>
+                                @endfor
 
-                            {{-- Next --}}
-                            @if ($users_data->hasMorePages())
+                                {{-- Next --}}
+                                @if ($users_data->hasMorePages())
                                 <a href="{{ $users_data->nextPageUrl() }}"
                                     class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
                                     Next
                                 </a>
-                            @else
+                                @else
                                 <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
                                     Next
                                 </button>
-                            @endif
+                                @endif
                         </div>
                     </div>
 

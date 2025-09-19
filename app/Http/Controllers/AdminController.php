@@ -58,6 +58,17 @@ class AdminController extends Controller
 
         return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
     }
+
+    public function admin_user_account_delete($user_id)
+    {
+        $user = User::findOrFail($user_id);
+
+        // Delete the user (related addresses/orders will also be deleted if you set `onDelete('cascade')` in migrations)
+        $user->delete();
+
+        flash()->addSuccess('User account deleted Succesful ⚡️');
+        return redirect()->back();
+    }
     public function admin_setting()
     {
         return view('adminpanel.admin_setting');
@@ -147,7 +158,6 @@ class AdminController extends Controller
             $product->delete(); // Delete product
             flash()->addSuccess('Product Deleted Succesful ⚡️');
             return redirect()->back();
-
         }
     }
 }
