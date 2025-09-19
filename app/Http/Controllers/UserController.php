@@ -138,6 +138,8 @@ class UserController extends Controller
 
         $user = Auth::user();
 
+        // Reset old defaults
+        Address::where('user_id', $user->id)->update(['is_default' => false]);
 
         // The ... "unpacks" that array into individual key–value pairs
         $result = Address::create([
@@ -409,8 +411,12 @@ class UserController extends Controller
         // Final total
         $total = $subtotal + $shipping;
 
+        // deafault address
+        $default_address = Auth::user()->defaultAddress;
+
+
         // Pass all values to view
-        return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total'));
+        return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'default_address'));
         // return view('userpanel.order_checkout');
         // return 
 

@@ -26,16 +26,18 @@
                             </button>
                         </div>
 
+                        @if($default_address)
                         <div class="p-4">
                             <div class="flex items-start space-x-3">
                                 <div class="w-6 h-6 bg-purple-medium rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <i class="fas fa-home text-white text-xs"></i>
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-semibold text-side">John Doe</p>
-                                    <p class="text-peri text-sm mt-0.5">123 Main Street, Apt 4B</p>
-                                    <p class="text-peri text-sm">New York, NY 10001</p>
-                                    <p class="text-peri text-xs mt-1">+1 (555) 123-4567</p>
+                                    <p class="font-semibold text-side">{{ $default_address->full_name }}</p>
+                                    <p class="text-peri text-sm mt-0.5">{{ $default_address->pin_number }} {{ $default_address->street_address }}, Apt {{ $default_address->apartment_unit }}</p>
+                                    <p class="text-peri text-sm">{{ $default_address->city }}, NY {{ $default_address->zip_code }}</p>
+                                    <p class="text-peri text-sm">{{ $default_address->state }}</p>
+                                    <p class="text-peri text-xs mt-1">+91 {{ $default_address->phone_number }}</p>
                                 </div>
                             </div>
 
@@ -44,6 +46,9 @@
                                 <p class="text-xs text-peri">Leave package at front door. Ring doorbell twice.</p>
                             </div>
                         </div>
+
+
+                        @endif
                     </div>
 
                     <!-- Delivery Time Card -->
@@ -92,7 +97,7 @@
                                     <p class="font-semibold text-side text-sm">•••• •••• •••• 4242</p>
                                     <p class="text-peri text-xs">Expires 12/26</p>
                                 </div> -->
-                                    <p class="font-semibold text-side text-sm">Cash on Delivary</p>
+                                <p class="font-semibold text-side text-sm">Cash on Delivary</p>
 
                             </div>
                         </div>

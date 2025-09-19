@@ -214,8 +214,33 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
+
+                
+            </div>
+              <!-- Progress Indicator -->
+            <div class="mt-8 flex items-center justify-center space-x-4 text-xs">
+                <!-- <div class="flex items-center space-x-2 text-green-600">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Cart</span>
+                </div>
+                <div class="w-8 h-0.5 bg-green-600"></div> -->
+                <div class="flex items-center space-x-2 text-purple-medium">
+                    <i class="fas fa-circle"></i>
+                    <span class="font-semibold">Cart</span>
+                </div>
+                <div class="w-8 h-0.5 bg-lav2"></div>
+                <div class="flex items-center space-x-2 text-peri">
+                    <i class="far fa-circle"></i>
+                    <span>Checkout</span>
+                </div>
+                <div class="w-8 h-0.5 bg-lav2"></div>
+                <div class="flex items-center space-x-2 text-peri">
+                    <i class="far fa-circle"></i>
+                    <span>Confirmation</span>
+                </div>
             </div>
         </div>
 
