@@ -97,74 +97,13 @@ class UserController extends Controller
     public function account_check()
     {
         $user_data = Auth::user();
-        return view('userpanel.account', compact('user_data'));
+
+        // deafault address
+        $default_address = Auth::user()->defaultAddress;
+
+        return view('userpanel.account', compact('user_data', 'default_address'));
     }
 
-
-    public function address_view_page()
-    {
-        // $user = Auth::user();
-        $user = Auth::user();
-        $addresses = $user->addresses;  // returns a collection of Address models
-
-
-        // return $addresses;
-
-        return view('userpanel.address_view_page', compact('addresses'));
-    }
-
-    public function add_address_form()
-    {
-        return view('userpanel.add_address_form');
-    }
-
-    public function add_address_form_submit(Request $request)
-    {
-        $address = $request->validate([
-            'address_type' => 'required|in:home,office,other',
-            'full_name' => 'required|string',
-            'phone_number' => 'required|string',
-            'street_address' => 'required|string',
-            'apartment_unit' => 'nullable|string',
-            'city' => 'required|string',
-            'state' => 'required|string',
-            'zip_code' => 'required|string',
-            'pin_number' => 'required|string',
-            'country' => 'required|string',
-            'is_default'     => 'nullable|boolean',
-        ]);
-
-        // 'is_default' => 'nullable|boolean',
-
-        $user = Auth::user();
-
-        // Reset old defaults
-        Address::where('user_id', $user->id)->update(['is_default' => false]);
-
-        // The ... "unpacks" that array into individual key–value pairs
-        $result = Address::create([
-            'user_id' => $user->id,
-            ...$address
-        ]);
-
-        flash()->addSuccess('Address Add Succesfuly..⚡️');
-        return redirect()->back();;
-    }
-    public function addresses_set_default($address_id)
-    {
-        $user = Auth::user();
-
-        // Reset old defaults
-        Address::where('user_id', $user->id)->update(['is_default' => false]);
-
-        // Set new default
-        $address = Address::where('user_id', $user->id)->findOrFail($address_id);
-        $address->is_default = true;
-        $address->save();
-
-        flash()->addSuccess('Address Default Succesfuly dun..⚡️');
-        return redirect()->back();
-    }
     public function account_upadate(Request $request)
     {
         $account_data = $request->validate([
@@ -241,6 +180,98 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+
+    public function address_view_page()
+    {
+        // $user = Auth::user();
+        $user = Auth::user();
+        $addresses = $user->addresses;  // returns a collection of Address models
+
+        // return $addresses;
+
+        return view('userpanel.address_view_page', compact('addresses'));
+    }
+
+    public function add_address_form()
+    {
+        return view('userpanel.add_address_form');
+    }
+
+    public function add_address_form_submit(Request $request)
+    {
+        $validated = $request->validate([
+            'address_type' => 'required|in:home,office,other',
+            'full_name' => 'required|string',
+            'phone_number' => 'required|string',
+            'street_address' => 'required|string',
+            'apartment_unit' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'pin_number' => 'required|string',
+            'country' => 'required|string',
+            'is_default'     => 'nullable|boolean',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->is_default) {
+            // Case 1: User manually set this as default
+            Address::where('user_id', $user->id)->update(['is_default' => false]);
+            // $validated['is_default'] = true;
+
+            Address::create([
+                'user_id' => $user->id,
+                ...$validated
+            ]);
+
+            flash()->addSuccess('Address added successfully ⚡️');
+            return redirect()->back();
+        } else {
+            // Case 2: User did NOT check default
+            $hasDefault = Address::where('user_id', $user->id)
+                ->where('is_default', true)
+                ->exists();
+
+            if (! $hasDefault) {
+                // No default exists → make this one default automatically
+                Address::create([
+                    'user_id' => $user->id,
+                    'is_default' => true,
+                    ...$validated
+                ]);
+
+                flash()->addSuccess('Address added successfully ⚡️');
+                return redirect()->back();
+            } else {
+                // Keep it non-default
+                Address::create([
+                    'user_id' => $user->id,
+                    ...$validated
+                ]);
+
+                flash()->addSuccess('Address added successfully ⚡️');
+                return redirect()->back();
+            }
+        }
+    }
+    public function addresses_set_default($address_id)
+    {
+        $user = Auth::user();
+
+        // Reset old defaults
+        Address::where('user_id', $user->id)->update(['is_default' => false]);
+
+        // Set new default
+        $address = Address::where('user_id', $user->id)->findOrFail($address_id);
+        $address->is_default = true;
+        $address->save();
+
+        flash()->addSuccess('Address Default Succesfuly dun..⚡️');
+        return redirect()->back();
+    }
+
     public function single_product_view($product_id)
     {
 
