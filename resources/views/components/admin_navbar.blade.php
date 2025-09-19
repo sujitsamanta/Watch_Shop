@@ -296,7 +296,7 @@
 			});
 			// catagory add end
 
-			// catagory add start
+			// add_product add start
 
 			$(".add_product").on("click", function(e) {
 				e.preventDefault(); // stop direct submit
@@ -318,7 +318,7 @@
 					}
 				});
 			});
-			// catagory add end
+			// add_product add end
 
 			// product delete start
 

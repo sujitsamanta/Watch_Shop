@@ -93,7 +93,7 @@
                             </a>
                             <form action="/add_to_cart_clear_all_product" method="post">
                                 @csrf
-                                <button class="text-gray-600 hover:text-gray-500 font-medium transition-colors" id="clear-cart">Clear Cart</button>
+                                <button class="add_to_cart_cler_all_products text-gray-600 hover:text-gray-500 font-medium transition-colors" id="clear-cart">Clear Cart</button>
                             </form>
                         </div>
                     </div>

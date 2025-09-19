@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-       
+
     <!-- add to cart view need this cdn -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
@@ -126,7 +126,7 @@
         }
 
         /* reviews-container end */
-        .custom-scrollbar{
+        .custom-scrollbar {
             max-height: 35rem;
         }
 
@@ -300,21 +300,21 @@
                     </div>
 
                     <!-- Cart -->
-                     <a href="/add_to_cart_view">
-                         <button
-                        class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="8" cy="21" r="1" />
-                            <circle cx="19" cy="21" r="1" />
-                            <path
-                                d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                        </svg>
-                        <span
-                            class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
-                    </button>
-                     </a>
-                   
+                    <a href="/add_to_cart_view">
+                        <button
+                            class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="8" cy="21" r="1" />
+                                <circle cx="19" cy="21" r="1" />
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                            </svg>
+                            <span
+                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
+                        </button>
+                    </a>
+
                 </div>
 
                 <!-- Tablet and Mobile Icons -->
@@ -434,18 +434,18 @@
                 <!-- Mobile Account Section -->
                 <div class="border-t border-purple-medium border-opacity-30 pt-4 mt-4 space-y-3">
                     <!-- Cart Icon for Tablet/Mobile -->
-                     <a href="/add_to_cart_view">
-                    <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="8" cy="21" r="1" />
-                            <circle cx="19" cy="21" r="1" />
-                            <path
-                                d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                        </svg>
-                        <span
-                            class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
-                    </button>
+                    <a href="/add_to_cart_view">
+                        <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="8" cy="21" r="1" />
+                                <circle cx="19" cy="21" r="1" />
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                            </svg>
+                            <span
+                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
+                        </button>
                     </a>
 
                     <a href="/logout"
@@ -644,7 +644,7 @@
     <script src="{{ asset('js/user_script.js') }}"></script>
 
 
-    
+
 
     <!-- sweet alert2 start -->
     <script>
@@ -698,6 +698,8 @@
 
 
 
+        // user logout start
+
         $(document).ready(function() {
             $(".logout").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
@@ -718,6 +720,11 @@
                 });
             });
 
+            // user logout end
+
+
+
+            // account_update_save start
 
             $(".update_save").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
@@ -743,6 +750,12 @@
                     }
                 });
             });
+
+            // account_update_save start
+
+
+
+            // update_save_photo start
 
             $(".update_save_photo").on("click", function(e) {
                 e.preventDefault(); // Stop default logout immediately
@@ -770,6 +783,34 @@
             });
 
         });
+        // update_save_photo end
+
+
+
+
+        // add to cart clear all products start
+
+        $(".add_to_cart_cler_all_products").on("click", function(e) {
+            e.preventDefault(); // stop direct submit
+
+            let form = $(this).closest("form")[0]; // get native form element
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to clear all Product?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, clear it!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // ✅ native submit
+                }
+            });
+        });
+        // add to cart clear all products end
     </script>
     <!-- sweet alert2 end -->
     <script>
