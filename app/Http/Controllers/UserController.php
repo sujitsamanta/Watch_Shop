@@ -211,7 +211,7 @@ class UserController extends Controller
             'country' => 'required|string',
             'is_default'     => 'nullable|boolean',
         ]);
-        
+
 
         $user = Auth::user();
 
@@ -313,6 +313,16 @@ class UserController extends Controller
                 flash()->addSuccess('Product added to cart!..⚡️');
                 return redirect()->back();
             }
+        } else {
+            // create new cart entry
+            Cart::create([
+                'user_id' => $user_id,
+                'product_id' => $product_id,
+                'quantity' => 1,
+            ]);
+
+            flash()->addSuccess('Product added to cart!..⚡️');
+            return redirect()->back();
         }
 
 
@@ -425,10 +435,22 @@ class UserController extends Controller
 
         $user_id = Auth::id();
 
+        // $cart_product = Cart::with('product')
+        // ->where('user_id', $user_id)
+        // ->get();
+
         // Get cart with related product
         $cart_product = Cart::with('product')
             ->where('user_id', $user_id)
             ->get();
+
+        // Number of different products
+        // $product_count = $cart_product->count();
+
+
+        // Total quantity of all products
+        // $total_quantity = $cart_product->sum('quantity');
+
 
         // Calculate subtotal (sum of all products × their quantities)
         $subtotal = $cart_product->sum(function ($item) {

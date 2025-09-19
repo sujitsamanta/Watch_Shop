@@ -1,6 +1,6 @@
 <x-user_navbar>
     <x-slot name="body">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 my-12">
             <!-- Header -->
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
@@ -19,7 +19,9 @@
                         <!-- Scrollable Products Container -->
                         <div class=" overflow-y-auto custom-scrollbar">
                             <div class="divide-y divide-gray-200" id="products-container">
-                                @foreach($cart_product as $product)
+                                @if ($cart_product->isNotEmpty())
+
+                                 @foreach($cart_product as $product)
                                 <!-- Product 1 - iPhone -->
                                 <a href="/single_product_view/{{ $product->product->id }}">
 
@@ -72,6 +74,12 @@
                                     </div>
                                 </a>
                                 @endforeach
+
+                                @else
+                                <h1 class="text-center p-5 text-lg font-medium text-gray-500">Ples add to cart product</h1>
+                                
+                                @endif
+                               
                             </div>
                         </div>
 
@@ -92,6 +100,8 @@
                 </div>
 
                 <!-- Order Summary -->
+
+                @if ($cart_product->isNotEmpty())
                 <div class="mt-10 lg:mt-0 lg:col-span-6">
                     <div class="bg-white rounded-lg shadow-sm sticky top-6">
                         <div class="px-6 py-4 border-b border-gray-200">
@@ -181,7 +191,7 @@
 
                             <!-- Checkout Button -->
                             <form action="/order_checkout" method="get">
-                                
+
                                 <button id="checkout-btn" class="w-full mt-6 bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 font-medium text-lg transition-colors duration-200 transform hover:scale-105">
                                     Proceed to Checkout
                                 </button>
@@ -214,33 +224,34 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
 
+                @endif
 
-                
             </div>
-              <!-- Progress Indicator -->
-            <div class="mt-8 flex items-center justify-center space-x-4 text-xs">
-                <!-- <div class="flex items-center space-x-2 text-green-600">
+
+        </div>
+        <!-- Progress Indicator -->
+        <div class="mt-8 flex items-center justify-center space-x-4 text-xs p-10">
+            <!-- <div class="flex items-center space-x-2 text-green-600">
                     <i class="fas fa-check-circle"></i>
                     <span>Cart</span>
                 </div>
                 <div class="w-8 h-0.5 bg-green-600"></div> -->
-                <div class="flex items-center space-x-2 text-purple-medium">
-                    <i class="fas fa-circle"></i>
-                    <span class="font-semibold">Cart</span>
-                </div>
-                <div class="w-8 h-0.5 bg-lav2"></div>
-                <div class="flex items-center space-x-2 text-peri">
-                    <i class="far fa-circle"></i>
-                    <span>Checkout</span>
-                </div>
-                <div class="w-8 h-0.5 bg-lav2"></div>
-                <div class="flex items-center space-x-2 text-peri">
-                    <i class="far fa-circle"></i>
-                    <span>Confirmation</span>
-                </div>
+            <div class="flex items-center space-x-2 text-purple-medium">
+                <i class="fas fa-circle"></i>
+                <span class="font-semibold">Cart</span>
+            </div>
+            <div class="w-8 h-0.5 bg-lav2"></div>
+            <div class="flex items-center space-x-2 text-peri">
+                <i class="far fa-circle"></i>
+                <span>Checkout</span>
+            </div>
+            <div class="w-8 h-0.5 bg-lav2"></div>
+            <div class="flex items-center space-x-2 text-peri">
+                <i class="far fa-circle"></i>
+                <span>Confirmation</span>
             </div>
         </div>
 
