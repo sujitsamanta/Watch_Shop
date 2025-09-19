@@ -292,6 +292,8 @@
                             <hr class="my-2 border-purple-light">
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
+                            <a href="/address_view_page"
+                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Addresses</a>
                             <a href="/logout" class="logout block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign
                                 Out</a>
                         </div>

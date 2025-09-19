@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-     protected $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'photo',
@@ -29,6 +29,12 @@ class User extends Authenticatable
         'bio',
         'password',
     ];
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,6 +70,4 @@ class User extends Authenticatable
             }
         });
     }
-
 }
-

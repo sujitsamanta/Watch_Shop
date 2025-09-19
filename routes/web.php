@@ -48,6 +48,17 @@ Route::get('/logout', [UserController::class,'logout']);
 Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
 Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
+
+// address page
+Route::get('/add_address_form', [UserController::class,'add_address_form'])->middleware('userMiddleware');
+Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
+
+// address view page
+Route::get('/address_view_page', [UserController::class,'address_view_page'])->middleware('userMiddleware');
+// Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
+
+
+
 // User Panel End
 
 Route::view('/a', 'a');

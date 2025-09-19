@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Address;
 
 
 
@@ -99,6 +100,54 @@ class UserController extends Controller
         return view('userpanel.account', compact('user_data'));
     }
 
+
+    public function address_view_page()
+    {
+        // $user = Auth::user();
+        $user = Auth::user();
+        $addresses = $user->addresses;  // returns a collection of Address models
+
+
+        // return $addresses;
+
+        return view('userpanel.address_view_page',compact('addresses'));
+    }
+
+    public function add_address_form()
+    {
+        return view('userpanel.add_address_form');
+    }
+
+    public function add_address_form_submit(Request $request)
+    {
+        $address = $request->validate([
+            'address_type' => 'required|in:home,office,other',
+            'full_name' => 'required|string',
+            'phone_number' => 'required|string',
+            'street_address' => 'required|string',
+            'apartment_unit' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'pin_number' => 'required|string',
+            'country' => 'required|string',
+        ]);
+
+        // 'is_default' => 'nullable|boolean',
+
+        $user = Auth::user();
+
+
+        // The ... "unpacks" that array into individual key–value pairs
+        $result=Address::create([
+            'user_id' => $user->id,
+            ...$address
+        ]);
+
+        flash()->addSuccess('Address Add Succesfuly..⚡️');
+        return redirect()->back();;
+    }
+
     public function account_upadate(Request $request)
     {
         $account_data = $request->validate([
@@ -182,8 +231,6 @@ class UserController extends Controller
         return view('userpanel.single_product_view', compact('product_details'));
         // return $request->id;
     }
-
-
     public function add_to_cart($product_id)
     {
         $user_id = Auth::id(); // current logged-in user
@@ -210,8 +257,6 @@ class UserController extends Controller
         // return redirect()->back()->with('success', 'Product added to cart!');
         return redirect('add_to_cart_view');
     }
-
-
     public function add_to_cart_view()
     {
         $user_id = Auth::id();
@@ -235,7 +280,6 @@ class UserController extends Controller
         // Pass all values to view
         return view('userpanel.add_to_cart_view', compact('cart_product', 'subtotal', 'shipping', 'total'));
     }
-
     public function add_to_cart_increash_product_quantity(Request $request)
     {
         // return $request;
@@ -306,7 +350,8 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function order_checkout( Request $request){
+    public function order_checkout(Request $request)
+    {
 
         $user_id = Auth::id();
 

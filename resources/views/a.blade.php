@@ -3,311 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Address Form</title>
+    <title>My Addresses</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        lav1: '#F4EFFF',
-                        lav2: '#E4DEFF',
-                        peri: '#A9B4E6',
-                        side: '#3F4673',
-                        'purple-light': '#E8E2F4',
-                        'purple-medium': '#C8B8E0',
-                        'purple-dark': '#8B7BAD',
-                        'purple-darkest': '#4A4461',
+                        'purple-lightest': '#F3F0FF',
+                        'purple-light': '#E2D8FF',
+                        'purple-medium': '#9D8DF1',
+                        'purple-dark': '#4C4B7C',
+                        'purple-darkest': '#2D2A4A',
+                        'lav1': '#F4EFFF',
+                        'lav2': '#E4DEFF',
+                        'peri': '#A9B4E6',
+                        'side': '#3F4673',
                     }
                 }
             }
         }
     </script>
     <style>
-        .radio-custom input:checked + .radio-custom .radio-dot {
-            opacity: 1;
+        .address-card {
+            transition: all 0.3s ease;
+        }
+        .address-card:hover {
+            transform: translateY(-2px);
+        }
+        .default-badge {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
-<body class="bg-lav1 min-h-screen py-8 px-4">
-    <div class="max-w-2xl mx-auto">
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-side to-purple-darkest p-6">
-                <h2 class="text-2xl font-bold text-white mb-2">Shipping Address</h2>
-                <p class="text-lav2 text-sm">Please provide your delivery address details</p>
+<body class="bg-lav1 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-lav2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-purple-darkest">My Addresses</h1>
+                <button class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200">
+                    + Add New Address
+                </button>
             </div>
+        </div>
+    </header>
 
-            <!-- Form -->
-            <form class="p-8 space-y-6">
-                <!-- Address Type Selection -->
-                <div class="space-y-3">
-                    <label class="block text-side font-semibold text-sm uppercase tracking-wide">Address Type</label>
-                    <div class="flex gap-4">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="radio" name="addressType" value="home" class="sr-only">
-                            <div class="radio-custom w-5 h-5 border-2 border-peri rounded-full flex items-center justify-center mr-3 transition-all duration-200">
-                                <div class="radio-dot w-2.5 h-2.5 bg-side rounded-full opacity-0 transition-opacity duration-200"></div>
-                            </div>
-                            <span class="text-purple-darkest font-medium">Home</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="radio" name="addressType" value="office" class="sr-only">
-                            <div class="radio-custom w-5 h-5 border-2 border-peri rounded-full flex items-center justify-center mr-3 transition-all duration-200">
-                                <div class="radio-dot w-2.5 h-2.5 bg-side rounded-full opacity-0 transition-opacity duration-200"></div>
-                            </div>
-                            <span class="text-purple-darkest font-medium">Office</span>
-                        </label>
-                        <label class="flex items-center cursor-pointer">
-                            <input type="radio" name="addressType" value="other" class="sr-only">
-                            <div class="radio-custom w-5 h-5 border-2 border-peri rounded-full flex items-center justify-center mr-3 transition-all duration-200">
-                                <div class="radio-dot w-2.5 h-2.5 bg-side rounded-full opacity-0 transition-opacity duration-200"></div>
-                            </div>
-                            <span class="text-purple-darkest font-medium">Other</span>
-                        </label>
-                    </div>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Address Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Address Card 1 -->
+            <div class="address-card bg-white rounded-xl shadow-lg border border-lav2 p-6 relative">
+                <!-- Default Badge -->
+                <div class="absolute top-4 right-4">
+                    <span class="default-badge bg-purple-medium text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Default
+                    </span>
+                </div>
+                
+                <!-- Address Type -->
+                <div class="mb-4">
+                    <span class="bg-lav2 text-purple-dark px-3 py-1 rounded-full text-sm font-medium uppercase">
+                        Office
+                    </span>
                 </div>
 
-                <!-- Full Name -->
-                <div class="space-y-2">
-                    <label for="fullName" class="block text-side font-semibold text-sm uppercase tracking-wide">Full Name *</label>
-                    <input 
-                        type="text" 
-                        id="fullName" 
-                        name="fullName"
-                        required
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                        placeholder="Enter your full name"
-                    >
+                <!-- Name -->
+                <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
+
+                <!-- Address Details -->
+                <div class="space-y-2 text-side mb-4">
+                    <p class="text-sm">
+                        <span class="font-medium">Apartment:</span> ABC
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">Street:</span> Depal
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">City:</span> Medinipur East
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">State:</span> KS
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">ZIP:</span> 721453
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">PIN:</span> 721453
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">Country:</span> IN
+                    </p>
                 </div>
 
                 <!-- Phone Number -->
-                <div class="space-y-2">
-                    <label for="phone" class="block text-side font-semibold text-sm uppercase tracking-wide">Phone Number *</label>
-                    <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone"
-                        required
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                        placeholder="+1 (555) 123-4567"
-                    >
+                <div class="mb-4">
+                    <p class="text-sm text-side">
+                        <span class="font-medium">Phone:</span> +919907246586
+                    </p>
                 </div>
 
-                <!-- Street Address -->
-                <div class="space-y-2">
-                    <label for="streetAddress" class="block text-side font-semibold text-sm uppercase tracking-wide">Street Address *</label>
-                    <input 
-                        type="text" 
-                        id="streetAddress" 
-                        name="streetAddress"
-                        required
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                        placeholder="123 Main Street"
-                    >
-                </div>
-
-                <!-- Apartment/Unit -->
-                <div class="space-y-2">
-                    <label for="apartment" class="block text-side font-semibold text-sm uppercase tracking-wide">Apartment / Unit (Optional)</label>
-                    <input 
-                        type="text" 
-                        id="apartment" 
-                        name="apartment"
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                        placeholder="Apt 4B, Unit 101, etc."
-                    >
-                </div>
-
-                <!-- City, State, ZIP, PIN Row -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="space-y-2">
-                        <label for="city" class="block text-side font-semibold text-sm uppercase tracking-wide">City *</label>
-                        <input 
-                            type="text" 
-                            id="city" 
-                            name="city"
-                            required
-                            class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                            placeholder="New York"
-                        >
-                    </div>
-                    <div class="space-y-2">
-                        <label for="state" class="block text-side font-semibold text-sm uppercase tracking-wide">State *</label>
-                        <select 
-                            id="state" 
-                            name="state"
-                            required
-                            class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest"
-                        >
-                            <option value="">Select State</option>
-                            <option value="AL">Alabama</option>
-                            <option value="AK">Alaska</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="AR">Arkansas</option>
-                            <option value="CA">California</option>
-                            <option value="CO">Colorado</option>
-                            <option value="CT">Connecticut</option>
-                            <option value="DE">Delaware</option>
-                            <option value="FL">Florida</option>
-                            <option value="GA">Georgia</option>
-                            <option value="HI">Hawaii</option>
-                            <option value="ID">Idaho</option>
-                            <option value="IL">Illinois</option>
-                            <option value="IN">Indiana</option>
-                            <option value="IA">Iowa</option>
-                            <option value="KS">Kansas</option>
-                            <option value="KY">Kentucky</option>
-                            <option value="LA">Louisiana</option>
-                            <option value="ME">Maine</option>
-                            <option value="MD">Maryland</option>
-                            <option value="MA">Massachusetts</option>
-                            <option value="MI">Michigan</option>
-                            <option value="MN">Minnesota</option>
-                            <option value="MS">Mississippi</option>
-                            <option value="MO">Missouri</option>
-                            <option value="MT">Montana</option>
-                            <option value="NE">Nebraska</option>
-                            <option value="NV">Nevada</option>
-                            <option value="NH">New Hampshire</option>
-                            <option value="NJ">New Jersey</option>
-                            <option value="NM">New Mexico</option>
-                            <option value="NY">New York</option>
-                            <option value="NC">North Carolina</option>
-                            <option value="ND">North Dakota</option>
-                            <option value="OH">Ohio</option>
-                            <option value="OK">Oklahoma</option>
-                            <option value="OR">Oregon</option>
-                            <option value="PA">Pennsylvania</option>
-                            <option value="RI">Rhode Island</option>
-                            <option value="SC">South Carolina</option>
-                            <option value="SD">South Dakota</option>
-                            <option value="TN">Tennessee</option>
-                            <option value="TX">Texas</option>
-                            <option value="UT">Utah</option>
-                            <option value="VT">Vermont</option>
-                            <option value="VA">Virginia</option>
-                            <option value="WA">Washington</option>
-                            <option value="WV">West Virginia</option>
-                            <option value="WI">Wisconsin</option>
-                            <option value="WY">Wyoming</option>
-                        </select>
-                    </div>
-                    <div class="space-y-2">
-                        <label for="zipCode" class="block text-side font-semibold text-sm uppercase tracking-wide">ZIP Code *</label>
-                        <input 
-                            type="text" 
-                            id="zipCode" 
-                            name="zipCode"
-                            required
-                            pattern="[0-9]{5}(-[0-9]{4})?"
-                            class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                            placeholder="12345"
-                        >
-                    </div>
-                    <div class="space-y-2">
-                        <label for="pinNumber" class="block text-side font-semibold text-sm uppercase tracking-wide">PIN Number *</label>
-                        <input 
-                            type="text" 
-                            id="pinNumber" 
-                            name="pinNumber"
-                            required
-                            pattern="[0-9]{6}"
-                            maxlength="6"
-                            class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark"
-                            placeholder="123456"
-                        >
-                    </div>
-                </div>
-
-                <!-- Country -->
-                <div class="space-y-2">
-                    <label for="country" class="block text-side font-semibold text-sm uppercase tracking-wide">Country *</label>
-                    <select 
-                        id="country" 
-                        name="country"
-                        required
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest"
-                    >
-                        <option value="">Select Country</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="IN">India</option>
-                        <option value="GB">United Kingdom</option>
-                        <option value="AU">Australia</option>
-                        <option value="DE">Germany</option>
-                        <option value="FR">France</option>
-                        <option value="JP">Japan</option>
-                        <option value="CN">China</option>
-                        <option value="BR">Brazil</option>
-                    </select>
-                </div>
-
-                <!-- Special Instructions -->
-                <div class="space-y-2">
-                    <label for="instructions" class="block text-side font-semibold text-sm uppercase tracking-wide">Special Instructions (Optional)</label>
-                    <textarea 
-                        id="instructions" 
-                        name="instructions"
-                        rows="3"
-                        class="w-full px-4 py-3 border-2 border-purple-light rounded-lg focus:border-peri focus:outline-none transition-colors duration-200 bg-lav1 text-purple-darkest placeholder-purple-dark resize-none"
-                        placeholder="Leave at front door, ring doorbell, etc."
-                    ></textarea>
-                </div>
-
-                <!-- Set as Default Address Checkbox -->
-                <div class="flex items-center">
-                    <input 
-                        type="checkbox" 
-                        id="defaultAddress" 
-                        name="defaultAddress"
-                        class="w-5 h-5 text-side bg-lav1 border-2 border-purple-light rounded focus:ring-peri focus:ring-2"
-                    >
-                    <label for="defaultAddress" class="ml-3 text-purple-darkest font-medium">Set as default shipping address</label>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="pt-4">
-                    <button 
-                        type="submit"
-                        class="w-full bg-gradient-to-r from-side to-purple-darkest text-white font-bold py-4 px-6 rounded-lg hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200"
-                    >
-                        Save Address
+                <!-- Action Buttons -->
+                <div class="flex space-x-2">
+                    <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                        Edit
+                    </button>
+                    <button class="flex-1 bg-purple-light hover:bg-purple-medium text-purple-dark hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                        View
+                    </button>
+                    <button class="px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg text-sm font-medium transition-colors duration-200">
+                        Delete
                     </button>
                 </div>
-            </form>
+
+                <!-- Timestamps -->
+                <div class="mt-4 pt-4 border-t border-lav2">
+                    <div class="text-xs text-peri space-y-1">
+                        <p>Created: Sept 19, 2025 at 10:17 AM</p>
+                        <p>Updated: Sept 19, 2025 at 10:17 AM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Additional Address Cards -->
+            <div class="address-card bg-white rounded-xl shadow-lg border border-lav2 p-6 relative">
+                <!-- Address Type -->
+                <div class="mb-4">
+                    <span class="bg-lav2 text-purple-dark px-3 py-1 rounded-full text-sm font-medium uppercase">
+                        Home
+                    </span>
+                </div>
+
+                <!-- Name -->
+                <h3 class="text-lg font-semibold text-purple-darkest mb-2">Sujit</h3>
+
+                <!-- Address Details -->
+                <div class="space-y-2 text-side mb-4">
+                    <p class="text-sm">
+                        <span class="font-medium">Apartment:</span> 12B
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">Street:</span> Park Street
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">City:</span> Kolkata
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">State:</span> WB
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">ZIP:</span> 700016
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">PIN:</span> 700016
+                    </p>
+                    <p class="text-sm">
+                        <span class="font-medium">Country:</span> IN
+                    </p>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="mb-4">
+                    <p class="text-sm text-side">
+                        <span class="font-medium">Phone:</span> +919907246586
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex space-x-2">
+                    <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                        Edit
+                    </button>
+                    <button class="flex-1 bg-purple-light hover:bg-purple-medium text-purple-dark hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                        View
+                    </button>
+                    <button class="px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg text-sm font-medium transition-colors duration-200">
+                        Delete
+                    </button>
+                </div>
+
+                <!-- Set Default Button -->
+                <div class="mt-4">
+                    <button class="w-full bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200">
+                        Set as Default
+                    </button>
+                </div>
+
+                <!-- Timestamps -->
+                <div class="mt-4 pt-4 border-t border-lav2">
+                    <div class="text-xs text-peri space-y-1">
+                        <p>Created: Sept 15, 2025 at 2:30 PM</p>
+                        <p>Updated: Sept 16, 2025 at 9:15 AM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add New Address Card -->
+            <div class="address-card bg-gradient-to-br from-lav1 to-lav2 rounded-xl border-2 border-dashed border-peri p-6 flex flex-col items-center justify-center min-h-[400px] hover:border-purple-medium cursor-pointer">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-purple-dark mb-2">Add New Address</h3>
+                    <p class="text-side text-sm">Click to add a new delivery address</p>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <!-- Address Statistics -->
+        <div class="mt-12 bg-white rounded-xl shadow-lg border border-lav2 p-6">
+            <h2 class="text-xl font-semibold text-purple-darkest mb-6">Address Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-lav1 rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold text-purple-medium">2</div>
+                    <div class="text-sm text-side">Total Addresses</div>
+                </div>
+                <div class="bg-lav1 rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold text-purple-medium">1</div>
+                    <div class="text-sm text-side">Home Addresses</div>
+                </div>
+                <div class="bg-lav1 rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold text-purple-medium">1</div>
+                    <div class="text-sm text-side">Office Addresses</div>
+                </div>
+                <div class="bg-lav1 rounded-lg p-4 text-center">
+                    <div class="text-2xl font-bold text-purple-medium">1</div>
+                    <div class="text-sm text-side">Default Address</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-lav2 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-side text-sm">
+                <p>© 2025 Address Management. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Custom radio button functionality
-        const radioInputs = document.querySelectorAll('input[type="radio"]');
-        
-        radioInputs.forEach(input => {
-            input.addEventListener('change', function() {
-                // Remove checked state from all radio buttons in the same group
-                const groupName = this.name;
-                const groupRadios = document.querySelectorAll(`input[name="${groupName}"]`);
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle set default button clicks
+            const setDefaultButtons = document.querySelectorAll('button:contains("Set as Default")');
+            
+            // Handle add new address card click
+            const addAddressCard = document.querySelector('.bg-gradient-to-br');
+            if (addAddressCard) {
+                addAddressCard.addEventListener('click', function() {
+                    alert('Add new address functionality would be implemented here');
+                });
+            }
+
+            // Add hover effects for cards
+            const addressCards = document.querySelectorAll('.address-card');
+            addressCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                });
                 
-                groupRadios.forEach(radio => {
-                    const dot = radio.parentElement.querySelector('.radio-dot');
-                    if (dot) {
-                        dot.style.opacity = radio === this ? '1' : '0';
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
+                });
+            });
+
+            // Handle button clicks
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.textContent.includes('Edit')) {
+                        e.preventDefault();
+                        alert('Edit address functionality would be implemented here');
+                    } else if (this.textContent.includes('View')) {
+                        e.preventDefault();
+                        alert('View address details functionality would be implemented here');
+                    } else if (this.textContent.includes('Delete')) {
+                        e.preventDefault();
+                        if (confirm('Are you sure you want to delete this address?')) {
+                            alert('Delete functionality would be implemented here');
+                        }
+                    } else if (this.textContent.includes('Set as Default')) {
+                        e.preventDefault();
+                        alert('Set as default functionality would be implemented here');
                     }
                 });
             });
-        });
-
-        // PIN number validation - only allow digits
-        const pinInput = document.getElementById('pinNumber');
-        pinInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-
-        // ZIP code validation
-        const zipInput = document.getElementById('zipCode');
-        zipInput.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9-]/g, '');
         });
     </script>
 </body>

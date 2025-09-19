@@ -287,3 +287,20 @@
   }
 
   /* account end */
+
+
+  /* address_view_page start */
+
+  .address-card {
+      transition: all 0.3s ease;
+  }
+
+  .address-card:hover {
+      transform: translateY(-2px);
+  }
+
+  .default-badge {
+      animation: pulse 2s infinite;
+  }
+
+  /* address_view_page end */
