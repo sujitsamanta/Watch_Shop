@@ -473,7 +473,7 @@
     <!-- Footer Section -->
     <footer class="bg-purple-darkest text-white ">
         <!-- Newsletter Section -->
-        <div class="bg-side py-4">
+        <!-- <div class="bg-side py-4">
             <div class="container mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
                     <div class="text-center md:text-left">
@@ -490,7 +490,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Main Footer Content -->
         <div class="container mx-auto px-6 py-12">
 

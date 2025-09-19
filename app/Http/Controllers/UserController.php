@@ -110,7 +110,7 @@ class UserController extends Controller
 
         // return $addresses;
 
-        return view('userpanel.address_view_page',compact('addresses'));
+        return view('userpanel.address_view_page', compact('addresses'));
     }
 
     public function add_address_form()
@@ -139,7 +139,7 @@ class UserController extends Controller
 
 
         // The ... "unpacks" that array into individual key–value pairs
-        $result=Address::create([
+        $result = Address::create([
             'user_id' => $user->id,
             ...$address
         ]);
@@ -240,22 +240,36 @@ class UserController extends Controller
             ->where('product_id', $product_id)
             ->first();
 
-        if ($cart) {
-            // update quantity
-            $cart->quantity += 1;
-            $cart->save();
-        } else {
-            // create new cart entry
-            Cart::create([
-                'user_id' => $user_id,
-                'product_id' => $product_id,
-                'quantity' => 1,
-            ]);
+        $product = Product::find($product_id);
+
+        if ($cart && $product) {
+            if ($cart) {
+
+                if ($cart->quantity < $product->stock) {
+                    // update quantity
+                    $cart->quantity += 1;
+                    $cart->save();
+                    flash()->addSuccess('Product quantity increased!..⚡️');
+                    return redirect()->back();
+                } else {
+                    flash()->addError('Sorry, only ' . $product->stock . ' items available in stock!');
+                    return redirect()->back();
+                }
+            } else {
+                // create new cart entry
+                Cart::create([
+                    'user_id' => $user_id,
+                    'product_id' => $product_id,
+                    'quantity' => 1,
+                ]);
+
+                flash()->addSuccess('Product added to cart!..⚡️');
+                return redirect()->back();
+            }
         }
 
-        flash()->addSuccess('Product added to cart!..⚡️');
+
         // return redirect()->back()->with('success', 'Product added to cart!');
-        return redirect('add_to_cart_view');
     }
     public function add_to_cart_view()
     {
@@ -290,13 +304,22 @@ class UserController extends Controller
             ->where('product_id', $request->product_id)
             ->first();
 
-        if ($cart) {
-            // update quantity
-            $cart->quantity += 1;
-            $cart->save();
-        }
+        // Get product stock from products table
+        $product = Product::find($request->product_id);
 
-        flash()->addSuccess('Product quantity increash!..⚡️');
+        if ($cart && $product) {
+            if ($cart->quantity < $product->stock) {
+                // Only increase if stock is available
+                $cart->quantity += 1;
+                $cart->save();
+
+                flash()->addSuccess('Product quantity increased!..⚡️');
+            } else {
+                flash()->addError('Sorry, only ' . $product->stock . ' items available in stock!');
+            }
+        } else {
+            flash()->addError('Product not found in cart!');
+        }
         // return redirect()->back()->with('success', 'Product added to cart!');
         return redirect()->back();
     }
