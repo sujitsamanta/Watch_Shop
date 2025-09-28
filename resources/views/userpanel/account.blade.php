@@ -29,7 +29,7 @@
                     <!-- Action buttons -->
                     <div class="flex flex-col gap-3 mt-6 w-48 mx-auto">
                         <button type="button" onclick="document.getElementById('photoInput').click()"
-                            class="bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition shadow w-full">
+                            class="bg-purple-800 text-white py-2 rounded-lg hover:bg-purple-700 transition shadow w-full">
                             Upload New Photo
                         </button>
 
@@ -80,7 +80,7 @@
 
                         <div class="flex gap-3">
                             <button id="editBtn" type="button"
-                                class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
+                                class="bg-purple-800 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
                                 Update Profile
                             </button>
 
@@ -173,7 +173,7 @@
                                     </form> -->
                                 <a href="/add_address_form">
                                     <button id="editBtn" type="button"
-                                        class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
+                                        class="bg-purple-800 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
                                         + Add New Address
                                     </button>
                                 </a>

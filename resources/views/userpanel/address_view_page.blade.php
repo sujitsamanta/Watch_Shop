@@ -78,7 +78,7 @@
                 </div> -->
 
                 @foreach ($addresses as $address)
-                <div class="address-card bg-white rounded-xl  border border-lav2 p-2 relative max-w-md">
+                <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md">
 
                     @if($address->is_default)
                     <div class="absolute top-3 right-3">
