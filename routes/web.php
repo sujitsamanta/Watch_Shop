@@ -93,6 +93,11 @@ Route::get('/admin_add_product', [AdminController::class,'admin_add_product'])->
 Route::post('/admin_add_product_submit', [AdminController::class,'admin_add_product_submit'])->middleware('adminMiddleware');
 
 
+Route::post('/admin_update_product/{product_id}', [AdminController::class,'admin_update_product'])->middleware('adminMiddleware');
+
+// Route::post('/admin_update_product_submit', [AdminController::class,'admin_update_product_submit'])->middleware('adminMiddleware');
+
+
 Route::get('/admin_products_view', [AdminController::class,'admin_products_view'])->middleware('adminMiddleware');
 Route::post('/admin_product_delete/{product_id}', [AdminController::class,'admin_product_delete'])->middleware('adminMiddleware');
 

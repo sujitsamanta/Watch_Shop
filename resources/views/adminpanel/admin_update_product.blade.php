@@ -11,49 +11,28 @@
             <!-- Professional Form Layout -->
             <form class="space-y-8" method="post" action="/admin_add_product_submit" enctype="multipart/form-data">
                 @csrf
-                
+
                 <!-- Basic Information Section -->
                 <div class="bg-white rounded-xl shadow-sm border border-purple-light p-8">
                     <h2 class="text-xl font-bold text-side mb-6 border-b border-purple-light pb-3">Basic Information
                     </h2>
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <!-- Category -->
-                        <div>
-                            <label for="category" class="block text-sm font-semibold text-side mb-2">
-                                Category <span class="text-red-500">*</span>
-                            </label>
-                            <select id="category" name="category_id" value="{{ old('category_id') }}"
-                                class="@error('category_id') border-red-500 @else border-primary-medium @enderror
-                                w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
-                                <option value="" disabled selected>-- Select a category --</option>
-                                @foreach($categories_data as $category)
 
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-
-                                @endforeach
-
-                            </select>
-                             <div class="text-sm text-red-500 h-2">
-                    @error('category_id')
-                        {{ $message }}
-                    @enderror
-                </div>
-                        </div>
 
                         <!-- Product Name -->
                         <div>
                             <label for="name" class="block text-sm font-semibold text-side mb-2">
                                 Product Name <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="name" name="name"  placeholder="Apple Watch Series 9" value="{{ old('name') }}"
+                            <input type="text" id="name" name="name" placeholder="Apple Watch Series 9" value="{{ $product->name }}"
                                 class="@error('name') border-red-500 @else border-primary-medium @enderror
                                 w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
-                                 <div class="text-sm text-red-500 h-2">
-                    @error('name')
-                        {{ $message }}
-                    @enderror
-                </div>
+                            <div class="text-sm text-red-500 h-2">
+                                @error('name')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
 
                         <!-- SKU -->
@@ -61,14 +40,14 @@
                             <label for="sku" class="block text-sm font-semibold text-side mb-2">
                                 SKU <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" id="sku" name="sku"  placeholder="AW9-001" value="{{ old('sku') }}"
+                            <input type="text" id="sku" name="sku" placeholder="AW9-001" value="{{ $product->sku }}"
                                 class="@error('sku') border-red-500 @else border-primary-medium @enderror
                                 w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
-                                 <div class="text-sm text-red-500 h-2">
-                    @error('sku')
-                        {{ $message }}
-                    @enderror
-                </div>
+                            <div class="text-sm text-red-500 h-2">
+                                @error('sku')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -77,14 +56,14 @@
                         <label for="slug" class="block text-sm font-semibold text-side mb-2">
                             URL Slug <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" id="slug" name="slug"  placeholder="apple-watch-series-9" value="{{ old('slug') }}"
+                        <input type="text" id="slug" name="slug" placeholder="apple-watch-series-9" value="{{ $product->slug }}"
                             class="@error('slug') border-red-500 @else border-primary-medium @enderror
                             w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200">
-                             <div class="text-sm text-red-500 h-2">
-                    @error('slug')
-                        {{ $message }}
-                    @enderror
-                </div>
+                        <div class="text-sm text-red-500 h-2">
+                            @error('slug')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <p class="text-xs text-purple-dark mt-2">This will be used in the product URL. Auto-generated
                             from
                             product name.</p>
@@ -105,15 +84,15 @@
                             <div class="relative">
                                 <span
                                     class="absolute left-4 top-1/2 transform -translate-y-1/2 text-purple-dark font-medium">$</span>
-                                <input type="number" id="price" name="price"  step="0.01" min="0"
-                                    placeholder="799.00" value="{{ old('price') }}"
+                                <input type="number" id="price" name="price" step="0.01" min="0"
+                                    placeholder="799.00" value="{{ $product->price }}"
                                     class="@error('price') border-red-500 @else border-primary-medium @enderror
                                     w-full pl-10 pr-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 text-lg">
-                                     <div class="text-sm text-red-500 h-2">
-                    @error('price')
-                        {{ $message }}
-                    @enderror
-                </div>
+                                <div class="text-sm text-red-500 h-2">
+                                    @error('price')
+                                    {{ $message }}
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
@@ -122,14 +101,14 @@
                             <label for="stock" class="block text-sm font-semibold text-side mb-2">
                                 Stock Quantity <span class="text-red-500">*</span>
                             </label>
-                            <input type="number" id="stock" name="stock"  min="0" placeholder="50" value="{{ old('stock') }}"
+                            <input type="number" id="stock" name="stock" min="0" placeholder="50" value="{{ $product->stock }}"
                                 class="@error('stock') border-red-500 @else border-primary-medium @enderror
                                 w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 text-lg">
-                                 <div class="text-sm text-red-500 h-2">
-                    @error('stock')
-                        {{ $message }}
-                    @enderror
-                </div>
+                            <div class="text-sm text-red-500 h-2">
+                                @error('stock')
+                                {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,15 +122,16 @@
                         <label for="description" class="block text-sm font-semibold text-side mb-2">
                             Product Description <span class="text-red-500">*</span>
                         </label>
-                        <textarea id="description" name="description"  rows="6" value="{{ old('description') }}"
-                            placeholder="Provide a detailed description of the product including key features, specifications, and benefits. For example: Latest smartwatch with advanced health monitoring, GPS tracking, and 18-hour battery life. Features include heart rate monitoring, sleep tracking, and water resistance up to 50 meters."
+                        <textarea id="description" name="description" rows="6"
                             class="@error('description') border-red-500 @else border-primary-medium @enderror
-                            w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 resize-none"></textarea>
-                             <div class="text-sm text-red-500 h-2">
-                    @error('description')
-                        {{ $message }}
-                    @enderror
-                </div>
+                            w-full px-4 py-3 bg-lav1 border border-purple-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-peri focus:border-peri transition-all duration-200 resize-none">{{ $product->description }}</textarea>
+
+                        <div class="text-sm text-red-500 h-2">
+                            @error('description')
+                            {{ $message }}
+                            @enderror
+                        </div>
+
                         <div class="flex justify-between items-center mt-2">
                             <p class="text-xs text-purple-dark">Provide detailed product information for customers</p>
                             <span id="charCount" class="text-xs text-purple-dark">0 characters</span>
@@ -166,9 +146,9 @@
                         <div
                             class="@error('image') border-red-500 @else border-primary-medium @enderror
                             border-2 border-dashed border-purple-medium rounded-xl bg-lav2 hover:bg-purple-light transition-all duration-200">
-                            <input type="file" id="image"  accept="image/*" class="hidden" name="image">
+                            <input type="file" id="image" accept="image/*" class="hidden" name="image">
                             <!-- hidden field for filename -->
-                            <input type="hidden" id="image_name" >
+                            <input type="hidden" id="image_name">
                             <div class="p-12 text-center cursor-pointer"
                                 onclick="document.getElementById('image').click()">
                                 <div id="uploadContent">
@@ -193,11 +173,11 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="text-sm text-red-500 h-2">
-                    @error('image')
-                        {{ $message }}
-                    @enderror
-                </div>
+                        <div class="text-sm text-red-500 h-2">
+                            @error('image')
+                            {{ $message }}
+                            @enderror
+                        </div>
                         <div class="flex justify-between items-center mt-3">
                             <p class="text-xs text-purple-dark">Supported formats: PNG, JPG, JPEG • Max size: 10MB •
                                 Saved
@@ -254,7 +234,7 @@
         <script>
             //admin_add_product_form start
 
-            document.getElementById('name').addEventListener('input', function (e) {
+            document.getElementById('name').addEventListener('input', function(e) {
                 const name = e.target.value;
                 const slug = name.toLowerCase()
                     .replace(/[^\w\s-]/g, '')
@@ -269,7 +249,7 @@
             const descriptionField = document.getElementById('description');
             const charCount = document.getElementById('charCount');
 
-            descriptionField.addEventListener('input', function (e) {
+            descriptionField.addEventListener('input', function(e) {
                 const count = e.target.value.length;
                 charCount.textContent = `${count} characters`;
 
@@ -281,7 +261,7 @@
             });
 
             // Enhanced file upload with preview
-            document.getElementById('image').addEventListener('change', function (e) {
+            document.getElementById('image').addEventListener('change', function(e) {
                 const file = e.target.files[0];
                 const uploadContent = document.getElementById('uploadContent');
 
@@ -302,7 +282,7 @@
                     }
 
                     const reader = new FileReader();
-                    reader.onload = function (ev) {
+                    reader.onload = function(ev) {
                         uploadContent.innerHTML = `
                 <div class="flex items-center justify-center space-x-6">
                     <img src="${ev.target.result}" alt="Preview" class="w-24 h-24 object-cover rounded-lg border-2 border-purple-medium">
@@ -388,12 +368,12 @@
             // Professional input interactions
             const inputs = document.querySelectorAll('input, select, textarea');
             inputs.forEach(input => {
-                input.addEventListener('focus', function () {
+                input.addEventListener('focus', function() {
                     this.parentElement.classList.add('transform', 'scale-[1.01]');
                     this.classList.add('shadow-lg');
                 });
 
-                input.addEventListener('blur', function () {
+                input.addEventListener('blur', function() {
                     this.parentElement.classList.remove('transform', 'scale-[1.01]');
                     this.classList.remove('shadow-lg');
                 });

@@ -102,10 +102,12 @@ class AdminController extends Controller
         }
     }
 
-    public function admin_add_product()
+    public function admin_add_product(Request $request)
     {
+
         $categories_data = Categorie::all();
         return view('adminpanel.admin_add_product', compact('categories_data'));
+       
     }
 
     public function admin_add_product_submit(Request $request)
@@ -159,5 +161,15 @@ class AdminController extends Controller
             flash()->addSuccess('Product Deleted Succesful ⚡️');
             return redirect()->back();
         }
+    }
+    public function admin_update_product($product_id)
+    {
+      
+
+        $product = Product::findOrFail($product_id);
+
+        return view('adminpanel.admin_update_product', compact('product'));
+
+    //    return $product_id;
     }
 }

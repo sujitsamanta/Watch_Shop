@@ -145,9 +145,9 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
                                     <div class="flex justify-center space-x-2">
-                                        <form action="" method="post">
+                                        <form action="/admin_update_product/{{ $product->id }}" method="post">
                                             @csrf
-                                            <button
+                                            <button  type="submit"
                                                 class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                                                 Update
                                             </button>
