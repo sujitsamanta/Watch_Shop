@@ -41,12 +41,17 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div
                                         class="h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                                        JD
+                                        @if (!empty($user->photo))
+                                        <img src="{{ url('storage/photos/' . $user->photo) }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        @else
+                                            {{ collect(explode(' ', $user->name))->map(fn($n) => strtoupper($n[0]))->join('') }}
+                                        @endif
+
                                     </div>
-                                </td>
+                                </td>                                       
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm font-medium text-side">{{ $user->name }}</div>
-                                    <div class="text-sm text-purple-dark">Customer ID: {{ $user->username }}</div>
+                                    <div class="text-sm text-purple-dark">Customer ID: {{ $user->id }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-side">{{ $user->email }}</div>
