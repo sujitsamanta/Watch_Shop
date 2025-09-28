@@ -320,6 +320,31 @@
 			});
 			// add_product add end
 
+
+			// add_product add start
+
+			$(".update_product").on("click", function(e) {
+				e.preventDefault(); // stop direct submit
+
+				let form = $(this).closest("form")[0]; // get native form element
+
+				Swal.fire({
+					title: "Are you sure?",
+					text: "Do you want to update this Product?",
+					icon: "question",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Yes, add it!",
+					cancelButtonText: "Cancel"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit(); // ✅ native submit
+					}
+				});
+			});
+			// add_product update end
+
 			// product delete start
 
 			$(".product_delete").on("click", function(e) {
