@@ -4,12 +4,12 @@
         <div class="w-full min-h-screen    ">
             <!-- Page Header -->
             <div class="mb-8">
-                <h1 class="text-4xl font-bold text-side mb-3">Add New Product</h1>
-                <p class="text-lg text-purple-dark">Create and configure a new product for your e-watch store</p>
+                <h1 class="text-4xl font-bold text-side mb-3">Update Product</h1>
+                <p class="text-lg text-purple-dark">Update and modify product information for your e-watch store</p>
             </div>
 
             <!-- Professional Form Layout -->
-            <form class="space-y-8" method="post" action="/admin_add_product_submit" enctype="multipart/form-data">
+            <form class="space-y-8" method="post" action="/admin_update_product_submit/{{ $product->id }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Basic Information Section -->
@@ -138,10 +138,37 @@
                         </div>
                     </div>
 
+                    <!-- Current Image Section -->
+                    @if($product->image)
+                    <div class="mb-8">
+                        <label class="block text-sm font-semibold text-side mb-2">Current Product Image:</label>
+                        <div class="flex items-center space-x-4 p-6 bg-lav1 rounded-xl border border-purple-medium">
+                            <img src="{{ url('storage/products_images/' . $product->image) }}" 
+                                 alt="Current Product Image" 
+                                 class="w-32 h-32 object-cover rounded-lg border-2 border-purple-medium shadow-md">
+                            <div class="text-left">
+                                <div class="flex items-center mb-2">
+                                    <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-side font-semibold">Current Image</span>
+                                </div>
+                                <p class="text-purple-dark font-medium">📂 {{ $product->image }}</p>
+                                <p class="text-sm text-purple-dark">This is the current product image</p>
+                                <p class="text-xs text-purple-dark mt-2">Upload a new image below to replace this one</p>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                     <!-- Image Upload -->
                     <div>
                         <label class="block text-sm font-semibold text-side mb-2">
-                            Product Image <span class="text-red-500">*</span>
+                            @if($product->image)
+                                Upload New Product Image
+                            @else
+                                Product Image <span class="text-red-500">*</span>
+                            @endif
                         </label>
                         <div
                             class="@error('image') border-red-500 @else border-primary-medium @enderror
@@ -158,8 +185,19 @@
                                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
                                         </path>
                                     </svg>
-                                    <h3 class="text-lg font-semibold text-side mb-2">Upload Product Image</h3>
-                                    <p class="text-purple-dark mb-4">Drag and drop your image here, or click to browse
+                                    <h3 class="text-lg font-semibold text-side mb-2">
+                                        @if($product->image)
+                                            Upload New Product Image
+                                        @else
+                                            Upload Product Image
+                                        @endif
+                                    </h3>
+                                    <p class="text-purple-dark mb-4">
+                                        @if($product->image)
+                                            Drag and drop your new image here, or click to browse
+                                        @else
+                                            Drag and drop your image here, or click to browse
+                                        @endif
                                     </p>
                                     <div
                                         class="inline-flex items-center px-6 py-3 bg-side text-white rounded-lg hover:bg-purple-darkest transition-colors">
@@ -225,7 +263,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
-                            Add Product
+                            Update Product
                         </button>
                     </div>
                 </div>

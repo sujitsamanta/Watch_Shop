@@ -164,12 +164,49 @@ class AdminController extends Controller
     }
     public function admin_update_product($product_id)
     {
-      
-
         $product = Product::findOrFail($product_id);
-
         return view('adminpanel.admin_update_product', compact('product'));
+    }
 
-    //    return $product_id;
+    public function admin_update_product_submit(Request $request, $product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:products,slug,' . $product_id,
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'required|string',
+            'image' => 'nullable|max:10240', // 10MB, nullable for updates
+        ]);
+
+        $updateData = [
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'sku' => $request->sku,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'description' => $request->description,
+        ];
+
+        // Handle image upload if a new image is provided
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products_images', 'public');
+            $pathArray = explode('/', $path);
+            $img_name = $pathArray[1];
+            $updateData['image'] = $img_name;
+        }
+
+        $result = $product->update($updateData);
+
+        if ($result) {
+            flash()->addSuccess('Product Updated Successfully ⚡️');
+            return redirect('/admin_products_view');
+        } else {
+            flash()->addError('Product Update Failed ⚡️');
+            return redirect()->back();
+        }
     }
 }
