@@ -310,8 +310,20 @@
                                 <path
                                     d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
                             </svg>
+
+                            @php
+                            use Illuminate\Support\Facades\Auth;
+                            use App\Models\Cart;
+
+                            $productCount = 0;
+
+                            if (Auth::check()) {
+                            $productCount = Cart::where('user_id', Auth::id())->count();
+                            }
+                            
+                            @endphp
                             <span
-                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
+                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">{{ $productCount }}</span>
                         </button>
                     </a>
 
@@ -860,7 +872,6 @@
             });
         });
         // delete address end
-        
     </script>
     <!-- sweet alert2 end -->
     <script>
