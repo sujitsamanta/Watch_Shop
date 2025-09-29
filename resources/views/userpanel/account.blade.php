@@ -79,12 +79,12 @@
                         <h2 class="text-2xl font-bold text-purple-800">Account Information</h2>
 
                         <div class="flex gap-3">
-                            <button id="editBtn" type="button"
-                                class="bg-purple-800 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
+                            <button id="editBtn" type="submit"
+                                class="update_save bg-purple-800 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition shadow">
                                 Update Profile
                             </button>
 
-                            <button id="saveBtn" type="submit"
+                            <!-- <button id="saveBtn" type="submit"
                                 class="update_save hidden bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition shadow">
                                 Save
                             </button>
@@ -92,7 +92,7 @@
                             <button id="cancelBtn" type="button"
                                 class="hidden bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition shadow">
                                 Cancel
-                            </button>
+                            </button> -->
                         </div>
 
                     </div>
@@ -105,7 +105,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Full Name</label>
                                 <input name="name" type="text" id="fullName" value="{{ $user_data->name }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
                                 <div class="text-sm text-red-500 h-2">
                                     @error('name')
                                     {{ $message }}
@@ -120,7 +120,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Phone</label>
                                 <input name="phone" type="text" id="phone" value="{{ $user_data->phone }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
                                 <div class="text-sm text-red-500 h-2">
                                     @error('phone')
                                     {{ $message }}
@@ -131,7 +131,7 @@
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Date of
                                     Birth</label>
                                 <input name="dob" type="date" id="dob" value="{{ $user_data->dob }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
                                 <div class="text-sm text-red-500 h-2">
                                     @error('dob')
                                     {{ $message }}
@@ -147,7 +147,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Username</label>
                                 <input name="username" type="text" id="username" value="{{ $user_data->username }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" readonly>
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
                                 <div class="text-sm text-red-500 h-2">
                                     @error('username')
                                     {{ $message }}
@@ -159,7 +159,7 @@
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Bio</label>
                                 <textarea name="bio" id="bio" rows="3"
                                     class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none"
-                                    readonly>{{ $user_data->bio }}</textarea>
+                                    >{{ $user_data->bio }}</textarea>
                                 <div class="text-sm text-red-500 h-2">
                                     @error('bio')
                                     {{ $message }}

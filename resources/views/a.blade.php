@@ -1,149 +1,70 @@
-<x-admin_navbar>
-    <x-slot name="body">
+// account start
+        const editBtn = document.getElementById("editBtn");
+        const saveBtn = document.getElementById("saveBtn");
+        const cancelBtn = document.getElementById("cancelBtn");
+        // const photoInput = document.getElementById("photoInput");
+        // const profilePhoto = document.getElementById("profilePhoto");
 
-        <div class="container mx-auto px-4 ">
+        // Select only visible inputs & textareas (exclude file input)
 
-            <!-- Customer Table Container -->
-            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
-                <!-- Table Header -->
-                <div class="bg-gradient-to-r from-side to-purple-darkest p-6">
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-xl font-semibold text-white">Customer List</h2>
-                        <div class="text-white/80 text-sm">
-                            Total Customers: <span class="font-bold text-white">{{ $users_data->total() }}</span>
-                        </div>
-                    </div>
-                </div>
+        // New → Exclude file & hidden inputs
 
-                <!-- Table -->
-                <div class="overflow-x-auto">
-                    <table class="w-full">
-                        <thead class="bg-lav2/50">
-                            <tr>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-side uppercase tracking-wider">
-                                    Photo</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-side uppercase tracking-wider">
-                                    Name</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-side uppercase tracking-wider">
-                                    Email</th>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-side uppercase tracking-wider">
-                                    Phone Number</th>
-                                <th
-                                    class="px-6 py-4 text-center text-xs font-medium text-side uppercase tracking-wider">
-                                    Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-lav2/30">
+        // const inputs = document.querySelectorAll("input:not([type=file]):not([type=hidden]), textarea");
+        // Select only inputs inside the form (exclude hidden & file)
 
-                            @foreach($users_data as $user)
-                            <!-- Customer Row 1 -->
-                            <tr class="hover:bg-lav1/50 transition-all duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div
-                                        class="h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                                        @if (!empty($user->photo))
-                                        <img src="{{ url('storage/photos/' . $user->photo) }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
-                                        @else
-                                            {{ collect(explode(' ', $user->name))->map(fn($n) => strtoupper($n[0]))->join('') }}
-                                        @endif
-
-                                    </div>
-                                </td>                                       
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm font-medium text-side">{{ $user->name }}</div>
-                                    <div class="text-sm text-purple-dark">Customer ID: {{ $user->id }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-side">{{ $user->email }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-side">{{ $user->phone }}</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
-                                    <div class="flex justify-center space-x-2">
-                                        <form action="/admin_user_account_update" method="post">
-                                            @csrf
-                                        <button
-                                            class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                            Update
-                                        </button>
-                                        </form>
-
-                                        <form action="/admin_user_account_delete/{{ $user->id }}" method="post">
-                                            @csrf
-                                            <button
-                                                class="admin_user_account_delete_btn bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            <!-- <p>{{ $user->name }} - {{ $user->email }}</p> -->
-                            @endforeach
+        const form = document.querySelector("form[action='/account_upadate']");
+        const inputs = form.querySelectorAll("input:not([type=file]):not([type=hidden]), textarea");
 
 
-                        </tbody>
-                    </table>
-                </div>
 
-                <!-- Table Footer -->
-                <div class="bg-gradient-to-r from-lav2 to-peri p-4 border-t border-lav2/30">
+        // Save original values
+        let originalValues = {};
+        inputs.forEach(input => originalValues[input.id] = input.value);
 
-                    <div class="flex justify-between items-center">
-                        <div class="text-sm text-side">
-                            Showing {{ $users_data->firstItem() }}–{{ $users_data->lastItem() }}
-                            of {{ $users_data->total() }} users
-                        </div>
-                        <div class="flex space-x-2">
-                            {{-- Previous --}}
-                            @if ($users_data->onFirstPage())
-                            <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
-                                Previous
-                            </button>
-                            @else
-                            <a href="{{ $users_data->previousPageUrl() }}"
-                                class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
-                                Previous
-                            </a>
-                            @endif
+        let isEditing = false;
 
-                            {{-- Only 3 Page Numbers --}}
-                            @php
-                            $current = $users_data->currentPage();
-                            $last = $users_data->lastPage();
-                            $start = max($current - 1, 1);
-                            $end = min($current + 1, $last);
-                            @endphp
+        editBtn.addEventListener("click", () => {
+            isEditing = true;
+            editBtn.classList.add("hidden");
+            saveBtn.classList.remove("hidden");
+            cancelBtn.classList.remove("hidden");
 
-                            @for ($page = $start; $page <= $end; $page++)
-                                <a href="{{ $users_data->url($page) }}" class="px-3 py-1 rounded-md text-sm font-medium
-                                   {{ $page == $current ? 'bg-side text-white' : 'bg-white/50 text-side hover:bg-white/70' }}">
-                                {{ $page }}
-                                </a>
-                                @endfor
+            inputs.forEach(input => {
+                // Keep Email field readonly
+                if (input.id === "email") return;
 
-                                {{-- Next --}}
-                                @if ($users_data->hasMorePages())
-                                <a href="{{ $users_data->nextPageUrl() }}"
-                                    class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium hover:bg-white/70">
-                                    Next
-                                </a>
-                                @else
-                                <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
-                                    Next
-                                </button>
-                                @endif
-                        </div>
-                    </div>
+                input.removeAttribute("readonly");
+                input.classList.add("edit-mode");
+            });
+        });
 
+        saveBtn.addEventListener("click", () => {
+            inputs.forEach(input => {
+                // Skip Email field
+                if (input.id === "email") return;
 
-                    {{-- $users_data->links() --}}
-                </div>
-            </div>
+                originalValues[input.id] = input.value;
+                input.setAttribute("readonly", "true");
+                input.classList.remove("edit-mode");
+            });
+            exitEditMode();
+        });
 
-        </div>
+        cancelBtn.addEventListener("click", () => {
+            inputs.forEach(input => {
+                // Skip Email field
+                if (input.id === "email") return;
 
-    </x-slot>
+                input.value = originalValues[input.id];
+                input.setAttribute("readonly", "true");
+                input.classList.remove("edit-mode");
+            });
+            exitEditMode();
+        });
 
-</x-admin_navbar>
+        function exitEditMode() {
+            isEditing = false;
+            editBtn.classList.remove("hidden");
+            saveBtn.classList.add("hidden");
+            cancelBtn.classList.add("hidden");
+        }

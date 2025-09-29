@@ -276,10 +276,10 @@
       -webkit-backdrop-filter: blur(16px);
   }
 
-  .edit-mode {
+  /* .edit-mode {
       background: rgba(124, 58, 237, 0.08);
       border: 2px dashed #7c3aed;
-  }
+  } */
 
   .profile-photo:hover {
       transform: scale(1.05);
