@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Address;
+use App\Models\Categorie;
 
 
 
@@ -179,7 +180,6 @@ class UserController extends Controller
         }
     }
 
-
     public function address_view_page()
     {
         // $user = Auth::user();
@@ -303,10 +303,12 @@ class UserController extends Controller
 
     public function single_product_view($product_id)
     {
-
         $product_details = Product::findOrFail($product_id);
-        return view('userpanel.single_product_view', compact('product_details'));
-        // return $request->id;
+
+          $related_products = Product::where('category_id', $product_details->category_id)->get();
+
+        return view('userpanel.single_product_view', compact('product_details','related_products'));
+
     }
     public function add_to_cart($product_id)
     {
@@ -462,24 +464,12 @@ class UserController extends Controller
     }
     public function order_checkout(Request $request)
     {
-
         $user_id = Auth::id();
-
-        // $cart_product = Cart::with('product')
-        // ->where('user_id', $user_id)
-        // ->get();
 
         // Get cart with related product
         $cart_product = Cart::with('product')
             ->where('user_id', $user_id)
             ->get();
-
-        // Number of different products
-        // $product_count = $cart_product->count();
-
-
-        // Total quantity of all products
-        // $total_quantity = $cart_product->sum('quantity');
 
 
         // Calculate subtotal (sum of all products × their quantities)
@@ -496,11 +486,7 @@ class UserController extends Controller
         // deafault address
         $default_address = Auth::user()->defaultAddress;
 
-
         // Pass all values to view
         return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'default_address'));
-        // return view('userpanel.order_checkout');
-        // return 
-
     }
 }

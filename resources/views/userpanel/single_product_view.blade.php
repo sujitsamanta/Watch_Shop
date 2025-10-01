@@ -1,8 +1,8 @@
 <x-user_navbar>
     <x-slot name="body">
-
         <!-- Main Single Product view -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
                 <!-- Product Images -->
@@ -190,10 +190,10 @@
                         <button class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
                             Add to Wishlist
                         </button>
-                         <a href="/add_to_cart/{{ $product_details->id }}">
-                        <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
-                            Add to Cart
-                        </button>
+                        <a href="/add_to_cart/{{ $product_details->id }}">
+                            <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
+                                Add to Cart
+                            </button>
                         </a>
 
                     </div>
@@ -609,90 +609,56 @@
                 </div>
             </div>
 
-            <!-- Related Products Section -->
-            <div class="col-span-full mt-12">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <h2 class="text-2xl font-bold text-purple-darkest mb-8">Related Products</h2>
+            <!-- Grab the best deal start  -->
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
+                            Releted product's
+                            <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
+                        </h2>
+                    </div>
+                    <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
+                        View All
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- iPhone 14 Pro 512GB Gold -->
-                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <div class="relative mb-4">
-                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <div class="h-32 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-lg flex items-center justify-center">
-                                    <div class="text-4xl">📱</div>
-                                </div>
-                            </div>
-                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 512GB Gold (MQ233)</h3>
-                            <div class="text-xl font-bold text-purple-darkest mb-3">$1437</div>
-                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                                Buy Now
-                            </button>
-                        </div>
+                <!-- Carousel -->
+                <div class="relative">
+                    <!-- Product Cards Container -->
+                    <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
 
-                        <!-- AirPods Max Silver -->
-                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <div class="relative mb-4">
-                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <div class="h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center">
-                                    <div class="text-4xl">🎧</div>
+                        @foreach($related_products as $item)
+                        <!-- Product 1: Galaxy S22 Ultra -->
+                        <a href="/single_product_view/{{ $item->id }}">
+                            <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                                <div class="relative mb-4">
+                                    <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                        56% OFF
+                                    </div>
+                                    <div class="phone-image w-full h-48 flex items-center justify-center">
+                                        <img src="{{ url('storage/products_images/' . $item->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                                    </div>
                                 </div>
-                            </div>
-                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">AirPods Max Silver Starlight Aluminium</h3>
-                            <div class="text-xl font-bold text-purple-darkest mb-3">$549</div>
-                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <!-- Apple Watch Series 9 -->
-                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <div class="relative mb-4">
-                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <div class="h-32 bg-gradient-to-br from-blue-200 to-blue-400 rounded-lg flex items-center justify-center">
-                                    <div class="text-4xl">⌚</div>
+                                <h3 class="font-semibold text-gray-800 mb-2">{{ $item->name }}</h3>
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-xl font-bold text-gray-900">₹ {{ $item->price }}</span>
+                                    <span class="text-sm text-gray-500 line-through">₹ {{ $item->price+700 }}</span>
                                 </div>
+                                <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                             </div>
-                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple Watch Series 9 GPS 41mm Starlight Aluminium</h3>
-                            <div class="text-xl font-bold text-purple-darkest mb-3">$399</div>
-                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                                Buy Now
-                            </button>
-                        </div>
-
-                        <!-- iPhone 14 Pro 1TB Gold -->
-                        <div class="bg-gray-50 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
-                            <div class="relative mb-4">
-                                <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-                                <div class="h-32 bg-gradient-to-br from-blue-300 to-blue-500 rounded-lg flex items-center justify-center">
-                                    <div class="text-4xl">📱</div>
-                                </div>
-                            </div>
-                            <h3 class="font-semibold text-purple-darkest text-sm mb-1">Apple iPhone 14 Pro 1TB Gold (MQ2V3)</h3>
-                            <div class="text-xl font-bold text-purple-darkest mb-3">$1499</div>
-                            <button class="w-full bg-black text-white py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors text-sm">
-                                Buy Now
-                            </button>
-                        </div>
+                        </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
+
+            
+
         </div>
 
         <script>
