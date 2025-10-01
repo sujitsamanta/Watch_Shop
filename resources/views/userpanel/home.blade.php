@@ -327,46 +327,6 @@
 
         </section>
 
-        <div class="container mx-auto px-4">
-            <!-- Section Header -->
-            <div class="text-center my-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                @foreach($products_data->take(4) as $product)
-                <!-- Slide -->
-
-                <a href="/single_product_view/{{ $product->id }}">
-                    <div
-                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-                        <!-- Floating particles effect -->
-                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
-                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
-                        </div>
-
-                        <div class="relative overflow-hidden rounded-xl">
-                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-                            <!-- Glow effect overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        </div>
-
-                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
-                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
-                        <button
-                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
-                            Now</button>
-                    </div>
-                </a>
-                @endforeach
-            </div>
-        </div>
-
         <!-- category start  -->
         <div class="max-w-7xl mx-auto bg-white rounded-lg shadow-sm p-6 my-12">
             <!-- Header Section -->
@@ -459,7 +419,102 @@
                 </div>
             </div>
         </div>
-        <!-- category end  -->
+
+        <div class="max-w-[1200px] mx-auto my-12">
+            <!-- Grid Container with 3 columns -->
+            <div class="grid grid-cols-3 auto-rows-[200px] gap-3">
+                <!-- Top Left - Chronometer Watch -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
+                    <img src="images/w11.jpg"
+                        alt="Chronometer"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">Senator Chronometer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Center - Classic Dial (spans 2 rows) -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl row-span-2 group cursor-pointer">
+                    <img src="images/w12.jpg"
+                        alt="Classic Dial"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">Senator Excellence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Right - Moonphase Watch -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
+                    <img src="images/w13.jpg"
+                        alt="Moonphase Watch"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">PanoMaticLunar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Left - Date Display Watch -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
+                    <img src="images/w14.jpg"
+                        alt="Date Display"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">Seventies Panorama Date</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Right - Moon Phase Detail (spans 2 rows) -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl row-span-2 group cursor-pointer">
+                    <img src="images/w15.jpg"
+                        alt="Moon Phase Detail"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">PanoReserve</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Left - Moon Phase Indicator -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
+                    <img src="images/w16.jpg"
+                        alt="Moon Phase"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">PanoLunar Tourbillon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Center - Sport Watch -->
+                <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
+                    <img src="images/w17.jpg"
+                        alt="Sport Watch"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-xs font-light tracking-wider">GLASHÜTTE ORIGINAL</p>
+                            <p class="text-lg font-semibold mt-1">SeaQ Panorama Date</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Grab the best deal start  -->
         <div class="max-w-7xl mx-auto">
@@ -486,14 +541,14 @@
 
                     @foreach($products_data->take(12) as $product)
                     <!-- Product 1: Galaxy S22 Ultra -->
-                     <a href="/single_product_view/{{ $product->id }}">
-                    <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                        <div class="relative mb-4">
-                            <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                56% OFF
-                            </div>
-                            <div class="phone-image w-full h-48 flex items-center justify-center">
-                                <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                    <a href="/single_product_view/{{ $product->id }}">
+                        <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                            <div class="relative mb-4">
+                                <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                    56% OFF
+                                </div>
+                                <div class="phone-image w-full h-48 flex items-center justify-center">
+                                    <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
                                     <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
                                         <div class="text-xs text-center">
                                             <div class="mb-2">📱</div>
@@ -502,24 +557,64 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                                    <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
 
 
+                                </div>
                             </div>
+                            <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
+                                <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
+                            </div>
+                            <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                         </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
-                            <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
-                        </div>
-                        <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
-                    </div>
                     </a>
                     @endforeach
 
 
 
                 </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center my-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
+                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                @foreach($products_data->take(4) as $product)
+                <!-- Slide -->
+
+                <a href="/single_product_view/{{ $product->id }}">
+                    <div
+                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
+                        <!-- Floating particles effect -->
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
+                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                        </div>
+
+                        <div class="relative overflow-hidden rounded-xl">
+                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                            <!-- Glow effect overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                        </div>
+
+                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
+                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
+                        <button
+                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
+                            Now</button>
+                    </div>
+                </a>
+                @endforeach
             </div>
         </div>
 
@@ -776,141 +871,201 @@
             </div>
         </div>
 
-
-        <div class="container mx-auto px-4 py-12">
-            <!-- Section Header -->
-            <div class="text-center my-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
+        <!-- Grab the best deal start  -->
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
+                        Grab the best deal on
+                        <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
+                    </h2>
+                </div>
+                <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
+                    View All
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Carousel -->
+            <div class="relative">
+                <!-- Product Cards Container -->
+                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
 
-                @foreach($products_data->take(4) as $product)
-                <!-- Slide -->
-                <a href="#">
-                    <div
-                        class="m-2 rounded-xl min-w-[220px] sm:min-w-[260px] md:min-w-[300px] lg:min-w-[340px] snap-start bg-gradient-to-br from-lav2 via-white to-white p-6 flex flex-col border-t border-gray-200 hover:shadow-2xl hover:-translate-y-3 hover:rotate-1 transition-all duration-500 group cursor-pointer relative overflow-hidden">
-                        <!-- Floating particles effect -->
-                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-                            <div class="absolute top-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
-                            <div class="absolute bottom-12 left-8 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping" style="animation-delay: 1s;"></div>
+                    @foreach($products_data->take(12) as $product)
+                    <!-- Product 1: Galaxy S22 Ultra -->
+                    <a href="/single_product_view/{{ $product->id }}">
+                        <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                            <div class="relative mb-4">
+                                <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                                    56% OFF
+                                </div>
+                                <div class="phone-image w-full h-48 flex items-center justify-center">
+                                    <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
+                                    <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
+                                        <div class="text-xs text-center">
+                                            <div class="mb-2">📱</div>
+                                            <div class="text-xs">Galaxy</div>
+                                            <div class="text-xs">S22 Ultra</div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                    <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+
+
+                                </div>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
+                                <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
+                            </div>
+                            <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                         </div>
-
-                        <div class="relative overflow-hidden rounded-xl">
-                            <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-                            <!-- Glow effect overlay -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                        </div>
-
-                        <h5 class="text-2xl font-semibold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:bg-clip-text transition-all duration-300">{{ $product->name }}</h5>
-                        <p class="mt-2 text-sm text-side/70 group-hover:text-side/90 transition-colors duration-300">{{ $product->description }}</p>
-                        <button
-                            class="mt-6 self-start px-5 py-2 rounded-md border border-purple-medium hover:border-purple-dark text-side group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 group-hover:text-white group-hover:border-transparent group-hover:shadow-lg group-hover:scale-105 transition-all duration-300">Shop
-                            Now</button>
-                    </div>
-                </a>
-                @endforeach
+                    </a>
+                    @endforeach
 
 
 
-
-
-
-
-
+                </div>
             </div>
-
-
         </div>
 
-        <!-- Promotional Banner Section -->
-        <section class="w-full py-16 bg-gradient-to-r from-gray-800 via-gray-900 to-gray-800 relative overflow-hidden">
-            <!-- Background Elements -->
-            <div class="absolute inset-0 bg-black/20"></div>
-
-            <!-- Decorative Devices Left Side -->
-            <div class="absolute left-8 top-8 w-32 h-32 opacity-60">
-                <div
-                    class="w-full h-full bg-gradient-to-br from-purple-400 to-blue-500 rounded-lg transform rotate-12 shadow-2xl">
-                </div>
-            </div>
-            <div class="absolute left-16 top-24 w-24 h-24 opacity-50">
-                <div
-                    class="w-full h-full bg-gradient-to-br from-blue-300 to-white rounded-lg transform -rotate-6 shadow-xl">
-                </div>
-            </div>
-
-            <!-- Decorative Devices Right Side -->
-            <div class="absolute right-12 top-12 w-20 h-32 opacity-70">
-                <div
-                    class="w-full h-full bg-gradient-to-br from-purple-500 to-pink-400 rounded-2xl transform rotate-12 shadow-2xl">
-                </div>
-            </div>
-            <div class="absolute right-8 top-32 w-16 h-16 opacity-60">
-                <div class="w-full h-full bg-gradient-to-br from-rose-300 to-pink-300 rounded-full shadow-xl"></div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="relative z-10 max-w-4xl mx-auto text-center px-6">
-                <!-- Main Title -->
-                <h2 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Big
-                        Summer</span>
-                    <span class="text-white"> Sale</span>
-                </h2>
-
-                <!-- Subtitle -->
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                    Discover exclusive luxury timepieces with incredible discounts. Premium craftsmanship meets
-                    unbeatable prices.
-                </p>
-
-                <!-- Call to Action Button -->
-                <button
-                    class="bg-gray-700 text-white px-8 py-4 rounded-lg border-2 border-white/30 hover:bg-gray-600 hover:border-white/50 transition-all duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    Shop Now
-                </button>
-
-                <!-- Additional Info -->
-                <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-gray-400">
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Free Shipping</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Limited Time Offer</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <span>Premium Quality</span>
+        <div class="max-w-7xl mx-auto my-12">
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Watch 1 - Chronometer -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800"
+                        alt="Glashütte Chronometer"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">Chronometer</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bottom Decorative Elements -->
-            <div
-                class="absolute bottom-8 left-1/4 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-40 animate-pulse">
+                <!-- Watch 2 - Classic Dial -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=800"
+                        alt="Glashütte Classic"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">Senator Excellence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 3 - Moonphase -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1622434641406-a158123450f9?w=800"
+                        alt="Glashütte Moonphase"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">PanoMaticLunar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 4 - Date Display -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=800"
+                        alt="Glashütte Date"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">Seventies Panorama Date</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 5 - Moon Phase Detail -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1511370235399-1802cae1d32f?w=800"
+                        alt="Glashütte Moon Detail"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">PanoReserve</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 6 - Sport Watch -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=800"
+                        alt="Glashütte Sport"
+                        class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="text-sm font-light">Glashütte Original</p>
+                            <p class="text-lg font-semibold">SeaQ</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="absolute bottom-12 right-1/4 w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-50 animate-pulse"
-                style="animation-delay: 1s;"></div>
+        </div>
+
+        <section class="w-full px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Catalogue Card -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img
+                        src="images/w11.jpg"
+                        alt="Watch mechanism"
+                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <p class="text-sm font-light mb-2">Order a catalogue</p>
+                        <h2 class="text-2xl font-light mb-6">Glashütte Original catalogue</h2>
+                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                            Order now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Newsletter Card -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img
+                        src="images/w12.jpg"
+                        alt="Watchmaker at work"
+                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <p class="text-sm font-light mb-2">Receive exciting and exclusive news</p>
+                        <h2 class="text-2xl font-light mb-6">Subscribe to newsletter</h2>
+                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                            Subscribe now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Third Card -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                    <img
+                        src="images/w13.jpg"
+                        alt="Luxury watch"
+                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-8 text-white">
+                        <p class="text-sm font-light mb-2">Explore our collection</p>
+                        <h2 class="text-2xl font-light mb-6">Discover timepieces</h2>
+                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                            View more
+                        </button>
+                    </div>
+                </div>
+            </div>
         </section>
-
 
     </x-slot>
 </x-user_navbar>

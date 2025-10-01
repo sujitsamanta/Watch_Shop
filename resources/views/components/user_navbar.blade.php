@@ -49,6 +49,12 @@
         }
     </script>
     <style>
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+
+     
+
         .gradient-bg {
             background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);
         }
@@ -320,7 +326,7 @@
                             if (Auth::check()) {
                             $productCount = Cart::where('user_id', Auth::id())->count();
                             }
-                            
+
                             @endphp
                             <span
                                 class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">{{ $productCount }}</span>
@@ -875,8 +881,6 @@
     </script>
     <!-- sweet alert2 end -->
     <script>
-        
-
         //  account photo start
         const photoInput = document.getElementById("photoInput");
         const profilePhoto = document.getElementById("profilePhoto");

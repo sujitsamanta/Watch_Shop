@@ -34,6 +34,10 @@
 		}
 	</script>
 	<style>
+		::-webkit-scrollbar {
+			width: 0;
+		}
+
 		.notify {
 			z-index: 1001 !important;
 		}
@@ -245,153 +249,153 @@
 	<script>
 		// $(document).ready(function() {
 
-			// log out start
-			$(".admin_logout").on("click", function(e) {
-				e.preventDefault(); // Stop default logout immediately
+		// log out start
+		$(".admin_logout").on("click", function(e) {
+			e.preventDefault(); // Stop default logout immediately
 
-				// var form = $(this).parents("form"); 
+			// var form = $(this).parents("form"); 
 
-				let url = $(this).attr("href"); // /logout
+			let url = $(this).attr("href"); // /logout
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "You will be logged out from the system.",
-					icon: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, log me out!"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						// Redirect to logout
-						// form.submit();
-						window.location.href = url;
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "You will be logged out from the system.",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, log me out!"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					// Redirect to logout
+					// form.submit();
+					window.location.href = url;
+				}
 			});
-			// log out end
+		});
+		// log out end
 
 
-			// catagory add start
+		// catagory add start
 
-			$(".add_category").on("click", function(e) {
-				e.preventDefault(); // stop direct submit
+		$(".add_category").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
 
-				let form = $(this).closest("form")[0]; // get native form element
+			let form = $(this).closest("form")[0]; // get native form element
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "Do you want to add this category?",
-					icon: "question",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, add it!",
-					cancelButtonText: "Cancel"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						form.submit(); // ✅ native submit
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to add this category?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, add it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
 			});
-			// catagory add end
+		});
+		// catagory add end
 
-			// add_product add start
+		// add_product add start
 
-			$(".add_product").on("click", function(e) {
-				e.preventDefault(); // stop direct submit
+		$(".add_product").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
 
-				let form = $(this).closest("form")[0]; // get native form element
+			let form = $(this).closest("form")[0]; // get native form element
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "Do you want to add this Product?",
-					icon: "question",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, add it!",
-					cancelButtonText: "Cancel"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						form.submit(); // ✅ native submit
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to add this Product?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, add it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
 			});
-			// add_product add end
+		});
+		// add_product add end
 
 
-			// add_product add start
+		// add_product add start
 
-			$(".update_product").on("click", function(e) {
-				e.preventDefault(); // stop direct submit
+		$(".update_product").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
 
-				let form = $(this).closest("form")[0]; // get native form element
+			let form = $(this).closest("form")[0]; // get native form element
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "Do you want to update this Product?",
-					icon: "question",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, add it!",
-					cancelButtonText: "Cancel"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						form.submit(); // ✅ native submit
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to update this Product?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, add it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
 			});
-			// add_product update end
+		});
+		// add_product update end
 
-			// product delete start
+		// product delete start
 
-			$(".product_delete").on("click", function(e) {
-				e.preventDefault(); // stop direct submit
+		$(".product_delete").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
 
-				let form = $(this).closest("form")[0]; // get native form element
+			let form = $(this).closest("form")[0]; // get native form element
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "Do you want to delete this Product?",
-					icon: "question",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, delete it!",
-					cancelButtonText: "Cancel"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						form.submit(); // ✅ native submit
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to delete this Product?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
 			});
-			// product delete end
+		});
+		// product delete end
 
-			// product delete start
+		// product delete start
 
-			$(".admin_user_account_delete_btn").on("click", function(e) {
-				e.preventDefault(); // stop direct submit
+		$(".admin_user_account_delete_btn").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
 
-				let form = $(this).closest("form")[0]; // get native form element
+			let form = $(this).closest("form")[0]; // get native form element
 
-				Swal.fire({
-					title: "Are you sure?",
-					text: "Do you want to delete this User Account?",
-					icon: "question",
-					showCancelButton: true,
-					confirmButtonColor: "#3085d6",
-					cancelButtonColor: "#d33",
-					confirmButtonText: "Yes, delete it!",
-					cancelButtonText: "Cancel"
-				}).then((result) => {
-					if (result.isConfirmed) {
-						form.submit(); // ✅ native submit
-					}
-				});
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to delete this User Account?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
 			});
-			// product delete end
+		});
+		// product delete end
 
 		// });
 	</script>
