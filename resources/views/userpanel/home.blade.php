@@ -872,7 +872,7 @@
         </div>
 
         <!-- Grab the best deal start  -->
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto my-6">
             <!-- Header -->
             <div class="flex items-center justify-between mb-8">
                 <div>
@@ -933,7 +933,7 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto my-12">
+        <div class="max-w-7xl mx-auto my-10">
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Watch 1 - Chronometer -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
@@ -1066,6 +1066,7 @@
                 </div>
             </div>
         </section>
+
 
     </x-slot>
 </x-user_navbar>

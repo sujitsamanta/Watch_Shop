@@ -49,11 +49,21 @@
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+
+        }
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
         ::-webkit-scrollbar {
             width: 0;
         }
 
-     
+
 
         .gradient-bg {
             background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);

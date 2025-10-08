@@ -305,9 +305,12 @@ class UserController extends Controller
     {
         $product_details = Product::findOrFail($product_id);
 
-          $related_products = Product::where('category_id', $product_details->category_id)->get();
+        $related_products = Product::where('category_id', $product_details->category_id)->get();
+        $all_products = Product::with('category')
+                ->inRandomOrder()
+                ->get();
 
-        return view('userpanel.single_product_view', compact('product_details','related_products'));
+        return view('userpanel.single_product_view', compact('product_details','related_products','all_products'));
 
     }
     public function add_to_cart($product_id)
