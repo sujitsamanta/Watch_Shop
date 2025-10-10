@@ -165,10 +165,15 @@
                                     <i class="fas fa-check mr-2"></i>
                                     Place Order
                                 </button>
+
                                 <button class="w-full py-2 px-4 bg-lav2 text-side rounded-lg font-medium hover:bg-purple-light transition-colors text-sm">
-                                    <i class="fas fa-arrow-left mr-2"></i>
-                                    Back to Cart
+                                    <a href="/add_to_cart_view">
+
+                                        <i class="fas fa-arrow-left mr-2"></i>
+                                        Back to Cart
+                                    </a>
                                 </button>
+
                             </div>
 
                             <!-- Security Notice -->

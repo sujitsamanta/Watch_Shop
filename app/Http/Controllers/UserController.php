@@ -18,6 +18,8 @@ use App\Models\Categorie;
 
 
 
+
+
 class UserController extends Controller
 {
     public function signin_submit(Request $request)
