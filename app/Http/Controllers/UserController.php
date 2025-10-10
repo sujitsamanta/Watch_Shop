@@ -309,11 +309,10 @@ class UserController extends Controller
 
         $related_products = Product::where('category_id', $product_details->category_id)->get();
         $all_products = Product::with('category')
-                ->inRandomOrder()
-                ->get();
+            ->inRandomOrder()
+            ->get();
 
-        return view('userpanel.single_product_view', compact('product_details','related_products','all_products'));
-
+        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products'));
     }
     public function add_to_cart($product_id)
     {
@@ -467,7 +466,7 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function order_checkout(Request $request)
+    public function order_checkout()
     {
         $user_id = Auth::id();
 
@@ -476,22 +475,36 @@ class UserController extends Controller
             ->where('user_id', $user_id)
             ->get();
 
+        if ($cart_product->isEmpty()) {
 
-        // Calculate subtotal (sum of all products × their quantities)
-        $subtotal = $cart_product->sum(function ($item) {
-            return $item->product->price * $item->quantity;
-        });
+            return view('userpanel.add_to_cart_view', compact('cart_product'));
+        } else {
+            // Get cart with related product
+            $cart_product = Cart::with('product')
+                ->where('user_id', $user_id)
+                ->get();
 
-        // Shipping cost (you can set logic here)
-        $shipping = 40;
 
-        // Final total
-        $total = $subtotal + $shipping;
+            // Calculate subtotal (sum of all products × their quantities)
+            $subtotal = $cart_product->sum(function ($item) {
+                return $item->product->price * $item->quantity;
+            });
 
-        // deafault address
-        $default_address = Auth::user()->defaultAddress;
+            // Shipping cost (you can set logic here)
+            $shipping = 40;
 
-        // Pass all values to view
-        return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'default_address'));
+            // Final total
+            $total = $subtotal + $shipping;
+
+            // deafault address
+            $default_address = Auth::user()->defaultAddress;
+
+            // Pass all values to view
+            return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'default_address'));
+        }
+    }
+
+    public function confirm_order(){
+        return view('userpanel.confirm_order_view');
     }
 }

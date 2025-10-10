@@ -29,6 +29,8 @@ Route::post('/add_to_cart_clear_all_product', [UserController::class,'add_to_car
 
 Route::get('/order_checkout', [UserController::class,'order_checkout'])->middleware('userMiddleware');
 
+Route::post('/confirm_order', [UserController::class,'confirm_order'])->middleware('userMiddleware');
+
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 

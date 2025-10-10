@@ -21,7 +21,7 @@
                             <div class="divide-y divide-gray-200" id="products-container">
                                 @if ($cart_product->isNotEmpty())
 
-                                 @foreach($cart_product as $product)
+                                @foreach($cart_product as $product)
                                 <!-- Product 1 - iPhone -->
                                 <a href="/single_product_view/{{ $product->product->id }}">
 
@@ -77,9 +77,9 @@
 
                                 @else
                                 <h1 class="text-center p-5 text-lg font-medium text-gray-500">Ples add to cart product</h1>
-                                
+
                                 @endif
-                               
+
                             </div>
                         </div>
 

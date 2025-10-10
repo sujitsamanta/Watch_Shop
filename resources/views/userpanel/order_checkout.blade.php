@@ -161,18 +161,25 @@
 
                             <!-- Action Buttons -->
                             <div class="space-y-2">
-                                <button class="w-full py-3 px-4 bg-purple-medium text-white rounded-lg font-semibold hover:bg-purple-dark transition-colors text-sm">
-                                    <i class="fas fa-check mr-2"></i>
-                                    Place Order
-                                </button>
+                                <form action="/confirm_order" method="post">
+                                    @csrf
+                                    <button type="submit" class="confirm_order w-full py-3 px-4 bg-purple-medium text-white rounded-lg font-semibold hover:bg-purple-dark transition-colors text-sm">
+                                        <i class="fas fa-check mr-2"></i>
+                                        Place Order
+                                    </button>
 
-                                <button class="w-full py-2 px-4 bg-lav2 text-side rounded-lg font-medium hover:bg-purple-light transition-colors text-sm">
-                                    <a href="/add_to_cart_view">
+                                </form>
+
+
+                                <a href="/add_to_cart_view">
+
+                                    <button class="w-full mt-3 py-3 px-4 bg-lav2 text-side rounded-lg font-medium hover:bg-purple-light transition-colors text-sm">
 
                                         <i class="fas fa-arrow-left mr-2"></i>
                                         Back to Cart
-                                    </a>
-                                </button>
+                                    </button>
+                                </a>
+
 
                             </div>
 

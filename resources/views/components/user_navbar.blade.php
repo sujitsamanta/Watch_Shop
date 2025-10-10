@@ -888,6 +888,30 @@
             });
         });
         // delete address end
+
+        // confirm order start
+
+        $(".confirm_order").on("click", function(e) {
+            e.preventDefault(); // stop direct submit
+
+            let form = $(this).closest("form")[0]; // get native form element
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to confirm your order?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, confirm order!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // ✅ native submit
+                }
+            });
+        });
+        // confirm order end
     </script>
     <!-- sweet alert2 end -->
     <script>
