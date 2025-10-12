@@ -301,7 +301,7 @@
                             <a href="/account"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">My
                                 Profile</a>
-                            <a href="#"
+                            <a href="/all_orders_view"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Orders</a>
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Wishlist</a>

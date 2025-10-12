@@ -118,126 +118,122 @@
         </div>
 
         <!-- Main Content -->
-        <div id="mainContent" class="max-w-2xl mx-auto content-hidden">
-            <!-- Main Card -->
-            <div class="bg-white rounded-xl shadow-lg p-6">
-                <!-- Success Header -->
-                <div class="flex items-center gap-4 mb-5 pb-5 border-b border-purple-light">
-                    <div class="flex-shrink-0">
-                        <svg class="w-12 h-12" viewBox="0 0 52 52">
-                            <circle cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2" />
-                            <path fill="none" stroke="#9D8DF1" stroke-width="3" d="M14 27l7 7 16-16" />
-                        </svg>
-                    </div>
-                    <div class="flex-1">
-                        <h1 class="text-2xl font-bold text-purple-darkest">Order Confirmed!</h1>
-                        <p class="text-side text-sm">Order #ORD-2024-10532</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-xs text-side">Order Date</p>
-                        <p class="font-semibold text-purple-dark">Oct 10, 2025</p>
-                    </div>
+    <div id="mainContent" class="max-w-5xl mx-auto content-hidden mt-5">
+        <!-- Main Card -->
+        <div class="bg-white rounded-xl shadow-lg p-4">
+            <!-- Success Header -->
+            <div class="flex items-center gap-4 mb-3 pb-3 border-b border-purple-light">
+                <div class="flex-shrink-0">
+                    <svg class="w-12 h-12" viewBox="0 0 52 52">
+                        <circle cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2"/>
+                        <path fill="none" stroke="#9D8DF1" stroke-width="3" d="M14 27l7 7 16-16"/>
+                    </svg>
                 </div>
-
-                <!-- Delivery Info -->
-                <div class="bg-lav1 rounded-lg p-4 mb-5">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                            </svg>
-                            <div>
-                                <p class="text-xs text-side">Estimated Delivery</p>
-                                <p class="font-bold text-purple-darkest">Oct 15 - Oct 17</p>
-                            </div>
-                        </div>
-                        <button class="text-purple-medium text-sm font-semibold hover:text-purple-dark">Track</button>
-                    </div>
+                <div class="flex-1">
+                    <h1 class="text-2xl font-bold text-purple-darkest">Order Confirmed!</h1>
+                    <p class="text-side text-sm">Order #{{ $order->order_number }}</p>
                 </div>
-
-                <!-- Order Items -->
-                <div class="mb-5">
-                    <h2 class="text-sm font-bold text-purple-darkest mb-3">Items Ordered</h2>
-
-                    <div class="space-y-3">
-                        <div class="flex gap-3">
-                            <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
-                                <svg class="w-7 h-7 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                                </svg>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <h3 class="font-semibold text-sm text-purple-darkest">Premium Wireless Headphones</h3>
-                                <p class="text-xs text-side">Black | Qty: 1</p>
-                            </div>
-                            <div class="font-bold text-purple-darkest">$149.99</div>
-                        </div>
-
-                        <div class="flex gap-3">
-                            <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
-                                <svg class="w-7 h-7 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <h3 class="font-semibold text-sm text-purple-darkest">Phone Case Premium</h3>
-                                <p class="text-xs text-side">Purple | Qty: 2</p>
-                            </div>
-                            <div class="font-bold text-purple-darkest">$59.98</div>
-                        </div>
-                    </div>
+                <div class="text-right">
+                    <p class="text-xs text-side">Order Date</p>
+                    <p class="font-semibold text-purple-dark">{{ $order->created_at->format('M d, Y') }}</p>
                 </div>
-
-                <!-- Order Summary -->
-                <div class="bg-lav1 rounded-lg p-4 mb-5">
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between text-side">
-                            <span>Subtotal</span>
-                            <span>$209.97</span>
-                        </div>
-                        <div class="flex justify-between text-side">
-                            <span>Shipping</span>
-                            <span>$5.99</span>
-                        </div>
-                        <div class="flex justify-between text-side">
-                            <span>Tax</span>
-                            <span>$17.40</span>
-                        </div>
-                        <div class="border-t border-purple-light pt-2 flex justify-between items-center">
-                            <span class="font-bold text-purple-darkest">Total</span>
-                            <span class="text-xl font-bold text-purple-medium">$233.36</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Info Grid -->
-                <div class="grid grid-cols-2 gap-4 mb-5">
-                    <div>
-                        <p class="text-xs text-side mb-1">Shipping To</p>
-                        <p class="text-sm font-semibold text-purple-dark">John Doe</p>
-                        <p class="text-xs text-side">123 Main St, NY 10001</p>
-                    </div>
-                    <div>
-                        <p class="text-xs text-side mb-1">Payment</p>
-                        <p class="text-sm font-semibold text-purple-dark">Visa •••• 4242</p>
-                        <p class="text-xs text-green-600">✓ Paid</p>
-                    </div>
-                </div>
-
-                <!-- Actions -->
-                <div class="flex gap-3">
-                    <button class="flex-1 bg-purple-medium hover:bg-purple-dark text-white font-semibold py-2.5 rounded-lg transition">
-                        View Details
-                    </button>
-                    <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark font-semibold py-2.5 rounded-lg transition">
-                        Continue Shopping
-                    </button>
-                </div>
-
-                <!-- Email Notice -->
-                <p class="text-center text-xs text-side mt-4">Confirmation sent to johndoe@email.com</p>
             </div>
+
+            <!-- Delivery Info -->
+            <div class="bg-lav1 rounded-lg p-2.5 mb-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                        </svg>
+                        <div>
+                            <p class="text-xs text-side">Estimated Delivery</p>
+                            <p class="font-bold text-purple-darkest">{{ now()->addDays(5)->format('M d') }} - {{ now()->addDays(7)->format('M d') }}</p>
+                        </div>
+                    </div>
+                    <button class="text-purple-medium text-sm font-semibold hover:text-purple-dark">Track</button>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="mb-2">
+                <h2 class="text-sm font-bold text-purple-darkest mb-1.5">Items Ordered</h2>
+                
+                <div class="space-y-1.5">
+                    @foreach ($order->items as $item)
+                    <div class="flex gap-3">
+                        <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
+                            <img src="{{ url('storage/products_images/' . $item->product->image) }}" class="w-10 h-10 object-cover rounded" alt="{{ $item->product->name }}">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-sm text-purple-darkest">{{ $item->product->name }}</h3>
+                            <p class="text-xs text-side">Qty: {{ $item->quantity }}</p>
+                        </div>
+                        <div class="font-bold text-purple-darkest">₹{{ number_format($item->price * $item->quantity, 2) }}</div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="bg-lav1 rounded-lg p-2.5 mb-2">
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between text-side">
+                        <span>Subtotal</span>
+                        <span>₹{{ number_format($order->subtotal, 2) }}</span>
+                    </div>
+                    <div class="flex justify-between text-side">
+                        <span>Shipping</span>
+                        <span>₹{{ number_format($order->shipping_cost, 2) }}</span>
+                    </div>
+                    <div class="border-t border-purple-light pt-2 flex justify-between items-center">
+                        <span class="font-bold text-purple-darkest">Total</span>
+                        <span class="text-xl font-bold text-purple-medium">₹{{ number_format($order->total, 2) }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="grid grid-cols-2 gap-4 mb-2">
+                <div>
+                    <p class="text-xs text-side mb-1">Shipping To</p>
+                    @if ($default_address)
+                    <p class="text-sm font-semibold text-purple-dark">{{ $default_address->full_name }}</p>
+                    <p class="text-xs text-side">
+                        {{ $default_address->street_address }},
+                        @if ($default_address->apartment_unit)
+                        {{ $default_address->apartment_unit }},
+                        @endif
+                        {{ $default_address->city }}, {{ $default_address->state }} - {{ $default_address->zip_code }}
+                    </p>
+                    <p class="text-xs text-side">PIN: {{ $default_address->pin_number }}</p>
+                    <p class="text-xs text-side">Phone: {{ $default_address->phone_number }}</p>
+                    <p class="text-xs text-side">{{ $default_address->country }}</p>
+                    @else
+                    <p class="text-xs text-red-500">No default address set.</p>
+                    @endif
+                </div>
+                <div>
+                    <p class="text-xs text-side mb-1">Payment</p>
+                    <p class="text-sm font-semibold text-purple-dark">{{ strtoupper($order->payment_method) }}</p>
+                    <p class="text-xs text-green-600">✓ {{ $order->status }}</p>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex gap-3">
+                <a href="/orders" class="flex-1 bg-purple-medium hover:bg-purple-dark text-white font-semibold py-2.5 rounded-lg transition text-center">
+                    View All Orders
+                </a>
+                <a href="/home" class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark font-semibold py-2.5 rounded-lg transition text-center">
+                    Continue Shopping
+                </a>
+            </div>
+
+            <!-- Email Notice -->
+            <p class="text-center text-xs text-side mt-2">Confirmation sent to {{ $order->user->email ?? 'your email' }}</p>
         </div>
+
 
         <!-- Progress Indicator -->
         <div class="my-8 flex items-center justify-center space-x-4 text-xs">
@@ -246,13 +242,13 @@
                 <span>Cart</span>
             </div>
             <div class="w-8 h-0.5 bg-green-600"></div>
-            <div class="flex items-center space-x-2 text-purple-medium">
-                <i class="fas fa-circle"></i>
+            <div class="flex items-center space-x-2 text-green-600">
+                <i class="fas fa-check-circle"></i>
                 <span class="font-semibold">Checkout</span>
             </div>
             <div class="w-8 h-0.5 bg-green-600"></div>
-            <div class="flex items-center space-x-2 text-peri">
-                <i class="far fa-circle"></i>
+            <div class="flex items-center space-x-2 text-green-600">
+                <i class="fas fa-check-circle"></i>
                 <span>Confirmation</span>
             </div>
         </div>

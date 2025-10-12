@@ -14,6 +14,11 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Categorie;
+use App\Models\Order;
+use App\Models\OrderItem;
+use Illuminate\Support\Str;
+
+
 
 
 
@@ -504,7 +509,65 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order(){
-        return view('userpanel.confirm_order_view');
+    public function confirm_order()
+    {
+        $user_id = Auth::id();
+        // Get default address
+        $default_address = Auth::user()->defaultAddress;
+
+        // Get cart with related product
+        $cart_product = Cart::with('product')->where('user_id', $user_id)->get();
+
+        if ($cart_product->isEmpty()) {
+            return redirect()->back()->with('error', 'Cart is empty!');
+        }
+
+        // Calculate subtotal and totals
+        $subtotal = $cart_product->sum(fn($item) => $item->product->price * $item->quantity);
+        $shipping = 40;
+        $total = $subtotal + $shipping;
+
+        // Create order
+        $order = Order::create([
+            'user_id' => $user_id,
+            'order_number' => 'ORD-' . strtoupper(Str::random(8)),
+            'subtotal' => $subtotal,
+            'shipping_cost' => $shipping,
+            'total' => $total,
+            'status' => 'confirmed',
+            'payment_method' => 'COD',
+        ]);
+
+        // Create order items
+        foreach ($cart_product as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'price' => $item->product->price,
+            ]);
+        }
+
+        // Delete cart after order
+        Cart::where('user_id', $user_id)->delete();
+
+        // Load order with relationships
+        $order->load('items.product', 'user');
+
+        // Pass address to view
+        return view('userpanel.confirm_order_view', [
+            'order' => $order->load('items.product', 'user'),
+            'default_address' => $default_address,
+        ]);
+    }
+
+    public function all_orders_view()
+    {
+        $orders = auth()->user()->orders()
+            ->with('items.product') // eager load products for each order
+            ->orderBy('created_at', 'desc')
+            ->paginate(4); // for pagination
+
+        return view('userpanel.all_orders_view', compact('orders'));
     }
 }

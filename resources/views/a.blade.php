@@ -102,7 +102,7 @@
         }
     </script>
 </head>
-<body class="bg-lav1 py-6 px-4">
+<body class="bg-lav1 py-4 px-4">
     <!-- Animation Overlay -->
     <div id="animationOverlay">
         <div class="text-center">
@@ -118,11 +118,11 @@
     </div>
 
     <!-- Main Content -->
-    <div id="mainContent" class="max-w-2xl mx-auto content-hidden">
+    <div id="mainContent" class="max-w-5xl mx-auto content-hidden">
         <!-- Main Card -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
+        <div class="bg-white rounded-xl shadow-lg p-5">
             <!-- Success Header -->
-            <div class="flex items-center gap-4 mb-5 pb-5 border-b border-purple-light">
+            <div class="flex items-center gap-4 mb-4 pb-4 border-b border-purple-light">
                 <div class="flex-shrink-0">
                     <svg class="w-12 h-12" viewBox="0 0 52 52">
                         <circle cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2"/>
@@ -140,7 +140,7 @@
             </div>
 
             <!-- Delivery Info -->
-            <div class="bg-lav1 rounded-lg p-4 mb-5">
+            <div class="bg-lav1 rounded-lg p-3 mb-4">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <svg class="w-5 h-5 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,10 +156,10 @@
             </div>
 
             <!-- Order Items -->
-            <div class="mb-5">
-                <h2 class="text-sm font-bold text-purple-darkest mb-3">Items Ordered</h2>
+            <div class="mb-3">
+                <h2 class="text-sm font-bold text-purple-darkest mb-2">Items Ordered</h2>
                 
-                <div class="space-y-3">
+                <div class="space-y-2">
                     <div class="flex gap-3">
                         <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
                             <svg class="w-7 h-7 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -189,7 +189,7 @@
             </div>
 
             <!-- Order Summary -->
-            <div class="bg-lav1 rounded-lg p-4 mb-5">
+            <div class="bg-lav1 rounded-lg p-3 mb-3">
                 <div class="space-y-2 text-sm">
                     <div class="flex justify-between text-side">
                         <span>Subtotal</span>
@@ -211,7 +211,7 @@
             </div>
 
             <!-- Info Grid -->
-            <div class="grid grid-cols-2 gap-4 mb-5">
+            <div class="grid grid-cols-2 gap-4 mb-3">
                 <div>
                     <p class="text-xs text-side mb-1">Shipping To</p>
                     <p class="text-sm font-semibold text-purple-dark">John Doe</p>
@@ -235,7 +235,7 @@
             </div>
 
             <!-- Email Notice -->
-            <p class="text-center text-xs text-side mt-4">Confirmation sent to johndoe@email.com</p>
+            <p class="text-center text-xs text-side mt-3">Confirmation sent to johndoe@email.com</p>
         </div>
     </div>
 

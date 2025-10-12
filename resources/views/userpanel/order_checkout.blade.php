@@ -121,7 +121,9 @@
                             <div class="space-y-3 mb-4">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 bg-lav2 rounded-lg flex items-center justify-center">
-                                        <i class="fas fa-box text-peri text-sm"></i>
+                                        <!-- <i class="fas fa-box text-peri text-sm"></i> -->
+                            <img src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-10 h-10 object-cover rounded" alt="{{ $product->product->name }}">
+
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="font-medium text-side text-sm truncate">{{ $product->product->name }}</p>

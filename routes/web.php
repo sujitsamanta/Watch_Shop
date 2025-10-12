@@ -31,6 +31,9 @@ Route::get('/order_checkout', [UserController::class,'order_checkout'])->middlew
 
 Route::post('/confirm_order', [UserController::class,'confirm_order'])->middleware('userMiddleware');
 
+Route::get('/all_orders_view', [UserController::class,'all_orders_view'])->middleware('userMiddleware');
+
+
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');
 
@@ -48,6 +51,7 @@ Route::post('/login_submit', [UserController::class,'login_submit']);
 Route::get('/logout', [UserController::class,'logout']);
 
 Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
+
 Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
 
