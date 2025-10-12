@@ -32,9 +32,9 @@
                             </div>
                             <div>
                                 @if($order->status == 'pending')
-                                <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-[10px] font-semibold rounded-full">Pending</span>
-                                @elseif($order->status == 'processing')
-                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-semibold rounded-full">Processing</span>
+                                <span class="px-2 py-0.5  bg-red-100 text-red-700 text-[10px] font-semibold rounded-full">Pending</span>
+                                @elseif($order->status == 'confirmed')
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-[10px] font-semibold rounded-full">Confirmed</span>
                                 @elseif($order->status == 'shipped')
                                 <span class="px-2 py-0.5 bg-purple-light text-purple-dark text-[10px] font-semibold rounded-full">Shipped</span>
                                 @elseif($order->status == 'delivered')
@@ -71,15 +71,20 @@
                                 <span class="font-semibold text-purple-dark">Payment:</span> {{ ucfirst($order->payment_method) }}
                             </div>
                             <div class="flex gap-1.5">
-                                <a href="{{ url('/order-details/' . $order->id) }}" class="px-2 py-1 bg-purple-medium hover:bg-purple-dark text-white text-[10px] font-semibold rounded transition">
-                                    Details
-                                </a>
+                                <form action="/order_single_product_details/{{ $order->id }}" method="post">
+                                    @csrf
+                                    <button type="submit"  class="px-2 py-1 bg-purple-medium hover:bg-purple-dark text-white text-[10px] font-semibold rounded transition">
+                                        Details
+                                    </button>
+
+                                </form>
+                              
                                 @if($order->status == 'delivered')
                                 <button class="px-2 py-1 bg-lav2 hover:bg-purple-light text-purple-dark text-[10px] font-semibold rounded transition">
                                     Reorder
                                 </button>
                                 @endif
-                                @if($order->status == 'pending' || $order->status == 'processing')
+                                @if($order->status == 'confirmed' || $order->status == 'shipped')
                                 <button onclick="confirmCancel()" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 text-[10px] font-semibold rounded transition">
                                     Cancel
                                 </button>

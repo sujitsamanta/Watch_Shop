@@ -33,6 +33,9 @@ Route::post('/confirm_order', [UserController::class,'confirm_order'])->middlewa
 
 Route::get('/all_orders_view', [UserController::class,'all_orders_view'])->middleware('userMiddleware');
 
+Route::post('/order_single_product_details/{product_id}', [UserController::class,'order_single_product_details'])->middleware('userMiddleware');
+
+
 
 
 // Route::get('/home', [UserController::class,'home_check'])->middleware('userMiddleware');

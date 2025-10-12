@@ -570,4 +570,18 @@ class UserController extends Controller
 
         return view('userpanel.all_orders_view', compact('orders'));
     }
+
+    public function order_single_product_details($order_id)
+    {
+        // Get default address
+        $default_address = Auth::user()->defaultAddress;
+        // Get the order with its items and related product
+        $order = Order::with('items.product')
+            ->where('id', $order_id)
+            ->firstOrFail();
+            
+        return view('userpanel.order_single_product_details', compact('order', 'default_address'));
+        // return view('userpanel.order_single_product_details');
+
+    }
 }
