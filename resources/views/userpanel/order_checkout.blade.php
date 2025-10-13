@@ -186,6 +186,7 @@
 
                             <!-- Action Buttons -->
                             <div class="space-y-2">
+                                @if ($address)
                                 <form action="/confirm_order/{{ $address->id }}" method="post">
                                     @csrf
                                     <button type="submit" class="confirm_order w-full py-3 px-4 bg-purple-medium text-white rounded-lg font-semibold hover:bg-purple-dark transition-colors text-sm">
@@ -194,6 +195,18 @@
                                     </button>
 
                                 </form>
+                                @else
+                                 <form action="/confirm_order" method="post">
+                                    @csrf
+                                    <button type="submit" class="confirm_order w-full py-3 px-4 bg-purple-medium text-white rounded-lg font-semibold hover:bg-purple-dark transition-colors text-sm">
+                                        <i class="fas fa-check mr-2"></i>
+                                        Place Order
+                                    </button>
+
+                                </form>
+
+                                @endif
+                                
 
 
                                 <a href="/add_to_cart_view">
