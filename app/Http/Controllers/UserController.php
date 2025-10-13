@@ -648,11 +648,13 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order()
+    public function confirm_order($address_id)
     {
         $user_id = Auth::id();
         // Get default address
         $default_address = Auth::user()->defaultAddress;
+
+        // return $address_id;
 
         // Get cart with related product
         $cart_product = Cart::with('product')->where('user_id', $user_id)->get();

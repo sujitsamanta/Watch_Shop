@@ -36,7 +36,7 @@ Route::post('/order_add_address_form_submit', [UserController::class,'order_add_
 Route::post('/order_address_delete/{address_id}', [UserController::class, 'order_address_delete'])->middleware('userMiddleware');
 
 
-Route::post('/confirm_order', [UserController::class,'confirm_order'])->middleware('userMiddleware');
+Route::post('/confirm_order/{address_id}', [UserController::class,'confirm_order'])->middleware('userMiddleware');
 
 Route::get('/all_orders_view', [UserController::class,'all_orders_view'])->middleware('userMiddleware');
 
