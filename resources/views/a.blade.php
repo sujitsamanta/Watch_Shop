@@ -1,284 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmation</title>
+    <title>Orders List</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes checkmark {
-            0% { stroke-dashoffset: 100; }
-            100% { stroke-dashoffset: 0; }
-        }
-        .checkmark-circle {
-            stroke-dasharray: 166;
-            stroke-dashoffset: 166;
-            animation: checkmark 0.6s ease-in-out forwards;
-        }
-        .checkmark-check {
-            stroke-dasharray: 48;
-            stroke-dashoffset: 48;
-            animation: checkmark 0.3s 0.3s ease-in-out forwards;
-        }
-
-        @keyframes scaleIn {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes confetti {
-            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-
-        .success-animation {
-            animation: scaleIn 0.6s ease-out forwards;
-        }
-
-        .content-hidden {
-            opacity: 0;
-        }
-
-        .content-show {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: confetti 3s ease-out forwards;
-        }
-
-        #animationOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #F4EFFF 0%, #F3F0FF 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease-out;
-        }
-
-        #animationOverlay.hide {
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'purple-lightest': '#F3F0FF',
-                        'purple-light': '#E2D8FF',
-                        'purple-medium': '#9D8DF1',
-                        'purple-dark': '#4C4B7C',
-                        'purple-darkest': '#2D2A4A',
-                        'lav1': '#F4EFFF',
-                        'lav2': '#E4DEFF',
-                        'peri': '#A9B4E6',
-                        'side': '#3F4673',
+                        lav1: '#F4EFFF',
+                        lav2: '#E4DEFF',
+                        peri: '#A9B4E6',
+                        side: '#3F4673',
+                        'purple-light': '#E8E2F4',
+                        'purple-medium': '#C8B8E0',
+                        'purple-dark': '#8B7BAD',
+                        'purple-darkest': '#4A4461',
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="bg-lav1 py-4 px-4">
-    <!-- Animation Overlay -->
-    <div id="animationOverlay">
-        <div class="text-center">
-            <div class="success-animation inline-flex items-center justify-center w-32 h-32 rounded-full bg-white shadow-2xl mb-6">
-                <svg class="w-20 h-20" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2"/>
-                    <path class="checkmark-check" fill="none" stroke="#9D8DF1" stroke-width="3" d="M14 27l7 7 16-16"/>
-                </svg>
-            </div>
-            <h1 class="text-4xl font-bold text-purple-darkest mb-2 success-animation" style="animation-delay: 0.3s;">Success!</h1>
-            <p class="text-xl text-side success-animation" style="animation-delay: 0.5s;">Your order has been placed</p>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div id="mainContent" class="max-w-5xl mx-auto content-hidden">
-        <!-- Main Card -->
-        <div class="bg-white rounded-xl shadow-lg p-5">
-            <!-- Success Header -->
-            <div class="flex items-center gap-4 mb-4 pb-4 border-b border-purple-light">
-                <div class="flex-shrink-0">
-                    <svg class="w-12 h-12" viewBox="0 0 52 52">
-                        <circle cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2"/>
-                        <path fill="none" stroke="#9D8DF1" stroke-width="3" d="M14 27l7 7 16-16"/>
-                    </svg>
-                </div>
-                <div class="flex-1">
-                    <h1 class="text-2xl font-bold text-purple-darkest">Order Confirmed!</h1>
-                    <p class="text-side text-sm">Order #ORD-2024-10532</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-xs text-side">Order Date</p>
-                    <p class="font-semibold text-purple-dark">Oct 10, 2025</p>
-                </div>
-            </div>
-
-            <!-- Delivery Info -->
-            <div class="bg-lav1 rounded-lg p-3 mb-4">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
-                        </svg>
-                        <div>
-                            <p class="text-xs text-side">Estimated Delivery</p>
-                            <p class="font-bold text-purple-darkest">Oct 15 - Oct 17</p>
-                        </div>
-                    </div>
-                    <button class="text-purple-medium text-sm font-semibold hover:text-purple-dark">Track</button>
-                </div>
-            </div>
-
-            <!-- Order Items -->
-            <div class="mb-3">
-                <h2 class="text-sm font-bold text-purple-darkest mb-2">Items Ordered</h2>
-                
-                <div class="space-y-2">
-                    <div class="flex gap-3">
-                        <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
-                            <svg class="w-7 h-7 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                            </svg>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-semibold text-sm text-purple-darkest">Premium Wireless Headphones</h3>
-                            <p class="text-xs text-side">Black | Qty: 1</p>
-                        </div>
-                        <div class="font-bold text-purple-darkest">$149.99</div>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
-                            <svg class="w-7 h-7 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h3 class="font-semibold text-sm text-purple-darkest">Phone Case Premium</h3>
-                            <p class="text-xs text-side">Purple | Qty: 2</p>
-                        </div>
-                        <div class="font-bold text-purple-darkest">$59.98</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="bg-lav1 rounded-lg p-3 mb-3">
-                <div class="space-y-2 text-sm">
-                    <div class="flex justify-between text-side">
-                        <span>Subtotal</span>
-                        <span>$209.97</span>
-                    </div>
-                    <div class="flex justify-between text-side">
-                        <span>Shipping</span>
-                        <span>$5.99</span>
-                    </div>
-                    <div class="flex justify-between text-side">
-                        <span>Tax</span>
-                        <span>$17.40</span>
-                    </div>
-                    <div class="border-t border-purple-light pt-2 flex justify-between items-center">
-                        <span class="font-bold text-purple-darkest">Total</span>
-                        <span class="text-xl font-bold text-purple-medium">$233.36</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Info Grid -->
-            <div class="grid grid-cols-2 gap-4 mb-3">
-                <div>
-                    <p class="text-xs text-side mb-1">Shipping To</p>
-                    <p class="text-sm font-semibold text-purple-dark">John Doe</p>
-                    <p class="text-xs text-side">123 Main St, NY 10001</p>
-                </div>
-                <div>
-                    <p class="text-xs text-side mb-1">Payment</p>
-                    <p class="text-sm font-semibold text-purple-dark">Visa •••• 4242</p>
-                    <p class="text-xs text-green-600">✓ Paid</p>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="flex gap-3">
-                <button class="flex-1 bg-purple-medium hover:bg-purple-dark text-white font-semibold py-2.5 rounded-lg transition">
-                    View Details
-                </button>
-                <button class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark font-semibold py-2.5 rounded-lg transition">
-                    Continue Shopping
-                </button>
-            </div>
-
-            <!-- Email Notice -->
-            <p class="text-center text-xs text-side mt-3">Confirmation sent to johndoe@email.com</p>
-        </div>
-    </div>
-
-    <script>
-        // Create confetti particles
-        function createConfetti() {
-            const colors = ['#9D8DF1', '#E2D8FF', '#A9B4E6', '#F3F0FF'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => confetti.remove(), 3000);
-            }
+    <style>
+        /* Custom scrollbar styling */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
         }
 
-        // Start animation sequence
-        window.addEventListener('load', function() {
-            // Trigger confetti after checkmark animation
-            setTimeout(() => {
-                createConfetti();
-            }, 800);
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
 
-            // Hide overlay and show main content
-            setTimeout(() => {
-                const overlay = document.getElementById('animationOverlay');
-                const mainContent = document.getElementById('mainContent');
-                
-                overlay.classList.add('hide');
-                mainContent.classList.remove('content-hidden');
-                mainContent.classList.add('content-show');
-                
-                // Remove overlay from DOM after fade out
-                setTimeout(() => {
-                    overlay.remove();
-                }, 500);
-            }, 2500);
-        });
-    </script>
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Fixed action column */
+        .fixed-actions {
+            position: sticky;
+            right: 0;
+            background: white;
+            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .fixed-actions-header {
+            position: sticky;
+            right: 0;
+            background: #F4EFFF;
+            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+            z-index: 11;
+        }
+    </style>
+</head>
+
+<body class="bg-lav1 p-8">
+    <div class="container mx-auto px-4">
+        <!-- Order Table Container -->
+        <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+            <!-- Table Header -->
+            <div class="bg-side p-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-white">Order List</h2>
+                    <div class="text-white/80 text-sm">
+                        Total Orders: <span class="font-bold text-white">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table with Horizontal Scroll -->
+            <div class="overflow-x-auto custom-scrollbar" style="max-height: 600px;">
+                <table class="w-full min-w-max">
+                    <thead class="bg-lav1 sticky top-0 z-10">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Order ID
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Customer
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Product
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Quantity
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Total Price
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Status
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
+                                Order Date
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap min-w-[200px]">
+                                Shipping Address
+                            </th>
+                            <th class="px-6 py-4 text-center text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap fixed-actions-header">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-lav2 bg-white">
+                        <!-- Order Row 1 -->
+                        <tr class="hover:bg-lav1/30 transition-all duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">#ORD-001</div>
+                                <div class="text-sm text-gray-500">Order ID: 1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                <div class="text-sm text-gray-500">john.smith@email.com</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Apple Watch Series 9</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">2</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">$1598.00</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Delivered
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Oct 10, 2025</div>
+                                <div class="text-sm text-gray-500">10:30 AM</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900 max-w-xs">
+                                    123 Main Street, Apt 4B, New York, NY 10001
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
+                                <div class="flex justify-center space-x-2">
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        View
+                                    </button>
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Order Row 2 -->
+                        <tr class="hover:bg-lav1/30 transition-all duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">#ORD-002</div>
+                                <div class="text-sm text-gray-500">Order ID: 2</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                <div class="text-sm text-gray-500">sarah.j@email.com</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Samsung Galaxy Watch 6</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">$549.00</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                    Shipped
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Oct 11, 2025</div>
+                                <div class="text-sm text-gray-500">02:15 PM</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900 max-w-xs">
+                                    456 Oak Avenue, Suite 200, Los Angeles, CA 90001
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
+                                <div class="flex justify-center space-x-2">
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        View
+                                    </button>
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Order Row 3 -->
+                        <tr class="hover:bg-lav1/30 transition-all duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">#ORD-003</div>
+                                <div class="text-sm text-gray-500">Order ID: 3</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Michael Brown</div>
+                                <div class="text-sm text-gray-500">m.brown@email.com</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Rolex Submariner</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">$8500.00</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    Processing
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Oct 12, 2025</div>
+                                <div class="text-sm text-gray-500">09:45 AM</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900 max-w-xs">
+                                    789 Pine Road, Chicago, IL 60601
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
+                                <div class="flex justify-center space-x-2">
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        View
+                                    </button>
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Order Row 4 -->
+                        <tr class="hover:bg-lav1/30 transition-all duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">#ORD-004</div>
+                                <div class="text-sm text-gray-500">Order ID: 4</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">Emily Davis</div>
+                                <div class="text-sm text-gray-500">emily.d@email.com</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Fitbit Sense 2</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">3</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">$897.00</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    Pending
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Oct 13, 2025</div>
+                                <div class="text-sm text-gray-500">11:20 AM</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900 max-w-xs">
+                                    321 Maple Drive, Houston, TX 77001
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
+                                <div class="flex justify-center space-x-2">
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        View
+                                    </button>
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Order Row 5 -->
+                        <tr class="hover:bg-lav1/30 transition-all duration-200">
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">#ORD-005</div>
+                                <div class="text-sm text-gray-500">Order ID: 5</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">David Wilson</div>
+                                <div class="text-sm text-gray-500">d.wilson@email.com</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Garmin Fenix 7</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-semibold text-green-600">$699.99</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    Cancelled
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">Oct 13, 2025</div>
+                                <div class="text-sm text-gray-500">03:55 PM</div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-900 max-w-xs">
+                                    654 Cedar Lane, Miami, FL 33101
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
+                                <div class="flex justify-center space-x-2">
+                                    <button type="button"
+                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                                        View
+                                    </button>
+                                    <button type="button" disabled
+                                        class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="bg-gradient-to-r from-lav2 to-peri p-4 border-t border-lav2/30">
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-side">
+                        Showing 1–5 of 5 orders
+                    </div>
+                    <div class="flex space-x-2">
+                        <!-- Previous Button -->
+                        <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
+                            Previous
+                        </button>
+
+                        <!-- Page Number -->
+                        <button class="px-3 py-1 rounded-md text-sm font-medium bg-side text-white">
+                            1
+                        </button>
+
+                        <!-- Next Button -->
+                        <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

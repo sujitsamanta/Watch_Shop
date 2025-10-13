@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -198,10 +199,6 @@ class UserController extends Controller
         return view('userpanel.address_view_page', compact('addresses'));
     }
 
-    public function add_address_form()
-    {
-        return view('userpanel.add_address_form');
-    }
 
     public function add_address_form_submit(Request $request)
     {
@@ -222,6 +219,8 @@ class UserController extends Controller
 
         $user = Auth::user();
 
+
+
         if ($request->is_default) {
             // Case 1: User manually set this as default
             Address::where('user_id', $user->id)->update(['is_default' => false]);
@@ -233,7 +232,11 @@ class UserController extends Controller
             ]);
 
             flash()->addSuccess('Address added successfully ⚡️');
-            return redirect()->back();
+
+            return  redirect('/address_view_page');
+
+
+            // return redirect()->back();
         } else {
             // Case 2: User did NOT check default
             $hasDefault = Address::where('user_id', $user->id)
@@ -249,7 +252,8 @@ class UserController extends Controller
                 ]);
 
                 flash()->addSuccess('Address added successfully ⚡️');
-                return redirect()->back();
+
+                return redirect('/address_view_page');
             } else {
                 // Keep it non-default
                 Address::create([
@@ -258,7 +262,8 @@ class UserController extends Controller
                 ]);
 
                 flash()->addSuccess('Address added successfully ⚡️');
-                return redirect()->back();
+
+                return redirect('/address_view_page');
             }
         }
     }
@@ -290,6 +295,8 @@ class UserController extends Controller
 
         // Delete the address
         $address->delete();
+        // return redirect()->back();
+
 
         // If deleted address was default → set another as default
         if ($wasDefault) {
@@ -305,6 +312,9 @@ class UserController extends Controller
                 flash()->addSuccess('Address deleted Succesfuly!..⚡️');
                 return redirect()->back();
             }
+        } else {
+            // return redirect()->back();
+
         }
     }
 
@@ -471,7 +481,7 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-    public function order_checkout()
+    public function order_checkout($address_id = '')
     {
         $user_id = Auth::id();
 
@@ -501,11 +511,140 @@ class UserController extends Controller
             // Final total
             $total = $subtotal + $shipping;
 
-            // deafault address
-            $default_address = Auth::user()->defaultAddress;
+
+
+            // Check if address present or not
+            $hasAddress = Address::where('user_id', $user_id)->exists();
+            if ($hasAddress) {
+                if ($address_id) {
+                    $address = Address::find($address_id);
+                } else {
+                    // deafault address
+                    $address = Auth::user()->defaultAddress;
+                }
+            }
+            else{
+                $address='';
+            }
+
+
+
 
             // Pass all values to view
-            return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'default_address'));
+            return view('userpanel.order_checkout', compact('cart_product', 'subtotal', 'shipping', 'total', 'address'));
+        }
+    }
+
+    public function order_address_view_page()
+    {
+        // $user = Auth::user();
+        $user = Auth::user();
+        $addresses = $user->addresses;  // returns a collection of Address models
+
+        // return $addresses;
+
+        return view('userpanel.order_address_view_page', compact('addresses'));
+        //    return view('userpanel.order_address_view_page');
+    }
+    public function order_add_address_form_submit(Request $request)
+    {
+        $validated = $request->validate([
+            'address_type' => 'required|in:home,office,other',
+            'full_name' => 'required|string',
+            'phone_number' => 'required|string',
+            'street_address' => 'required|string',
+            'apartment_unit' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'pin_number' => 'required|string',
+            'country' => 'required|string',
+            'is_default'     => 'nullable|boolean',
+        ]);
+
+
+        $user = Auth::user();
+
+
+
+        if ($request->is_default) {
+            // Case 1: User manually set this as default
+            Address::where('user_id', $user->id)->update(['is_default' => false]);
+            // $validated['is_default'] = true;
+
+            Address::create([
+                'user_id' => $user->id,
+                ...$validated
+            ]);
+
+            flash()->addSuccess('Address added successfully ⚡️');
+
+            return  redirect('/order_address_view_page');
+
+
+            // return redirect()->back();
+        } else {
+            // Case 2: User did NOT check default
+            $hasDefault = Address::where('user_id', $user->id)
+                ->where('is_default', true)
+                ->exists();
+
+            if (! $hasDefault) {
+                // No default exists → make this one default automatically
+                Address::create([
+                    'user_id' => $user->id,
+                    'is_default' => true,
+                    ...$validated
+                ]);
+
+                flash()->addSuccess('Address added successfully ⚡️');
+
+                return redirect('/order_address_view_page');
+            } else {
+                // Keep it non-default
+                Address::create([
+                    'user_id' => $user->id,
+                    ...$validated
+                ]);
+
+                flash()->addSuccess('Address added successfully ⚡️');
+
+                return redirect('/order_address_view_page');
+            }
+        }
+    }
+    public function order_address_delete($product_id)
+    {
+
+        $user = Auth::user();
+
+        // Find address
+        $address = Address::where('user_id', $user->id)->findOrFail($product_id);
+
+        $wasDefault = $address->is_default;
+
+        // Delete the address
+        $address->delete();
+        // return redirect()->back();
+
+
+        // If deleted address was default → set another as default
+        if ($wasDefault) {
+            $newDefault = Address::where('user_id', $user->id)->first();
+            if ($newDefault) {
+                $newDefault->is_default = true;
+                $newDefault->save();
+
+                flash()->addSuccess('Address deleted Succesfuly!..⚡️');
+                return redirect('/order_address_view_page');
+            } else {
+
+                flash()->addSuccess('Address deleted Succesfuly!..⚡️');
+                return redirect('/order_address_view_page');
+            }
+        } else {
+            // return redirect()->back();
+
         }
     }
 
@@ -579,9 +718,24 @@ class UserController extends Controller
         $order = Order::with('items.product')
             ->where('id', $order_id)
             ->firstOrFail();
-            
+
         return view('userpanel.order_single_product_details', compact('order', 'default_address'));
         // return view('userpanel.order_single_product_details');
 
     }
+
+    // public function cancel_order(Order $order)
+    // {
+    //     // return "dun";
+    //     if ($order->user_id === auth()->id() && in_array($order->status, ['confirmed', 'shipped'])) {
+    //         $order->status = 'cancelled';
+    //         $order->save();
+
+    //         return "dun";
+    //     }
+    //     // return "dun";
+
+    // }
+
+
 }

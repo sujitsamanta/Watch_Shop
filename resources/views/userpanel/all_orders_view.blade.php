@@ -73,21 +73,26 @@
                             <div class="flex gap-1.5">
                                 <form action="/order_single_product_details/{{ $order->id }}" method="post">
                                     @csrf
-                                    <button type="submit"  class="px-2 py-1 bg-purple-medium hover:bg-purple-dark text-white text-[10px] font-semibold rounded transition">
+                                    <button type="submit" class="px-2 py-1 bg-purple-medium hover:bg-purple-dark text-white text-[10px] font-semibold rounded transition">
                                         Details
                                     </button>
 
                                 </form>
-                              
+
                                 @if($order->status == 'delivered')
                                 <button class="px-2 py-1 bg-lav2 hover:bg-purple-light text-purple-dark text-[10px] font-semibold rounded transition">
                                     Reorder
                                 </button>
                                 @endif
                                 @if($order->status == 'confirmed' || $order->status == 'shipped')
-                                <button onclick="confirmCancel()" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 text-[10px] font-semibold rounded transition">
-                                    Cancel
-                                </button>
+                                <form action="/cancel_order/{{ $order }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 text-[10px] font-semibold rounded transition">
+                                        Cancel
+                                    </button>
+
+                                </form>
+
                                 @endif
                             </div>
                         </div>
@@ -150,31 +155,5 @@
             @endif
         </div>
 
-        <script>
-            function confirmCancel(orderId) {
-                if (confirm('Are you sure you want to cancel this order?')) {
-                    fetch(`/orders/${orderId}/cancel`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert('Order cancelled successfully');
-                                location.reload();
-                            } else {
-                                alert('Failed to cancel order');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('An error occurred');
-                        });
-                }
-            }
-        </script>
     </x-slot>
 </x-user_navbar>

@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Categorie;
 use App\Models\Product;
+use App\Models\Order;
 
 
 class AdminController extends Controller
@@ -208,5 +209,15 @@ class AdminController extends Controller
             flash()->addError('Product Update Failed ⚡️');
             return redirect()->back();
         }
+    }
+
+    public function admin_all_orders(){
+        // return view('adminpanel.amin_all_orders');
+         $orders = Order::with(['user', 'items.product']) // Eager load relations
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+
+        return view('adminpanel.admin_all_orders', compact('orders'));
+        // return "dun";
     }
 }

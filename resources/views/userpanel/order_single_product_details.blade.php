@@ -105,7 +105,7 @@
 
                 <!-- Actions -->
                 <div class="flex gap-3">
-                    <a href="/orders" class="flex-1 bg-purple-medium hover:bg-purple-dark text-white font-semibold py-2.5 rounded-lg transition text-center">
+                    <a href="/all_orders_view" class="flex-1 bg-purple-medium hover:bg-purple-dark text-white font-semibold py-2.5 rounded-lg transition text-center">
                         View All Orders
                     </a>
                     <a href="/home" class="flex-1 bg-lav2 hover:bg-purple-light text-purple-dark font-semibold py-2.5 rounded-lg transition text-center">

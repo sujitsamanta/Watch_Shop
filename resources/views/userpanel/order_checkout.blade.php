@@ -21,23 +21,46 @@
                                 <i class="fas fa-map-marker-alt text-purple-medium mr-2 text-sm"></i>
                                 <span class="font-semibold text-side text-sm">Delivery Address</span>
                             </div>
-                            <button class="text-purple-medium hover:text-purple-dark text-xs font-medium transition-colors px-3 py-1 rounded-md hover:bg-purple-light">
+                            @if($address)
+                            <a href="/order_address_view_page" class="text-purple-medium hover:text-purple-dark text-xs font-medium transition-colors px-3 py-1 rounded-md hover:bg-purple-light">
                                 Edit
-                            </button>
+                            </a>
+                            @else
+                             <a href="/order_address_view_page" class="text-purple-medium hover:text-purple-dark text-xs font-medium transition-colors px-3 py-1 rounded-md hover:bg-purple-light">
+                                Add adress
+                            </a>
+                            @endif
+
                         </div>
 
-                        @if($default_address)
+                        @if($address)
                         <div class="p-4">
                             <div class="flex items-start space-x-3">
                                 <div class="w-6 h-6 bg-purple-medium rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                     <i class="fas fa-home text-white text-xs"></i>
                                 </div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="font-semibold text-side">{{ $default_address->full_name }}</p>
-                                    <p class="text-peri text-sm mt-0.5">{{ $default_address->pin_number }} {{ $default_address->street_address }}, Apt {{ $default_address->apartment_unit }}</p>
-                                    <p class="text-peri text-sm">{{ $default_address->city }}, NY {{ $default_address->zip_code }}</p>
-                                    <p class="text-peri text-sm">{{ $default_address->state }}</p>
-                                    <p class="text-peri text-xs mt-1">+91 {{ $default_address->phone_number }}</p>
+                                    <p class="font-semibold text-side">{{ $address->full_name }}</p>
+                                    <p class="text-peri text-sm mt-0.5">{{ $address->pin_number }} {{ $address->street_address }}, Apt {{ $address->apartment_unit }}</p>
+                                    <p class="text-peri text-sm">{{ $address->city }}, NY {{ $address->zip_code }}</p>
+                                    <p class="text-peri text-sm">{{ $address->state }}</p>
+                                    <p class="text-peri text-xs mt-1">{{ $address->phone_number }}</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 p-2 bg-lav1 rounded border border-lav2">
+                                <p class="text-xs font-medium text-side mb-1">Special Instructions:</p>
+                                <p class="text-xs text-peri">Leave package at front door. Ring doorbell twice.</p>
+                            </div>
+                        </div>
+                        @else
+                        <div class="p-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-6 h-6 bg-purple-medium rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i class="fas fa-home text-white text-xs"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                <h1>add address</h1>
                                 </div>
                             </div>
 
@@ -122,7 +145,7 @@
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 bg-lav2 rounded-lg flex items-center justify-center">
                                         <!-- <i class="fas fa-box text-peri text-sm"></i> -->
-                            <img src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-10 h-10 object-cover rounded" alt="{{ $product->product->name }}">
+                                        <img src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-10 h-10 object-cover rounded" alt="{{ $product->product->name }}">
 
                                     </div>
                                     <div class="flex-1 min-w-0">

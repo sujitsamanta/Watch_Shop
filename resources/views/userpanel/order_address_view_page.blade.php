@@ -115,7 +115,7 @@
                             </button>
                         </form>
 
-                        <form action="/addresses_delete/{{ $address->id }}" method="post">
+                        <form action="/order_address_delete/{{ $address->id }}" method="post">
                             @csrf
                             <button class="addresses_delete_btn px-10 py-1.5 text-red-500 hover:bg-red-100 bg-red-50  rounded-lg text-xs font-medium transition-colors duration-200">
                                 Delete
@@ -124,11 +124,11 @@
 
                     </div>
 
-                    <form action="/addresses_set_default/{{ $address->id }}" method="post">
-                        @csrf
+                    <form action="/order_checkout/{{ $address->id }}" method="get">
+                        
                         <div class="flex space-x-2 mb-3">
-                            <button class="addresses_set_default_btn flex-1 bg-purple-dark hover:bg-purple-light text-white hover:text-black px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
-                                Create Default Address
+                            <button class=" flex-1 bg-purple-dark hover:bg-purple-light text-white hover:text-black px-3 py-1.5 rounded-lg text-xs font-medium transition-colors duration-200">
+                                Use this Address
                             </button>
                         </div>
                     </form>
@@ -146,7 +146,7 @@
 
                 <!-- Add New Address Card -->
 
-                <a href="/add_address_form">
+                <a href="/order_add_address_form">
                     <div class="address-card bg-gradient-to-br from-lav1 to-lav2 rounded-xl border-2 border-dashed border-peri p-16 flex flex-col items-center justify-center max-w-md hover:border-purple-medium cursor-pointer">
                         <div class="text-center">
                             <div class="w-16 h-16 bg-purple-light rounded-full flex items-center justify-center mb-5 mx-auto">

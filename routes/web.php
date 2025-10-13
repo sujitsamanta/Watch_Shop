@@ -28,10 +28,19 @@ Route::post('/add_to_cart_delete_product', [UserController::class,'add_to_cart_d
 Route::post('/add_to_cart_clear_all_product', [UserController::class,'add_to_cart_clear_all_product'])->middleware('userMiddleware');
 
 Route::get('/order_checkout', [UserController::class,'order_checkout'])->middleware('userMiddleware');
+Route::get('/order_checkout/{address_id}', [UserController::class,'order_checkout'])->middleware('userMiddleware');
+
+Route::get('/order_address_view_page', [UserController::class,'order_address_view_page'])->middleware('userMiddleware');
+Route::view('/order_add_address_form', 'userpanel.order_add_address_form')->middleware('userMiddleware');
+Route::post('/order_add_address_form_submit', [UserController::class,'order_add_address_form_submit'])->middleware('userMiddleware');
+Route::post('/order_address_delete/{address_id}', [UserController::class, 'order_address_delete'])->middleware('userMiddleware');
+
 
 Route::post('/confirm_order', [UserController::class,'confirm_order'])->middleware('userMiddleware');
 
 Route::get('/all_orders_view', [UserController::class,'all_orders_view'])->middleware('userMiddleware');
+
+Route::post('/cancel_order/{order}', [UserController::class,'cancel_order'])->middleware('userMiddleware');
 
 Route::post('/order_single_product_details/{product_id}', [UserController::class,'order_single_product_details'])->middleware('userMiddleware');
 
@@ -60,7 +69,7 @@ Route::view('/contact', 'userpanel.contact')->middleware('userMiddleware');
 
 
 // address page
-Route::get('/add_address_form', [UserController::class,'add_address_form'])->middleware('userMiddleware');
+Route::view('/add_address_form', 'userpanel.add_address_form')->middleware('userMiddleware');
 Route::post('/add_address_form_submit', [UserController::class,'add_address_form_submit'])->middleware('userMiddleware');
 
 // address view page
@@ -108,6 +117,9 @@ Route::post('/admin_update_product_submit/{product_id}', [AdminController::class
 
 Route::get('/admin_products_view', [AdminController::class,'admin_products_view'])->middleware('adminMiddleware');
 Route::post('/admin_product_delete/{product_id}', [AdminController::class,'admin_product_delete'])->middleware('adminMiddleware');
+
+
+Route::get('/admin_all_orders', [AdminController::class,'admin_all_orders'])->middleware('adminMiddleware');
 
     
 // });
