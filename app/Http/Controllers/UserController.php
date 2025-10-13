@@ -522,9 +522,8 @@ class UserController extends Controller
                     // deafault address
                     $address = Auth::user()->defaultAddress;
                 }
-            }
-            else{
-                $address='';
+            } else {
+                $address = '';
             }
 
 
@@ -652,7 +651,9 @@ class UserController extends Controller
     {
         $user_id = Auth::id();
         // Get default address
-        $default_address = Auth::user()->defaultAddress;
+        // $default_address = Auth::user()->defaultAddress;
+
+        $address = Address::find($address_id);
 
         // return $address_id;
 
@@ -671,12 +672,13 @@ class UserController extends Controller
         // Create order
         $order = Order::create([
             'user_id' => $user_id,
-            'order_number' => 'ORD-' . strtoupper(Str::random(8)),
+            'address_id' => $address_id,   // ✅ save address_id
+            'order_number' => 'ORD-' . strtoupper(uniqid()),
             'subtotal' => $subtotal,
             'shipping_cost' => $shipping,
             'total' => $total,
-            'status' => 'confirmed',
-            'payment_method' => 'COD',
+            'status' => 'pending',
+            'payment_method' => $request->payment_method ?? 'COD',
         ]);
 
         // Create order items
@@ -698,7 +700,7 @@ class UserController extends Controller
         // Pass address to view
         return view('userpanel.confirm_order_view', [
             'order' => $order->load('items.product', 'user'),
-            'default_address' => $default_address,
+            'default_address' => $address,
         ]);
     }
 
