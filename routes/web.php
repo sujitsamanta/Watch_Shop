@@ -58,6 +58,10 @@ Route::post('/account_photo_update', [UserController::class,'account_photo_updat
 Route::view('/signin', 'userpanel.signin');
 Route::post('/signin_submit', [UserController::class,'signin_submit']);
 
+Route::get('/otp_verification_form', [UserController::class,'otp_verification_form']);
+Route::post('/otp_verification_form_submit', [UserController::class,'otp_verification_form_submit']);
+
+
 Route::view('/login', 'userpanel.login');
 Route::post('/login_submit', [UserController::class,'login_submit']);
 

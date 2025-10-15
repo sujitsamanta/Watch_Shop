@@ -27,6 +27,7 @@ class User extends Authenticatable
         'username',
         'bio',
         'password',
+        'is_verified',
     ];
 
     public function orders()
