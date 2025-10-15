@@ -711,7 +711,7 @@ class UserController extends Controller
 
     public function all_orders_view()
     {
-        $orders = auth()->user()->orders()
+        $orders = Auth::user()->orders()
             ->with('items.product') // eager load products for each order
             ->orderBy('created_at', 'desc')
             ->paginate(4); // for pagination
