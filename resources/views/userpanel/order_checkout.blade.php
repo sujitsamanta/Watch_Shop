@@ -26,7 +26,7 @@
                                 Edit
                             </a>
                             @else
-                             <a href="/order_address_view_page" class="text-purple-medium hover:text-purple-dark text-xs font-medium transition-colors px-3 py-1 rounded-md hover:bg-purple-light">
+                             <a href="/order_add_address_form" class="text-purple-medium hover:text-purple-dark text-xs font-medium transition-colors px-3 py-1 rounded-md hover:bg-purple-light">
                                 Add adress
                             </a>
                             @endif

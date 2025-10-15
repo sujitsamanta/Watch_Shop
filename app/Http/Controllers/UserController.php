@@ -19,12 +19,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Str;
 
-
-
-
-
-
-
+use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller
 {
@@ -646,61 +641,72 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order($address_id)
+    public function confirm_order($address_id='')
     {
+
         $user_id = Auth::id();
         // Get default address
         // $default_address = Auth::user()->defaultAddress;
 
         $address = Address::find($address_id);
 
-        // return $address_id;
+        // return $address;
 
-        // Get cart with related product
-        $cart_product = Cart::with('product')->where('user_id', $user_id)->get();
+        if ($address=='') {
+            flash()->addError('Ples add your Address ⚡️');
+            return redirect('/order_add_address_form');
+        } else {
+            // return "dun";
+            // Get cart with related product
+            $cart_product = Cart::with('product')->where('user_id', $user_id)->get();
 
-        if ($cart_product->isEmpty()) {
-            return redirect()->back()->with('error', 'Cart is empty!');
-        }
+            if ($cart_product->isEmpty()) {
+                return redirect()->back()->with('error', 'Cart is empty!');
+            }
 
-        // Calculate subtotal and totals
-        $subtotal = $cart_product->sum(fn($item) => $item->product->price * $item->quantity);
-        $shipping = 40;
-        $total = $subtotal + $shipping;
+            // Calculate subtotal and totals
+            $subtotal = $cart_product->sum(fn($item) => $item->product->price * $item->quantity);
+            $shipping = 40;
+            $total = $subtotal + $shipping;
 
-        // Create order
-        $order = Order::create([
-            'user_id' => $user_id,
-            'address_id' => $address_id,   // ✅ save address_id
-            'order_number' => 'ORD-' . strtoupper(uniqid()),
-            'subtotal' => $subtotal,
-            'shipping_cost' => $shipping,
-            'total' => $total,
-            'status' => 'pending',
-            'payment_method' => $request->payment_method ?? 'COD',
-        ]);
+            // Create order
+            $order = Order::create([
+                'user_id' => $user_id,
+                'address_id' => $address_id,   // ✅ save address_id
+                'order_number' => 'ORD-' . strtoupper(uniqid()),
+                'subtotal' => $subtotal,
+                'shipping_cost' => $shipping,
+                'total' => $total,
+                'status' => 'pending',
+                'payment_method' => $request->payment_method ?? 'COD',
+            ]);
 
-        // Create order items
-        foreach ($cart_product as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-                'price' => $item->product->price,
+            // Create order items
+            foreach ($cart_product as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->product->price,
+                ]);
+            }
+
+            // Delete cart after order
+            Cart::where('user_id', $user_id)->delete();
+
+            // Load order with relationships
+            $order->load('items.product', 'user');
+
+            // Pass address to view
+            return view('userpanel.confirm_order_view', [
+                'order' => $order->load('items.product', 'user'),
+                'default_address' => $address,
             ]);
         }
 
-        // Delete cart after order
-        Cart::where('user_id', $user_id)->delete();
+        // return $address_id;
 
-        // Load order with relationships
-        $order->load('items.product', 'user');
 
-        // Pass address to view
-        return view('userpanel.confirm_order_view', [
-            'order' => $order->load('items.product', 'user'),
-            'default_address' => $address,
-        ]);
     }
 
     public function all_orders_view()
