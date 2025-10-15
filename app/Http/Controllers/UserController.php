@@ -18,6 +18,8 @@ use App\Models\Categorie;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Support\Str;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -641,7 +643,7 @@ class UserController extends Controller
         }
     }
 
-    public function confirm_order($address_id='')
+    public function confirm_order($address_id = '')
     {
 
         $user_id = Auth::id();
@@ -652,7 +654,7 @@ class UserController extends Controller
 
         // return $address;
 
-        if ($address=='') {
+        if ($address == '') {
             flash()->addError('Ples add your Address ⚡️');
             return redirect('/order_add_address_form');
         } else {
@@ -696,6 +698,13 @@ class UserController extends Controller
 
             // Load order with relationships
             $order->load('items.product', 'user');
+
+            // 3. send email
+            // Mail::to($order->user->email)
+            //     ->send(new OrderConfirmation($order));
+
+            //   Mail::to($order->user->email)->queue(new OrderConfirmation($order));
+            Mail::to($order->user->email)->queue(new OrderConfirmation($order->load('items.product')));
 
             // Pass address to view
             return view('userpanel.confirm_order_view', [
