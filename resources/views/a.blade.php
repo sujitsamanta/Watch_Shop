@@ -1,381 +1,475 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-admin_navbar>
+    <x-slot name="body">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders List</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        lav1: '#F4EFFF',
-                        lav2: '#E4DEFF',
-                        peri: '#A9B4E6',
-                        side: '#3F4673',
-                        'purple-light': '#E8E2F4',
-                        'purple-medium': '#C8B8E0',
-                        'purple-dark': '#8B7BAD',
-                        'purple-darkest': '#4A4461',
-                    }
-                }
+        <style>
+            /* your existing CSS exactly as before */
+            .custom-scrollbar::-webkit-scrollbar {
+                height: 8px;
             }
-        }
-    </script>
-    <style>
-        /* Custom scrollbar styling */
-        .custom-scrollbar::-webkit-scrollbar {
-            height: 8px;
-        }
 
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
 
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 4px;
-        }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
 
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
 
-        /* Fixed action column */
-        .fixed-actions {
-            position: sticky;
-            right: 0;
-            background: white;
-            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
+            .fixed-actions {
+                position: sticky;
+                right: 0;
+                background: white;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 0;
+            }
 
-        .fixed-actions-header {
-            position: sticky;
-            right: 0;
-            background: #F4EFFF;
-            box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
-            z-index: 11;
-        }
-    </style>
-</head>
+            .fixed-actions-header {
+                position: sticky;
+                right: 0;
+                background: #F4EFFF;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 11;
+            }
+        </style>
 
-<body class="bg-lav1 p-8">
-    <div class="container mx-auto px-4">
-        <!-- Order Table Container -->
-        <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
-            <!-- Table Header -->
-            <div class="bg-side p-6">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-xl font-semibold text-white">Order List</h2>
-                    <div class="text-white/80 text-sm">
-                        Total Orders: <span class="font-bold text-white">5</span>
-                    </div>
+        <!-- resources/views/adminpanel/orders/all_orders_view.blade.php -->
+        <div class="container mx-auto px-4">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+                <div class="bg-side p-6 flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-white">All Orders</h2>
+                    <div class="text-white/80 text-sm">Total Orders: <span class="font-bold">{{ $orders->count() }}</span></div>
                 </div>
-            </div>
 
-            <!-- Table with Horizontal Scroll -->
-            <div class="overflow-x-auto custom-scrollbar" style="max-height: 600px;">
-                <table class="w-full min-w-max">
-                    <thead class="bg-lav1 sticky top-0 z-10">
-                        <tr>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Order ID
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Customer
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Product
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Quantity
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Total Price
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Status
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap">
-                                Order Date
-                            </th>
-                            <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap min-w-[200px]">
-                                Shipping Address
-                            </th>
-                            <th class="px-6 py-4 text-center text-xs font-medium text-purple-darkest uppercase tracking-wider whitespace-nowrap fixed-actions-header">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-lav2 bg-white">
-                        <!-- Order Row 1 -->
-                        <tr class="hover:bg-lav1/30 transition-all duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">#ORD-001</div>
-                                <div class="text-sm text-gray-500">Order ID: 1</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">John Smith</div>
-                                <div class="text-sm text-gray-500">john.smith@email.com</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Apple Watch Series 9</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">2</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-semibold text-green-600">$1598.00</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Delivered
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Oct 10, 2025</div>
-                                <div class="text-sm text-gray-500">10:30 AM</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900 max-w-xs">
-                                    123 Main Street, Apt 4B, New York, NY 10001
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
-                                <div class="flex justify-center space-x-2">
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        View
-                                    </button>
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                <div class="overflow-x-auto custom-scrollbar" style="max-height: 600px;">
+                    <table class="w-full min-w-max">
+                        <thead class="bg-lav1 sticky top-0 z-10">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Order ID</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Customer</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Total</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Date</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Shipping Address</th>
+                                <th class="px-6 py-4 text-center text-xs font-medium text-purple-darkest uppercase fixed-actions-header">Actions</th>
+                            </tr>
+                        </thead>
 
-                        <!-- Order Row 2 -->
-                        <tr class="hover:bg-lav1/30 transition-all duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">#ORD-002</div>
-                                <div class="text-sm text-gray-500">Order ID: 2</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
-                                <div class="text-sm text-gray-500">sarah.j@email.com</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Samsung Galaxy Watch 6</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-semibold text-green-600">$549.00</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    Shipped
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Oct 11, 2025</div>
-                                <div class="text-sm text-gray-500">02:15 PM</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900 max-w-xs">
-                                    456 Oak Avenue, Suite 200, Los Angeles, CA 90001
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
-                                <div class="flex justify-center space-x-2">
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        View
-                                    </button>
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        <tbody class="divide-y divide-lav2 bg-white">
+                            @forelse($orders as $order)
+                            <tr class="hover:bg-lav1/30 transition-all duration-200">
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900">#{{ $order->order_number }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ $order->user->name ?? 'N/A' }}</td>
+                                <td class="px-6 py-4 text-sm font-semibold text-green-600">₹{{ number_format($order->total, 2) }}</td>
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                @if($order->status == 'delivered') bg-green-100 text-green-800
+                                @elseif($order->status == 'pending') bg-yellow-100 text-yellow-800
+                                @elseif($order->status == 'canceled') bg-red-100 text-red-800
+                                @else bg-blue-100 text-blue-800 @endif">
+                                        {{ ucfirst($order->status) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ $order->created_at->format('M d, Y h:i A') }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900 max-w-xs">
+                                    {{ $order->address->street_address ?? 'No address' }},
+                                    {{ $order->address->city ?? '' }},
+                                    {{ $order->address->state ?? '' }},
+                                    {{ $order->address->zip_code ?? '' }}
+                                </td>
 
-                        <!-- Order Row 3 -->
-                        <tr class="hover:bg-lav1/30 transition-all duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">#ORD-003</div>
-                                <div class="text-sm text-gray-500">Order ID: 3</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Michael Brown</div>
-                                <div class="text-sm text-gray-500">m.brown@email.com</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Rolex Submariner</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-semibold text-green-600">$8500.00</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    Processing
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Oct 12, 2025</div>
-                                <div class="text-sm text-gray-500">09:45 AM</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900 max-w-xs">
-                                    789 Pine Road, Chicago, IL 60601
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
-                                <div class="flex justify-center space-x-2">
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        View
-                                    </button>
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                <td class="px-6 py-4 text-center fixed-actions">
+                                    <div class="flex justify-center space-x-2">
+                                        <!-- View Button -->
+                                        <a href=""
+                                            class="bg-gradient-to-r from-peri to-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-dark hover:to-purple-darkest transition-all">
+                                            View
+                                        </a>
+                                        <a href=""
+                                            class="bg-gradient-to-r from-peri to-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-dark hover:to-purple-darkest transition-all">
+                                            Accepted
+                                        </a>
 
-                        <!-- Order Row 4 -->
-                        <tr class="hover:bg-lav1/30 transition-all duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">#ORD-004</div>
-                                <div class="text-sm text-gray-500">Order ID: 4</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">Emily Davis</div>
-                                <div class="text-sm text-gray-500">emily.d@email.com</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Fitbit Sense 2</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">3</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-semibold text-green-600">$897.00</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Oct 13, 2025</div>
-                                <div class="text-sm text-gray-500">11:20 AM</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900 max-w-xs">
-                                    321 Maple Drive, Houston, TX 77001
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
-                                <div class="flex justify-center space-x-2">
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        View
-                                    </button>
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Order Row 5 -->
-                        <tr class="hover:bg-lav1/30 transition-all duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">#ORD-005</div>
-                                <div class="text-sm text-gray-500">Order ID: 5</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">David Wilson</div>
-                                <div class="text-sm text-gray-500">d.wilson@email.com</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Garmin Fenix 7</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-mono text-gray-900 bg-gray-100 px-2 py-1 rounded text-center">1</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-semibold text-green-600">$699.99</div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                    Cancelled
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">Oct 13, 2025</div>
-                                <div class="text-sm text-gray-500">03:55 PM</div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900 max-w-xs">
-                                    654 Cedar Lane, Miami, FL 33101
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center fixed-actions">
-                                <div class="flex justify-center space-x-2">
-                                    <button type="button"
-                                        class="bg-gradient-to-r from-peri to-purple-dark hover:from-purple-dark hover:to-purple-darkest text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                                        View
-                                    </button>
-                                    <button type="button" disabled
-                                        class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Table Footer -->
-            <div class="bg-gradient-to-r from-lav2 to-peri p-4 border-t border-lav2/30">
-                <div class="flex justify-between items-center">
-                    <div class="text-sm text-side">
-                        Showing 1–5 of 5 orders
-                    </div>
-                    <div class="flex space-x-2">
-                        <!-- Previous Button -->
-                        <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
-                            Previous
-                        </button>
-
-                        <!-- Page Number -->
-                        <button class="px-3 py-1 rounded-md text-sm font-medium bg-side text-white">
-                            1
-                        </button>
-
-                        <!-- Next Button -->
-                        <button class="px-3 py-1 bg-white/50 text-side rounded-md text-sm font-medium" disabled>
-                            Next
-                        </button>
-                    </div>
+                                        <!-- Cancel Button -->
+                                        @if($order->status != 'canceled')
+                                        <form action="" method="POST" onsubmit="return confirm('Cancel this order?');">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-600 hover:to-red-700 transition-all">
+                                                Cancel
+                                            </button>
+                                        </form>
+                                        @else
+                                        <button disabled class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">
+                                            Canceled
+                                        </button>
+                                        @endif
+                                        
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="text-center py-6 text-gray-500">No orders found.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-</body>
 
-</html>
+
+
+
+
+
+
+    </x-slot>
+
+</x-admin_navbar>
+
+
+
+<x-admin_navbar>
+    <x-slot name="body">
+
+        <style>
+            .custom-scrollbar::-webkit-scrollbar {
+                height: 8px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
+            .fixed-actions {
+                position: sticky;
+                right: 0;
+                background: white;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 0;
+            }
+            .fixed-actions-header {
+                position: sticky;
+                right: 0;
+                background: #F4EFFF;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 11;
+            }
+        </style>
+
+        <div class="container mx-auto px-4">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+                <div class="bg-side p-6 flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-white">All Orders</h2>
+                    <div class="text-white/80 text-sm">Total Orders: <span class="font-bold">{{ $orders->count() }}</span></div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar" style="max-height: 600px;">
+                    <table class="w-full min-w-max">
+                        <thead class="bg-lav1 sticky top-0 z-10">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Order ID</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Customer</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Products</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Total</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Date</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Shipping Address</th>
+                                <th class="px-6 py-4 text-center text-xs font-medium text-purple-darkest uppercase fixed-actions-header">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-lav2 bg-white">
+                            @forelse($orders as $order)
+                            <tr class="hover:bg-lav1/30 transition-all duration-200">
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900">#{{ $order->order_number }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ $order->user->name ?? 'N/A' }}</td>
+
+                                <!-- Show multiple products -->
+                                <td class="px-6 py-4 text-sm text-gray-900">
+                                    <ul class="list-disc pl-4">
+                                        @foreach ($order->items as $item)
+                                            <li>{{ $item->product->name ?? 'Deleted Product' }} × {{ $item->quantity }}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+
+                                <td class="px-6 py-4 text-sm font-semibold text-green-600">₹{{ number_format($order->total, 2) }}</td>
+
+                                <td class="px-6 py-4">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                        @if($order->status == 'delivered') bg-green-100 text-green-800
+                                        @elseif($order->status == 'pending') bg-yellow-100 text-yellow-800
+                                        @elseif($order->status == 'canceled') bg-red-100 text-red-800
+                                        @else bg-blue-100 text-blue-800 @endif">
+                                        {{ ucfirst($order->status) }}
+                                    </span>
+                                </td>
+
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ $order->created_at->format('M d, Y h:i A') }}</td>
+
+                                <td class="px-6 py-4 text-sm text-gray-900 max-w-xs">
+                                    {{ $order->address->street_address ?? 'No address' }},
+                                    {{ $order->address->city ?? '' }},
+                                    {{ $order->address->state ?? '' }},
+                                    {{ $order->address->zip_code ?? '' }}
+                                </td>
+
+                                <!-- Actions -->
+                                <td class="px-6 py-4 text-center fixed-actions">
+                                    <div class="flex justify-center space-x-2">
+                                        <!-- View Button -->
+                                        <a href=""
+                                            class="bg-gradient-to-r from-peri to-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-dark hover:to-purple-darkest transition-all">
+                                            View
+                                        </a>
+
+                                        <!-- Accept Button -->
+                                        @if($order->status == 'pending')
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <input type="hidden" name="status" value="confirmed">
+                                                <button type="submit"
+                                                    class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                                    Accept
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        <!-- Cancel Button -->
+                                        @if($order->status != 'canceled')
+                                            <form action="" method="POST" onsubmit="return confirm('Cancel this order?');">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                    class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-600 hover:to-red-700 transition-all">
+                                                    Cancel
+                                                </button>
+                                            </form>
+                                        @else
+                                            <button disabled class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">
+                                                Canceled
+                                            </button>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="8" class="text-center py-6 text-gray-500">No orders found.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </x-slot>
+</x-admin_navbar>
+
+
+
+
+<x-admin_navbar>
+    <x-slot name="body">
+
+        <style>
+            .custom-scrollbar::-webkit-scrollbar {
+                height: 8px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #c1c1c1;
+                border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #a8a8a8;
+            }
+            .fixed-actions {
+                position: sticky;
+                right: 0;
+                background: white;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 0;
+            }
+            .fixed-actions-header {
+                position: sticky;
+                right: 0;
+                background: #F4EFFF;
+                box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+                z-index: 11;
+            }
+            /* Product mini-table inside each order */
+            .product-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .product-table th, .product-table td {
+                padding: 4px 6px;
+                text-align: left;
+                font-size: 0.85rem;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .product-table th {
+                background-color: #f9f6ff;
+                color: #5a3e85;
+                font-weight: 600;
+            }
+        </style>
+
+        <div class="container mx-auto px-4">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-white/20">
+                <div class="bg-side p-6 flex justify-between items-center">
+                    <h2 class="text-xl font-semibold text-white">All Orders</h2>
+                    <div class="text-white/80 text-sm">
+                        Total Orders: <span class="font-bold">{{ $orders->count() }}</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar" style="max-height: 600px;">
+                    <table class="w-full min-w-max">
+                        <thead class="bg-lav1 sticky top-0 z-10">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Order ID</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Customer</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Products</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Total</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Date</th>
+                                <th class="px-6 py-4 text-left text-xs font-medium text-purple-darkest uppercase">Shipping Address</th>
+                                <th class="px-6 py-4 text-center text-xs font-medium text-purple-darkest uppercase fixed-actions-header">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y divide-lav2 bg-white">
+                            @forelse($orders as $order)
+                                <tr class="hover:bg-lav1/30 transition-all duration-200">
+                                    <td class="px-6 py-4 text-sm font-medium text-gray-900">#{{ $order->order_number }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900">{{ $order->user->name ?? 'N/A' }}</td>
+
+                                    <!-- Products Column -->
+                                    <td class="px-6 py-4 text-sm text-gray-900">
+                                        <table class="product-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product</th>
+                                                    <th>Qty</th>
+                                                    <th>Price</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($order->items as $item)
+                                                    <tr>
+                                                        <td>{{ $item->product->name ?? 'Deleted Product' }}</td>
+                                                        <td>{{ $item->quantity }}</td>
+                                                        <td>₹{{ number_format($item->product->price ?? 0, 2) }}</td>
+                                                        <td>₹{{ number_format(($item->product->price ?? 0) * $item->quantity, 2) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                    <!-- Order total -->
+                                    <td class="px-6 py-4 text-sm font-semibold text-green-600">
+                                        ₹{{ number_format($order->total, 2) }}
+                                    </td>
+
+                                    <!-- Status -->
+                                    <td class="px-6 py-4">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                            @if($order->status == 'delivered') bg-green-100 text-green-800
+                                            @elseif($order->status == 'pending') bg-yellow-100 text-yellow-800
+                                            @elseif($order->status == 'canceled') bg-red-100 text-red-800
+                                            @else bg-blue-100 text-blue-800 @endif">
+                                            {{ ucfirst($order->status) }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Date -->
+                                    <td class="px-6 py-4 text-sm text-gray-900">
+                                        {{ $order->created_at->format('M d, Y h:i A') }}
+                                    </td>
+
+                                    <!-- Shipping -->
+                                    <td class="px-6 py-4 text-sm text-gray-900 max-w-xs">
+                                        {{ $order->address->street_address ?? 'No address' }},
+                                        {{ $order->address->city ?? '' }},
+                                        {{ $order->address->state ?? '' }},
+                                        {{ $order->address->zip_code ?? '' }}
+                                    </td>
+
+                                    <!-- Actions -->
+                                    <td class="px-6 py-4 text-center fixed-actions">
+                                        <div class="flex justify-center space-x-2">
+                                            <!-- View -->
+                                            <a href=""
+                                                class="bg-gradient-to-r from-peri to-purple-dark text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-dark hover:to-purple-darkest transition-all">
+                                                View
+                                            </a>
+
+                                            <!-- Accept -->
+                                            @if($order->status == 'pending')
+                                                <form action="" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <input type="hidden" name="status" value="confirmed">
+                                                    <button type="submit"
+                                                        class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                                        Accept
+                                                    </button>
+                                                </form>
+                                            @endif
+
+                                            <!-- Cancel -->
+                                            @if($order->status != 'canceled')
+                                                <form action="" method="POST" onsubmit="return confirm('Cancel this order?');">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                        class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-600 hover:to-red-700 transition-all">
+                                                        Cancel
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button disabled
+                                                    class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm font-medium opacity-50 cursor-not-allowed">
+                                                    Canceled
+                                                </button>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center py-6 text-gray-500">No orders found.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </x-slot>
+</x-admin_navbar>
