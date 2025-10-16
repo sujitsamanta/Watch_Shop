@@ -57,9 +57,12 @@ class UserController extends Controller
             });
 
             // $user->notify(new UserMail());
-            $user_id = $user->id;
+            // $user_id = $user->id;
+
+            session(['user_id' => $user->id]);
+
             flash()->addSuccess('OTP succesfuly send your email ⚡️');
-            return view('userpanel.otp_verification_form', compact('user_id'));
+            return redirect('/otp_verification_form');
             // flash()->addSuccess('Account created succesfuly ⚡️');
 
             // return redirect('/login');
@@ -70,17 +73,15 @@ class UserController extends Controller
         }
     }
 
-    public function otp_verification_form()
-    {
-        return view('userpanel.otp_verification_form');
-    }
+
 
     public function otp_verification_form_submit(Request $request)
     {
         // return $request;
         $request->validate(['otp' => 'required|numeric']);
 
-        $userid = $request->user_id;
+        // $userid = $request->user_id;
+        $userid=session('user_id');
 
         $otpRecord = Otp::where('user_id', $userid)
             ->where('otp_code', $request->otp)
@@ -127,7 +128,7 @@ class UserController extends Controller
                 Otp::create([
                     'user_id' => $user->id,
                     'otp_code' => $otp,
-                    'expires_at' => Carbon::now()->addMinutes(5),
+                    'expires_at' => Carbon::now()->addMinutes(1),
                 ]);
 
                 // Send OTP via Email

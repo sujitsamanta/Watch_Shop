@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>OTP Verification</title>
     <script src="https://cdn.tailwindcss.com"></script>
-        <!-- @notifyCss -->
-
     <script>
         tailwind.config = {
             theme: {
@@ -22,127 +19,114 @@
             }
         }
     </script>
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);
-        }
-        .succesful {
-            background-color: #E8E0FF;
-            border: 1px solid #8B7BC7;
-            color: #5A4B8C;
-        }
-
-        .not_succesful {
-            background-color: #FFEEF0;
-            border: 1px solid #DC2626;
-            color: #DC2626;
-        }
-
-        .alert {
-            border-radius: 0.5rem;
-            padding: 1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .alert-icon {
-            height: 1.25rem;
-            width: 1.25rem;
-            margin-top: 0.125rem;
-            flex-shrink: 0;
-        }
-
-        .alert-content {
-            flex: 1;
-        }
-
-        .alert-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin: 0;
-        }
-    </style>
 </head>
+<body class="bg-gradient-to-br from-primary-light to-primary-medium min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
 
-<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
-        <!-- @include('notify::components.notify') -->
-
-    <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <!-- Header -->
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-primary-darker mb-2">Verify Now</h1>
-            <!-- <p class="text-gray-600">Sign in to your account</p> -->
+            <div class="bg-primary-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-primary-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">Verify OTP</h1>
+            <p class="text-gray-600 text-sm">We’ve sent a 6-digit code to your registered email.</p>
         </div>
 
-        <form class="space-y-6" action="/otp_verification_form_submit" method="post">
+        <!-- Laravel Error or Success Messages -->
+        @if(session('error'))
+            <p class="text-center text-red-500 text-sm mb-3">{{ session('error') }}</p>
+        @elseif(session('success'))
+            <p class="text-center text-green-500 text-sm mb-3">{{ session('success') }}</p>
+        @endif
+
+        <!-- OTP Form -->
+        <form id="otpForm" action="/otp_verification_form_submit" method="post">
             @csrf
-            @if (session('alert'))
-                @if (session('alert') == 'succesful')
-                    <x-alert alert="succesful" message="Account is succesfuly created.." />
-                @elseif(session('alert') == 'not_succesful')
-                    <x-alert alert="not_succesful" message="Incorrect data.." />
-                @else
 
-                @endif
-            @endif
-         
-
-            <div>
-                <label for="otp" class="block text-sm font-medium text-primary-darker mb-2">OTP</label>
-                <input type="number" id="otp" name="otp"
-                    class="@error('otp') border-red-500 @else border-primary-medium @enderror w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-dark focus:border-transparent transition duration-200"
-                    placeholder="Enter OTP">
-                <div class="text-sm text-red-500 h-2">
-                    @error('otp')
-                        {{ $message }}
-                    @enderror
-                </div>
+            <div class="flex justify-center gap-3 mb-6" id="otp-container">
+                @for ($i = 0; $i < 6; $i++)
+                    <input type="text" maxlength="1"
+                        class="otp-input w-14 h-14 text-center text-2xl font-semibold border-2 border-gray-300 rounded-lg focus:border-primary-dark focus:outline-none transition-all"
+                        data-index="{{ $i }}" >
+                @endfor
             </div>
-            <input type="text" name="user_id" value="{{ $user_id }}" hidden>
-              <!-- ✅ Remember Me -->
-        <!-- <div class="flex items-center justify-between">
-            <div class="flex items-center">
-                <input type="checkbox" id="remember" name="remember"
-                    class="h-4 w-4 text-primary-dark focus:ring-primary-dark border-gray-300 rounded">
-                <label for="remember" class="ml-2 block text-sm text-gray-700">
-                    Remember me
-                </label>
-            </div>
-            <a href="#" class="text-sm text-primary-dark hover:text-primary-darker underline">
-                Forgot password?
-            </a>
-        </div> -->
 
-            <!-- <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input type="checkbox" id="remember" name="remember"
-                        class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
-                    <label for="remember" class="ml-2 block text-sm text-gray-700">
-                        Remember me
-                    </label>
-                </div>
-                <a href="#" class="text-sm text-green-600 hover:text-green-800 underline">
-                    Forgot password?
-                </a>
-            </div> -->
+            <input type="hidden" name="otp" id="otp-value">
 
-            <button type="submit"
-                class="w-full bg-primary-dark text-white py-3 px-4 rounded-lg hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-offset-2 transition duration-200 font-medium">
-                Verify
+            <button type="submit" id="verify-btn"
+                class="w-full bg-primary-dark text-white py-3 rounded-lg font-semibold hover:bg-primary-darker transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed">
+                Verify OTP
             </button>
         </form>
 
-        <!-- <div class="mt-6 text-center">
-            <p class="text-gray-600">
-                Don't have an account?
-                <a href="/signin"
-                    class="text-primary-dark hover:text-primary-darker font-medium underline">Create Account</a>
-            </p>
-        </div> -->
+        <!-- Resend OTP -->
+        <div class="text-center mt-6">
+            <p class="text-gray-600 text-sm mb-1">Didn’t receive the code?</p>
+            <form action="" method="POST" class="inline">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ session('user_id') }}">
+                <button type="submit" id="resend-btn"
+                    class="text-primary-dark font-semibold text-sm hover:text-primary-darker transition-colors">
+                    Resend OTP <span id="timer" class="text-gray-500"></span>
+                </button>
+            </form>
+        </div>
+
     </div>
- <!-- @notifyJs -->
 
+    <!-- JS Section -->
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+        const otpValue = document.getElementById('otp-value');
+        const verifyBtn = document.getElementById('verify-btn');
+        const timerSpan = document.getElementById('timer');
+        let timeLeft = 30;
+        let timerInterval;
+
+        // Timer for resend
+        function startTimer() {
+            timeLeft = 60;
+            timerSpan.textContent = `(${timeLeft}s)`;
+            const resendBtn = document.getElementById('resend-btn');
+            resendBtn.disabled = true;
+            resendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                timerSpan.textContent = `(${timeLeft}s)`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerSpan.textContent = '';
+                    resendBtn.disabled = false;
+                    resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }, 1000);
+        }
+
+        startTimer();
+
+        // Focus management and OTP combine
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+
+                if (value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+
+                otpValue.value = Array.from(inputs).map(i => i.value).join('');
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !input.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
