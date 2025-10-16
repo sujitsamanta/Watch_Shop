@@ -55,7 +55,10 @@
             font-family: 'Montserrat', sans-serif;
 
         }
-        h1, h2, h3 {
+
+        h1,
+        h2,
+        h3 {
             font-family: 'Cormorant Garamond', serif;
         }
 
@@ -346,7 +349,7 @@
                 </div>
 
                 <!-- Tablet and Mobile Icons -->
-                <div class="flex items-center space-x-2 lg:hidden">
+                <div class="flex items-center space-x-5 lg:hidden">
 
                     <!-- Search Icon for Tablet/Mobile -->
                     <button id="search-toggle"
@@ -370,6 +373,33 @@
                         </button>
                     </a>
 
+                    <!-- Cart -->
+                    <a href="/add_to_cart_view">
+                        <button
+                            class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="8" cy="21" r="1" />
+                                <circle cx="19" cy="21" r="1" />
+                                <path
+                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+                            </svg>
+
+                            @php
+
+
+                            $productCount = 0;
+
+                            if (Auth::check()) {
+                            $productCount = Cart::where('user_id', Auth::id())->count();
+                            }
+
+                            @endphp
+                            <span
+                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">{{ $productCount }}</span>
+                        </button>
+                    </a>
+
 
 
 
@@ -383,6 +413,12 @@
                             <line x1="4" x2="20" y1="18" y2="18" />
                         </svg>
                     </button>
+
+
+
+
+
+
                 </div>
             </div>
 
