@@ -18,11 +18,17 @@ class UserMiddleware
     {
         if (Auth::check()) {
 
-            return $next($request);
+            // Check if the user’s email/OTP is verified
+            if (!Auth::user()->is_verified) {
 
+                flash()->addWarning('Please verify your email before accessing this page.');
+                return redirect('/verify-otp_verification_form_resubmit');
+            } else {
+                return $next($request);
+            }
+        } else {
+            flash()->addInfo('Please login first.');
+            return redirect('/login');
         }
-
-        flash()->addInfo('Please login first.');
-        return redirect('/login');
     }
 }
