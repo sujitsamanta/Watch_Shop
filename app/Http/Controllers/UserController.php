@@ -47,11 +47,11 @@ class UserController extends Controller
             Otp::create([
                 'user_id' => $user->id,
                 'otp_code' => $otp,
-                'expires_at' => Carbon::now()->addMinutes(5),
+                'expires_at' => Carbon::now()->addMinutes(1),
             ]);
 
             // Send OTP via Email
-            Mail::raw("Your verification OTP is: $otp (valid for 5 minutes)", function ($message) use ($user) {
+            Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
                 $message->to($user->email)
                     ->subject('Email Verification OTP');
             });
@@ -62,7 +62,7 @@ class UserController extends Controller
             session(['user_id' => $user->id]);
 
             flash()->addSuccess('OTP succesfuly send your email ⚡️');
-            return redirect('/otp_verification_form');
+            return view('userpanel.otp_verification_form');
             // flash()->addSuccess('Account created succesfuly ⚡️');
 
             // return redirect('/login');
@@ -73,7 +73,15 @@ class UserController extends Controller
         }
     }
 
-
+    // public function otp_verification_form()
+    // {
+    //     if (session('user_id')) {
+    //         return view('userpanel.otp_verification_form');
+    //     }
+    //     else{
+    //         return redirect('/login');
+    //     }
+    // }
 
     public function otp_verification_form_submit(Request $request)
     {
@@ -81,7 +89,7 @@ class UserController extends Controller
         $request->validate(['otp' => 'required|numeric']);
 
         // $userid = $request->user_id;
-        $userid=session('user_id');
+        $userid = session('user_id');
 
         $otpRecord = Otp::where('user_id', $userid)
             ->where('otp_code', $request->otp)
@@ -101,8 +109,40 @@ class UserController extends Controller
             return redirect('/login');
         } else {
             flash()->addError('Enter curect OTP ⚡️');
-            return redirect()->back();
+            return redirect('/otp_verification_form_resubmit');
         }
+    }
+
+    public function otp_verification_form_resubmit()
+    {
+        if(!session('user_id')){
+            return redirect('/login');
+        }
+
+        $userid = session('user_id');
+        $user = User::find($userid);
+
+
+        // Generate OTP
+        $otp = rand(100000, 999999);
+
+        // Store OTP in database
+        Otp::create([
+            'user_id' => $userid,
+            'otp_code' => $otp,
+            'expires_at' => Carbon::now()->addMinutes(1),
+        ]);
+
+        // Send OTP via Email
+        Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+            $message->to($user->email)
+                ->subject('Email Verification OTP');
+        });
+
+        flash()->addSuccess('OTP succesfuly send your email ⚡️');
+        // return redirect('/otp_verification_form');
+        return view('userpanel.otp_verification_form');
+
     }
 
     public function login_submit(Request $request)
@@ -132,17 +172,17 @@ class UserController extends Controller
                 ]);
 
                 // Send OTP via Email
-                Mail::raw("Your verification OTP is: $otp (valid for 5 minutes)", function ($message) use ($user) {
+                Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
                     $message->to($user->email)
                         ->subject('Email Verification OTP');
                 });
 
                 // $user->notify(new UserMail());
                 $user_id = $user->id;
-                
+
                 flash()->addError('Ples verifide your email ⚡️');
                 flash()->addSuccess('OTP succesfuly send your email ⚡️');
-                return view('userpanel.otp_verification_form', compact('user_id'));
+                return view('userpanel.otp_verification_form');
                 // flash()->addSuccess('Account created succesfuly ⚡️');
 
                 // return redirect('/login');
