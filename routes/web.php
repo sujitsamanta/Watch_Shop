@@ -13,7 +13,7 @@ Route::get('/home', [UserController::class,'home_check']);
 
 
 // single_product_view
-Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view']);
+Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view'])->middleware('userMiddleware');
 
 // add to cart
 Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart'])->middleware('userMiddleware');
