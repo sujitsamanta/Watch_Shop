@@ -108,7 +108,6 @@ class AdminController extends Controller
 
         $categories_data = Categorie::all();
         return view('adminpanel.admin_add_product', compact('categories_data'));
-       
     }
 
     public function admin_add_product_submit(Request $request)
@@ -172,7 +171,7 @@ class AdminController extends Controller
     public function admin_update_product_submit(Request $request, $product_id)
     {
         $product = Product::findOrFail($product_id);
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'sku' => 'required|string|max:255',
@@ -211,13 +210,32 @@ class AdminController extends Controller
         }
     }
 
-    public function admin_all_orders(){
+    public function admin_all_orders()
+    {
         // return view('adminpanel.amin_all_orders');
-         $orders = Order::with(['user', 'items.product']) // Eager load relations
+        $orders = Order::with(['user', 'items.product']) // Eager load relations
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
         return view('adminpanel.admin_all_orders', compact('orders'));
         // return "dun";
+    }
+
+
+    public function admin_accept_order(Request $request)
+    {
+        $order_id=$request->order_id;
+        $order = Order::findOrFail($order_id);
+        // return print_r($order);
+        // Only allow accepting pending orders
+        if ($order->status === 'pending') {
+            $order->status = 'confirmed';
+            $order->save();
+
+            flash()->addSuccess('Order accepted successfully ⚡️');
+            return redirect()->back();
+        }
+        flash()->addError('This order cannot be accepted ⚡️');
+        return redirect()->back();
     }
 }

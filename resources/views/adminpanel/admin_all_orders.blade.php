@@ -173,12 +173,13 @@
                                             </a>
 
                                             @if($order->status == 'pending')
-                                                <form action="" method="POST">
+                                                <form action="/admin_accept_order" method="post">
                                                     @csrf
-                                                    @method('PATCH')
-                                                    <input type="hidden" name="status" value="confirmed">
+                                                     
+                                                   
+                                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
                                                     <button type="submit"
-                                                        class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                                        class=" admin_users_order_accepted_btn bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
                                                         Accept
                                                     </button>
                                                 </form>
@@ -190,7 +191,7 @@
                                                     @method('PATCH')
                                                     <button type="submit"
                                                         class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-600 hover:to-red-700 transition-all">
-                                                        Cancel
+                                                        Reject
                                                     </button>
                                                 </form>
                                             @else
