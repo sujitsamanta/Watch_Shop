@@ -128,6 +128,8 @@ Route::post('/admin_product_delete/{product_id}', [AdminController::class,'admin
 Route::get('/admin_all_orders', [AdminController::class,'admin_all_orders'])->middleware('adminMiddleware');
 
 Route::post('/admin_accept_order', [AdminController::class, 'admin_accept_order'])->middleware('adminMiddleware');
+
+Route::post('/admin_reject_order', [AdminController::class, 'admin_reject_order'])->middleware('adminMiddleware');
    
 
     
