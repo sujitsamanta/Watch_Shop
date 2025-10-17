@@ -115,7 +115,7 @@ class UserController extends Controller
 
     public function otp_verification_form_resubmit()
     {
-        if(!session('user_id')){
+        if (!session('user_id')) {
             return redirect('/login');
         }
 
@@ -142,7 +142,6 @@ class UserController extends Controller
         flash()->addSuccess('OTP succesfuly send your email ⚡️');
         // return redirect('/otp_verification_form');
         return view('userpanel.otp_verification_form');
-
     }
 
     public function login_submit(Request $request)
@@ -217,21 +216,11 @@ class UserController extends Controller
 
     public function home_check()
     {
-        if (Auth::check()) {
-            $products_data = Product::with('category')
-                ->inRandomOrder()
-                ->get();
-
-
-            return view('userpanel.home', compact('products_data'));
-        } else {
-
-            $products_data = Product::with('category')
-                ->inRandomOrder()
-                ->get();
-
-            return view('userpanel.home-x', compact('products_data'));
-        }
+        // if (Auth::check()) {}
+        $products_data = Product::with('category')
+            ->inRandomOrder()
+            ->get();
+        return view('userpanel.home', compact('products_data'));
     }
 
 

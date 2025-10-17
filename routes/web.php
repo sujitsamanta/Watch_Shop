@@ -129,7 +129,7 @@ Route::get('/admin_all_orders', [AdminController::class,'admin_all_orders'])->mi
 
 Route::post('/admin_accept_order', [AdminController::class, 'admin_accept_order'])->middleware('adminMiddleware');
 
-Route::post('/admin_reject_order', [AdminController::class, 'admin_reject_order'])->middleware('adminMiddleware');
+Route::post('/admin_cancel_order', [AdminController::class, 'admin_cancel_order'])->middleware('adminMiddleware');
    
 
     

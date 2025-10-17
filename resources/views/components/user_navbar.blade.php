@@ -180,354 +180,257 @@
 <body class="bg-lav1">
     <!-- @include('notify::components.notify') -->
 
-    <!-- Navbar -->
-    <nav class="shadow-lg fixed top-0 left-0 right-0 z-50 p-2">
-        <div class="navbar-container max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-            <div class="flex justify-between items-center h-14 sm:h-16">
+    <!-- Main Navbar -->
+    <nav class="bg-purple-lightest shadow-card sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Top Row: Logo, Search, Icons -->
+            <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <div class="flex items-center space-x-2 flex-shrink-0">
-                    <!-- Watch Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="#9D8DF1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-6 h-6 sm:w-8 sm:h-8">
-                        <circle cx="12" cy="12" r="6" />
-                        <polyline points="12,10 12,12 13,13" />
-                        <path d="m16.13 7.66-.81-4.05a2 2 0 0 0-2-1.61h-2.68a2 2 0 0 0-2 1.61l-.78 4.05" />
-                        <path d="m7.88 16.36.8 4a2 2 0 0 0 2 1.61h2.72a2 2 0 0 0 2-1.61l.81-4.05" />
-                    </svg>
-                    <span class="logo-text text-white text-lg sm:text-xl font-bold truncate">Watch Shop</span>
+                <div class="flex items-center">
+                    <a href="#home" class="text-xl font-bold text-purple-medium hover:text-purple-dark transition-colors duration-200">
+                        ShopHub
+                    </a>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden lg:flex items-center space-x-6 xl:space-x-9">
-                    <a href="/home"
-                        class="{{ request()->is('home') ? "active" : ""}}  text-white nav-link text-sm xl:text-base p-2 rounded-xl">Home</a>
-
-                    <!-- Products Dropdown -->
-                    <div class="relative dropdown">
-                        <a href="#" class="text-white nav-link flex items-center text-sm xl:text-base">
-                            Products
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="ml-1">
-                                <path d="m6 9 6 6 6-6" />
+                <!-- Desktop Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-xl mx-12">
+                    <div class="relative w-full">
+                        <input
+                            type="text"
+                            placeholder="Search for products, brands and more..."
+                            class="w-full px-5 py-3 bg-lav2 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200 placeholder:text-purple-dark/50" />
+                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-medium text-white px-4 py-2 rounded-lg hover:bg-purple-dark transition-colors duration-200">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                        </a>
-                        <div
-                            class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-purple-light">
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Luxury
-                                Watches</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Sports
-                                Watches</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Smart
-                                Watches</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Vintage
-                                Collection</a>
-                        </div>
+                        </button>
                     </div>
-
-                    <!-- Brands Dropdown -->
-                    <div class="relative dropdown">
-                        <a href="#" class="text-white nav-link flex items-center text-sm xl:text-base">
-                            Brands
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="ml-1">
-                                <path d="m6 9 6 6 6-6" />
-                            </svg>
-                        </a>
-                        <div
-                            class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-purple-light">
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Rolex</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Omega</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Seiko</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Casio</a>
-                        </div>
-                    </div>
-
-                    <a href="/about"
-                        class="{{ request()->is('about') ? "active" : ""}} text-white nav-link text-sm xl:text-base p-2 rounded-xl">About</a>
-                    <a href="/contact"
-                        class="{{ request()->is('contact') ? "active" : ""}} text-white nav-link text-sm xl:text-base p-2 rounded-xl">Contact</a>
                 </div>
 
-                <!-- Desktop Right Side -->
-                <div class="hidden lg:flex items-center space-x-3 xl:space-x-6">
-                    <!-- Search Bar -->
-                    <div class="relative">
-                        <input type="text" placeholder="Search watches..."
-                            class="search-input bg-white pl-9 pr-4 py-2 rounded-full text-purple-dark placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-medium w-48 xl:w-64 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                            <circle cx="11" cy="11" r="8" />
-                            <path d="m21 21-4.35-4.35" />
+                <!-- Desktop Icons -->
+                <div class="hidden md:flex items-center gap-8">
+                    @php
+                    use Illuminate\Support\Facades\Auth;
+                    use App\Models\Cart;
+
+                    $productCount = 0;
+
+                    if (Auth::check()) {
+                    $productCount = Cart::where('user_id', Auth::id())->count();
+                    }
+
+                    @endphp
+                    @if(Auth::check())
+                    <a href="/account" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                    </div>
-
-                    <!-- Sign In Button -->
-                    <!-- <a href="sign_in">
-                        <button
-                            class="text-white hover:text-purple-medium transition-colors duration-300 flex items-center space-x-1 text-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                                <polyline points="10,17 15,12 10,7" />
-                                <line x1="15" x2="3" y1="12" y2="12" />
-                            </svg>
-                            <span>Sign In</span>
-                        </button>
-                    </a> -->
-
-                    <!-- Account Dropdown -->
-                    <div class="relative dropdown">
-                        <button
-                            class="text-white hover:text-purple-medium transition-colors duration-300 flex items-center p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                        </button>
-                        <div
-                            class="dropdown-menu absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-purple-light">
-                            <a href="/account"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">My
-                                Profile</a>
-                            <a href="/all_orders_view"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Orders</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Wishlist</a>
-                            <hr class="my-2 border-purple-light">
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Settings</a>
-                            <a href="/address_view_page"
-                                class="block px-4 py-2 text-sm text-purple-dark hover:bg-purple-light hover:bg-opacity-50">Addresses</a>
-                            <a href="/logout" class="logout block px-4 py-2 text-sm text-red-600 hover:bg-red-50">Sign
-                                Out</a>
-                        </div>
-                    </div>
-
-                    <!-- Cart -->
-                    <a href="/add_to_cart_view">
-                        <button
-                            class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="8" cy="21" r="1" />
-                                <circle cx="19" cy="21" r="1" />
-                                <path
-                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                            </svg>
-
-                            @php
-                            use Illuminate\Support\Facades\Auth;
-                            use App\Models\Cart;
-
-                            $productCount = 0;
-
-                            if (Auth::check()) {
-                            $productCount = Cart::where('user_id', Auth::id())->count();
-                            }
-
-                            @endphp
-                            <span
-                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">{{ $productCount }}</span>
-                        </button>
+                        <span class="text-xs font-medium">Account</span>
+                    </a>
+                    <a href="#wishlist" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span class="text-xs font-medium">Wishlist</span>
+                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">3</span>
                     </a>
 
-                </div>
-
-                <!-- Tablet and Mobile Icons -->
-                <div class="flex items-center space-x-5 lg:hidden">
-
-                    <!-- Search Icon for Tablet/Mobile -->
-                    <button id="search-toggle"
-                        class="text-white hover:text-purple-medium transition-colors duration-300 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="11" cy="11" r="8" />
-                            <path d="m21 21-4.35-4.35" />
+                    <a href="/add_to_cart_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                    </button>
-
-                    <a href="/account">
-                        <button
-                            class="flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                        </button>
+                        <span class="text-xs font-medium">Cart</span>
+                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                            {{ $productCount }}
+                        </span>
                     </a>
-
-                    <!-- Cart -->
-                    <a href="/add_to_cart_view">
-                        <button
-                            class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2 rounded-full hover:bg-purple-medium hover:bg-opacity-20">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="8" cy="21" r="1" />
-                                <circle cx="19" cy="21" r="1" />
-                                <path
-                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                            </svg>
-
-                            @php
-
-
-                            $productCount = 0;
-
-                            if (Auth::check()) {
-                            $productCount = Cart::where('user_id', Auth::id())->count();
-                            }
-
-                            @endphp
-                            <span
-                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">{{ $productCount }}</span>
-                        </button>
+                    <a href="/all_orders_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span class="text-xs font-medium">Order</span>
+                        <!-- <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">5</span> -->
                     </a>
-
-
-
-
-                    <!-- Mobile menu button -->
-                    <button id="mobile-menu-btn"
-                        class="text-white hover:text-purple-medium transition-colors duration-300 p-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="4" x2="20" y1="6" y2="6" />
-                            <line x1="4" x2="20" y1="12" y2="12" />
-                            <line x1="4" x2="20" y1="18" y2="18" />
+                    @else
+                     <a href="/signin" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">
+                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
-                    </button>
-
-
-
-
-
-
-                </div>
-            </div>
-
-            <!-- Mobile Search Bar -->
-            <div id="search-bar-mobile" class="mobile-menu lg:hidden">
-                <div class="relative">
-                    <input type="text" placeholder="Search watches..."
-                        class="search-mobile w-full bg-white pl-9 pr-4 py-2.5 rounded-full text-purple-dark placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-medium text-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <circle cx="11" cy="11" r="8" />
-                        <path d="m21 21-4.35-4.35" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="mobile-menu lg:hidden border-t border-purple-medium border-opacity-30">
-            <div class="px-4 py-4 space-y-4 max-w-7xl mx-auto">
-                <a href="/home" class="block text-white  transition-colors duration-300 py-2 text-base">Home</a>
-
-                <!-- Mobile Products Section -->
-                <div class="py-1">
-                    <button id="mobile-products-btn"
-                        class="flex items-center justify-between w-full text-white transition-colors duration-300 py-2">
-                        <span class="text-base">Products</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="mobile-chevron transition-transform duration-300">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-                    <div id="mobile-products-menu" class="mobile-menu pl-4 mt-1 space-y-1">
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Luxury
-                            Watches</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Sports
-                            Watches</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Smart
-                            Watches</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Vintage
-                            Collection</a>
-                    </div>
-                </div>
-
-                <!-- Mobile Brands Section -->
-                <div class="py-1">
-                    <button id="mobile-brands-btn"
-                        class="flex items-center justify-between w-full text-white  transition-colors duration-300 py-2">
-                        <span class="text-base">Brands</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="mobile-chevron transition-transform duration-300">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-                    <div id="mobile-brands-menu" class="mobile-menu pl-4 mt-1 space-y-1">
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Rolex</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Omega</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Seiko</a>
-                        <a href="#"
-                            class="block text-purple-medium hover:text-white transition-colors duration-300 py-2">Casio</a>
-                    </div>
-                </div>
-
-                <a href="/about" class="block text-white  transition-colors duration-300 py-2 text-base">About</a>
-                <a href="/contact" class="block text-white  transition-colors duration-300 py-2 text-base">Contact</a>
-
-                <!-- Mobile Account Section -->
-                <div class="border-t border-purple-medium border-opacity-30 pt-4 mt-4 space-y-3">
-                    <!-- Cart Icon for Tablet/Mobile -->
-                    <a href="/add_to_cart_view">
-                        <button class="relative text-white hover:text-purple-medium transition-colors duration-300 p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="8" cy="21" r="1" />
-                                <circle cx="19" cy="21" r="1" />
-                                <path
-                                    d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                            </svg>
-                            <span
-                                class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">3</span>
-                        </button>
+                        <span class="text-xs font-medium">Signin</span>
                     </a>
-
-                    <a href="/logout"
-                        class="logout flex items-center space-x-3 text-white  transition-colors duration-300 w-full py-2">
+                    <a href="/login" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                             <polyline points="10,17 15,12 10,7" />
                             <line x1="15" x2="3" y1="12" y2="12" />
                         </svg>
-                        <span class="text-base">Log Out</span>
+                        <span class="text-xs font-medium">Login</span>
                     </a>
-
+                    @endif
 
                 </div>
+
+                <!-- Mobile Icons -->
+                <div class="flex md:hidden items-center gap-4">
+                    <button onclick="toggleMobileSearch()" class="text-side">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                    @if(Auth::check())
+                    <a href="/add_to_cart_view" class="text-side relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span class="absolute -top-2 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $productCount }}</span>
+                    </a>
+                    @else
+                    <a href="/login" class="text-side relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                            <polyline points="10,17 15,12 10,7" />
+                            <line x1="15" x2="3" y1="12" y2="12" />
+                        </svg>
+                    </a>
+                    @endif
+                    <button onclick="toggleMobileMenu()" class="text-side" id="menuBtn">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menuIcon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="closeIcon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div id="mobileSearch" class="hidden md:hidden pb-4">
+                <div class="relative">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        class="w-full px-4 py-3 bg-lav1 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200" />
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-medium">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Desktop Categories -->
+            <div class="hidden md:flex items-center gap-6 py-2.5 border-t border-lav2">
+                <div class="relative group">
+                    <button class="flex items-center gap-1 text-side hover:text-purple-medium font-medium transition-colors duration-200">
+                        All Categories
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="absolute left-0 mt-2 w-52 bg-white shadow-card rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
+                        <a href="" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Home</a>
+                        <a href="#fashion" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
+                        <a href="#home" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
+                        <a href="/" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">About</a>
+                        <a href="/" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Contact</a>
+                        <a href="#books" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Hot Deals</a>
+                    </div>
+                </div>
+                <a href="/home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Home</a>
+                <a href="#fashion" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Electronics</a>
+                <a href="#home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Electronics</a>
+                <a href="/about" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">About</a>
+                <a href="/contact" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Contact</a>
+                <a href="#deals" class="text-purple-medium hover:text-purple-dark font-bold transition-colors duration-200 flex items-center gap-1">
+                    <span class="text-lg">🔥</span> Hot Deals
+                </a>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300 md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed top-0 left-0 h-full w-80 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto">
+        <div class="px-6 py-6 space-y-1">
+            <!-- Close Button -->
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-purple-dark">Menu</h2>
+                <button onclick="toggleMobileMenu()" class="text-side hover:text-purple-medium">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            @if(Auth::check())
+            <a href="/account" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+                <span class="font-medium">My Account</span>
+            </a>
+            <a href="#wishlist" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                <span class="font-medium">Wishlist</span>
+                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">0</span>
+            </a>
+            @else
+            <a href="/account" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <polyline points="10,17 15,12 10,7" />
+                    <line x1="15" x2="3" y1="12" y2="12" />
+                </svg>
+                <span class="text-xs font-medium">Login</span>
+            </a>
+            @endif
+
+
+            <div class="border-t border-lav2 my-3"></div>
+
+            <a href="#deals" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200 flex items-center gap-2">Manu</a>
+            <!-- <div class="px-4 py-2 text-xs font-bold text-purple-dark uppercase tracking-wide">Manu</div> -->
+            <a href="/home" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Home</a>
+            <a href="/address_view_page" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Address</a>
+            <a href="/contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Contact Us</a>
+            <a href="/about" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">About Us</a>
+            <!-- <a href="/about" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">About</a>
+            <a href="/contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Hot Deals</a> -->
+
+            <div class="border-t border-lav2 my-3"></div>
+
+            <a href="#deals" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200 flex items-center gap-2">Categories</a>
+            <a href="#track" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">1</a>
+            <a href="#track" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">2</a>
+            <a href="#track" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">3</a>
+            <a href="#contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">4</a>
+
+            <div class="border-t border-lav2 my-3"></div>
+            @if(Auth::check())
+            <a href="/logout" class="logout flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                    <polyline points="10,17 15,12 10,7" />
+                    <line x1="15" x2="3" y1="12" y2="12" />
+                </svg>
+                <span class="text-xs font-medium">Logout</span>
+            </a>
+            @else
+            <a href="/signin" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Sign In</a>
+
+            @endif
+
+            <a href="/signin" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200">Register</a>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="max-w-full mx-auto bg-lav1">

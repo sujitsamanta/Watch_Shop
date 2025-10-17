@@ -239,20 +239,20 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-     public function admin_reject_order(Request $request)
+     public function admin_cancel_order(Request $request)
     {
         $order_id=$request->order_id;
         $order = Order::findOrFail($order_id);
         // return print_r($order);
         // Only allow accepting pending orders
         if ($order->status === 'pending') {
-            $order->status = 'rejected';
+            $order->status = 'canceled';
             $order->save();
 
-            flash()->addSuccess('Order rejected successfully ⚡️');
+            flash()->addSuccess('Order cancel successfully ⚡️');
             return redirect()->back();
         }
-        flash()->addError('This order cannot be rejected ⚡️');
+        flash()->addError('This order cannot be cancel ⚡️');
         return redirect()->back();
     }
 }

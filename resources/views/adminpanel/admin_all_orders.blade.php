@@ -157,7 +157,7 @@
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                                             @if($order->status == 'delivered') bg-green-100 text-green-800
                                             @elseif($order->status == 'pending') bg-yellow-100 text-yellow-800
-                                            @elseif($order->status == 'rejected') bg-red-100 text-red-800
+                                            @elseif($order->status == 'canceled') bg-red-100 text-red-800
                                             @else bg-blue-100 text-blue-800 @endif">
                                         {{ ucfirst($order->status) }}
                                     </span>
@@ -196,23 +196,17 @@
                                             </button>
                                         </form>
 
-                                        <form action="/admin_reject_order" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                            <button type="submit"
-                                                class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-700 hover:to-red-800 transition-all">
-                                                Reject
-                                            </button>
-                                        </form>
-                                        @else
+                                      
                                          <form action="/admin_cancel_order" method="POST">
                                             @csrf
                                             <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <button type="submit"
-                                                class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-700 hover:to-red-800 transition-all">
+                                                class="admin_users_order_cancel_btn bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-700 hover:to-red-800 transition-all">
                                                 Cancel
                                             </button>
                                         </form>
+                                        
+                                        
                                         @endif
                                     </div>
                                 </td>

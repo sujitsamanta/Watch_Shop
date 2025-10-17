@@ -359,7 +359,7 @@
 			Swal.fire({
 				title: "Are you sure?",
 				text: "Do you want to delete this Product?",
-				icon: "question",
+				icon: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
@@ -383,7 +383,7 @@
 			Swal.fire({
 				title: "Are you sure?",
 				text: "Do you want to delete this User Account?",
-				icon: "question",
+				icon: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
@@ -397,7 +397,7 @@
 		});
 		// product delete end
 
-		// product delete start
+		// product order accepted start
 
 		$(".admin_users_order_accepted_btn").on("click", function(e) {
 			e.preventDefault(); // stop direct submit
@@ -419,7 +419,31 @@
 				}
 			});
 		});
-		// product delete end
+		// product order accepted end
+
+		// product order cancel start
+
+		$(".admin_users_order_cancel_btn").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
+
+			let form = $(this).closest("form")[0]; // get native form element
+
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to cancel this Order?",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, cancel it!",
+				cancelButtonText: "Not Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
+			});
+		});
+		// product order cancel end
 
 		// });
 	</script>
