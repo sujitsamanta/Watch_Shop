@@ -188,9 +188,13 @@
 
                     <!-- Action Buttons -->
                     <div class="flex space-x-4">
-                        <button class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
-                            Add to Wishlist
-                        </button>
+                        <form action="/add_wishlist/{{ $product_details->id }}" method="post">
+                            @csrf
+                            <button type="submit" class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
+                                Add to Wishlist
+                            </button>
+                        </form>
+
                         <a href="/add_to_cart/{{ $product_details->id }}">
                             <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
                                 Add to Cart

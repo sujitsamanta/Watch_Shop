@@ -1,4 +1,4 @@
- 
+ //              navbar start
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             const overlay = document.getElementById('mobileOverlay');
@@ -19,7 +19,7 @@
             search.classList.toggle('hidden');
         }
     
-
+ //              navbar end
 
 
 //                                        hearo section start

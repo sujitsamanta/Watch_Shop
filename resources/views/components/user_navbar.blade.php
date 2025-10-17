@@ -10,7 +10,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
     <!-- add to cart view need this cdn -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
@@ -53,6 +52,7 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
+            /* height: 100%; */
 
         }
 
@@ -220,6 +220,21 @@
                     }
 
                     @endphp
+
+                    @php
+                    $wishlistCount = 0;
+                    if (Auth::check()) {
+                    $wishlistCount = Auth::user()->wishlist()->count();
+                    }
+                    @endphp
+
+                    @php
+                    $orderCount = 0;
+                    if (Auth::check()) {
+                    $orderCount = Auth::user()->orders()->count();
+                    }
+                    @endphp
+
                     @if(Auth::check())
                     <a href="/account" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">
                         <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,12 +242,13 @@
                         </svg>
                         <span class="text-xs font-medium">Account</span>
                     </a>
-                    <a href="#wishlist" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
+
+                    <a href="/wishlist_products_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
                         <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                         <span class="text-xs font-medium">Wishlist</span>
-                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">3</span>
+                        <span class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $wishlistCount }}</span>
                     </a>
 
                     <a href="/add_to_cart_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
@@ -240,19 +256,18 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span class="text-xs font-medium">Cart</span>
-                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                        <span class="absolute -top-1 -right-3 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                             {{ $productCount }}
                         </span>
                     </a>
+
                     <a href="/all_orders_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
-                        <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
+                        <i class="fa-solid fa-bag-shopping text-xl"></i>
                         <span class="text-xs font-medium">Order</span>
-                        <!-- <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">5</span> -->
+                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $orderCount }}</span>
                     </a>
                     @else
-                     <a href="/signin" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">
+                    <a href="/signin" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">
                         <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -331,7 +346,7 @@
                         </svg>
                     </button>
                     <div class="absolute left-0 mt-2 w-52 bg-white shadow-card rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-                        <a href="" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Home</a>
+                        <a href="/home" class="active block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Home</a>
                         <a href="#fashion" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
                         <a href="#home" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
                         <a href="/" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">About</a>
@@ -373,12 +388,17 @@
                 </svg>
                 <span class="font-medium">My Account</span>
             </a>
-            <a href="#wishlist" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+            <a href="/wishlist_products_view" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 <span class="font-medium">Wishlist</span>
-                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">0</span>
+                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $wishlistCount }}</span>
+            </a>
+            <a href="/all_orders_view" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="font-medium">Order</span>
+                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $orderCount }}</span>
             </a>
             @else
             <a href="/account" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
@@ -440,7 +460,7 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="bg-purple-darkest text-white ">
+    <footer class="bg-purple-darkest text-white relative bottom-0 main-w-full ">
         <!-- Newsletter Section -->
         <!-- <div class="bg-side py-4">
             <div class="container mx-auto px-6">
@@ -461,7 +481,7 @@
             </div>
         </div> -->
         <!-- Main Footer Content -->
-        <div class="container mx-auto px-6 py-12">
+        <div class=" mx-auto px-6 py-12 main-w-full ">
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Company Info -->

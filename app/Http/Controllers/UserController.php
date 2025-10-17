@@ -16,6 +16,7 @@ use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Categorie;
 use App\Models\Order;
+use App\Models\Wishlist;
 use App\Models\OrderItem;
 use Illuminate\Support\Str;
 use App\Mail\OrderConfirmation;
@@ -449,6 +450,36 @@ class UserController extends Controller
 
         return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products'));
     }
+    // Add to wishlist
+    public function add_wishlist($product_id)
+    {
+        $user = Auth::user();
+
+        if (!$user->wishlist()->where('product_id', $product_id)->exists()) {
+            $user->wishlist()->attach($product_id);
+        }
+
+        flash()->addSuccess('Product add to wishlist!..⚡️');
+        return  redirect()->back();
+    }
+       // Remove from wishlist
+    public function remove_wishlist($product_id)
+    {
+        $user = Auth::user();
+        $user->wishlist()->detach($product_id);
+
+        flash()->addSuccess('Product removed to wishlist!..⚡️');
+        return redirect()->back();
+    }
+
+    // Show wishlist
+    public function wishlist_products_view()
+    {
+        $wishlist = Auth::user()->wishlist()->with('category')->get();
+
+        return view('userpanel.wishlist_products_view',compact('wishlist'));
+    }
+
     public function add_to_cart($product_id)
     {
         $user_id = Auth::id(); // current logged-in user
