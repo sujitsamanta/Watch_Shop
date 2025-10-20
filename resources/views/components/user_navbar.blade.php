@@ -66,8 +66,6 @@
             width: 0;
         }
 
-
-
         .gradient-bg {
             background: linear-gradient(135deg, #E8E0FF 0%, #C8B5FF 30%, #8B7BC7 70%, #5A4B8C 100%);
         }
@@ -172,6 +170,141 @@
         .custom-scrollbar {
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+
+
+        /* catagory section */
+
+        .category-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .category-card:active {
+            transform: translateY(-4px);
+        }
+
+        .category-icon {
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transform: translateX(-100%) translateY(-100%);
+            transition: transform 0.6s;
+        }
+
+        .category-card:hover .shine-effect::before {
+            transform: translateX(100%) translateY(100%);
+        }
+
+        /* Horizontal Scroll Container */
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.5);
+            border-radius: 3px;
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+
+        .category-item {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: 110px;
+        }
+
+        /* Desktop Grid */
+        @media (min-width: 1024px) {
+            .scroll-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                overflow-x: visible;
+                scroll-snap-type: none;
+            }
+
+            .category-item {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .category-card:hover {
+                transform: translateY(-4px);
+            }
+
+            .category-item {
+                width: 95px;
+            }
+        }
+
+        /* Fade effect on edges for mobile/tablet */
+        @media (max-width: 1023px) {
+            .scroll-wrapper {
+                position: relative;
+            }
+
+            .scroll-wrapper::before,
+            .scroll-wrapper::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 40px;
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            .scroll-wrapper::before {
+                left: 0;
+                background: linear-gradient(to right, rgba(249, 250, 251, 1), transparent);
+            }
+
+            .scroll-wrapper::after {
+                right: 0;
+                background: linear-gradient(to left, rgba(249, 250, 251, 1), transparent);
+            }
         }
     </style>
 
