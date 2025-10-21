@@ -479,7 +479,7 @@
                         </svg>
                     </button>
                     <div class="absolute left-0 mt-2 w-52 bg-white shadow-card rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden">
-                        <a href="/home" class="active block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Home</a>
+                        <a href="/home" class=" block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Home</a>
                         <a href="#fashion" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
                         <a href="#home" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Electronics</a>
                         <a href="/" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">About</a>

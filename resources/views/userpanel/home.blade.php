@@ -361,12 +361,15 @@
                         <h2 class="text-2xl font-semibold" style="color: #3F4673;">Top Categories</h2>
                         <div class="ml-2 h-0.5 w-4" style="background-color: #3F4673;"></div>
                     </div>
-                    <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
-                        View All
-                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
+                    <a href="/all_products_view_page_filter">
+                        <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
+                            View All
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </a>
+
                 </div>
 
                 <div class="scroll-container px-4 lg:px-0">
@@ -657,11 +660,25 @@
 
         </div>
 
-
-
-
         <div class="max-w-7xl mx-auto px-4 py-8">
-            <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Price drop on electronics</h1>
+            <!-- <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Price drop on electronics</h1> -->
+            <!-- Header Section -->
+            <div class="flex justify-between items-center my-3">
+                <div class="flex items-center">
+                    <!-- <h2 class="text-2xl font-semibold mr-2" style="color: #3F4673;">Shop From</h2> -->
+                    <h1 class="text-3xl font-semibold" style="color: #3F4673;">Top Products</h1>
+                    <div class="ml-2 h-0.5 w-4" style="background-color: #3F4673;"></div>
+                </div>
+                <a href="/all_products_view_page_filter">
+                    <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
+                        View All
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </a>
+
+            </div>
 
             <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -702,12 +719,15 @@
                     <h2 class="text-2xl font-semibold" style="color: #3F4673;">Top Categories</h2>
                     <div class="ml-2 h-0.5 w-4" style="background-color: #3F4673;"></div>
                 </div>
-                <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
-                    View All
-                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
+                <a href="/all_products_view_page_filter">
+                    <button class="view-all-btn flex items-center text-sm font-medium" style="color: #3F4673;">
+                        View All
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </a>
+
             </div>
 
             <!-- Categories Grid - Scrollable on Mobile/Tablet -->
@@ -787,8 +807,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <!-- Spotlight Grid -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 my-12">

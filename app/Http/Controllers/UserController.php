@@ -462,7 +462,7 @@ class UserController extends Controller
         flash()->addSuccess('Product add to wishlist!..⚡️');
         return  redirect()->back();
     }
-       // Remove from wishlist
+    // Remove from wishlist
     public function remove_wishlist($product_id)
     {
         $user = Auth::user();
@@ -477,7 +477,7 @@ class UserController extends Controller
     {
         $wishlist = Auth::user()->wishlist()->with('category')->get();
 
-        return view('userpanel.wishlist_products_view',compact('wishlist'));
+        return view('userpanel.wishlist_products_view', compact('wishlist'));
     }
 
     public function add_to_cart($product_id)
@@ -910,5 +910,92 @@ class UserController extends Controller
 
     // }
 
+    // public function all_products_view_page_filter(Request $request)
+    // {
+    //      $query = Product::query();
+
+    // if ($request->has('min') && is_numeric($request->min)) {
+    //     $query->where('price', '>=', $request->min);
+    // }
+
+    // if ($request->has('max') && is_numeric($request->max)) {
+    //     $query->where('price', '<=', $request->max);
+    // }
+
+    // if ($request->filled('rating') && $request->rating > 0) {
+    //     $query->where('rating', '>=', $request->rating);
+    // }
+
+    // if ($request->filled('upload') && $request->upload > 0) {
+    //     $query->where('created_at', '>=', now()->subDays($request->upload));
+    // }
+
+    // if ($request->filled('sort')) {
+    //     switch ($request->sort) {
+    //         case 'price-asc': $query->orderBy('price', 'asc'); break;
+    //         case 'price-desc': $query->orderBy('price', 'desc'); break;
+    //         case 'name-asc': $query->orderBy('name', 'asc'); break;
+    //         case 'name-desc': $query->orderBy('name', 'desc'); break;
+    //         case 'newest': $query->orderBy('created_at', 'desc'); break;
+    //         case 'oldest': $query->orderBy('created_at', 'asc'); break;
+    //         default: $query->orderBy('id','desc');
+    //     }
+    // }
+
+    // $products = $query->paginate(12);
+
+    //     return view('userpanel.all_products_view_page_filter', compact('products'));
+    // }
+
+
+
+
+    public function all_products_view_page_filter(Request $request)
+{
+    $query = Product::query();
+
+    // Price Filter
+    if ($request->has('min') && is_numeric($request->min)) {
+        $query->where('price', '>=', $request->min);
+    }
+    if ($request->has('max') && is_numeric($request->max)) {
+        $query->where('price', '<=', $request->max);
+    }
+
+    // Rating Filter
+    if ($request->filled('rating') && $request->rating > 0) {
+        $query->where('rating', '>=', $request->rating);
+    }
+
+    // Upload Time Filter
+    if ($request->filled('upload') && $request->upload > 0) {
+        $query->where('created_at', '>=', now()->subDays($request->upload));
+    }
+
+    // Category Filter
+    if ($request->filled('category')) {
+        $query->where('category_id', $request->category);
+    }
+
+    // Sorting
+    if ($request->filled('sort')) {
+        switch ($request->sort) {
+            case 'price-asc': $query->orderBy('price', 'asc'); break;
+            case 'price-desc': $query->orderBy('price', 'desc'); break;
+            case 'name-asc': $query->orderBy('name', 'asc'); break;
+            case 'name-desc': $query->orderBy('name', 'desc'); break;
+            case 'newest': $query->orderBy('created_at', 'desc'); break;
+            case 'oldest': $query->orderBy('created_at', 'asc'); break;
+            default: $query->orderBy('id','desc');
+        }
+    }
+
+    $products = $query->paginate(12);
+
+    // Get all categories for the sidebar
+    $categories = Categorie::all();
+
+    return view('userpanel.all_products_view_page_filter', compact('products', 'categories'));
+}
 
 }

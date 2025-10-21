@@ -15,6 +15,9 @@ Route::get('/home', [UserController::class,'home_check']);
 // single_product_view
 Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view'])->middleware('userMiddleware');
 
+
+Route::get('/all_products_view_page_filter', [UserController::class,'all_products_view_page_filter'])->middleware('userMiddleware');
+
 Route::get('/wishlist_products_view', [UserController::class,'wishlist_products_view'])->middleware('userMiddleware');
 Route::post('/add_wishlist/{product_id}', [UserController::class,'add_wishlist'])->middleware('userMiddleware');
 Route::post('/remove_wishlist/{product_id}', [UserController::class,'remove_wishlist'])->middleware('userMiddleware');
