@@ -7,18 +7,59 @@
 
             #category-list::-webkit-scrollbar-thumb {
                 background-color: #C4B5FD;
-                /* Light purple */
                 border-radius: 3px;
+            }
+
+            /* Mobile Filter Overlay */
+            #filterOverlay {
+                display: none;
+            }
+
+            #filterOverlay.active {
+                display: block;
+            }
+
+            /* Smooth transitions */
+            #filterSidebar {
+                transition: transform 0.3s ease-in-out;
+            }
+
+            /* Prevent body scroll when sidebar is open */
+            body.filter-open {
+                overflow: hidden;
             }
         </style>
 
         <div class="container mx-auto px-4 py-8">
+            <!-- Mobile Filter Toggle Button (Sticky below navbar) -->
+            <div class="lg:hidden sticky top-16 z-30 bg-white shadow-md mb-4 -mx-4 px-4 py-3">
+                <button id="filterToggle" class="w-full bg-purple-medium text-white py-3 px-4 rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-purple-dark transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filters & Sort
+                </button>
+            </div>
+
             <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Overlay for mobile -->
+                <div id="filterOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"></div>
 
                 <!-- Sidebar Filters -->
-                <aside class="lg:w-64 flex-shrink-0">
-                    <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24">
-                        <div class="flex items-center justify-between mb-6">
+                <aside id="filterSidebar" class="fixed lg:static top-0 left-0 h-full lg:h-auto w-80 lg:w-64 bg-white z-50 lg:z-auto transform -translate-x-full lg:translate-x-0 flex-shrink-0 overflow-y-auto lg:overflow-visible">
+                    <div class="bg-white rounded-none lg:rounded-lg shadow-lg p-6 lg:sticky lg:top-24 h-full lg:h-auto">
+                        <!-- Mobile Header -->
+                        <div class="flex items-center justify-between mb-6 lg:hidden">
+                            <h2 class="text-xl font-bold text-purple-darkest">Filters</h2>
+                            <button id="closeFilter" class="text-purple-dark hover:text-purple-darkest">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Desktop Header -->
+                        <div class="hidden lg:flex items-center justify-between mb-6">
                             <h2 class="text-xl font-bold text-purple-darkest">Filters</h2>
                             <a href="/all_products_view_page_filter" class="text-sm text-purple-medium hover:text-purple-dark transition-colors">
                                 Reset All
@@ -52,9 +93,6 @@
                                 @endif
                             </div>
 
-
-
-
                             <!-- Sort By -->
                             <div class="mb-6">
                                 <label class="block text-sm font-semibold text-purple-dark mb-3">Sort By</label>
@@ -74,12 +112,8 @@
                                 <label class="block text-sm font-semibold text-purple-dark mb-3">Price Range</label>
                                 <div class="space-y-3">
                                     <div class="flex gap-2">
-                                        <!-- <input type="number" name="min" placeholder="Min" value="{{ request('min') }}" class="w-1/2 px-3 py-2 border border-purple-light rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-medium bg-lav1">
-                                        <input type="number" name="max" placeholder="Max" value="{{ request('max') }}" class="w-1/2 px-3 py-2 border border-purple-light rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-medium bg-lav1"> -->
-
                                         <input type="number" name="min" placeholder="Min" value="{{ request('min') }}" onchange="this.form.submit()" class="w-1/2 px-3 py-2 border border-purple-light rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-medium bg-lav1">
                                         <input type="number" name="max" placeholder="Max" value="{{ request('max') }}" onchange="this.form.submit()" class="w-1/2 px-3 py-2 border border-purple-light rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-medium bg-lav1">
-
                                     </div>
                                     <div class="flex items-center justify-between text-xs text-purple-dark">
                                         <span>₹{{ request('min') ?? '0' }}</span>
@@ -97,15 +131,15 @@
                                         <input type="radio" name="rating" value="{{ $rate }}" onchange="this.form.submit()" class="mr-2 text-purple-medium focus:ring-purple-medium" {{ request('rating') == $rate || ($rate==0 && !request('rating')) ? 'checked' : '' }}>
                                         <span class="text-sm text-purple-darkest">
                                             @for($i=1; $i<=5; $i++)
-                                                @if($i <=$rate)
-                                                <i class="fas fa-star text-yellow-400"></i>
+                                                @if($i <= $rate)
+                                                    <i class="fas fa-star text-yellow-400"></i>
                                                 @elseif($i == ceil($rate)+1 && $rate < $i)
                                                     <i class="far fa-star text-yellow-400"></i>
-                                                    @else
+                                                @else
                                                     <i class="far fa-star text-yellow-400"></i>
-                                                    @endif
-                                                    @endfor
-                                                    @if($rate!=0) & up @else All Ratings @endif
+                                                @endif
+                                            @endfor
+                                            @if($rate!=0) & up @else All Ratings @endif
                                         </span>
                                     </label>
                                     @endforeach
@@ -121,6 +155,13 @@
                                     <span class="text-sm text-purple-darkest">{{ $label }}</span>
                                 </label>
                                 @endforeach
+                            </div>
+
+                            <!-- Mobile Apply Button -->
+                            <div class="lg:hidden mt-6 pt-4 border-t border-purple-light">
+                                <a href="/all_products_view_page_filter" class="block w-full text-center bg-gray-200 text-purple-darkest py-2 px-4 rounded-lg font-semibold mb-2 hover:bg-gray-300 transition-colors">
+                                    Reset All
+                                </a>
                             </div>
                         </form>
                     </div>
@@ -152,7 +193,7 @@
                         </div>
                         @empty
                         <!-- If no product exists in any category / filter -->
-                        <div class="col-span-4 text-center py-10">
+                        <div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-10">
                             <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" class="w-24 mx-auto mb-4 opacity-70">
                             <h2 class="text-xl font-semibold text-purple-darkest">No Products Found</h2>
                             <p class="text-gray-600">Try changing category or filters to see more items.</p>
@@ -168,8 +209,8 @@
             </div>
         </div>
 
-
         <script>
+            // Category toggle functionality
             const categoryList = document.getElementById('category-list');
             const toggleBtn = document.getElementById('toggle-category');
 
@@ -184,6 +225,43 @@
                     }
                 });
             }
+
+            // Mobile filter sidebar functionality
+            const filterToggle = document.getElementById('filterToggle');
+            const filterSidebar = document.getElementById('filterSidebar');
+            const filterOverlay = document.getElementById('filterOverlay');
+            const closeFilter = document.getElementById('closeFilter');
+
+            function openFilter() {
+                filterSidebar.classList.remove('-translate-x-full');
+                filterOverlay.classList.add('active');
+                document.body.classList.add('filter-open');
+            }
+
+            function closeFilterFunc() {
+                filterSidebar.classList.add('-translate-x-full');
+                filterOverlay.classList.remove('active');
+                document.body.classList.remove('filter-open');
+            }
+
+            if (filterToggle) {
+                filterToggle.addEventListener('click', openFilter);
+            }
+
+            if (closeFilter) {
+                closeFilter.addEventListener('click', closeFilterFunc);
+            }
+
+            if (filterOverlay) {
+                filterOverlay.addEventListener('click', closeFilterFunc);
+            }
+
+            // Close filter on window resize to desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 1024) {
+                    closeFilterFunc();
+                }
+            });
         </script>
     </x-slot>
 </x-user_navbar>
