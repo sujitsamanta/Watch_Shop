@@ -201,10 +201,6 @@
                         @endforelse
                     </div>
 
-                    <!-- Pagination -->
-                    <div class="mt-6">
-                        {{ $products->withQueryString()->links() }}
-                    </div>
                 </main>
             </div>
         </div>

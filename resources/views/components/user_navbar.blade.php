@@ -381,7 +381,13 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                         <span class="text-xs font-medium">Wishlist</span>
-                        <span class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $wishlistCount }}</span>
+
+                        @if ($wishlistCount)
+                        <span class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                            {{ $wishlistCount }}
+                        </span>
+                        @endif
+
                     </a>
 
                     <a href="/add_to_cart_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
@@ -389,15 +395,22 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span class="text-xs font-medium">Cart</span>
+                        @if ($productCount)
                         <span class="absolute -top-1 -right-3 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                             {{ $productCount }}
                         </span>
+                        @endif
+
                     </a>
 
                     <a href="/all_orders_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
                         <i class="fa-solid fa-bag-shopping text-xl"></i>
                         <span class="text-xs font-medium">Order</span>
-                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $orderCount }}</span>
+                        @if ($orderCount)
+                        <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                            {{ $orderCount }}
+                        </span>
+                        @endif
                     </a>
                     @else
                     <a href="/signin" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 group">

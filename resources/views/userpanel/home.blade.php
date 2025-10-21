@@ -660,7 +660,7 @@
 
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto py-8">
             <!-- <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Price drop on electronics</h1> -->
             <!-- Header Section -->
             <div class="flex justify-between items-center my-3">
@@ -712,7 +712,7 @@
         </div>
 
         <!-- category start 2 -->
-        <div class="max-w-8xl xl:mx-5 mx-auto bg-white md:rounded-lg md:shadow-sm p-6">
+        <div class="max-w-8xl xl:mx-5 mx-auto bg-white md:rounded-lg md:shadow-sm  p-6">
             <!-- Header Section -->
             <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center">
@@ -978,7 +978,7 @@
             </div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto  py-8">
             <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Price drop on electronics</h1>
 
             <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
@@ -1011,12 +1011,6 @@
                 @endforeach
             </div>
         </div>
-
-
-
-
-
-
 
         <div class="max-w-[1200px] mx-auto my-12">
             <!-- Section Header -->
