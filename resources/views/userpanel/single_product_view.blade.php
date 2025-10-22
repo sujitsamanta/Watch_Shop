@@ -43,7 +43,7 @@
 
 
                     <div class="flex justify-between">
-                       
+
                         <div>
                             <h1 class="text-4xl font-bold text-purple-darkest mb-2">{{ $product_details->name }}</h1>
                             <p class="text-gray-700 leading-relaxed">
@@ -55,15 +55,15 @@
                             </div>
                         </div>
 
-                     
-                       
-                            
-                         <!-- Wishlist Button -->
+
+
+
+                        <!-- Wishlist Button -->
                         @if($isInWishlist)
 
                         <form action="/remove_wishlist/{{ $product_details->id }}" method="POST" class="">
                             @csrf
-                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 text-xl">
+                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white hover:text-red-500 rounded-full flex items-center justify-center transition-all duration-200 text-xl">
                                 {{-- Check if product is in wishlist --}}
                                 <i class=" fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
                             </button>
@@ -73,9 +73,9 @@
                         @else
                         <form action="/add_wishlist/{{ $product_details->id }}" method="POST" class="">
                             @csrf
-                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 text-xl">
+                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white hover:text-red-500 rounded-full flex items-center justify-center transition-all duration-200 text-xl">
                                 {{-- Check if product is in wishlist --}}
-                                <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                                <i class="fa-regular fa-heart "></i> {{-- Empty heart --}}
                             </button>
 
                         </form>
@@ -221,15 +221,16 @@
 
                     <!-- Action Buttons -->
                     <div class="flex space-x-4">
-                        <form action="/add_wishlist/{{ $product_details->id }}" method="post">
+                        <form action="/add_to_cart/{{ $product_details->id }}" method="post">
                             @csrf
-                            <button type="submit" class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
-                                Add to Wishlist
+                            <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
+                                By Now
                             </button>
                         </form>
 
                         <a href="/add_to_cart/{{ $product_details->id }}">
-                            <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
+                            <button type="submit" class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
+
                                 Add to Cart
                             </button>
                         </a>
