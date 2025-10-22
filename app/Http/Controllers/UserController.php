@@ -448,7 +448,11 @@ class UserController extends Controller
             ->inRandomOrder()
             ->get();
 
-        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products'));
+        // Check if user is authenticated for conditional features
+        $isAuthenticated = Auth::check();
+        $user = $isAuthenticated ? Auth::user() : null;
+
+        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products', 'isAuthenticated', 'user'));
     }
     // Add to wishlist
     public function add_wishlist($product_id)
@@ -996,6 +1000,76 @@ class UserController extends Controller
     $categories = Categorie::all();
 
     return view('userpanel.all_products_view_page_filter', compact('products', 'categories'));
+}
+
+public function search_products(Request $request)
+{
+    $query = $request->get('q', '');
+    $products = collect();
+    $categories = Categorie::all();
+    
+    if (!empty($query)) {
+        $products = Product::with('category')
+            ->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%")
+                  ->orWhere('description', 'LIKE', "%{$query}%")
+                  ->orWhere('sku', 'LIKE', "%{$query}%");
+            })
+            ->orWhereHas('category', function($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            })
+            ->paginate(12);
+    }
+    
+    return view('userpanel.all_products_view_page_filter', compact('products', 'query', 'categories'));
+}
+
+public function search_suggestions(Request $request)
+{
+    $query = $request->get('q', '');
+    $suggestions = [];
+    
+    if (strlen($query) >= 2) {
+        // Optimized query - only select needed fields
+        $products = Product::select('id', 'name', 'price', 'image', 'category_id')
+            ->with(['category:id,name'])
+            ->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%")
+                  ->orWhere('sku', 'LIKE', "%{$query}%");
+            })
+            ->limit(4) // Reduced from 5 to 4 for faster response
+            ->get();
+        
+        // Get category suggestions - simplified query
+        $categories = Categorie::select('id', 'name')
+            ->where('name', 'LIKE', "%{$query}%")
+            ->limit(2) // Reduced from 3 to 2
+            ->get();
+        
+        // Format suggestions
+        foreach ($products as $product) {
+            $suggestions[] = [
+                'type' => 'product',
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'image' => $product->image,
+                'category' => $product->category->name,
+                'url' => '/single_product_view/' . $product->id
+            ];
+        }
+        
+        foreach ($categories as $category) {
+            $suggestions[] = [
+                'type' => 'category',
+                'id' => $category->id,
+                'name' => $category->name,
+                'url' => '/search?q=' . urlencode($category->name)
+            ];
+        }
+    }
+    
+    return response()->json($suggestions);
 }
 
 }

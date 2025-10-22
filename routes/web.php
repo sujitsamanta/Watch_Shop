@@ -18,6 +18,10 @@ Route::get('/single_product_view/{product_id}', [UserController::class,'single_p
 
 Route::get('/all_products_view_page_filter', [UserController::class,'all_products_view_page_filter'])->middleware('userMiddleware');
 
+// Search functionality
+Route::get('/search', [UserController::class,'search_products'])->middleware('userMiddleware');
+Route::get('/search-suggestions', [UserController::class,'search_suggestions'])->middleware('userMiddleware');
+
 Route::get('/wishlist_products_view', [UserController::class,'wishlist_products_view'])->middleware('userMiddleware');
 Route::post('/add_wishlist/{product_id}', [UserController::class,'add_wishlist'])->middleware('userMiddleware');
 Route::post('/remove_wishlist/{product_id}', [UserController::class,'remove_wishlist'])->middleware('userMiddleware');

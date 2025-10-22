@@ -131,15 +131,15 @@
                                         <input type="radio" name="rating" value="{{ $rate }}" onchange="this.form.submit()" class="mr-2 text-purple-medium focus:ring-purple-medium" {{ request('rating') == $rate || ($rate==0 && !request('rating')) ? 'checked' : '' }}>
                                         <span class="text-sm text-purple-darkest">
                                             @for($i=1; $i<=5; $i++)
-                                                @if($i <= $rate)
-                                                    <i class="fas fa-star text-yellow-400"></i>
+                                                @if($i <=$rate)
+                                                <i class="fas fa-star text-yellow-400"></i>
                                                 @elseif($i == ceil($rate)+1 && $rate < $i)
                                                     <i class="far fa-star text-yellow-400"></i>
-                                                @else
+                                                    @else
                                                     <i class="far fa-star text-yellow-400"></i>
-                                                @endif
-                                            @endfor
-                                            @if($rate!=0) & up @else All Ratings @endif
+                                                    @endif
+                                                    @endfor
+                                                    @if($rate!=0) & up @else All Ratings @endif
                                         </span>
                                     </label>
                                     @endforeach
@@ -172,8 +172,19 @@
                     <!-- Results Header -->
                     <div class="bg-white rounded-lg shadow-lg p-4 mb-6 flex items-center justify-between">
                         <div>
+
+
+                            @if (!isset($query))
                             <h2 class="text-lg font-semibold text-purple-darkest">Premium Watches</h2>
                             <p class="text-sm text-purple-dark" id="resultCount">Showing {{ $products->total() }} products</p>
+                            @else
+                            <h2 class="text-lg font-semibold text-purple-darkest">Search Results for "{{ $query }}"</h2>
+                            @if($query && $products->count() > 0)
+                            <p class="text-sm text-purple-dark" id="resultCount">{{ $products->total() }} product(s) found</p>
+                            @endif
+
+                            @endif
+
                         </div>
                     </div>
 

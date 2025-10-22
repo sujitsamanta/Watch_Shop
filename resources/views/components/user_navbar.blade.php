@@ -328,15 +328,27 @@
                 <!-- Desktop Search Bar -->
                 <div class="hidden md:flex flex-1 max-w-xl mx-12">
                     <div class="relative w-full">
-                        <input
-                            type="text"
-                            placeholder="Search for products, brands and more..."
-                            class="w-full px-5 py-3 bg-lav2 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200 placeholder:text-purple-dark/50" />
-                        <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-medium text-white px-4 py-2 rounded-lg hover:bg-purple-dark transition-colors duration-200">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </button>
+                        <form action="/search" method="GET" class="relative w-full">
+                            <input
+                                value="{{ old('q') }}"
+                                type="text"
+                                name="q"
+                                id="desktopSearchInput"
+                                placeholder="Search for products, brands and more..."
+                                class="w-full px-5 py-3 bg-lav2 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200 placeholder:text-purple-dark/50" />
+                            <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-medium text-white px-4 py-2 rounded-lg hover:bg-purple-dark transition-colors duration-200">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </button>
+                        </form>
+
+                        <!-- Search Suggestions Dropdown -->
+                        <div id="desktopSearchSuggestions" class="absolute top-full left-0 right-0 bg-white border border-lav2 rounded-xl shadow-lg mt-2 z-50 hidden max-h-96 overflow-y-auto">
+                            <div id="desktopSuggestionsContent">
+                                <!-- Suggestions will be loaded here -->
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -470,15 +482,26 @@
             <!-- Mobile Search Bar -->
             <div id="mobileSearch" class="hidden md:hidden pb-4">
                 <div class="relative">
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        class="w-full px-4 py-3 bg-lav1 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200" />
-                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-medium">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
+                    <form action="/search" method="GET" class="relative">
+                        <input
+                            type="text"
+                            name="q"
+                            id="mobileSearchInput"
+                            placeholder="Search products..."
+                            class="w-full px-4 py-3 bg-lav1 border border-lav2 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent transition-all duration-200" />
+                        <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-medium">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Mobile Search Suggestions Dropdown -->
+                    <div id="mobileSearchSuggestions" class="absolute top-full left-0 right-0 bg-white border border-lav2 rounded-xl shadow-lg mt-2 z-50 hidden max-h-96 overflow-y-auto">
+                        <div id="mobileSuggestionsContent">
+                            <!-- Suggestions will be loaded here -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -561,9 +584,10 @@
 
             <div class="border-t border-lav2 my-3"></div>
 
-            <a href="#deals" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200 flex items-center gap-2">Manu</a>
+            <a href="#deals" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200 flex items-center gap-2">Menu</a>
             <!-- <div class="px-4 py-2 text-xs font-bold text-purple-dark uppercase tracking-wide">Manu</div> -->
             <a href="/home" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Home</a>
+            <a href="/search" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Search Products</a>
             <a href="/address_view_page" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Address</a>
             <a href="/contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Contact Us</a>
             <a href="/about" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">About Us</a>
@@ -1057,6 +1081,322 @@
         //  account photo end
 
         // account end
+    </script>
+
+    <!-- Search functionality -->
+    <script>
+        function handleSuggestionClick(url) {
+            window.location.href = url;
+        }
+        // Mobile search toggle
+        function toggleMobileSearch() {
+            const mobileSearch = document.getElementById('mobileSearch');
+            const isHidden = mobileSearch.classList.contains('hidden');
+
+            if (isHidden) {
+                mobileSearch.classList.remove('hidden');
+                document.getElementById('mobileSearchInput').focus();
+            } else {
+                mobileSearch.classList.add('hidden');
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const menuIcon = document.getElementById('menuIcon');
+            const closeIcon = document.getElementById('closeIcon');
+
+            const isOpen = !mobileMenu.classList.contains('-translate-x-full');
+
+            if (isOpen) {
+                // Close menu
+                mobileMenu.classList.add('-translate-x-full');
+                mobileOverlay.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                // Open menu
+                mobileMenu.classList.remove('-translate-x-full');
+                mobileOverlay.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        }
+
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-focus search on mobile when opened
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const desktopSearchInput = document.getElementById('desktopSearchInput');
+            const mobileSearchSuggestions = document.getElementById('mobileSearchSuggestions');
+            const desktopSearchSuggestions = document.getElementById('desktopSearchSuggestions');
+            const mobileSuggestionsContent = document.getElementById('mobileSuggestionsContent');
+            const desktopSuggestionsContent = document.getElementById('desktopSuggestionsContent');
+
+            // Handle Enter key in search inputs
+            [mobileSearchInput, desktopSearchInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const form = this.closest('form');
+                            if (form) {
+                                form.submit();
+                            }
+                        }
+                    });
+
+                    // Add input event listeners for suggestions
+                    input.addEventListener('input', function() {
+                        currentSearchInput = this;
+                        if (this === desktopSearchInput) {
+                            showSearchSuggestions(this, desktopSearchSuggestions, desktopSuggestionsContent);
+                        } else if (this === mobileSearchInput) {
+                            showSearchSuggestions(this, mobileSearchSuggestions, mobileSuggestionsContent);
+                        }
+                    });
+
+                    // Hide suggestions when input loses focus
+                    input.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            if (this === desktopSearchInput) {
+                                hideSuggestions(desktopSearchSuggestions);
+                            } else if (this === mobileSearchInput) {
+                                hideSuggestions(mobileSearchSuggestions);
+                            }
+                        }, 200); // Small delay to allow clicking on suggestions
+                    });
+
+                    // Clear search field on Escape key
+                    input.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape') {
+                            clearSearchField(this);
+                            if (this === desktopSearchInput) {
+                                hideSuggestions(desktopSearchSuggestions);
+                            } else if (this === mobileSearchInput) {
+                                hideSuggestions(mobileSearchSuggestions);
+                            }
+                            this.blur(); // Remove focus from input
+                        }
+                    });
+                }
+            });
+
+            // Auto-hide mobile search when clicking outside
+            document.addEventListener('click', function(e) {
+                const mobileSearch = document.getElementById('mobileSearch');
+                const searchButton = e.target.closest('button[onclick="toggleMobileSearch()"]');
+
+                if (!mobileSearch.contains(e.target) && !searchButton && !mobileSearch.classList.contains('hidden')) {
+                    mobileSearch.classList.add('hidden');
+                }
+
+                // Hide suggestions and clear search values when clicking outside
+                if (!e.target.closest('#desktopSearchSuggestions') && !e.target.closest('#desktopSearchInput')) {
+                    hideSuggestions(desktopSearchSuggestions);
+                    // Clear desktop search input
+                    if (desktopSearchInput && desktopSearchInput.value.trim() !== '') {
+                        clearSearchField(desktopSearchInput);
+                    }
+                }
+                if (!e.target.closest('#mobileSearchSuggestions') && !e.target.closest('#mobileSearchInput')) {
+                    hideSuggestions(mobileSearchSuggestions);
+                    // Clear mobile search input
+                    if (mobileSearchInput && mobileSearchInput.value.trim() !== '') {
+                        clearSearchField(mobileSearchInput);
+                    }
+                }
+            });
+        });
+
+        // Search suggestions functionality
+        let searchTimeout;
+        let currentSearchInput = null;
+        let suggestionsCache = new Map(); // Cache for suggestions
+
+        function showSearchSuggestions(input, suggestionsContainer, contentContainer) {
+            const query = input.value.trim();
+
+            if (query.length < 2) {
+                suggestionsContainer.classList.add('hidden');
+                return;
+            }
+
+            // Show loading state immediately
+            contentContainer.innerHTML = `
+                <div class="flex items-center justify-center p-4">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-purple-medium"></div>
+                    <span class="ml-2 text-purple-medium">Searching...</span>
+                </div>
+            `;
+            suggestionsContainer.classList.remove('hidden');
+
+            // Clear previous timeout
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+
+            // Check cache first
+            if (suggestionsCache.has(query)) {
+                const cachedSuggestions = suggestionsCache.get(query);
+                if (cachedSuggestions.length > 0) {
+                    displaySuggestions(cachedSuggestions, contentContainer);
+                    suggestionsContainer.classList.remove('hidden');
+                } else {
+                    contentContainer.innerHTML = `
+                        <div class="flex items-center justify-center p-4 text-gray-500">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            No suggestions found
+                        </div>
+                    `;
+                    suggestionsContainer.classList.remove('hidden');
+                }
+                return;
+            }
+
+            // Set new timeout for debouncing
+            searchTimeout = setTimeout(() => {
+                console.log('Fetching suggestions for:', query);
+                fetch(`/search-suggestions?q=${encodeURIComponent(query)}`)
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        return response.json();
+                    })
+                    .then(suggestions => {
+                        console.log('Suggestions received:', suggestions);
+                        // Cache the results
+                        suggestionsCache.set(query, suggestions);
+
+                        if (suggestions.length > 0) {
+                            displaySuggestions(suggestions, contentContainer);
+                            suggestionsContainer.classList.remove('hidden');
+                        } else {
+                            contentContainer.innerHTML = `
+                                <div class="flex items-center justify-center p-4 text-gray-500">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                    No suggestions found
+                                </div>
+                            `;
+                            suggestionsContainer.classList.remove('hidden');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching suggestions:', error);
+                        contentContainer.innerHTML = `
+                            <div class="flex items-center justify-center p-4 text-red-500">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Error loading suggestions
+                            </div>
+                        `;
+                        suggestionsContainer.classList.remove('hidden');
+                    });
+            }, 150); // 150ms debounce for faster response
+        }
+
+        function displaySuggestions(suggestions, container) {
+            console.log('Displaying suggestions:', suggestions);
+            let html = '';
+
+            suggestions.forEach(suggestion => {
+                console.log('Processing suggestion:', suggestion);
+
+                // ⭐ Product suggestions
+                if (suggestion.type === 'product') {
+                    html += `
+                <div class="flex items-center p-3 hover:bg-lav1 transition-colors duration-200 border-b border-lav2 last:border-b-0 cursor-pointer"
+                    onmousedown="window.location.href='${suggestion.url}'">
+                    <div class="w-12 h-12 bg-lav2 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                        <img src="storage/products_images/${suggestion.image}" alt="${suggestion.name}"
+                             class="w-10 h-10 object-cover rounded-lg" onerror="this.style.display='none'">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium text-purple-dark truncate">${suggestion.name}</div>
+                        <div class="text-sm text-purple-medium">${suggestion.category}</div>
+                        <div class="text-sm font-semibold text-purple-medium">₹${parseFloat(suggestion.price).toFixed(2)}</div>
+                    </div>
+                    <div class="ml-2">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            `;
+                }
+
+                // ⭐ Category suggestions
+                else if (suggestion.type === 'category') {
+                    html += `
+                <div class="flex items-center p-3 hover:bg-lav1 transition-colors duration-200 border-b border-lav2 last:border-b-0 cursor-pointer"
+                    onmousedown="window.location.href='${suggestion.url}'">
+                    <div class="w-12 h-12 bg-purple-lightest rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+                        <svg class="w-6 h-6 text-purple-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                        </svg>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-medium text-purple-dark">${suggestion.name}</div>
+                        <div class="text-sm text-purple-medium">Category</div>
+                    </div>
+                    <div class="ml-2">
+                        <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            `;
+                }
+            });
+
+            // ⭐ Add "View all results"
+            if (suggestions.length > 0) {
+                html += `
+            <div class="border-t border-lav2">
+                <div class="flex items-center justify-center p-3 text-purple-medium hover:bg-lav1 transition-colors duration-200 font-medium cursor-pointer"
+                     onmousedown="window.location.href='/search?q=${encodeURIComponent(currentSearchInput.value)}'">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                    View all results for "${currentSearchInput.value}"
+                </div>
+            </div>
+        `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // Simple click handler for suggestions
+        function handleSuggestionClick(event) {
+            // Hide suggestions immediately
+            const desktopSuggestions = document.getElementById('desktopSearchSuggestions');
+            const mobileSuggestions = document.getElementById('mobileSearchSuggestions');
+
+            if (desktopSuggestions) {
+                desktopSuggestions.classList.add('hidden');
+            }
+            if (mobileSuggestions) {
+                mobileSuggestions.classList.add('hidden');
+            }
+        }
+
+        function hideSuggestions(suggestionsContainer) {
+            suggestionsContainer.classList.add('hidden');
+        }
+
+        function clearSearchField(input) {
+            input.value = '';
+            // Clear cache for this input
+            suggestionsCache.clear();
+        }
     </script>
 
 </body>
