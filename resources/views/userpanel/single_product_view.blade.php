@@ -40,15 +40,48 @@
 
                 <!-- Product Info -->
                 <div class="space-y-6">
-                    <div>
-                        <h1 class="text-4xl font-bold text-purple-darkest mb-2">{{ $product_details->name }}</h1>
-                        <p class="text-gray-700 leading-relaxed">
-                            {{ $product_details->description }}
-                        </p>
-                        <div class="flex items-center space-x-4">
-                            <span class="text-3xl font-bold text-purple-dark">${{ $product_details->price }}</span>
-                            <span class="text-xl text-gray-500 line-through">$499</span>
+
+
+                    <div class="flex justify-between">
+                       
+                        <div>
+                            <h1 class="text-4xl font-bold text-purple-darkest mb-2">{{ $product_details->name }}</h1>
+                            <p class="text-gray-700 leading-relaxed">
+                                {{ $product_details->description }}
+                            </p>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-3xl font-bold text-purple-dark">${{ $product_details->price }}</span>
+                                <span class="text-xl text-gray-500 line-through">$499</span>
+                            </div>
                         </div>
+
+                     
+                       
+                            
+                         <!-- Wishlist Button -->
+                        @if($isInWishlist)
+
+                        <form action="/remove_wishlist/{{ $product_details->id }}" method="POST" class="">
+                            @csrf
+                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 text-xl">
+                                {{-- Check if product is in wishlist --}}
+                                <i class=" fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                            </button>
+
+                        </form>
+
+                        @else
+                        <form action="/add_wishlist/{{ $product_details->id }}" method="POST" class="">
+                            @csrf
+                            <button type="submit" class="w-12 h-12 bg-white/50 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200 text-xl">
+                                {{-- Check if product is in wishlist --}}
+                                <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                            </button>
+
+                        </form>
+
+                        @endif
+
                     </div>
 
                     <!-- Color Selection -->

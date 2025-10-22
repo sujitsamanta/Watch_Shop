@@ -217,13 +217,13 @@ class UserController extends Controller
 
     public function home_check()
     {
-        $user = auth()->user(); 
+        $user = auth()->user();
         // if (Auth::check()) {}
         $products_data = Product::with('category')
             ->inRandomOrder()
             ->get();
 
-    $wishlist = $user->wishlist()->pluck('product_id');
+        $wishlist = $user->wishlist()->pluck('product_id');
 
         return view('userpanel.home', compact('products_data', 'wishlist'));
     }
@@ -456,7 +456,15 @@ class UserController extends Controller
         $isAuthenticated = Auth::check();
         $user = $isAuthenticated ? Auth::user() : null;
 
-        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products', 'isAuthenticated', 'user'));
+        $user = auth()->user();
+        $isInWishlist = false;
+        if ($user) {
+            // Assuming 'wishlist' is a belongsToMany relationship in User model
+            $isInWishlist = $user->wishlist()->where('product_id', $product_id)->exists();
+        }
+
+
+        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products', 'user', 'isInWishlist'));
     }
     // Add to wishlist
     public function add_wishlist($product_id)
@@ -959,123 +967,135 @@ class UserController extends Controller
 
 
     public function all_products_view_page_filter(Request $request)
-{
-    $user = auth()->user(); 
-    $query = Product::query();
+    {
+        $user = auth()->user();
+        $query = Product::query();
 
-    // Price Filter
-    if ($request->has('min') && is_numeric($request->min)) {
-        $query->where('price', '>=', $request->min);
-    }
-    if ($request->has('max') && is_numeric($request->max)) {
-        $query->where('price', '<=', $request->max);
-    }
-
-    // Rating Filter
-    if ($request->filled('rating') && $request->rating > 0) {
-        $query->where('rating', '>=', $request->rating);
-    }
-
-    // Upload Time Filter
-    if ($request->filled('upload') && $request->upload > 0) {
-        $query->where('created_at', '>=', now()->subDays($request->upload));
-    }
-
-    // Category Filter
-    if ($request->filled('category')) {
-        $query->where('category_id', $request->category);
-    }
-
-    // Sorting
-    if ($request->filled('sort')) {
-        switch ($request->sort) {
-            case 'price-asc': $query->orderBy('price', 'asc'); break;
-            case 'price-desc': $query->orderBy('price', 'desc'); break;
-            case 'name-asc': $query->orderBy('name', 'asc'); break;
-            case 'name-desc': $query->orderBy('name', 'desc'); break;
-            case 'newest': $query->orderBy('created_at', 'desc'); break;
-            case 'oldest': $query->orderBy('created_at', 'asc'); break;
-            default: $query->orderBy('id','desc');
+        // Price Filter
+        if ($request->has('min') && is_numeric($request->min)) {
+            $query->where('price', '>=', $request->min);
         }
-    }
-
-    $products = $query->paginate(12);
-
-    // Get all categories for the sidebar
-    $categories = Categorie::all();
-    $wishlist = $user->wishlist()->pluck('product_id');
-
-    return view('userpanel.all_products_view_page_filter', compact('products', 'categories', 'wishlist'));
-}
-
-public function search_products(Request $request)
-{
-    $query = $request->get('q', '');
-    $products = collect();
-    $categories = Categorie::all();
-    
-    if (!empty($query)) {
-        $products = Product::with('category')
-            ->where(function($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%")
-                  ->orWhere('description', 'LIKE', "%{$query}%")
-                  ->orWhere('sku', 'LIKE', "%{$query}%");
-            })
-            ->orWhereHas('category', function($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%");
-            })
-            ->paginate(12);
-    }
-    
-    return view('userpanel.all_products_view_page_filter', compact('products', 'query', 'categories'));
-}
-
-public function search_suggestions(Request $request)
-{
-    $query = $request->get('q', '');
-    $suggestions = [];
-    
-    if (strlen($query) >= 2) {
-        // Optimized query - only select needed fields
-        $products = Product::select('id', 'name', 'price', 'image', 'category_id')
-            ->with(['category:id,name'])
-            ->where(function($q) use ($query) {
-                $q->where('name', 'LIKE', "%{$query}%")
-                  ->orWhere('sku', 'LIKE', "%{$query}%");
-            })
-            ->limit(4) // Reduced from 5 to 4 for faster response
-            ->get();
-        
-        // Get category suggestions - simplified query
-        $categories = Categorie::select('id', 'name')
-            ->where('name', 'LIKE', "%{$query}%")
-            ->limit(2) // Reduced from 3 to 2
-            ->get();
-        
-        // Format suggestions
-        foreach ($products as $product) {
-            $suggestions[] = [
-                'type' => 'product',
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'image' => $product->image,
-                'category' => $product->category->name,
-                'url' => '/single_product_view/' . $product->id
-            ];
+        if ($request->has('max') && is_numeric($request->max)) {
+            $query->where('price', '<=', $request->max);
         }
-        
-        foreach ($categories as $category) {
-            $suggestions[] = [
-                'type' => 'category',
-                'id' => $category->id,
-                'name' => $category->name,
-                'url' => '/search?q=' . urlencode($category->name)
-            ];
-        }
-    }
-    
-    return response()->json($suggestions);
-}
 
+        // Rating Filter
+        if ($request->filled('rating') && $request->rating > 0) {
+            $query->where('rating', '>=', $request->rating);
+        }
+
+        // Upload Time Filter
+        if ($request->filled('upload') && $request->upload > 0) {
+            $query->where('created_at', '>=', now()->subDays($request->upload));
+        }
+
+        // Category Filter
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Sorting
+        if ($request->filled('sort')) {
+            switch ($request->sort) {
+                case 'price-asc':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price-desc':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'name-asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'name-desc':
+                    $query->orderBy('name', 'desc');
+                    break;
+                case 'newest':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                default:
+                    $query->orderBy('id', 'desc');
+            }
+        }
+
+        $products = $query->paginate(12);
+
+        // Get all categories for the sidebar
+        $categories = Categorie::all();
+        $wishlist = $user->wishlist()->pluck('product_id');
+
+        return view('userpanel.all_products_view_page_filter', compact('products', 'categories', 'wishlist'));
+    }
+
+    public function search_products(Request $request)
+    {
+        $query = $request->get('q', '');
+        $products = collect();
+        $categories = Categorie::all();
+
+        if (!empty($query)) {
+            $products = Product::with('category')
+                ->where(function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('description', 'LIKE', "%{$query}%")
+                        ->orWhere('sku', 'LIKE', "%{$query}%");
+                })
+                ->orWhereHas('category', function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%");
+                })
+                ->paginate(12);
+        }
+
+        return view('userpanel.all_products_view_page_filter', compact('products', 'query', 'categories'));
+    }
+
+    public function search_suggestions(Request $request)
+    {
+        $query = $request->get('q', '');
+        $suggestions = [];
+
+        if (strlen($query) >= 2) {
+            // Optimized query - only select needed fields
+            $products = Product::select('id', 'name', 'price', 'image', 'category_id')
+                ->with(['category:id,name'])
+                ->where(function ($q) use ($query) {
+                    $q->where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('sku', 'LIKE', "%{$query}%");
+                })
+                ->limit(4) // Reduced from 5 to 4 for faster response
+                ->get();
+
+            // Get category suggestions - simplified query
+            $categories = Categorie::select('id', 'name')
+                ->where('name', 'LIKE', "%{$query}%")
+                ->limit(2) // Reduced from 3 to 2
+                ->get();
+
+            // Format suggestions
+            foreach ($products as $product) {
+                $suggestions[] = [
+                    'type' => 'product',
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'price' => $product->price,
+                    'image' => $product->image,
+                    'category' => $product->category->name,
+                    'url' => '/single_product_view/' . $product->id
+                ];
+            }
+
+            foreach ($categories as $category) {
+                $suggestions[] = [
+                    'type' => 'category',
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'url' => '/search?q=' . urlencode($category->name)
+                ];
+            }
+        }
+
+        return response()->json($suggestions);
+    }
 }
