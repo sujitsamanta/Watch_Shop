@@ -311,6 +311,8 @@
 </head>
 
 <body class="bg-lav1">
+
+   
     <!-- @include('notify::components.notify') -->
 
     <!-- Main Navbar -->

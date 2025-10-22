@@ -217,11 +217,15 @@ class UserController extends Controller
 
     public function home_check()
     {
+        $user = auth()->user(); 
         // if (Auth::check()) {}
         $products_data = Product::with('category')
             ->inRandomOrder()
             ->get();
-        return view('userpanel.home', compact('products_data'));
+
+    $wishlist = $user->wishlist()->pluck('product_id');
+
+        return view('userpanel.home', compact('products_data', 'wishlist'));
     }
 
 
@@ -956,6 +960,7 @@ class UserController extends Controller
 
     public function all_products_view_page_filter(Request $request)
 {
+    $user = auth()->user(); 
     $query = Product::query();
 
     // Price Filter
@@ -998,8 +1003,9 @@ class UserController extends Controller
 
     // Get all categories for the sidebar
     $categories = Categorie::all();
+    $wishlist = $user->wishlist()->pluck('product_id');
 
-    return view('userpanel.all_products_view_page_filter', compact('products', 'categories'));
+    return view('userpanel.all_products_view_page_filter', compact('products', 'categories', 'wishlist'));
 }
 
 public function search_products(Request $request)

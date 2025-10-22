@@ -190,8 +190,32 @@
 
                     <!-- Product Grid Section -->
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        @forelse($products as $product)
-                        <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer">
+                        @foreach($products as $product)
+                        <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
+
+                            <!-- Wishlist Button -->
+                            @if($wishlist->contains($product->id))
+
+                            <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                                @csrf
+                                <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                                    {{-- Check if product is in wishlist --}}
+                                    <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                                </button>
+                            </form>
+
+                            @else
+                            <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                                @csrf
+                                <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                                    {{-- Check if product is in wishlist --}}
+                                    <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                                </button>
+                            </form>
+
+                            @endif
+                            
+                            <!-- Product Card -->
                             <a href="/single_product_view/{{ $product->id }}">
                                 <div class="p-4">
                                     <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
@@ -202,14 +226,10 @@
                                 </div>
                             </a>
                         </div>
-                        @empty
-                        <!-- If no product exists in any category / filter -->
-                        <div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-10">
-                            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" class="w-24 mx-auto mb-4 opacity-70">
-                            <h2 class="text-xl font-semibold text-purple-darkest">No Products Found</h2>
-                            <p class="text-gray-600">Try changing category or filters to see more items.</p>
-                        </div>
-                        @endforelse
+
+                        @endforeach
+
+
                     </div>
 
                 </main>

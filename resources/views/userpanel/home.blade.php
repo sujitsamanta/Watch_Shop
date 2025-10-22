@@ -685,25 +685,38 @@
 
                 @foreach($products_data->take(10) as $product)
                 <!-- Product Card -->
-                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
+
+                    <!-- Wishlist Button -->
+                    @if($wishlist->contains($product->id))
+
+                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                        @csrf
+                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                            {{-- Check if product is in wishlist --}}
+                            <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                        </button>
+                    </form>
+
+                    @else
+                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                        @csrf
+                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                            {{-- Check if product is in wishlist --}}
+                            <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                        </button>
+                    </form>
+
+                    @endif
+
+                    <!-- Product Card -->
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
-                            <!-- Product Image (Square Shape) -->
                             <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}"
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover">
+                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                             </div>
-
-                            <!-- Product Name -->
-                            <h3 class="text-sm font-medium text-gray-900 mb-1">
-                                {{ $product->name }}
-                            </h3>
-
-                            <!-- Product Price -->
-                            <p class="text-sm font-semibold text-gray-900">
-                                ₹{{ number_format($product->price, 2) }}
-                            </p>
+                            <h3 class="text-sm font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
+                            <p class="text-sm font-semibold text-gray-900">₹{{ number_format($product->price, 2) }}</p>
                         </div>
                     </a>
                 </div>
@@ -986,25 +999,38 @@
 
                 @foreach($products_data->take(10) as $product)
                 <!-- Product Card -->
-                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer">
+                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
+
+                    <!-- Wishlist Button -->
+                    @if($wishlist->contains($product->id))
+
+                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                        @csrf
+                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                            {{-- Check if product is in wishlist --}}
+                            <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                        </button>
+                    </form>
+
+                    @else
+                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                        @csrf
+                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
+                            {{-- Check if product is in wishlist --}}
+                            <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                        </button>
+                    </form>
+
+                    @endif
+
+                    <!-- Product Card -->
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
-                            <!-- Product Image (Square Shape) -->
                             <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}"
-                                    alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover">
+                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
                             </div>
-
-                            <!-- Product Name -->
-                            <h3 class="text-sm font-medium text-gray-900 mb-1">
-                                {{ $product->name }}
-                            </h3>
-
-                            <!-- Product Price -->
-                            <p class="text-sm font-semibold text-gray-900">
-                                ₹{{ number_format($product->price, 2) }}
-                            </p>
+                            <h3 class="text-sm font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
+                            <p class="text-sm font-semibold text-gray-900">₹{{ number_format($product->price, 2) }}</p>
                         </div>
                     </a>
                 </div>
