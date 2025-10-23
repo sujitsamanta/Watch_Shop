@@ -484,7 +484,7 @@
                         </svg>
                         <span class="text-xs font-medium">Wishlist</span>
 
-                        @if ($wishlistCount)
+                        @if ($wishlistCount>0)
                         <span class="absolute -top-1 -right-1 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                             {{ $wishlistCount }}
                         </span>
@@ -497,7 +497,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span class="text-xs font-medium">Cart</span>
-                        @if ($productCount)
+                        @if ($productCount>0)
                         <span class="absolute -top-1 -right-3 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                             {{ $productCount }}
                         </span>
@@ -508,7 +508,7 @@
                     <a href="/all_orders_view" class="flex flex-col items-center text-side hover:text-purple-medium transition-colors duration-200 relative group">
                         <i class="fa-solid fa-bag-shopping text-xl"></i>
                         <span class="text-xs font-medium">Order</span>
-                        @if ($orderCount)
+                        @if ($orderCount>0)
                         <span class="absolute -top-1 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                             {{ $orderCount }}
                         </span>
@@ -546,7 +546,11 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <span class="absolute -top-2 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">{{ $productCount }}</span>
+                        @if ($productCount>0)
+                        <span class="absolute -top-2 -right-2 bg-purple-medium text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
+                            {{ $productCount }}
+                        </span>
+                        @endif
                     </a>
                     @else
                     <a href="/login" class="text-side relative">
@@ -661,12 +665,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 <span class="font-medium">Wishlist</span>
-                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $wishlistCount }}</span>
+                @if ($wishlistCount>0)
+                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">
+                    {{ $wishlistCount }}
+                </span>
+                @endif
             </a>
             <a href="/all_orders_view" class="{{ Request::is('all_orders_view') ? 'bg-lav1 text-purple-medium' : '' }} flex items-center gap-3 px-4 py-3 text-side rounded-lg transition-all duration-200">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="font-medium">Order</span>
-                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $orderCount }}</span>
+                @if ($orderCount>0)
+                <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">
+                    {{ $orderCount }}
+                </span>
+                @endif
             </a>
             @else
             <a href="/login" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
@@ -703,23 +715,20 @@
 
             <div class="border-t border-lav2 my-3"></div>
             @if(Auth::check())
-            <a href="/logout">
+            <form action="/logout" method="post">
+                @csrf
+                <a type="submit" class="logout bg-red-400 text-white  hover:bg-red-600  block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium mt-2">
+                    Logout
+                </a>
                 <!-- <a href="" class=" flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200"> -->
-                <svg class="logout" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                    <polyline points="10,17 15,12 10,7" />
-                    <line x1="15" x2="3" y1="12" y2="12" />
-                </svg>
-                <span class="logout text-xs font-medium">Logout</span>
                 <!-- </a> -->
-            </a>
+            </form>
             @else
-            <a href="/signin" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Sign In</a>
+            <a href="/signin" class="block px-4 py-3 text-side  rounded-lg transition-all duration-200 font-medium">Sign In</a>
 
             @endif
 
-            <a href="/signin" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200">Register</a>
+            <a href="/signin" class="block px-4 py-3 text-purple-medium font-bold rounded-lg transition-all duration-200">Register</a>
         </div>
     </div>
 
@@ -960,9 +969,12 @@
         // user logout start
 
         $(document).ready(function() {
+
             $(".logout").on("click", function(e) {
-                e.preventDefault(); // Stop default logout immediately
-                let url = $(this).attr("href"); // /logout
+                e.preventDefault(); // stop direct submit
+
+                let form = $(this).closest("form")[0]; // get native form element
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You will be logged out from the system.",
@@ -971,14 +983,13 @@
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, log me out!",
+                    cancelButtonText: "Cancel"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Redirect to logout
-                        window.location.href = url;
+                        form.submit(); // ✅ native submit
                     }
                 });
             });
-
             // user logout end
 
 

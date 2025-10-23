@@ -1,8 +1,8 @@
 <x-user_navbar>
     <x-slot name="body">
-          @php
-    $user = Auth::user();
-    @endphp
+        @php
+        $user = Auth::user();
+        @endphp
         <!-- <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 "> -->
 
         <!-- Header -->
@@ -180,31 +180,13 @@
                                     </button>
                                 </a>
 
-
-
-                                @if(Auth::check())
-                                <!-- <a href="/logout" class="logout flex items-center gap-3 px-4 py-3  text-white rounded-lg transition-all duration-200 bg-red-400 hover:bg-red-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                                        <polyline points="10,17 15,12 10,7" />
-                                        <line x1="15" x2="3" y1="12" y2="12" />
-                                    </svg>
-                                    <span class="text-xs font-medium ">Logout</span>
-                                </a> -->
-                                <a href="/logout">
-                                    <button type="submit" class="logout">Logout</button>
-                                </a>
-                                @endif
-
-
                             </div>
-
-
                         </div>
 
                     </div>
                 </form>
+
+               
 
                 @if ($default_address)
                 <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md my-6 ">
@@ -265,6 +247,18 @@
                         </h3>
                     </div>
                 </a>
+                @endif
+
+
+                 @if(Auth::check())
+                <form action="/logout" method="post" class="mt-6">
+                    @csrf
+                    <button type="submit" class="logout bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
+                        Logout
+                    </button>
+                    <!-- <a href="" class=" flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200"> -->
+                    <!-- </a> -->
+                </form>
                 @endif
 
             </div>
