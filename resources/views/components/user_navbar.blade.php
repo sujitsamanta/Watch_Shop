@@ -311,8 +311,9 @@
 </head>
 
 <body class="bg-lav1">
+  
 
-   
+
     <!-- @include('notify::components.notify') -->
 
     <!-- Main Navbar -->
@@ -606,15 +607,18 @@
 
             <div class="border-t border-lav2 my-3"></div>
             @if(Auth::check())
-            <a href="/logout" class="logout flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            <form action="/logout" method="post">
+
+                <!-- <a href="" class=" flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200"> -->
+                <svg class="logout" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                     <polyline points="10,17 15,12 10,7" />
                     <line x1="15" x2="3" y1="12" y2="12" />
                 </svg>
-                <span class="text-xs font-medium">Logout</span>
-            </a>
+                <span class="logout text-xs font-medium">Logout</span>
+                <!-- </a> -->
+            </form>
             @else
             <a href="/signin" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Sign In</a>
 
@@ -626,6 +630,7 @@
 
     <!-- Main Content -->
     <div class="max-w-full mx-auto bg-lav1">
+        
 
         {{ $body }}
 

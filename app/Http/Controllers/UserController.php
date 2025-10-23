@@ -223,9 +223,7 @@ class UserController extends Controller
             ->inRandomOrder()
             ->get();
 
-        $wishlist = $user->wishlist()->pluck('product_id');
-
-        return view('userpanel.home', compact('products_data', 'wishlist'));
+        return view('userpanel.home', compact('products_data'));
     }
 
 
@@ -1093,10 +1091,10 @@ class UserController extends Controller
                 ->paginate(12);
         }
 
-        
+
         $wishlist = $user->wishlist()->pluck('product_id');
 
-        return view('userpanel.all_products_view_page_filter', compact('products', 'query', 'categories','wishlist'));
+        return view('userpanel.all_products_view_page_filter', compact('products', 'query', 'categories', 'wishlist'));
     }
 
     public function search_suggestions(Request $request)

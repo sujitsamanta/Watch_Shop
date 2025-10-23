@@ -1,5 +1,8 @@
 <x-user_navbar>
     <x-slot name="body">
+        @php
+        $user = Auth::user();
+        @endphp
         <style>
             #category-list::-webkit-scrollbar {
                 width: 6px;
@@ -191,38 +194,52 @@
                     <!-- Product Grid Section -->
                     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach($products as $product)
-                        <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
 
-                            <!-- Wishlist Button -->
-                            @if($wishlist->contains($product->id))
-
-                            <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                            {{-- ✅ Wishlist Button --}}
+                            @if($user && $user->wishlist()->where('product_id', $product->id)->exists())
+                            <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                                 @csrf
-                                <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                                    {{-- Check if product is in wishlist --}}
-                                    <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-solid fa-heart text-red-500 text-lg"></i>
                                 </button>
                             </form>
-
                             @else
-                            <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                            <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                                 @csrf
-                                <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                                    {{-- Check if product is in wishlist --}}
-                                    <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
                                 </button>
                             </form>
-
                             @endif
-                            
-                            <!-- Product Card -->
+
+                            {{-- Product Info --}}
                             <a href="/single_product_view/{{ $product->id }}">
                                 <div class="p-4">
-                                    <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                                        <img src="{{ url('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                    {{-- Product Image --}}
+                                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                        <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                            alt="{{ $product->name }}"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                                     </div>
-                                    <h3 class="text-sm font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
-                                    <p class="text-sm font-semibold text-gray-900">₹{{ number_format($product->price, 2) }}</p>
+
+                                    {{-- Product Name --}}
+                                    <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                        {{ $product->name }}
+                                    </p>
+
+                                    {{-- Product Description (short & trimmed) --}}
+                                    <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                        {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
+                                    </p>
+
+                                    {{-- Product Price --}}
+                                    <p class="text-sm font-bold text-purple-700 mt-2">
+                                        ₹{{ number_format($product->price, 2) }}
+                                    </p>
                                 </div>
                             </a>
                         </div>

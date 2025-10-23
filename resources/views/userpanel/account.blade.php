@@ -1,5 +1,8 @@
 <x-user_navbar>
     <x-slot name="body">
+          @php
+    $user = Auth::user();
+    @endphp
         <!-- <div class="max-w-5xl mx-auto glass bg-white/30 rounded-3xl shadow-2xl p-8 border border-white/20 "> -->
 
         <!-- Header -->
@@ -105,7 +108,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Full Name</label>
                                 <input name="name" type="text" id="fullName" value="{{ $user_data->name }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70">
                                 <div class="text-sm text-red-500 h-2">
                                     @error('name')
                                     {{ $message }}
@@ -120,7 +123,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Phone</label>
                                 <input name="phone" type="text" id="phone" value="{{ $user_data->phone }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70">
                                 <div class="text-sm text-red-500 h-2">
                                     @error('phone')
                                     {{ $message }}
@@ -131,7 +134,7 @@
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Date of
                                     Birth</label>
                                 <input name="dob" type="date" id="dob" value="{{ $user_data->dob }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70">
                                 <div class="text-sm text-red-500 h-2">
                                     @error('dob')
                                     {{ $message }}
@@ -147,7 +150,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Username</label>
                                 <input name="username" type="text" id="username" value="{{ $user_data->username }}"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70" >
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70">
                                 <div class="text-sm text-red-500 h-2">
                                     @error('username')
                                     {{ $message }}
@@ -158,8 +161,7 @@
                             <div>
                                 <label class="block text-sm font-semibold text-purple-700 mb-1">Bio</label>
                                 <textarea name="bio" id="bio" rows="3"
-                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none"
-                                    >{{ $user_data->bio }}</textarea>
+                                    class="w-full p-3 border border-purple-200 rounded-lg bg-white/70 resize-none">{{ $user_data->bio }}</textarea>
                                 <div class="text-sm text-red-500 h-2">
                                     @error('bio')
                                     {{ $message }}
@@ -179,12 +181,22 @@
                                 </a>
 
 
-                                <a href="/logout">
-                                    <button id="editBtn" type="button"
-                                        class="logout bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
-                                        Log out
-                                    </button>
-                                </a>
+
+                                @if(Auth::check())
+                                <!-- <a href="/logout" class="logout flex items-center gap-3 px-4 py-3  text-white rounded-lg transition-all duration-200 bg-red-400 hover:bg-red-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                                        <polyline points="10,17 15,12 10,7" />
+                                        <line x1="15" x2="3" y1="12" y2="12" />
+                                    </svg>
+                                    <span class="text-xs font-medium ">Logout</span>
+                                </a> -->
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type="submit" class="logout">Logout</button>
+                                </form>
+                                @endif
 
 
                             </div>

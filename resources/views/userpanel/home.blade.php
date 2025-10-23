@@ -1,5 +1,9 @@
 <x-user_navbar>
     <x-slot name="body">
+  @php
+    $user = Auth::user();
+    @endphp
+     
         <!-- Hero Section -->
         <section class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
 
@@ -683,44 +687,57 @@
             <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
 
-                @foreach($products_data->take(10) as $product)
-                <!-- Product Card -->
-                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
+                @foreach ($products_data->take(10) as $product)
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
 
-                    <!-- Wishlist Button -->
-                    @if($wishlist->contains($product->id))
-
-                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                    {{-- ✅ Wishlist Button --}}
+                    @if($user && $user->wishlist()->where('product_id', $product->id)->exists())
+                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                         @csrf
-                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                            {{-- Check if product is in wishlist --}}
-                            <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-solid fa-heart text-red-500 text-lg"></i>
                         </button>
                     </form>
-
                     @else
-                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                         @csrf
-                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                            {{-- Check if product is in wishlist --}}
-                            <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
                         </button>
                     </form>
-
                     @endif
 
-                    <!-- Product Card -->
+                    {{--  Product Info --}}
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
-                            <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                            {{-- Product Image --}}
+                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                    alt="{{ $product->name }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             </div>
-                            <h3 class="text-sm font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
-                            <p class="text-sm font-semibold text-gray-900">₹{{ number_format($product->price, 2) }}</p>
+
+                            {{-- Product Name --}}
+                            <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                {{ $product->name }}
+                            </p>
+
+                            {{--  Product Description (short & trimmed) --}}
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
+                            </p>
+
+                            {{-- Product Price --}}
+                            <p class="text-sm font-bold text-purple-700 mt-2">
+                                ₹{{ number_format($product->price, 2) }}
+                            </p>
                         </div>
                     </a>
                 </div>
                 @endforeach
+
             </div>
         </div>
 
@@ -819,6 +836,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- Spotlight Grid -->
@@ -996,45 +1014,57 @@
 
             <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                @foreach ($products_data->take(10) as $product)
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
 
-                @foreach($products_data->take(10) as $product)
-                <!-- Product Card -->
-                <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer relative">
-
-                    <!-- Wishlist Button -->
-                    @if($wishlist->contains($product->id))
-
-                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                    {{-- ✅ Wishlist Button --}}
+                    @if($user && $user->wishlist()->where('product_id', $product->id)->exists())
+                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                         @csrf
-                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                            {{-- Check if product is in wishlist --}}
-                            <i class="fa-solid fa-heart text-red-500"></i> {{-- Filled heart --}}
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-solid fa-heart text-red-500 text-lg"></i>
                         </button>
                     </form>
-
                     @else
-                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute top-5 right-5 z-10">
+                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
                         @csrf
-                        <button type="submit" class="w-8 h-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all duration-200">
-                            {{-- Check if product is in wishlist --}}
-                            <i class="fa-regular fa-heart text-gray-400"></i> {{-- Empty heart --}}
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
                         </button>
                     </form>
-
                     @endif
 
-                    <!-- Product Card -->
+                    {{--  Product Info --}}
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
-                            <div class="aspect-square bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                            {{-- Product Image --}}
+                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                    alt="{{ $product->name }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             </div>
-                            <h3 class="text-sm font-medium text-gray-900 mb-1">{{ $product->name }}</h3>
-                            <p class="text-sm font-semibold text-gray-900">₹{{ number_format($product->price, 2) }}</p>
+
+                            {{-- Product Name --}}
+                            <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                {{ $product->name }}
+                            </p>
+
+                            {{--  Product Description (short & trimmed) --}}
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
+                            </p>
+
+                            {{-- Product Price --}}
+                            <p class="text-sm font-bold text-purple-700 mt-2">
+                                ₹{{ number_format($product->price, 2) }}
+                            </p>
                         </div>
                     </a>
                 </div>
                 @endforeach
+
             </div>
         </div>
 
@@ -1185,7 +1215,7 @@
 
                                 </div>
                             </div>
-                            <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
+                            <p class="font-semibold text-gray-800 mb-2">{{ $product->name }}</p>
                             <div class="flex items-center gap-2 mb-2">
                                 <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
                                 <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
@@ -1205,71 +1235,7 @@
 
 
 
-        <!-- Product Grid Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <!-- Section Header -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
-                <p class="text-side/70 text-lg">Discover our curated collection of premium timepieces</p>
-            </div>
 
-            <!-- Product Tabs -->
-            <div class="flex justify-center mb-8">
-                <div class="flex space-x-8 border-b border-gray-200">
-                    <button class="pb-2 px-1 border-b-2 border-side font-medium text-side">New Arrival</button>
-                    <button class="pb-2 px-1 text-gray-500 hover:text-side">Bestseller</button>
-                    <button class="pb-2 px-1 text-gray-500 hover:text-side">Featured Products</button>
-                </div>
-            </div>
-
-            <!-- Product Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5"> -->
-
-
-                @foreach($products_data->take(8) as $product)
-
-                <!-- Product Card 1 -->
-                <a href="/single_product_view/{{ $product->id }}">
-                    <div
-                        class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
-                        <div class="relative overflow-hidden">
-                            <img src="{{ url('storage/products_images/' . $product->image) }}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"></div>
-                            <button
-                                class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 transform translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
-                                <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                                    </path>
-                                </svg>
-                            </button>
-                            <div class="absolute bottom-3 left-3 right-3 transform translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                <button class="w-full bg-side text-white py-2 rounded-md hover:bg-side/90 transition-colors text-sm font-medium">
-                                    Quick View
-                                </button>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-semibold text-side text-lg mb-2 group-hover:text-side/80 transition-colors">{{ $product->name }}</h3>
-                            <p class="text-side/70 text-sm mb-3">{{ $product->description }}</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-2xl font-bold text-side group-hover:text-side/90 transition-colors">${{ $product->price }}</span>
-                                <button
-                                    class="bg-side text-white px-4 py-2 rounded-md hover:bg-side/90 transition-all duration-300 hover:scale-105 hover:shadow-lg">Buy
-                                    Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-
-                @endforeach
-
-
-
-            </div>
-        </section>
 
 
         <div class="max-w-7xl mx-auto my-10">
