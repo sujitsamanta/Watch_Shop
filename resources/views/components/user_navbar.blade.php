@@ -308,10 +308,97 @@
         }
     </style>
 
+    <style>
+        /* Pill-shaped Active Navigation Link */
+        .nav-pill {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 9999px;
+            color: #3F4673;
+            /* side */
+            font-weight: 500;
+            text-decoration: none;
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            /* Smooth color + background change */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover state for inactive links */
+        .nav-pill:hover {
+            background-color: #F4EFFF;
+            /* lav1 */
+            color: #9D8DF1;
+            /* purple-medium */
+            transform: translateY(-2px);
+            /* Slight lift animation */
+        }
+
+        /* Active pill state */
+        .nav-pill.active {
+            background-color: #E2D8FF;
+            /* purple-light */
+            color: #4C4B7C;
+            /* purple-dark */
+            font-weight: 550;
+        }
+
+        /* Active pill hover */
+        .nav-pill.active:hover {
+            background-color: #9D8DF1;
+            /* purple-medium */
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Optional ripple effect on click */
+        .nav-pill:active {
+            transform: scale(0.97);
+        }
+
+        /* Container for pill navigation */
+        .nav-pill-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background-color: #F3F0FF;
+            /* purple-lightest */
+            border-radius: 12px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        /* Container subtle hover glow */
+        .nav-pill-container:hover {
+            box-shadow: 0px 4px 12px rgba(157, 141, 241, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-pill {
+                padding: 0.4rem 1.2rem;
+                font-size: 0.875rem;
+            }
+
+            .nav-pill-container {
+                gap: 0.25rem;
+                padding: 0.375rem;
+            }
+        }
+    </style>
+
+
+
+
 </head>
 
 <body class="bg-lav1">
-  
+    <!-- Active Link -->
+
+
+
+
 
 
     <!-- @include('notify::components.notify') -->
@@ -526,14 +613,23 @@
                         <a href="#books" class="block px-5 py-3 text-side hover:bg-lav1 hover:text-purple-medium transition-colors duration-200">Hot Deals</a>
                     </div>
                 </div>
-                <a href="/home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Home</a>
-                <a href="#fashion" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Electronics</a>
-                <a href="#home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Electronics</a>
-                <a href="/about" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">About</a>
-                <a href="/contact" class="text-side hover:text-purple-medium font-medium transition-colors duration-200">Contact</a>
+                <a href="/home" class="{{ Request::is('home') ? 'active' : '' }} nav-pill ">Home</a>
+                <a href="#fashion" class="{{ Request::is('electronics') ? 'active' : '' }} nav-pill">Electronics</a>
+                <a href="#home" class="{{ Request::is('electronics') ? 'active' : '' }} nav-pill">Electronics</a>
+                <a href="/about" class="{{ Request::is('about') ? 'active' : '' }} nav-pill">About</a>
+                <a href="/contact" class="{{ Request::is('contact') ? 'active' : '' }} nav-pill">Contact</a>
                 <a href="#deals" class="text-purple-medium hover:text-purple-dark font-bold transition-colors duration-200 flex items-center gap-1">
                     <span class="text-lg">🔥</span> Hot Deals
                 </a>
+
+                <!-- <a href="/home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200 nav-pill active">Home</a>
+                <a href="#fashion" class="text-side hover:text-purple-medium font-medium transition-colors duration-200 nav-pill">Electronics</a>
+                <a href="#home" class="text-side hover:text-purple-medium font-medium transition-colors duration-200 nav-pill">Electronics</a>
+                <a href="/about" class="text-side hover:text-purple-medium font-medium transition-colors duration-200 nav-pill">About</a>
+                <a href="/contact" class="text-side hover:text-purple-medium font-medium transition-colors duration-200 nav-pill">Contact</a>
+                <a href="#deals" class="text-purple-medium hover:text-purple-dark font-bold transition-colors duration-200 flex items-center gap-1">
+                    <span class="text-lg">🔥</span> Hot Deals
+                </a> -->
             </div>
         </div>
     </nav>
@@ -554,26 +650,26 @@
                 </button>
             </div>
             @if(Auth::check())
-            <a href="/account" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+            <a href="/account" class="{{ Request::is('account') ? 'bg-lav1 text-purple-medium' : '' }} flex items-center gap-3 px-4 py-3 text-side  rounded-lg transition-all duration-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 <span class="font-medium">My Account</span>
             </a>
-            <a href="/wishlist_products_view" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+            <a href="/wishlist_products_view" class="{{ Request::is('wishlist_products_view') ? 'bg-lav1 text-purple-medium' : '' }} flex items-center gap-3 px-4 py-3 text-side rounded-lg transition-all duration-200">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
                 <span class="font-medium">Wishlist</span>
                 <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $wishlistCount }}</span>
             </a>
-            <a href="/all_orders_view" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+            <a href="/all_orders_view" class="{{ Request::is('all_orders_view') ? 'bg-lav1 text-purple-medium' : '' }} flex items-center gap-3 px-4 py-3 text-side rounded-lg transition-all duration-200">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="font-medium">Order</span>
                 <span class="ml-auto bg-purple-medium text-white text-xs rounded-full px-2.5 py-1 font-semibold">{{ $orderCount }}</span>
             </a>
             @else
-            <a href="/account" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
+            <a href="/login" class="flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
@@ -589,11 +685,11 @@
 
             <a href="#deals" class="block px-4 py-3 text-purple-medium font-bold hover:bg-purple-lightest rounded-lg transition-all duration-200 flex items-center gap-2">Menu</a>
             <!-- <div class="px-4 py-2 text-xs font-bold text-purple-dark uppercase tracking-wide">Manu</div> -->
-            <a href="/home" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Home</a>
-            <a href="/search" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Search Products</a>
-            <a href="/address_view_page" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Address</a>
-            <a href="/contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Contact Us</a>
-            <a href="/about" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">About Us</a>
+            <a href="/home" class="{{ Request::is('home') ? 'bg-lav1 text-purple-medium' : '' }} block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium">Home</a>
+            <a href="/search" class="{{ Request::is('search') ? 'bg-lav1 text-purple-medium' : '' }} block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium">Search Products</a>
+            <a href="/address_view_page" class="{{ Request::is('address_view_page') ? 'bg-lav1 text-purple-medium' : '' }} block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium">Address</a>
+            <a href="/contact" class="{{ Request::is('contact') ? 'bg-lav1 text-purple-medium' : '' }} block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium">Contact Us</a>
+            <a href="/about" class="{{ Request::is('about') ? 'bg-lav1 text-purple-medium' : '' }} block px-4 py-3 text-side rounded-lg transition-all duration-200 font-medium">About Us</a>
             <!-- <a href="/about" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">About</a>
             <a href="/contact" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Hot Deals</a> -->
 
@@ -607,8 +703,7 @@
 
             <div class="border-t border-lav2 my-3"></div>
             @if(Auth::check())
-            <form action="/logout" method="post">
-
+            <a href="/logout">
                 <!-- <a href="" class=" flex items-center gap-3 px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200"> -->
                 <svg class="logout" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -618,7 +713,7 @@
                 </svg>
                 <span class="logout text-xs font-medium">Logout</span>
                 <!-- </a> -->
-            </form>
+            </a>
             @else
             <a href="/signin" class="block px-4 py-3 text-side hover:bg-lav1 hover:text-purple-medium rounded-lg transition-all duration-200 font-medium">Sign In</a>
 
@@ -630,7 +725,7 @@
 
     <!-- Main Content -->
     <div class="max-w-full mx-auto bg-lav1">
-        
+
 
         {{ $body }}
 

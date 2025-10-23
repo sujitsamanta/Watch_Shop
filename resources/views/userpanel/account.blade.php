@@ -192,10 +192,9 @@
                                     </svg>
                                     <span class="text-xs font-medium ">Logout</span>
                                 </a> -->
-                                <form action="/logout" method="post">
-                                    @csrf
+                                <a href="/logout">
                                     <button type="submit" class="logout">Logout</button>
-                                </form>
+                                </a>
                                 @endif
 
 

@@ -77,7 +77,7 @@ Route::get('/otp_verification_form_resubmit', [UserController::class,'otp_verifi
 Route::view('/login', 'userpanel.login');
 Route::post('/login_submit', [UserController::class,'login_submit']);
 
-Route::post('/logout', [UserController::class,'logout']);
+Route::get('/logout', [UserController::class,'logout']);
 
 Route::view('/about', 'userpanel.about')->middleware('userMiddleware');
 
