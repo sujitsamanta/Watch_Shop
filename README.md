@@ -1,6 +1,6 @@
 
 Home page of the admin dasbord:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/banner1.png?raw=true)
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/w11.jpg)
 
 
 Add and Update students:
