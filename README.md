@@ -1,6 +1,6 @@
 
 Home page of the user dasbord:
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot 2025-10-26 102950.png?raw=true)
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
 
 
 products:
