@@ -14,13 +14,14 @@ Expensive Products:
 
 
 Product:
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103111.png?raw=true)
 
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103159.png?raw=true)
 
 
 Add to cart:
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103159.png?raw=true)
 
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
 
 
 Product checkout page:
