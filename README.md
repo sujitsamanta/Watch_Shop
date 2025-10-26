@@ -10,68 +10,67 @@ products:
 
 
 Expensive Products:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103034.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103034.png?raw=true)
 
 
 Product:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103111.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103159.png?raw=true)
 
 
 Add to cart:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103159.png?raw=true)
+
 ![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
 
 
 Product checkout page:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103212.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103212.png?raw=true)
 
 
 Product order:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103301.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103301.png?raw=true)
 
 
 User account page:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103356.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103236.png?raw=true)
 
 
 Admin dashbord:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103425.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103425.png?raw=true)
 
 
 Admin dashbord all products:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103439.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103439.png?raw=true)
 
 
 Admin dashbord all order products:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103450.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103450.png?raw=true)
 
 
 Admin dashbord setting:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103502.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103502.png?raw=true)
 
 
 Admin dashbord all users:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103515.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103515.png?raw=true)
 
 
 Admin dashbord add products:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103527.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103527.png?raw=true)
 
 
 Admin dashbord add catagory:
-![image alt](https://github.com/sujitsamanta/collage_management_web/blob/main/Assets/image/github_banner/Screenshot 2025-10-26 103537.png?raw=true)
-![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20102950.png?raw=true)
+
+![image alt](https://github.com/sujitsamanta/Watch_Shop/blob/main/public/images/github_banner/Screenshot%202025-10-26%20103537.png?raw=true)
 
 
 
