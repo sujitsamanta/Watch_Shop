@@ -494,59 +494,7 @@ class UserController extends Controller
         return view('userpanel.wishlist_products_view', compact('wishlist'));
     }
 
-    // public function add_to_cart($product_id)
-    // {
-    //     $user_id = Auth::id(); // current logged-in user
-
-    //     // check if product already in cart
-    //     $cart = Cart::where('user_id', $user_id)
-    //         ->where('product_id', $product_id)
-    //         ->first();
-
-    //     $product = Product::find($product_id);
-
-    //     if ($cart && $product) {
-    //         if ($cart) {
-
-    //             if ($cart->quantity < $product->stock) {
-    //                 // update quantity
-    //                 $cart->quantity += 1;
-    //                 $cart->save();
-    //                 flash()->addSuccess('Product quantity increased!..⚡️');
-    //                 return redirect()->back();
-    //             } else {
-    //                 flash()->addError('Sorry, only ' . $product->stock . ' items available in stock!');
-    //                 return redirect()->back();
-    //             }
-    //         } else {
-    //             // create new cart entry
-    //             Cart::create([
-    //                 'user_id' => $user_id,
-    //                 'product_id' => $product_id,
-    //                 'quantity' => 1,
-    //             ]);
-
-    //             flash()->addSuccess('Product added to cart!..⚡️');
-    //             return redirect()->back();
-    //         }
-    //     } else {
-    //         // create new cart entry
-    //         Cart::create([
-    //             'user_id' => $user_id,
-    //             'product_id' => $product_id,
-    //             'quantity' => 1,
-    //         ]);
-
-    //         flash()->addSuccess('Product added to cart!..⚡️');
-    //         return redirect()->back();
-    //     }
-
-
-    //     // return redirect()->back()->with('success', 'Product added to cart!');
-    // }
-
-
-    public function add_to_cart($product_id)
+    public function by_now($product_id)
     {
         $user_id = Auth::id(); // current logged-in user
 
@@ -583,6 +531,48 @@ class UserController extends Controller
 
         flash()->addSuccess('Product added to cart!..⚡️');
         return redirect('add_to_cart_view');
+
+        // return redirect()->back()->with('success', 'Product added to cart!');
+    }
+
+
+    public function add_to_cart($product_id)
+    {
+        $user_id = Auth::id(); // current logged-in user
+
+        // Check if product exists
+        $product = Product::find($product_id);
+        if (!$product) {
+            flash()->addError('Product not found!');
+            return redirect()->back();
+        }
+
+        // Check if product stock is available
+        if ($product->stock < 1) {
+            flash()->addError('Sorry, this product is out of stock!');
+            return redirect()->back();
+        }
+
+        // Check if product already exists in cart
+        $cart = Cart::where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->first();
+
+        if ($cart) {
+            // Product already added once → redirect to cart page
+            flash()->addInfo('This product is already in your cart.');
+            return redirect()->back();  // change route name if needed
+        }
+
+        // Add product once only to cart
+        Cart::create([
+            'user_id' => $user_id,
+            'product_id' => $product_id,
+            'quantity' => 1,
+        ]);
+
+        flash()->addSuccess('Product added to cart!..⚡️');
+        return redirect()->back();
     }
 
     public function add_to_cart_view()

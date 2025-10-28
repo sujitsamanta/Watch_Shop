@@ -27,6 +27,8 @@ Route::post('/add_wishlist/{product_id}', [UserController::class,'add_wishlist']
 Route::post('/remove_wishlist/{product_id}', [UserController::class,'remove_wishlist'])->middleware('userMiddleware');
 
 // add to cart
+Route::get('/by_now/{product_id}', [UserController::class,'by_now'])->middleware('userMiddleware');
+
 Route::get('/add_to_cart/{product_id}', [UserController::class,'add_to_cart'])->middleware('userMiddleware');
 Route::get('/add_to_cart_view', [UserController::class,'add_to_cart_view'])->middleware('userMiddleware');
 

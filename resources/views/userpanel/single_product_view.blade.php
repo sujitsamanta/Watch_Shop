@@ -1,8 +1,8 @@
 <x-user_navbar>
     <x-slot name="body">
-       @php
-    $user = Auth::user();
-    @endphp
+        @php
+        $user = Auth::user();
+        @endphp
 
         <!-- Main Single Product view -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -219,12 +219,14 @@
 
                     <!-- Action Buttons -->
                     <div class="flex space-x-4 ">
-                        <form action="/add_to_cart/{{ $product_details->id }}" method="post">
-                            @csrf
-                            <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
-                                By Now
-                            </button>
-                        </form>
+
+                        <a href="/by_now/{{ $product_details->id }}">
+
+                        <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
+                            By Now
+                        </button>
+                        </a>
+
 
                         <a href="/add_to_cart/{{ $product_details->id }}">
                             <button type="submit" class="flex-1 bg-white border-2 border-purple-medium text-purple-darkest py-3 px-6 rounded-lg font-medium hover:bg-lav2 transition-colors">
