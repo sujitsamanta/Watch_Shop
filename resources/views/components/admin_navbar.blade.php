@@ -399,7 +399,7 @@
 
 		// product order accepted start
 
-		$(".admin_users_order_accepted_btn").on("click", function(e) {
+		$(".admin_users_order_confirmed_btn").on("click", function(e) {
 			e.preventDefault(); // stop direct submit
 
 			let form = $(this).closest("form")[0]; // get native form element
@@ -412,6 +412,30 @@
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
 				confirmButtonText: "Yes, accepted it!",
+				cancelButtonText: "Cancel"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit(); // ✅ native submit
+				}
+			});
+		});
+		// product order accepted end
+
+		// product order accepted start
+
+		$(".admin_users_order_delivered_btn").on("click", function(e) {
+			e.preventDefault(); // stop direct submit
+
+			let form = $(this).closest("form")[0]; // get native form element
+
+			Swal.fire({
+				title: "Are you sure?",
+				text: "Do you want to delivered this Order?",
+				icon: "question",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Yes, delivered it!",
 				cancelButtonText: "Cancel"
 			}).then((result) => {
 				if (result.isConfirmed) {

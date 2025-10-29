@@ -57,7 +57,7 @@ Route::get('/all_orders_view', [UserController::class,'all_orders_view'])->middl
 
 Route::post('/cancel_order/{order}', [UserController::class,'cancel_order'])->middleware('userMiddleware');
 
-Route::post('/order_single_product_details/{product_id}', [UserController::class,'order_single_product_details'])->middleware('userMiddleware');
+Route::get('/order_single_product_details/{product_id}', [UserController::class,'order_single_product_details'])->middleware('userMiddleware');
 
 
 
@@ -141,9 +141,12 @@ Route::post('/admin_product_delete/{product_id}', [AdminController::class,'admin
 
 Route::get('/admin_all_orders', [AdminController::class,'admin_all_orders'])->middleware('adminMiddleware');
 
-Route::post('/admin_accept_order', [AdminController::class, 'admin_accept_order'])->middleware('adminMiddleware');
+Route::post('/admin_confirmed_order', [AdminController::class, 'admin_confirmed_order'])->middleware('adminMiddleware');
 
 Route::post('/admin_cancel_order', [AdminController::class, 'admin_cancel_order'])->middleware('adminMiddleware');
+
+
+Route::post('/admin_delivered_order', [AdminController::class, 'admin_delivered_order'])->middleware('adminMiddleware');
    
 
     

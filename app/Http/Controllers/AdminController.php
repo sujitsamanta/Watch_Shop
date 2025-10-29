@@ -222,7 +222,7 @@ class AdminController extends Controller
     }
 
 
-    public function admin_accept_order(Request $request)
+    public function admin_confirmed_order(Request $request)
     {
         $order_id=$request->order_id;
         $order = Order::findOrFail($order_id);
@@ -245,7 +245,7 @@ class AdminController extends Controller
         $order = Order::findOrFail($order_id);
         // return print_r($order);
         // Only allow accepting pending orders
-        if ($order->status === 'pending') {
+        if ($order->status === 'pending' || $order->status === 'confirmed') {
             $order->status = 'canceled';
             $order->save();
 
@@ -255,4 +255,22 @@ class AdminController extends Controller
         flash()->addError('This order cannot be cancel ⚡️');
         return redirect()->back();
     }
+     public function admin_delivered_order(Request $request)
+    {
+        $order_id=$request->order_id;
+        $order = Order::findOrFail($order_id);
+        // return print_r($order);
+        // Only allow accepting pending orders
+        if ($order->status === 'confirmed') {
+            $order->status = 'delivered';
+            $order->save();
+
+            flash()->addSuccess('Order delivered successfully ⚡️');
+            return redirect()->back();
+        }
+        flash()->addError('This order delivered be cancel ⚡️');
+        return redirect()->back();
+    }
+
+    
 }

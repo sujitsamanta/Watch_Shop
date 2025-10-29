@@ -99,7 +99,23 @@
                     <div>
                         <p class="text-xs text-side mb-1">Payment</p>
                         <p class="text-sm font-semibold text-purple-dark">{{ strtoupper($order->payment_method) }}</p>
-                        <p class="text-xs text-green-600">✓ {{ $order->status }}</p>
+
+                        <div class="my-2">
+                            @if($order->status == 'pending')
+                            <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Pending</span>
+                            @elseif($order->status == 'confirmed')
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Confirmed</span>
+                            @elseif($order->status == 'shipped')
+                            <span class="px-3 py-1 bg-purple-light text-purple-dark text-xs font-semibold rounded-full">Shipped</span>
+                            @elseif($order->status == 'delivered')
+                            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Delivered</span>
+                            @elseif($order->status == 'cancelled')
+                            <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Cancelled</span>
+                            @else
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">{{ ucfirst($order->status) }}</span>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
 

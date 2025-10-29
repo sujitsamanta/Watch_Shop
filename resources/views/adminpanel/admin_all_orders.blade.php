@@ -185,18 +185,36 @@
                                         </a>
 
                                         @if($order->status == 'pending')
-                                        <form action="/admin_accept_order" method="post">
+                                        <form action="/admin_confirmed_order" method="post">
                                             @csrf
-
-
                                             <input type="hidden" name="order_id" value="{{ $order->id }}">
                                             <button type="submit"
-                                                class=" admin_users_order_accepted_btn bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
-                                                Accept
+                                                class=" admin_users_order_confirmed_btn bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                                Confirm
                                             </button>
                                         </form>
 
-                                      
+
+                                        <form action="/admin_cancel_order" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                            <button type="submit"
+                                                class="admin_users_order_cancel_btn bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-red-700 hover:to-red-800 transition-all">
+                                                Cancel
+                                            </button>
+                                        </form>
+
+                                        @elseif($order->status == 'confirmed')
+
+                                        <form action="/admin_delivered_order" method="post">
+                                            @csrf
+                                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                            <button type="submit"
+                                                class=" admin_users_order_delivered_btn bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                                Deliver
+                                            </button>
+                                        </form>
+
                                          <form action="/admin_cancel_order" method="POST">
                                             @csrf
                                             <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -205,8 +223,8 @@
                                                 Cancel
                                             </button>
                                         </form>
-                                        
-                                        
+
+
                                         @endif
                                     </div>
                                 </td>

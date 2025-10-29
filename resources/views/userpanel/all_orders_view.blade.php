@@ -73,8 +73,8 @@
                                 <span class="font-semibold text-purple-dark">Payment:</span> {{ ucfirst($order->payment_method) }}
                             </div>
                             <div class="flex gap-2">
-                                <form action="/order_single_product_details/{{ $order->id }}" method="post">
-                                    @csrf
+                                <form action="/order_single_product_details/{{ $order->id }}" method="get">
+                                    
                                     <button type="submit"
                                         class="px-3 py-1.5 bg-purple-medium hover:bg-purple-dark text-white text-sm font-semibold rounded-lg transition">
                                         Details
