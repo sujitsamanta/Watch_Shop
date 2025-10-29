@@ -7,13 +7,61 @@
                 <!-- Success Header -->
                 <div class="flex items-center gap-4 mb-3 pb-3 border-b border-purple-light">
                     <div class="flex-shrink-0">
-                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                        <!-- <svg class="w-12 h-12" viewBox="0 0 52 52">
                             <circle cx="26" cy="26" r="25" fill="none" stroke="#9D8DF1" stroke-width="2" />
                             <path fill="none" stroke="#9D8DF1" stroke-width="3" d="M14 27l7 7 16-16" />
+                        </svg> -->
+
+                        @if($order->status == 'pending')
+                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#fc6831" stroke-width="2" />
+                            <path fill="none" stroke="#fc6831" stroke-width="3" d="M14 27l7 7 16-16" />
                         </svg>
+                        @elseif($order->status == 'confirmed')
+                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#2388f9" stroke-width="2" />
+                            <path fill="none" stroke="#2388f9" stroke-width="3" d="M14 27l7 7 16-16" />
+                        </svg>
+                        @elseif($order->status == 'shipped')
+                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#2388f9" stroke-width="2" />
+                            <path fill="none" stroke="#2388f9" stroke-width="3" d="M14 27l7 7 16-16" />
+                        </svg>
+                        @elseif($order->status == 'delivered')
+                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#519d2b" stroke-width="2" />
+                            <path fill="none" stroke="#519d2b" stroke-width="3" d="M14 27l7 7 16-16" />
+                        </svg>
+                        @elseif($order->status == 'canceled')
+                        <svg class="w-12 h-12" viewBox="0 0 52 52">
+                            <circle cx="26" cy="26" r="25" fill="none" stroke="#fc6831" stroke-width="2" />
+                            <path fill="none" stroke="#fc6831" stroke-width="3" d="M14 27l7 7 16-16" />
+                        </svg>
+
+                        @endif
+
+
                     </div>
                     <div class="flex-1">
-                        <h1 class="text-2xl font-bold text-purple-darkest">Order Confirmed!</h1>
+
+
+                        <div class="my-2">
+                            @if($order->status == 'pending')
+                            <h1 class="text-red-700  text-2xl font-bold">Order Pending</h1>
+                            @elseif($order->status == 'confirmed')
+                            <h1 class=" text-blue-700 text-2xl font-bold">Order Confirmed</h1>
+                            @elseif($order->status == 'shipped')
+                            <h1 class="text-purple-dark text-2xl font-bold">Order Shipped</h1>
+                            @elseif($order->status == 'delivered')
+                            <h1 class=" text-green-700 text-2xl font-bold ">Order Delivered</h1>
+                            @elseif($order->status == 'canceled')
+                            <h1 class=" text-red-700 text-2xl font-bold">Order Cancelled</h1>
+                            @else
+                            <h1 class=" text-gray-700 text-2xl font-bold">Order {{ ucfirst($order->status) }}</h1>
+                            @endif
+                        </div>
+
+
                         <p class="text-side text-sm">Order #{{ $order->order_number }}</p>
                     </div>
                     <div class="text-right">

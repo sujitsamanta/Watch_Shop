@@ -39,7 +39,7 @@
                                 <span class="px-3 py-1 bg-purple-light text-purple-dark text-xs font-semibold rounded-full">Shipped</span>
                                 @elseif($order->status == 'delivered')
                                 <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Delivered</span>
-                                @elseif($order->status == 'cancelled')
+                                @elseif($order->status == 'canceled')
                                 <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">Cancelled</span>
                                 @else
                                 <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-full">{{ ucfirst($order->status) }}</span>

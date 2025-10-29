@@ -466,7 +466,11 @@
                     @php
                     $orderCount = 0;
                     if (Auth::check()) {
-                    $orderCount = Auth::user()->orders()->count();
+                    $orderCount = Auth::user()
+                    ->orders()
+                    ->whereIn('status', ['pending', 'confirmed', 'shipped'])
+                    ->where('status', '!=', 'delivered')
+                    ->count();
                     }
                     @endphp
 
