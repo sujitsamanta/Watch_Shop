@@ -14,6 +14,7 @@ Route::get('/home', [UserController::class,'home_check']);
 
 // single_product_view
 Route::get('/single_product_view/{product_id}', [UserController::class,'single_product_view'])->middleware('userMiddleware');
+Route::post('/submit_review/{product_id}', [UserController::class,'submit_review'])->middleware('userMiddleware');
 
 
 Route::get('/all_products_view_page_filter', [UserController::class,'all_products_view_page_filter'])->middleware('userMiddleware');

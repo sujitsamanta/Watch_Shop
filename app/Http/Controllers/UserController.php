@@ -23,6 +23,7 @@ use App\Mail\OrderConfirmation;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Models\Otp;
+use App\Models\Review;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -450,19 +451,37 @@ class UserController extends Controller
             ->inRandomOrder()
             ->get();
 
+        // Fetch reviews for this product with user info
+        $reviews = Review::with('user')->where('product_id', $product_id)->orderBy('created_at', 'desc')->get();
+
         // Check if user is authenticated for conditional features
         $isAuthenticated = Auth::check();
         $user = $isAuthenticated ? Auth::user() : null;
 
         $user = auth()->user();
         $isInWishlist = false;
+        $canReview = false;
         if ($user) {
             // Assuming 'wishlist' is a belongsToMany relationship in User model
             $isInWishlist = $user->wishlist()->where('product_id', $product_id)->exists();
+
+            // Check if user can review: has delivered order with this product and no existing review
+            $hasDeliveredOrder = Order::where('user_id', $user->id)
+                ->where('status', 'delivered')
+                ->whereHas('items', function($query) use ($product_id) {
+                    $query->where('product_id', $product_id);
+                })
+                ->exists();
+
+            $hasExistingReview = Review::where('user_id', $user->id)
+                ->where('product_id', $product_id)
+                ->exists();
+
+            $canReview = $hasDeliveredOrder && !$hasExistingReview;
         }
 
 
-        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products', 'user', 'isInWishlist'));
+        return view('userpanel.single_product_view', compact('product_details', 'related_products', 'all_products', 'user', 'isInWishlist', 'canReview', 'reviews'));
     }
     // Add to wishlist
     public function add_wishlist($product_id)
@@ -1135,5 +1154,44 @@ class UserController extends Controller
         }
 
         return response()->json($suggestions);
+    }
+
+    public function submit_review(Request $request, $product_id)
+    {
+        $user = Auth::user();
+
+        // Validate request
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required|string|max:1000',
+        ]);
+
+        // Check eligibility again
+        $hasDeliveredOrder = Order::where('user_id', $user->id)
+            ->where('status', 'delivered')
+            ->whereHas('items', function($query) use ($product_id) {
+                $query->where('product_id', $product_id);
+            })
+            ->exists();
+
+        $hasExistingReview = Review::where('user_id', $user->id)
+            ->where('product_id', $product_id)
+            ->exists();
+
+        if (!$hasDeliveredOrder || $hasExistingReview) {
+            flash()->addError('You are not eligible to review this product.');
+            return redirect()->back();
+        }
+
+        // Create review
+        Review::create([
+            'user_id' => $user->id,
+            'product_id' => $product_id,
+            'rating' => $request->rating,
+            'review' => $request->review,
+        ]);
+
+        flash()->addSuccess('Review submitted successfully!');
+        return redirect()->back();
     }
 }

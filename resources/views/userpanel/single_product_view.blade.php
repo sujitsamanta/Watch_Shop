@@ -389,22 +389,10 @@
                             </div>
                         </div>
 
-                        <!-- View More Button -->
-                        <div class="text-center">
-                            <button id="viewMoreBtn" onclick="toggleAdditionalSpecs()"
-                                class="px-6 py-2 border border-purple-medium text-purple-darkest rounded-lg text-sm font-medium hover:bg-lav2 transition-colors inline-flex items-center space-x-2">
-                                <span id="viewMoreText">View More</span>
-                                <svg id="chevronIcon" class="w-4 h-4 transition-transform duration-300" fill="currentColor"
-                                    viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </div>
+                       
 
                         <!-- Hidden Additional Specs -->
-                        <div id="additionalSpecs" class="mt-6 space-y-6 hidden">
+                        <div id="additionalSpecs" class="mt-6 space-y-6 ">
                             <!-- Health & Fitness -->
                             <div>
                                 <h3 class="text-lg font-semibold text-purple-darkest mb-4">Health & Fitness</h3>
@@ -451,13 +439,27 @@
                         <h2 class="text-2xl font-bold text-purple-darkest mb-6">Customer Reviews</h2>
 
                         <!-- Rating Overview -->
+                        @php
+                            $totalReviews = $reviews->count();
+                            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+                            $ratingCounts = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
+                            foreach($reviews as $review) {
+                                $ratingCounts[$review->rating]++;
+                            }
+                        @endphp
                         <div class="flex items-center gap-6 mb-6 p-4 bg-purple-light rounded-lg">
                             <div class="text-center">
-                                <div class="text-4xl font-bold text-purple-darkest mb-1">4.8</div>
-                                <div class="text-gray-600 text-sm mb-1">125 reviews</div>
+                                <div class="text-4xl font-bold text-purple-darkest mb-1">{{ number_format($averageRating, 1) }}</div>
+                                <div class="text-gray-600 text-sm mb-1">{{ $totalReviews }} reviews</div>
                                 <div class="flex justify-center">
                                     <div class="flex text-yellow-400 text-lg">
-                                        ★★★★★
+                                        @for($i = 1; $i <= 5; $i++)
+                                            @if($i <= round($averageRating))
+                                                ★
+                                            @else
+                                                ☆
+                                            @endif
+                                        @endfor
                                     </div>
                                 </div>
                             </div>
@@ -466,36 +468,44 @@
                             <div class="flex-1">
                                 <div class="space-y-1">
                                     <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">Excellent</span>
+                                        <span class="text-purple-dark font-medium w-16">5 Stars</span>
                                         <div class="flex-1 bg-gray-200 rounded-full h-2">
                                             <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: 80%"></div>
+                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[5] / $totalReviews) * 100 : 0 }}%"></div>
                                         </div>
-                                        <span class="text-purple-dark font-medium w-6">100</span>
+                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[5] }}</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">Good</span>
+                                        <span class="text-purple-dark font-medium w-16">4 Stars</span>
                                         <div class="flex-1 bg-gray-200 rounded-full h-2">
                                             <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: 8.8%"></div>
+                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[4] / $totalReviews) * 100 : 0 }}%"></div>
                                         </div>
-                                        <span class="text-purple-dark font-medium w-6">11</span>
+                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[4] }}</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">Average</span>
+                                        <span class="text-purple-dark font-medium w-16">3 Stars</span>
                                         <div class="flex-1 bg-gray-200 rounded-full h-2">
                                             <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: 2.4%"></div>
+                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[3] / $totalReviews) * 100 : 0 }}%"></div>
                                         </div>
-                                        <span class="text-purple-dark font-medium w-6">3</span>
+                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[3] }}</span>
                                     </div>
                                     <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">Poor</span>
+                                        <span class="text-purple-dark font-medium w-16">2 Stars</span>
                                         <div class="flex-1 bg-gray-200 rounded-full h-2">
                                             <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: 6.4%"></div>
+                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[2] / $totalReviews) * 100 : 0 }}%"></div>
                                         </div>
-                                        <span class="text-purple-dark font-medium w-6">9</span>
+                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[2] }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-xs">
+                                        <span class="text-purple-dark font-medium w-16">1 Star</span>
+                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[1] / $totalReviews) * 100 : 0 }}%"></div>
+                                        </div>
+                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[1] }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -506,129 +516,67 @@
                         
 
                         <!-- Leave Comment Section -->
+                        @if($canReview)
                         <div class="mb-6">
-                            <textarea id="commentInput" placeholder="Leave your review..."
-                                class="w-full p-3 border border-gray-300 rounded-lg resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent placeholder-gray-400 text-sm"></textarea>
-                            <div class="flex justify-end mt-2">
-                                <button onclick="submitComment()"
-                                    class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm">
-                                    Submit Review
-                                </button>
-                            </div>
+                            <form action="/submit_review/{{ $product_details->id }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label class="block text-sm font-medium text-purple-darkest mb-2">Rating</label>
+                                    <div class="flex space-x-1 star-rating">
+                                        @for($i = 1; $i <= 5; $i++)
+                                        <input type="radio" name="rating" value="{{ $i }}" id="star{{ $i }}" class="hidden" required>
+                                        <label for="star{{ $i }}" class="cursor-pointer text-gray-300 text-2xl star" data-rating="{{ $i }}">★</label>
+                                        @endfor
+                                    </div>
+                                </div>
+                                <textarea name="review" id="commentInput" placeholder="Leave your review..."
+                                    class="w-full p-3 border border-gray-300 rounded-lg resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent placeholder-gray-400 text-sm" required></textarea>
+                                <div class="flex justify-end mt-2">
+                                    <button type="submit"
+                                        class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm">
+                                        Submit Review
+                                    </button>
+                                </div>
+                            </form>
                         </div>
+                        @else
+                        <div class="mb-6 p-4 bg-gray-100 rounded-lg">
+                            <p class="text-gray-600 text-sm">You can only review products you have successfully ordered and received.</p>
+                        </div>
+                        @endif
 
                         <!-- Reviews List with Scroll -->
                         <div class="reviews-container">
                             <div class="space-y-4" id="reviewsList">
-                                <!-- Grace Carey Review -->
+                                @forelse($reviews as $review)
                                 <div class="border-b border-gray-100 pb-4">
                                     <div class="flex items-start gap-3">
-                                        <div
-                                            class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            GC
+                                        <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
+                                            {{ substr($review->user->name, 0, 2) }}
                                         </div>
                                         <div class="flex-1">
                                             <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">Grace Carey</h4>
-                                                <span class="text-gray-400 text-xs">24 Jan 2024</span>
+                                                <h4 class="font-semibold text-purple-darkest text-sm">{{ $review->user->name }}</h4>
+                                                <span class="text-gray-400 text-xs">{{ $review->created_at->format('d M Y') }}</span>
                                             </div>
                                             <div class="flex text-yellow-400 mb-2 text-sm">
-                                                ★★★★★
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    @if($i <= $review->rating)
+                                                        ★
+                                                    @else
+                                                        ☆
+                                                    @endif
+                                                @endfor
                                             </div>
                                             <p class="text-gray-700 leading-relaxed text-sm">
-                                                I was a bit nervous to be buying a secondhand phone from Amazon, but I couldn't
-                                                be happier with my purchase!! I have a pre-paid data plan so I was worried that
-                                                this phone wouldn't connect with my data plan, since the new phones don't have
-                                                the physical Sim tray anymore, but couldn't have been easier! I bought an
-                                                Unlocked black iPhone 14 Pro Max in excellent condition and everything is
-                                                PERFECT. It was super easy to set up and the phone works and looks great. It
-                                                truly was in excellent condition. Highly recommend!! 🖤
+                                                {{ $review->review }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
+                                @empty
+                              
 
-                                <!-- Ronald Richards Review -->
-                                <div class="border-b border-gray-100 pb-4">
-                                    <div class="flex items-start gap-3">
-                                        <div
-                                            class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            RR
-                                        </div>
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">Ronald Richards</h4>
-                                                <span class="text-gray-400 text-xs">24 Jan 2024</span>
-                                            </div>
-                                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                                ★★★★★
-                                            </div>
-                                            <p class="text-gray-700 leading-relaxed text-sm">
-                                                This phone has fast storage and is durable. Plus all the new iPhones have a C
-                                                port! Apple is phasing out the current ones! (All about the Benjamins) So if you
-                                                want a phone that's going to last grab an iPhone 14 pro max and get several
-                                                cords and plugs.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Darcy King Review -->
-                                <div class="border-b border-gray-100 pb-4">
-                                    <div class="flex items-start gap-3">
-                                        <div
-                                            class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            DK
-                                        </div>
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">Darcy King</h4>
-                                                <span class="text-gray-400 text-xs">24 Jan 2024</span>
-                                            </div>
-                                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                                ★★★★☆
-                                            </div>
-                                            <p class="text-gray-700 leading-relaxed text-sm mb-3">
-                                                I might be the only one to say this but the camera is a little funky. Hoping it
-                                                will change with a software update; otherwise, love this phone! Came in great
-                                                condition
-                                            </p>
-                                            <!-- Product Images -->
-                                            <div class="flex gap-2">
-                                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                                                    <span class="text-gray-500 text-xs">📱</span>
-                                                </div>
-                                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                                                    <span class="text-gray-500 text-xs">📱</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Additional Sample Reviews -->
-                                <div class="border-b border-gray-100 pb-4">
-                                    <div class="flex items-start gap-3">
-                                        <div
-                                            class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            MJ
-                                        </div>
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">Mike Johnson</h4>
-                                                <span class="text-gray-400 text-xs">22 Jan 2024</span>
-                                            </div>
-                                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                                ★★★★★
-                                            </div>
-                                            <p class="text-gray-700 leading-relaxed text-sm">
-                                                Amazing smartwatch! The battery life is incredible and the health tracking
-                                                features are spot on. The always-on display is a game changer for quick glances
-                                                throughout the day.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="border-b border-gray-100 pb-4">
                                     <div class="flex items-start gap-3">
@@ -637,33 +585,14 @@
                                             SA
                                         </div>
                                         <div class="flex-1">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">Sarah Anderson</h4>
-                                                <span class="text-gray-400 text-xs">20 Jan 2024</span>
-                                            </div>
-                                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                                ★★★★☆
-                                            </div>
-                                            <p class="text-gray-700 leading-relaxed text-sm">
-                                                Great build quality and the display is gorgeous. Only complaint is that some
-                                                apps can be a bit slow to load, but overall very satisfied with the purchase.
-                                            </p>
+                                           <h1>not</h1>
                                         </div>
                                     </div>
                                 </div>
+                                @endforelse
                             </div>
 
-                            <!-- View More Button -->
-                            <div class="text-center mt-6">
-                                <button onclick="loadMoreReviews()"
-                                    class="border border-purple-medium text-purple-dark hover:bg-purple-light px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 mx-auto text-sm">
-                                    View More Reviews
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </button>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -872,113 +801,82 @@
                 }
             }
 
-            function submitComment() {
-                const commentInput = document.getElementById('commentInput');
-                const comment = commentInput.value.trim();
+            
+                
+    
 
-                if (comment === '') {
-                    alert('Please enter a review before submitting.');
-                    return;
-                }
+            // Star rating functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const stars = document.querySelectorAll('.star-rating .star');
+                const radioButtons = document.querySelectorAll('.star-rating input[type="radio"]');
 
-                // Create new review element
-                const reviewsList = document.getElementById('reviewsList');
-                const newReview = document.createElement('div');
-                newReview.className = 'border-b border-gray-100 pb-4';
-                newReview.innerHTML = `
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                        YU
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start mb-1">
-                            <h4 class="font-semibold text-purple-darkest text-sm">You</h4>
-                            <span class="text-gray-400 text-xs">Just now</span>
-                        </div>
-                        <div class="flex text-yellow-400 mb-2 text-sm">
-                            ★★★★★
-                        </div>
-                        <p class="text-gray-700 leading-relaxed text-sm">
-                            ${comment}
-                        </p>
-                    </div>
-                </div>
-            `;
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const rating = parseInt(this.getAttribute('data-rating'));
+                        // Update visual feedback
+                        stars.forEach((s, index) => {
+                            if (index < rating) {
+                                s.classList.add('text-yellow-400');
+                                s.classList.remove('text-gray-300');
+                            } else {
+                                s.classList.add('text-gray-300');
+                                s.classList.remove('text-yellow-400');
+                            }
+                        });
+                        // Check the corresponding radio button
+                        document.getElementById('star' + rating).checked = true;
+                    });
 
-                // Insert at the top of reviews list
-                reviewsList.insertBefore(newReview, reviewsList.firstChild);
+                    star.addEventListener('mouseover', function() {
+                        const rating = parseInt(this.getAttribute('data-rating'));
+                        stars.forEach((s, index) => {
+                            if (index < rating) {
+                                s.classList.add('text-yellow-400');
+                                s.classList.remove('text-gray-300');
+                            } else {
+                                s.classList.add('text-gray-300');
+                                s.classList.remove('text-yellow-400');
+                            }
+                        });
+                    });
 
-                // Clear the input
-                commentInput.value = '';
-
-                // Show success message
-                const button = event.target;
-                const originalText = button.textContent;
-                button.textContent = 'Review Added!';
-                button.classList.remove('bg-purple-medium', 'hover:bg-purple-dark');
-                button.classList.add('bg-green-500');
-
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.classList.remove('bg-green-500');
-                    button.classList.add('bg-purple-medium', 'hover:bg-purple-dark');
-                }, 2000);
-            }
-
-            function loadMoreReviews() {
-                const additionalReviews = [{
-                        name: "Alex Thompson",
-                        initials: "AT",
-                        date: "18 Jan 2024",
-                        rating: "★★★★★",
-                        comment: "Exceptional build quality and the health monitoring features are incredibly accurate. Best smartwatch I've owned!"
-                    },
-                    {
-                        name: "Lisa Chen",
-                        initials: "LC",
-                        date: "15 Jan 2024",
-                        rating: "★★★★☆",
-                        comment: "Love the design and functionality. Battery could be better but overall very happy with this purchase."
-                    }
-                ];
-
-                const reviewsList = document.getElementById('reviewsList');
-
-                additionalReviews.forEach(review => {
-                    const reviewElement = document.createElement('div');
-                    reviewElement.className = 'border-b border-gray-100 pb-4';
-                    reviewElement.innerHTML = `
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                            ${review.initials}
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex justify-between items-start mb-1">
-                                <h4 class="font-semibold text-purple-darkest text-sm">${review.name}</h4>
-                                <span class="text-gray-400 text-xs">${review.date}</span>
-                            </div>
-                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                ${review.rating}
-                            </div>
-                            <p class="text-gray-700 leading-relaxed text-sm">
-                                ${review.comment}
-                            </p>
-                        </div>
-                    </div>
-                `;
-                    reviewsList.appendChild(reviewElement);
+                    star.addEventListener('mouseout', function() {
+                        // Reset to checked state or default
+                        const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
+                        if (checkedRadio) {
+                            const rating = parseInt(checkedRadio.value);
+                            stars.forEach((s, index) => {
+                                if (index < rating) {
+                                    s.classList.add('text-yellow-400');
+                                    s.classList.remove('text-gray-300');
+                                } else {
+                                    s.classList.add('text-gray-300');
+                                    s.classList.remove('text-yellow-400');
+                                }
+                            });
+                        } else {
+                            stars.forEach(s => {
+                                s.classList.add('text-gray-300');
+                                s.classList.remove('text-yellow-400');
+                            });
+                        }
+                    });
                 });
 
-                // Hide the "View More" button after loading
-                event.target.style.display = 'none';
-            }
-
-            // Add enter key support for comment submission
-            document.getElementById('commentInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter' && e.ctrlKey) {
-                    submitComment();
+                // Initialize on page load
+                const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
+                if (checkedRadio) {
+                    const rating = parseInt(checkedRadio.value);
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('text-yellow-400');
+                            s.classList.remove('text-gray-300');
+                        }
+                    });
                 }
             });
+
+            // Add enter key support for comment submission (removed as form handles it now)
 
             // Details and rating and feed back section end
         </script>
