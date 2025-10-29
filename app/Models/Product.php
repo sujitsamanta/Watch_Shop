@@ -24,6 +24,11 @@ class Product extends Model
         'description',
         'image',
     ];
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 
     // Product.php
     public function category()

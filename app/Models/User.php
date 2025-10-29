@@ -34,6 +34,12 @@ class User extends Authenticatable
         'is_verified',
     ];
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
     public function wishlist()
     {
         return $this->belongsToMany(Product::class, 'wishlists')->withTimestamps();

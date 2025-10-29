@@ -271,7 +271,7 @@
 
 
                     <!-- Description -->
-                    <div class="bg-white rounded-lg p-6 border border-purple-light">
+                    <!-- <div class="bg-white rounded-lg p-6 border border-purple-light">
                         <p class="text-gray-700 leading-relaxed">
                             Enhanced capabilities thanks to innovative design and cutting-edge technology.
                             Incredible health tracking features, seamless connectivity, and all-day battery life.
@@ -279,7 +279,7 @@
                             fitness tracking, and smart notifications.
                             <span class="text-purple-medium font-medium cursor-pointer hover:text-purple-dark"> more...</span>
                         </p>
-                    </div>
+                    </div> -->
 
 
 
@@ -500,6 +500,10 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        
 
                         <!-- Leave Comment Section -->
                         <div class="mb-6">
