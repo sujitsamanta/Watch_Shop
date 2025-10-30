@@ -20,7 +20,8 @@ return new class extends Migration
             $table->decimal('price', 10, 2); // Example: 999.99
             $table->integer('stock')->default(1); // Quantity available
             $table->text('description'); // Product details
-            $table->string('image');
+            $table->string('photo_url');
+            $table->string('photo_public_id');
             $table->timestamps();
         });
     }

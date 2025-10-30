@@ -11,6 +11,8 @@ use App\Models\Categorie;
 use App\Models\Product;
 use App\Models\Order;
 use Cloudinary\Cloudinary;
+use Illuminate\Support\Str;
+
 
 
 
@@ -152,9 +154,28 @@ class AdminController extends Controller
             'image' => 'required|max:10240', // 10MB
         ]);
 
-        $path = $request->file('image')->store('products_images', 'public');
-        $patharrey = explode('/', $path);
-        $img_name = $patharrey[1];
+        // $path = $request->file('image')->store('products_images', 'public');
+        // $patharrey = explode('/', $path);
+        // $img_name = $patharrey[1];
+
+
+        $file = $request->file('image');
+        $publicId = 'uploads/' . date('Y/m') . '/' . Str::random(8);
+
+        // upload and get response
+        $result = $this->cloudinary->uploadApi()->upload(
+            $file->getRealPath(),
+            [
+                'public_id' => $publicId,
+                'folder' => 'Watch_Shop/Products_photos', // optional
+                'overwrite' => false,
+                'resource_type' => 'image',
+            ]
+        );
+
+        // secure URL
+        $url = $result['secure_url'] ?? ($result['url'] ?? null);
+
         $result = Product::create([
             'category_id' => $request->category_id,
             'name'        => $request->name,
@@ -163,7 +184,8 @@ class AdminController extends Controller
             'price'       => $request->price,
             'stock'       => $request->stock,
             'description' => $request->description,
-            'image'       => $img_name,
+            'photo_url' => $url,
+            'photo_public_id' => $publicId,
         ]);
 
         if ($result) {
@@ -184,7 +206,19 @@ class AdminController extends Controller
     public function admin_product_delete($product_id)
     {
 
+
         $product = Product::find($product_id); // Find product by id
+        $oldUrl = $product->photo_url;
+        $oldpublicId = $product->photo_public_id;
+        $fullPublicId = 'Watch_Shop/Products_photos/' . $oldpublicId;
+
+        if (!empty($oldUrl)) {
+
+            $this->cloudinary->uploadApi()->destroy($fullPublicId, [
+                'resource_type' => 'image',
+            ]);
+        }
+
         if ($product) {
             $product->delete(); // Delete product
             flash()->addSuccess('Product Deleted Succesful ⚡️');
@@ -222,10 +256,24 @@ class AdminController extends Controller
 
         // Handle image upload if a new image is provided
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products_images', 'public');
-            $pathArray = explode('/', $path);
-            $img_name = $pathArray[1];
-            $updateData['image'] = $img_name;
+
+            $file = $request->file('image');
+            $product = Product::find($product_id); // Find product by id
+            // $oldUrl = $product->photo_url;
+            // $oldpublicId = $product->photo_public_id;
+            // $fullPublicId = 'Watch_Shop/Products_photos/' . $oldpublicId;
+
+            $this->cloudinary->uploadApi()->upload(
+                $file->getRealPath(),
+                [
+                    'public_id' => 'Watch_Shop/Products_photos/' . $product->photo_public_id, // same ID
+                    'overwrite' => true,
+                    'invalidate' => true, // clear cached versions (important)
+                    'resource_type' => 'image',
+                ]
+            );
+
+            // $updateData['photo_url'] = $img_name;
         }
 
         $result = $product->update($updateData);

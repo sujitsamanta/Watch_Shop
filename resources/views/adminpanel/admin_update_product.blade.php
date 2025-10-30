@@ -139,11 +139,11 @@
                     </div>
 
                     <!-- Current Image Section -->
-                    @if($product->image)
+                    @if($product->photo_url)
                     <div class="mb-8">
                         <label class="block text-sm font-semibold text-side mb-2">Current Product Image:</label>
                         <div class="flex items-center space-x-4 p-6 bg-lav1 rounded-xl border border-purple-medium">
-                            <img src="{{ url('storage/products_images/' . $product->image) }}" 
+                            <img src="{{ $product->photo_url }}" 
                                  alt="Current Product Image" 
                                  class="w-32 h-32 object-cover rounded-lg border-2 border-purple-medium shadow-md">
                             <div class="text-left">
@@ -153,7 +153,7 @@
                                     </svg>
                                     <span class="text-side font-semibold">Current Image</span>
                                 </div>
-                                <p class="text-purple-dark font-medium">📂 {{ $product->image }}</p>
+                                <p class="text-purple-dark font-medium">📂 {{ $product->photo_url }}</p>
                                 <p class="text-sm text-purple-dark">This is the current product image</p>
                                 <p class="text-xs text-purple-dark mt-2">Upload a new image below to replace this one</p>
                             </div>
@@ -164,7 +164,7 @@
                     <!-- Image Upload -->
                     <div>
                         <label class="block text-sm font-semibold text-side mb-2">
-                            @if($product->image)
+                            @if($product->photo_url)
                                 Upload New Product Image
                             @else
                                 Product Image <span class="text-red-500">*</span>
@@ -186,14 +186,14 @@
                                         </path>
                                     </svg>
                                     <h3 class="text-lg font-semibold text-side mb-2">
-                                        @if($product->image)
+                                        @if($product->photo_url)
                                             Upload New Product Image
                                         @else
                                             Upload Product Image
                                         @endif
                                     </h3>
                                     <p class="text-purple-dark mb-4">
-                                        @if($product->image)
+                                        @if($product->photo_url)
                                             Drag and drop your new image here, or click to browse
                                         @else
                                             Drag and drop your image here, or click to browse

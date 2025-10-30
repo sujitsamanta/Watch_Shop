@@ -105,7 +105,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div
                                         class="h-16 w-16 rounded-full bg-lav2 flex items-center justify-center text-side font-semibold text-lg shadow-md">
-                                        <img src="{{ url('storage/products_images/' . $product->image) }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        <img src="{{ $product->photo_url }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
 
                                     </div>
                                 </td>

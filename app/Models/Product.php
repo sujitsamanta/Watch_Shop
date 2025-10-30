@@ -22,7 +22,8 @@ class Product extends Model
         'price',
         'stock',
         'description',
-        'image',
+        'photo_url',
+        'photo_public_id',
     ];
     public function reviews()
     {
