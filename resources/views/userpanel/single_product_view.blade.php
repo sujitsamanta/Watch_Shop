@@ -17,7 +17,7 @@
                             <!-- Watch Face -->
                             <div class="relative">
 
-                                <img src="{{ url('storage/products_images/' . $product_details->image) }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
+                                <img src="{{ $product_details->photo_url }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
 
                             </div>
                         </div>
@@ -653,7 +653,7 @@
                             <div class="p-4">
                                 {{-- Product Image --}}
                                 <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                                    <img src="{{ url('storage/products_images/' . $item->image) }}"
+                                    <img src="{{ $item->photo_url }}"
                                         alt="{{ $item->name }}"
                                         class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                                 </div>
@@ -710,7 +710,7 @@
                                     56% OFF
                                 </div>
                                 <div class="phone-image w-full h-48 flex items-center justify-center">
-                                    <img src="{{ url('storage/products_images/' . $item->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                                    <img src="{{ $item->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
                                 </div>
                             </div>
                             <p class="font-semibold text-gray-800 mb-2">{{ $item->name }}</p>
