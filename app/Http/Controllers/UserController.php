@@ -282,8 +282,8 @@ class UserController extends Controller
     public function account_photo_update(Request $request)
     {
 
+        
         if ($request->photo) {
-
             $user = Auth::user();
             $oldUrl = $user->photo_url;
             $oldpublicId = $user->photo_public_id;

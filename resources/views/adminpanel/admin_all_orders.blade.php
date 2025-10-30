@@ -138,7 +138,7 @@
                                             @foreach ($order->items as $item)
                                             <tr>
                                                 <td>
-                                                    <img src="{{ $item->product->image ? asset('storage/products_images/' . $item->product->image) : asset('images/default-product.png') }}"
+                                                    <img src="{{ $item->product->photo_url }}"
                                                         alt="Product Image" class="product-image">
                                                 </td>
                                                 <td>{{ $item->product->name ?? 'Deleted Product' }}</td>

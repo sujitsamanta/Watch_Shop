@@ -257,23 +257,40 @@ class AdminController extends Controller
         // Handle image upload if a new image is provided
         if ($request->hasFile('image')) {
 
-            $file = $request->file('image');
             $product = Product::find($product_id); // Find product by id
-            // $oldUrl = $product->photo_url;
-            // $oldpublicId = $product->photo_public_id;
-            // $fullPublicId = 'Watch_Shop/Products_photos/' . $oldpublicId;
 
-            $this->cloudinary->uploadApi()->upload(
+            $oldUrl = $product->photo_url;
+            $oldpublicId = $product->photo_public_id;
+            $fullPublicId = 'Watch_Shop/Products_photos/' . $oldpublicId;
+
+            if (!empty($oldUrl)) {
+
+                $this->cloudinary->uploadApi()->destroy($fullPublicId, [
+                    'resource_type' => 'image',
+                ]);
+            }
+
+            $file = $request->file('image');
+            $publicId = 'uploads/' . date('Y/m') . '/' . Str::random(8);
+
+            // upload and get response
+            $result = $this->cloudinary->uploadApi()->upload(
                 $file->getRealPath(),
                 [
-                    'public_id' => 'Watch_Shop/Products_photos/' . $product->photo_public_id, // same ID
-                    'overwrite' => true,
-                    'invalidate' => true, // clear cached versions (important)
+                    'public_id' => $publicId,
+                    'folder' => 'Watch_Shop/Products_photos', // optional
+                    'overwrite' => false,
                     'resource_type' => 'image',
                 ]
             );
 
-            // $updateData['photo_url'] = $img_name;
+            // secure URL
+            $url = $result['secure_url'] ?? ($result['url'] ?? null);
+
+
+
+            $updateData['photo_url'] = $url;
+            $updateData['photo_public_id'] = $publicId;
         }
 
         $result = $product->update($updateData);
