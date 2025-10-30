@@ -27,7 +27,7 @@
 
                                     <div class="p-6 flex items-center space-x-4 product-item" data-price="{{ $product->product->price }}">
                                         <div class="flex-shrink-0">
-                                            <img class="w-20 h-20 rounded-lg object-cover" src="{{ url('storage/products_images/' . $product->product->image) }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
+                                            <img class="w-20 h-20 rounded-lg object-cover" src="{{ $product->product->photo_url }}" class="w-70 h-70 object-cover group-hover:scale-110 transition-transform duration-500">
 
                                             <!-- <img class="w-20 h-20 rounded-lg object-cover" src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200&h=200&fit=crop" alt="iPhone 14 Pro Max"> -->
                                         </div>
