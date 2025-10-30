@@ -163,7 +163,7 @@
                         @foreach ($order->items as $item)
                         <div class="flex gap-3">
                             <div class="w-14 h-14 bg-lav2 rounded flex items-center justify-center flex-shrink-0">
-                                <img src="{{ url('storage/products_images/' . $item->product->image) }}" class="w-10 h-10 object-cover rounded" alt="{{ $item->product->name }}">
+                                <img src="{{ $item->product->photo_url }}" class="w-10 h-10 object-cover rounded" alt="{{ $item->product->name }}">
                             </div>
                             <div class="flex-1 min-w-0">
                                 <h3 class="font-semibold text-sm text-purple-darkest">{{ $item->product->name }}</h3>
