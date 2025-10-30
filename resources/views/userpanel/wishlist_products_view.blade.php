@@ -13,7 +13,7 @@
             @forelse ($wishlist as $product)
             <div class="flex items-center justify-between p-4 bg-white rounded-lg shadow mb-3">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('storage/products_images/' . $product->image) }}" alt="{{ $product->name }}"
+                    <img src="{{ $product->photo_url }}" alt="{{ $product->name }}"
                         class="w-16 h-16 rounded-lg object-cover border">
                     <div>
                         <h4 class="font-semibold text-gray-800">{{ $product->name }}</h4>
