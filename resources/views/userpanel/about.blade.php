@@ -15,7 +15,7 @@
                     <!-- Image -->
                     <div class="order-2 lg:order-1 group">
                         <div class="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 hover:shadow-purple-medium/50">
-                            <img src="https://images.unsplash.com/photo-1565440962783-f87efdea99fd?w=800&q=80"
+                            <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857101/x1_ywmddv.jpg"
                                 alt="Luxury Watch Boutique"
                                 class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
                             <div class="absolute inset-0 bg-gradient-to-t from-purple-darkest/20 to-transparent group-hover:from-purple-darkest/70 transition-all duration-500"></div>
@@ -63,7 +63,7 @@
 
                     <!-- Image -->
                     <div class="relative overflow-hidden rounded-2xl shadow-2xl group transition-all duration-500 hover:shadow-peri/50">
-                        <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=80"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857080/w3_wzvmye.jpg"
                             alt="Watchmaking Craftsmanship"
                             class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-side/20 to-transparent group-hover:from-side/70 transition-all duration-500"></div>
@@ -137,7 +137,7 @@
                 <div class="group cursor-pointer  ">
                     <div class="relative overflow-hidden rounded-xl shadow-2xl bg-black">
                         <img
-                            src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80"
+                            src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857094/x2_ri7ffy.jpg"
                             alt="Glashütte watchmaking heritage"
                             class="w-full h-[500px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-500"></div>
@@ -154,7 +154,7 @@
                 <div class="group cursor-pointer">
                     <div class="relative overflow-hidden rounded-xl shadow-2xl bg-black">
                         <img
-                            src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=1200&q=80"
+                            src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857075/w10_c7do4v.jpg"
                             alt="Watch dial expertise"
                             class="w-full h-[500px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-500"></div>
@@ -169,7 +169,7 @@
                 <div class="group cursor-pointer">
                     <div class="relative overflow-hidden rounded-xl shadow-2xl bg-black">
                         <img
-                            src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=1200&q=80"
+                            src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857088/w9_ri8qn2.jpg"
                             alt="Colorful watch collection"
                             class="w-full h-[500px] object-cover transition-all duration-700 group-hover:scale-110 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all duration-500"></div>
