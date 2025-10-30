@@ -64,7 +64,7 @@
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Watch 1 - Chronometer -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w11.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857075/w11_wkzrck.jpg"
                             alt="Glashütte Chronometer"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -77,7 +77,7 @@
 
                     <!-- Watch 2 - Classic Dial -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w12.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w12_mjj7hk.jpg"
                             alt="Glashütte Classic"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -90,7 +90,7 @@
 
                     <!-- Watch 3 - Moonphase -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w13.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w13_nxgpls.jpg"
                             alt="Glashütte Moonphase"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -103,7 +103,7 @@
 
                     <!-- Watch 4 - Date Display -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w14.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857078/w14_czyuvc.jpg"
                             alt="Glashütte Date"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -116,7 +116,7 @@
 
                     <!-- Watch 5 - Moon Phase Detail -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w15.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857079/w15_l7mfri.jpg"
                             alt="Glashütte Moon Detail"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -129,7 +129,7 @@
 
                     <!-- Watch 6 - Sport Watch -->
                     <div class="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
-                        <img src="images/w16.jpg"
+                        <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857079/w16_g05aar.jpg"
                             alt="Glashütte Sport"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -213,7 +213,7 @@
                             <!-- Right Image -->
                             <div class="w-full lg:w-1/2 relative group overflow-hidden">
                                 <img
-                                    src="images/w17.jpg"
+                                    src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857080/w3_wzvmye.jpg"
                                     alt="Watchmaker crafting precision timepiece"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div class="absolute inset-0 bg-gradient-to-t from-purple-darkest/90 via-purple-darkest/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
@@ -249,7 +249,7 @@
                             <!-- Left Image -->
                             <div class="w-full lg:w-1/2 relative group overflow-hidden">
                                 <img
-                                    src="images/w18.jpg"
+                                    src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857080/w18_vh6qru.jpg"
                                     alt="Luxury watch boutique interior"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div class="absolute inset-0 bg-gradient-to-t from-purple-darkest/90 via-purple-darkest/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
