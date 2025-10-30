@@ -11,27 +11,27 @@
             <div class="absolute inset-0 z-0">
                 <!-- Background Image 1 -->
                 <div class="carousel-item active absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('images/x1.jpg');">
+                    style="background-image: url('https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857101/x1_ywmddv.jpg');">
                 </div>
 
                 <!-- Background Image 2 -->
                 <div class="carousel-item absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('images/w1.jpg');">
+                    style="background-image: url('https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857030/w1_jfhioh.jpg');">
                 </div>
 
                 <!-- Background Image 3 -->
                 <div class="carousel-item absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('images/x2.jpg');">
+                    style="background-image: url('https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857094/x2_ri7ffy.jpg');">
                 </div>
 
                 <!-- Background Image 4 -->
                 <div class="carousel-item absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('images/w2.jpg');">
+                    style="background-image: url('https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857049/w2_gwbcs8.jpg');">
                 </div>
 
                 <!-- Background Image 5 -->
                 <div class="carousel-item absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style="background-image: url('images/x3.jpg');">
+                    style="background-image: url('https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857098/x3_kndln3.jpg');">
                 </div>
             </div>
 
@@ -868,7 +868,7 @@
                         </div>
                         <div class="order-1 sm:order-2 h-48 sm:h-56 md:h-64">
                             <div class="relative overflow-hidden rounded-xl">
-                                <img src="images/x1.jpg" alt="Luxury Watch" class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:brightness-110 transition-all duration-700">
+                                <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857101/x1_ywmddv.jpg" alt="Luxury Watch" class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:brightness-110 transition-all duration-700">
                                 <!-- Geometric overlay -->
                                 <div class="absolute inset-0 bg-gradient-to-tr from-emerald-400/20 via-transparent to-teal-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
                                 <!-- Corner triangles -->
@@ -903,7 +903,7 @@
                         </div>
                         <div class="px-6 pb-6 md:px-10 md:pb-10">
                             <div class="relative overflow-hidden rounded-xl">
-                                <img src="images/x3.jpg" alt="Premium Watch Collection"
+                                <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857098/x3_kndln3.jpg" alt="Premium Watch Collection"
                                     class="h-44 sm:h-56 md:h-72 w-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-700">
                                 <!-- Glow overlay -->
                                 <div class="absolute inset-0 bg-gradient-to-tr from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
@@ -935,7 +935,7 @@
                     </div>
                     <div class="p-6 relative z-10">
                         <div class="relative overflow-hidden rounded-xl">
-                            <img src="images/x2.jpg" alt="Automatic Watch Movement"
+                            <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857094/x2_ri7ffy.jpg" alt="Automatic Watch Movement"
                                 class="h-full w-full object-cover rounded-xl group-hover:scale-110 group-hover:contrast-125 transition-all duration-700">
                             <!-- Mechanical overlay -->
                             <div class="absolute inset-0 bg-gradient-to-bl from-amber-400/20 via-transparent to-orange-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
@@ -1078,7 +1078,7 @@
             <div class="grid grid-cols-3 auto-rows-[200px] gap-3">
                 <!-- Top Left - Chronometer Watch -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
-                    <img src="images/w11.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857075/w11_wkzrck.jpg"
                         alt="Chronometer"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1091,7 +1091,7 @@
 
                 <!-- Top Center - Classic Dial (spans 2 rows) -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl row-span-2 group cursor-pointer">
-                    <img src="images/w12.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w12_mjj7hk.jpg"
                         alt="Classic Dial"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1104,7 +1104,7 @@
 
                 <!-- Top Right - Moonphase Watch -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
-                    <img src="images/w13.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w13_nxgpls.jpg"
                         alt="Moonphase Watch"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1117,7 +1117,7 @@
 
                 <!-- Middle Left - Date Display Watch -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
-                    <img src="images/w14.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857078/w14_czyuvc.jpg"
                         alt="Date Display"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1130,7 +1130,7 @@
 
                 <!-- Middle Right - Moon Phase Detail (spans 2 rows) -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl row-span-2 group cursor-pointer">
-                    <img src="images/w15.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857079/w15_l7mfri.jpg"
                         alt="Moon Phase Detail"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1143,7 +1143,7 @@
 
                 <!-- Bottom Left - Moon Phase Indicator -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
-                    <img src="images/w16.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857079/w16_g05aar.jpg"
                         alt="Moon Phase"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1156,7 +1156,7 @@
 
                 <!-- Bottom Center - Sport Watch -->
                 <div class="relative overflow-hidden bg-gray-100 rounded-xl group cursor-pointer">
-                    <img src="images/w17.jpg"
+                    <img src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857080/w17_cw9oxg.jpg"
                         alt="Sport Watch"
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -1438,7 +1438,7 @@
                 <!-- Catalogue Card -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
                     <img
-                        src="images/w11.jpg"
+                        src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857075/w11_wkzrck.jpg"
                         alt="Watch mechanism"
                         class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -1454,7 +1454,7 @@
                 <!-- Newsletter Card -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
                     <img
-                        src="images/w12.jpg"
+                        src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w12_mjj7hk.jpg"
                         alt="Watchmaker at work"
                         class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -1470,7 +1470,7 @@
                 <!-- Third Card -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
                     <img
-                        src="images/w13.jpg"
+                        src="https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761857077/w13_nxgpls.jpg"
                         alt="Luxury watch"
                         class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
