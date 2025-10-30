@@ -714,7 +714,7 @@
                         <div class="p-4">
                             {{-- Product Image --}}
                             <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                <img src="{{ $product->photo_url }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             </div>
@@ -981,7 +981,7 @@
 
                         <div class="relative overflow-hidden rounded-xl">
                             <!-- Reduce image height only on mobile -->
-                            <img src="{{ url('storage/products_images/' . $product->image) }}"
+                            <img src="{{ $product->photo_url }}"
                                 alt="Luxury Watch"
                                 class="h-40 sm:h-48 md:h-56 w-full object-cover rounded-xl mb-4 md:mb-6 
                                 group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
@@ -1041,7 +1041,7 @@
                         <div class="p-4">
                             {{-- Product Image --}}
                             <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                                <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                <img src="{{ $product->photo_url }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             </div>
@@ -1210,7 +1210,7 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                    <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                                    <img src="{{ $product->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
 
 
                                 </div>
@@ -1364,7 +1364,7 @@
                                         </div>
                                     </div>
                                 </div> -->
-                                    <img src="{{ url('storage/products_images/' . $product->image) }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
+                                    <img src="{{ $product->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
 
 
                                 </div>
@@ -1405,7 +1405,7 @@
 
                         <div class="relative overflow-hidden rounded-xl">
                             <!-- Reduce image height only on mobile -->
-                            <img src="{{ url('storage/products_images/' . $product->image) }}"
+                            <img src="{{ $product->photo_url }}"
                                 alt="Luxury Watch"
                                 class="h-40 sm:h-48 md:h-56 w-full object-cover rounded-xl mb-4 md:mb-6 
                                 group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
