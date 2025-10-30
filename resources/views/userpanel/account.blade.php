@@ -22,7 +22,7 @@
                 <div class="text-center">
                     <div
                         class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl profile-photo cursor-pointer group text-center">
-                        <img id="profilePhoto" src="{{ url('storage/photos/' . $user_data->photo) }}" alt="👦🏼"
+                        <img id="profilePhoto" src="{{ $user_data->photo_url }}" alt="👦🏼"
                             class="w-full h-full object-cover cursor-pointer" onclick="openPhotoPopup()">
                     </div>
                 </div>

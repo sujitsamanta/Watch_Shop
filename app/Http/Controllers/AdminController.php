@@ -10,10 +10,28 @@ use App\Models\User;
 use App\Models\Categorie;
 use App\Models\Product;
 use App\Models\Order;
+use Cloudinary\Cloudinary;
+
 
 
 class AdminController extends Controller
 {
+
+    // cloudinary start
+    public $cloudinary;
+    public function __construct()
+    {
+        $this->cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                'api_key'    => env('CLOUDINARY_API_KEY'),
+                'api_secret' => env('CLOUDINARY_API_SECRET'),
+            ],
+        ]);
+    }
+    // cloudinary end
+
+
     public function admin_login(Request $request)
     {
         // view('admin_home');
@@ -62,7 +80,18 @@ class AdminController extends Controller
 
     public function admin_user_account_delete($user_id)
     {
+
         $user = User::findOrFail($user_id);
+        $oldUrl = $user->photo_url;
+        $oldpublicId = $user->photo_public_id;
+        $fullPublicId = 'Watch_Shop/User_DP/' . $oldpublicId;
+
+        if (!empty($oldUrl)) {
+
+            $this->cloudinary->uploadApi()->destroy($fullPublicId, [
+                'resource_type' => 'image',
+            ]);
+        }
 
         // Delete the user (related addresses/orders will also be deleted if you set `onDelete('cascade')` in migrations)
         $user->delete();
@@ -224,7 +253,7 @@ class AdminController extends Controller
 
     public function admin_confirmed_order(Request $request)
     {
-        $order_id=$request->order_id;
+        $order_id = $request->order_id;
         $order = Order::findOrFail($order_id);
         // return print_r($order);
         // Only allow accepting pending orders
@@ -239,9 +268,9 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-     public function admin_cancel_order(Request $request)
+    public function admin_cancel_order(Request $request)
     {
-        $order_id=$request->order_id;
+        $order_id = $request->order_id;
         $order = Order::findOrFail($order_id);
         // return print_r($order);
         // Only allow accepting pending orders
@@ -255,9 +284,9 @@ class AdminController extends Controller
         flash()->addError('This order cannot be cancel ⚡️');
         return redirect()->back();
     }
-     public function admin_delivered_order(Request $request)
+    public function admin_delivered_order(Request $request)
     {
-        $order_id=$request->order_id;
+        $order_id = $request->order_id;
         $order = Order::findOrFail($order_id);
         // return print_r($order);
         // Only allow accepting pending orders
@@ -271,6 +300,4 @@ class AdminController extends Controller
         flash()->addError('This order delivered be cancel ⚡️');
         return redirect()->back();
     }
-
-    
 }

@@ -24,11 +24,27 @@ use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Models\Otp;
 use App\Models\Review;
-
+use Cloudinary\Cloudinary;
 use function PHPUnit\Framework\isEmpty;
 
 class UserController extends Controller
 {
+    // cloudinary start
+    public $cloudinary;
+    public function __construct()
+    {
+        $this->cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                'api_key'    => env('CLOUDINARY_API_KEY'),
+                'api_secret' => env('CLOUDINARY_API_SECRET'),
+            ],
+        ]);
+    }
+    // cloudinary end
+
+
+
     public function signin_submit(Request $request)
     {
         $signin_data = $request->validate([
@@ -267,48 +283,66 @@ class UserController extends Controller
     {
 
         if ($request->photo) {
-            // $path = $request->file('photo')->store('user/user_account_images', 'public');
-
-            $path = $request->file('photo')->store('photos', 'public');
-            $patharrey = explode('/', $path);
-            $img_name = $patharrey[1];
 
             $user = Auth::user();
+            $oldUrl = $user->photo_url;
+            $oldpublicId = $user->photo_public_id;
+            $fullPublicId = 'Watch_Shop/User_DP/' . $oldpublicId;
 
-            if ($user->photo) {
-                $oldPath = public_path('storage/photos/' . $user->photo);
 
-                if (File::exists($oldPath)) {
-                    File::delete($oldPath);
-                }
+            if (!empty($oldUrl)) {
+
+                $this->cloudinary->uploadApi()->destroy($fullPublicId, [
+                    'resource_type' => 'image',
+                ]);
             }
 
+            $file = $request->file('photo');
+            $publicId = 'uploads/' . date('Y/m') . '/' . Str::random(8);
+
+            // upload and get response
+            $result = $this->cloudinary->uploadApi()->upload(
+                $file->getRealPath(),
+                [
+                    'public_id' => $publicId,
+                    'folder' => 'Watch_Shop/User_DP', // optional
+                    'overwrite' => false,
+                    'resource_type' => 'image',
+                ]
+            );
+
+            // secure URL
+            $url = $result['secure_url'] ?? ($result['url'] ?? null);
+
             $user = DB::table('users')->where('id', $user->id)->update([
-                'photo' => $img_name,
+                'photo_url' => $url,
+                'photo_public_id' => $publicId,
 
             ]);
 
             flash()->addSuccess('Photo Update Succesful..⚡️');
             return redirect()->back();
         } else {
+
             $user = Auth::user();
+            $oldUrl = $user->photo_url;
+            $oldpublicId = $user->photo_public_id;
+            $fullPublicId = 'Watch_Shop/User_DP/' . $oldpublicId;
 
-            if ($user->photo) {
-                $oldPath = public_path('storage/photos/' . $user->photo);
 
-                if (File::exists($oldPath)) {
-                    File::delete($oldPath);
-                }
+            if (!empty($oldUrl)) {
+
+                $this->cloudinary->uploadApi()->destroy($fullPublicId, [
+                    'resource_type' => 'image',
+                ]);
             }
 
-
             $user = DB::table('users')->where('id', $user->id)->update([
-                'photo' => null,
-
+                'photo_url' => null,
+                'photo_public_id' => null,
             ]);
 
             flash()->addSuccess('Photo Update Succesful..⚡️');
-
             return redirect()->back();
         }
     }
@@ -468,7 +502,7 @@ class UserController extends Controller
             // Check if user can review: has delivered order with this product and no existing review
             $hasDeliveredOrder = Order::where('user_id', $user->id)
                 ->where('status', 'delivered')
-                ->whereHas('items', function($query) use ($product_id) {
+                ->whereHas('items', function ($query) use ($product_id) {
                     $query->where('product_id', $product_id);
                 })
                 ->exists();
@@ -1169,7 +1203,7 @@ class UserController extends Controller
         // Check eligibility again
         $hasDeliveredOrder = Order::where('user_id', $user->id)
             ->where('status', 'delivered')
-            ->whereHas('items', function($query) use ($product_id) {
+            ->whereHas('items', function ($query) use ($product_id) {
                 $query->where('product_id', $product_id);
             })
             ->exists();

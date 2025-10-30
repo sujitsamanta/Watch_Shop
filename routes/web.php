@@ -6,6 +6,9 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Middleware\UserMiddleware;
 
+
+
+
 // User Panel Start
 
 // Route::view('/home-x', 'userpanel.home-x');

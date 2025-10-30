@@ -110,8 +110,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div
                                         class="h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
-                                        @if (!empty($user->photo))
-                                        <img src="{{ url('storage/photos/' . $user->photo) }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        @if (!empty($user->photo_url))
+                                        <img src="{{ $user->photo_url }}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
                                         @else
                                         {{ collect(explode(' ', $user->name))->map(fn($n) => strtoupper($n[0]))->join('') }}
                                         @endif

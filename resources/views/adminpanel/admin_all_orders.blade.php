@@ -111,10 +111,14 @@
 
                                 <!-- Customer with photo -->
                                 <td class="px-6 py-4 text-sm text-gray-900">
-                                    <div class="user-info">
-                                        <img src="{{ $order->user->photo ? asset('storage/photos/' . $order->user->photo) : asset('images/default-user.png') }}"
-                                            alt="User Photo" class="user-photo">
-                                        <span>{{ $order->user->name ?? 'N/A' }}</span>
+                                    <div   class="user-info h-12 w-12 rounded-full bg-gradient-to-br from-peri to-purple-dark flex items-center justify-center text-white font-semibold text-lg shadow-md">
+
+                                        @if (!empty($order->user->photo_url))
+                                        <img src="{{$order->user->photo_url}}" class="rounded-full size-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                        @else
+                                        {{ collect(explode(' ', $order->user->name))->map(fn($n) => strtoupper($n[0]))->join('') }}
+                                        @endif
+
                                     </div>
                                 </td>
 

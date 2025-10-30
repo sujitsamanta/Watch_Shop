@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email')->unique();
 
-            $table->string('photo')->nullable();
+            $table->string('photo_url')->nullable();
+            $table->string('photo_public_id')->nullable();
             $table->string('phone', 15)->nullable();
             $table->date('dob')->nullable();
             $table->string('username');
