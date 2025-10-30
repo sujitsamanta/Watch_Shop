@@ -1431,7 +1431,7 @@
                 <div class="flex items-center p-3 hover:bg-lav1 transition-colors duration-200 border-b border-lav2 last:border-b-0 cursor-pointer"
                     onmousedown="window.location.href='${suggestion.url}'">
                     <div class="w-12 h-12 bg-lav2 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
-                        <img src="storage/products_images/${suggestion.image}" alt="${suggestion.name}"
+                        <img src="${suggestion.photo_url}" alt="${suggestion.name}"
                              class="w-10 h-10 object-cover rounded-lg" onerror="this.style.display='none'">
                     </div>
                     <div class="flex-1 min-w-0">

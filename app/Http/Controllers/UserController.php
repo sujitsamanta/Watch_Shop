@@ -1149,7 +1149,7 @@ class UserController extends Controller
 
         if (strlen($query) >= 2) {
             // Optimized query - only select needed fields
-            $products = Product::select('id', 'name', 'price', 'image', 'category_id')
+            $products = Product::select('id', 'name', 'price', 'photo_url', 'category_id')
                 ->with(['category:id,name'])
                 ->where(function ($q) use ($query) {
                     $q->where('name', 'LIKE', "%{$query}%")
@@ -1171,7 +1171,7 @@ class UserController extends Controller
                     'id' => $product->id,
                     'name' => $product->name,
                     'price' => $product->price,
-                    'image' => $product->image,
+                    'photo_url' => $product->photo_url,
                     'category' => $product->category->name,
                     'url' => '/single_product_view/' . $product->id
                 ];
