@@ -221,7 +221,7 @@
                                 <div class="p-4">
                                     {{-- Product Image --}}
                                     <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                                        <img src="{{ url('storage/products_images/' . $product->image) }}"
+                                        <img src="{{ $product->photo_url }}"
                                             alt="{{ $product->name }}"
                                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                                     </div>
