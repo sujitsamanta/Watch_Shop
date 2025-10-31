@@ -64,9 +64,93 @@
             margin: 0;
         }
     </style>
+
+      <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            /* blurred background */
+            background: rgba(0, 0, 0, 0.2);
+            /* dark overlay */
+            z-index: 99999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Loader content (centered) */
+        .loader-content {
+            text-align: center;
+        }
+
+        /* Spinner style */
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(157, 141, 241, 0.2);
+            border-top: 6px solid #9D8DF1;
+            /* purple-medium */
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin .5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(157, 141, 241, 0.5);
+        }
+
+        /* Loader text */
+        .loader-text {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Spinner rotation animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+
+<!--  Loader Section start -->
+    <div id="loader" style="display: none;">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text">Please wait...</p>
+        </div>
+    </div>
+    <!--  Loader Section end -->
+
         <!-- @include('notify::components.notify') -->
 
     <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
@@ -75,7 +159,7 @@
             <!-- <p class="text-gray-600">Sign in to your account</p> -->
         </div>
 
-        <form class="space-y-6" action="/login_submit" method="post">
+        <form id="loder_out" class="space-y-6" action="/login_submit" method="post">
             @csrf
             @if (session('alert'))
                 @if (session('alert') == 'succesful')
@@ -136,7 +220,7 @@
                 </a>
             </div> -->
 
-            <button type="submit"
+            <button id="loder_come" type="submit"
                 class="w-full bg-primary-dark text-white py-3 px-4 rounded-lg hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-primary-dark focus:ring-offset-2 transition duration-200 font-medium">
                 LogIn
             </button>
@@ -151,6 +235,21 @@
         </div>
     </div>
  <!-- @notifyJs -->
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+        $(document).ready(function() {
+            $("#loder_come").click(function() {
+                // Show loader
+                $("#loader").fadeIn(300);
+            });
+
+            // Optional: Hide loader when form submission completes
+            $("#loder_out").on('submit', function() {
+                $("#loader").fadeIn(300); // show loader before submitting
+            });
+        });
+    </script>
 
 </body>
 

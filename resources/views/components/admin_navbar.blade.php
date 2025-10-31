@@ -86,7 +86,7 @@
 			/* purple-medium */
 			border-radius: 50%;
 			margin: 0 auto 20px;
-			animation: spin 1s ease-in-out infinite;
+			animation: spin .5s ease-in-out infinite;
 			box-shadow: 0 0 15px rgba(157, 141, 241, 0.5);
 		}
 

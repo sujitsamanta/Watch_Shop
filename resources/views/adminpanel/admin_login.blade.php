@@ -6,7 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
-        <!-- @notifyCss -->
+    <!-- @notifyCss -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'purple-light': '#f3f0ff',
+                        'purple-medium': '#e5dbff',
+                        'purple-dark': '#8b7fb8',
+                        'purple-darker': '#4a4363'
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         .gradient-bg {
@@ -51,26 +66,97 @@
             margin: 0;
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'purple-light': '#f3f0ff',
-                        'purple-medium': '#e5dbff',
-                        'purple-dark': '#8b7fb8',
-                        'purple-darker': '#4a4363'
-                    }
-                }
+
+      <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            /* blurred background */
+            background: rgba(0, 0, 0, 0.2);
+            /* dark overlay */
+            z-index: 99999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Loader content (centered) */
+        .loader-content {
+            text-align: center;
+        }
+
+        /* Spinner style */
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(157, 141, 241, 0.2);
+            border-top: 6px solid #9D8DF1;
+            /* purple-medium */
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin .5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(157, 141, 241, 0.5);
+        }
+
+        /* Loader text */
+        .loader-text {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Spinner rotation animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
             }
         }
-    </script>
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
 </head>
 
 <body
     class="min-h-screen bg-gradient-to-b from-purple-light via-purple-medium to-purple-dark flex items-center justify-center p-4">
-            <!-- @include('notify::components.notify') -->
+    <!-- @include('notify::components.notify') -->
 
+ <!--  Loader Section start -->
+    <div id="loader" style="display: none;">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text">Please wait...</p>
+        </div>
+    </div>
+    <!--  Loader Section end -->
+
+    
     <div class="w-full max-w-md">
         <!-- Login Card -->
         <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
@@ -89,17 +175,17 @@
             </div>
 
             <!-- Login Form -->
-            <form class="space-y-6" method="post" action="admin_login_submit">
+            <form id="loder_out" class="space-y-6" method="post" action="admin_login_submit">
                 @csrf
-                
+
                 @if (session('alert'))
                 @if (session('alert') == 'succesful')
-                    <x-alert alert="succesful" message="Account is succesfuly created.." />
+                <x-alert alert="succesful" message="Account is succesfuly created.." />
                 @elseif(session('alert') == 'not_succesful')
-                    <x-alert alert="not_succesful" message="Invalid details.." />
+                <x-alert alert="not_succesful" message="Invalid details.." />
                 @else
                 @endif
-            @endif
+                @endif
 
                 <!-- User ID Input -->
                 <div class="space-y-2">
@@ -116,7 +202,7 @@
                             placeholder="Enter your email ID" value="{{ old('email') }}">
                         <div class="text-sm text-red-500 h-2">
                             @error('email')
-                                {{ $message }}
+                            {{ $message }}
                             @enderror
                         </div>
                     </div>
@@ -140,7 +226,7 @@
 
                         <div class="text-sm text-red-500 h-2">
                             @error('password')
-                                {{ $message }}
+                            {{ $message }}
                             @enderror
                         </div>
 
@@ -170,7 +256,7 @@
                 </div> -->
 
                 <!-- Login Button -->
-                <button type="submit"
+                <button id="loder_come" type="submit"
                     class="w-full bg-gradient-to-r from-purple-dark to-purple-darker text-white py-3 px-4 rounded-lg font-semibold hover:from-purple-darker hover:to-purple-dark focus:outline-none focus:ring-2 focus:ring-purple-dark focus:ring-offset-2 transform transition-all duration-200 hover:scale-105 active:scale-95">
                     Sign In
                 </button>
@@ -181,10 +267,25 @@
                 <p>Need help? <a href="#" class="font-medium text-purple-darker hover:underline">Contact Support</a></p>
             </div>
         </div> -->
-
-
         </div>
-        
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#loder_come").click(function() {
+                    // Show loader
+                    $("#loader").fadeIn(300);
+                });
+
+                // Optional: Hide loader when form submission completes
+                $("#loder_out").on('submit', function() {
+                    $("#loader").fadeIn(300); // show loader before submitting
+                });
+            });
+        </script>
+
 
         <script>
             function togglePassword() {
@@ -221,7 +322,7 @@
             // }
 
             // Add subtle animations on load
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
                 const card = document.querySelector('.bg-white\\/90');
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
@@ -233,7 +334,7 @@
                 }, 100);
             });
         </script>
-                <!-- @notifyJs -->
+        <!-- @notifyJs -->
 
 </body>
 
