@@ -389,6 +389,81 @@
     </style>
 
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full-screen loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            /* blurred background */
+            background: rgba(0, 0, 0, 0.2);
+            /* dark overlay */
+            z-index: 99999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* Loader content (centered) */
+        .loader-content {
+            text-align: center;
+        }
+
+        /* Spinner style */
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(157, 141, 241, 0.2);
+            border-top: 6px solid #9D8DF1;
+            /* purple-medium */
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(157, 141, 241, 0.5);
+        }
+
+        /* Loader text */
+        .loader-text {
+            font-size: 18px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Spinner rotation animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+
 
 
 </head>
@@ -397,7 +472,14 @@
     <!-- Active Link -->
 
 
-
+    <!--  Loader Section start -->
+    <div id="loader" style="display: none;">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text">Please wait...</p>
+        </div>
+    </div>
+    <!--  Loader Section end -->
 
 
 
@@ -893,15 +975,6 @@
         </div>
 
 
-      <!-- Loader -->
-<div id="loader">
-  <div class="loader-content">
-    <div class="spinner"></div>
-    <p>Updating your photo...</p>
-  </div>
-</div>
-
-
         <!-- Bottom Copyright -->
         <!-- <div class="bg-purple-dark py-4 border-t border-side">
             <div class="container mx-auto px-6">
@@ -924,99 +997,50 @@
     <script src="{{ asset('js/user_script.js') }}"></script>
 
 
-    <script>
-$(document).ready(function() {
-    $(".update_save_photo").on("click", function(e) {
-        e.preventDefault();
-        var form = $(this).closest("form");
+    <!-- <script>
+        $(document).ready(function() {
+            $(".update_save_photo").on("click", function(e) {
+                e.preventDefault();
+                var form = $(this).closest("form");
 
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Do you want to update your account photo?",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, update it!",
-            cancelButtonText: "Cancel"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $("#loader").fadeIn(300); // show loader with fade
-                form.submit();
-            } else {
-                window.location.href = "/account";
-            }
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to update your account photo?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#9D8DF1",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, update it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); // ✅ Show loader before submitting
+                        form.submit(); // Submit to controller
+                    } else {
+                        window.location.href = "/account";
+                    }
+                });
+            });
+
+            // Hide loader when the page fully loads
+            window.addEventListener("load", function() {
+                $("#loader").fadeOut(300);
+            });
         });
-    });
-});
+    </script> -->
 
-window.addEventListener("load", function() {
-    $("#loader").fadeOut(300);
-});
-    </script>
 
-    <!-- Loader CSS -->
-    <style>
-       /* Loader full screen with blur background */
-#loader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    backdrop-filter: blur(10px); /* blurred background */
-    background: rgba(255, 255, 255, 0.2);
-    z-index: 99999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease-in-out;
-}
 
-/* Centered content */
-.loader-content {
-    text-align: center;
-    color: #2d3748;
-    font-family: "Poppins", sans-serif;
-}
-
-/* Spinner animation */
-.spinner {
-    width: 70px;
-    height: 70px;
-    border: 6px solid rgba(255,255,255,0.3);
-    border-top: 6px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 15px;
-}
-
-/* Text under spinner */
-.loader-content p {
-    font-size: 18px;
-    color: #333;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-}
-
-/* Animations */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-    </style>
 
     <!-- Optional: Auto-hide loader when new page loads -->
-    <script>
+    <!-- <script>
         window.addEventListener("load", function() {
             $("#loader").hide();
         });
-    </script>
+    </script> -->
 
+
+  
 
 
     <!-- sweet alert2 start -->
@@ -1049,193 +1073,215 @@ window.addEventListener("load", function() {
         });
 
 
-        // $(document).ready(function() {
-        //     $(".confirm_order").on("click", function(e) {
-        //         e.preventDefault(); // Stop default logout immediately
-        //         let url = $(this).attr("href"); // /logout
-        //         Swal.fire({
-        //             title: "Are you sure?",
-        //             text: "You will be logged out from the system.",
-        //             icon: "warning",
-        //             showCancelButton: true,
-        //             confirmButtonColor: "#3085d6",
-        //             cancelButtonColor: "#d33",
-        //             confirmButtonText: "Yes, log me out!",
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
-        //                 // Redirect to logout
-        //                 window.location.href = url;
-        //             }
-        //         });
-        //     });
-
-
 
         // user logout start
 
         $(document).ready(function() {
 
-                    $(".logout").on("click", function(e) {
-                        e.preventDefault(); // stop direct submit
-
-                        let form = $(this).closest("form")[0]; // get native form element
-
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "You will be logged out from the system.",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, log me out!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // ✅ native submit
-                            }
-                        });
-                    });
-                    // user logout end
+            // Hide loader when the page fully loads
+            window.addEventListener("load", function() {
+                $("#loader").fadeOut(300);
+            });
 
 
+            $(".logout").on("click", function(e) {
+                e.preventDefault(); // stop direct submit
 
-                    // account_update_save start
+                let form = $(this).closest("form")[0]; // get native form element
 
-                    $(".update_save").on("click", function(e) {
-                        e.preventDefault(); // Stop default logout immediately
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You will be logged out from the system.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, log me out!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
 
-                        // let url = $(this).attr("href"); 
-                        var form = $(this).parents("form"); // /logout
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "Do you want to update your account details?",
-                            icon: "question", // use "question" or "info" instead of "warning"
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, update it!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Redirect to logout
-                                // window.location.href = url;
-                                form.submit();
-                            } else {
-                                window.location.href = "/account";
-                            }
-                        });
-                    });
-
-                    // account_update_save start
+                        form.submit(); //  native submit
+                    }
+                });
+            });
+            // user logout end
 
 
 
-                    // update_save_photo start
+            // account_update_save start
+
+            $(".update_save").on("click", function(e) {
+                e.preventDefault(); // Stop default logout immediately
+
+                // let url = $(this).attr("href"); 
+                var form = $(this).parents("form"); // /logout
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to update your account details?",
+                    icon: "question", // use "question" or "info" instead of "warning"
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, update it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to logout
+                        // window.location.href = url;
+                        $("#loader").fadeIn(300); //  Show loader before submitting
+
+                        form.submit();
+                    }
+                    // else {
+                    //     window.location.href = "/account";
+                    // }
+                });
+            });
+
+            // account_update_save start
 
 
-                    // update_save_photo end
+
+            // update_save_photo start
+            $(".update_save_photo").on("click", function(e) {
+                e.preventDefault();
+                var form = $(this).closest("form");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to update your account photo?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#9D8DF1",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, update it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
+                        form.submit(); // Submit to controller
+                    }
+                    //   else {
+                    //     window.location.href = "/account";
+                    // }
+                });
+            });
+
+            // update_save_photo end
 
 
 
 
-                    // add to cart clear all products start
+            // add to cart clear all products start
 
-                    $(".add_to_cart_cler_all_products").on("click", function(e) {
-                        e.preventDefault(); // stop direct submit
+            $(".add_to_cart_cler_all_products").on("click", function(e) {
+                e.preventDefault(); // stop direct submit
 
-                        let form = $(this).closest("form")[0]; // get native form element
+                let form = $(this).closest("form")[0]; // get native form element
 
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "Do you want to clear all Product?",
-                            icon: "question",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, clear it!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // ✅ native submit
-                            }
-                        });
-                    });
-                    // add to cart clear all products end
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to clear all Product?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, clear it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
+
+                        form.submit(); //  native submit
+                    }
+                });
+            });
+            // add to cart clear all products end
 
 
-                    // confirm default address start
+            // confirm default address start
 
-                    $(".addresses_set_default_btn").on("click", function(e) {
-                        e.preventDefault(); // stop direct submit
+            $(".addresses_set_default_btn").on("click", function(e) {
+                e.preventDefault(); // stop direct submit
 
-                        let form = $(this).closest("form")[0]; // get native form element
+                let form = $(this).closest("form")[0]; // get native form element
 
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "Do you want to confirm default address?",
-                            icon: "question",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, default it!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // ✅ native submit
-                            }
-                        });
-                    });
-                    // confirm default address end
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to confirm default address?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, default it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
 
-                    // delete address start
+                        form.submit(); //  native submit
+                    }
+                });
+            });
+            // confirm default address end
 
-                    $(".addresses_delete_btn").on("click", function(e) {
-                        e.preventDefault(); // stop direct submit
+            // delete address start
 
-                        let form = $(this).closest("form")[0]; // get native form element
+            $(".addresses_delete_btn").on("click", function(e) {
+                e.preventDefault(); // stop direct submit
 
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "Do you want to delete this address?",
-                            icon: "question",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, delete it!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // ✅ native submit
-                            }
-                        });
-                    });
-                    // delete address end
+                let form = $(this).closest("form")[0]; // get native form element
 
-                    // confirm order start
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to delete this address?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
 
-                    $(".confirm_order").on("click", function(e) {
-                        e.preventDefault(); // stop direct submit
+                        form.submit(); //  native submit
+                    }
+                });
+            });
+            // delete address end
 
-                        let form = $(this).closest("form")[0]; // get native form element
+            // confirm order start
 
-                        Swal.fire({
-                            title: "Are you sure?",
-                            text: "Do you want to confirm your order?",
-                            icon: "question",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes, confirm order!",
-                            cancelButtonText: "Cancel"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); // ✅ native submit
-                            }
-                        });
-                    });
-                    // confirm order end
+            $(".confirm_order").on("click", function(e) {
+                e.preventDefault(); // stop direct submit
+
+                let form = $(this).closest("form")[0]; // get native form element
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Do you want to confirm your order?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, confirm order!",
+                    cancelButtonText: "Cancel"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#loader").fadeIn(300); //  Show loader before submitting
+
+                        form.submit(); //  native submit
+                    }
+                });
+            });
+
+        });
+        // confirm order end
     </script>
-    <!-- sweet alert2 end -->
+
     <script>
         //  account photo start
         const photoInput = document.getElementById("photoInput");
@@ -1257,7 +1303,7 @@ window.addEventListener("load", function() {
         });
 
         function resetPhoto() {
-            profilePhoto.src = "https://via.placeholder.com/150";
+            profilePhoto.src = "https://icons.veryicon.com/png/o/file-type/linear-icon-2/user-132.png";
             saveButton.classList.remove("hidden"); // Show Save button
         }
 
@@ -1276,7 +1322,7 @@ window.addEventListener("load", function() {
         // account end
     </script>
 
-    <!-- Search functionality -->
+
     <script>
         function handleSuggestionClick(url) {
             window.location.href = url;

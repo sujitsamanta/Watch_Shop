@@ -1,48 +1,6 @@
 <x-user_navbar>
     <x-slot name="body">
 
-    <!-- Loader -->
-<div id="loader" style="display:none;">
-    <div class="spinner"></div>
-</div>
-
-
-
-<script>
-function showLoader() {
-    document.getElementById('loader').style.display = 'flex';
-}
-</script>
-
-<style>
-#loader {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.8);
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #ccc;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-</style>
-
-
-
 
         @php
         $user = Auth::user();
@@ -66,7 +24,7 @@ function showLoader() {
                 <div class="text-center">
                     <div
                         class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl profile-photo cursor-pointer group text-center">
-                        <img id="profilePhoto" src="{{ $user_data->photo_url }}" alt="👦🏼"
+                        <img id="profilePhoto" src="{{ $user_data->photo_url }} " alt="https://icons.veryicon.com/png/o/file-type/linear-icon-2/user-132.png"
                             class="w-full h-full object-cover cursor-pointer" onclick="openPhotoPopup()">
                     </div>
                 </div>

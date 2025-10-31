@@ -65,6 +65,9 @@
         }
 
     </style>
+
+
+
 </head>
 
 <body class="gradient-bg min-h-screen flex items-center justify-center p-4">
@@ -169,6 +172,7 @@
         
     </div>
     <!-- @notifyJs -->
+
     
 </body>
 
