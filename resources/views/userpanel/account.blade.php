@@ -24,8 +24,13 @@
                 <div class="text-center">
                     <div
                         class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-xl profile-photo cursor-pointer group text-center">
-                        <img id="profilePhoto" src="{{ $user_data->photo_url }} " alt="https://icons.veryicon.com/png/o/file-type/linear-icon-2/user-132.png"
-                            class="w-full h-full object-cover cursor-pointer" onclick="openPhotoPopup()">
+
+
+                        <img id="profilePhoto"
+                            src="{{ $user_data->photo_url ?: 'https://res.cloudinary.com/dvyvfzjl5/image/upload/v1761895538/avatar-icon_svgstack_com_20091761895487_mwfvm3.svg' }}"
+                            alt="Profile Photo"
+                            class="w-full h-full object-cover cursor-pointer"
+                            onclick="openPhotoPopup()">
                     </div>
                 </div>
 
@@ -48,7 +53,7 @@
                         </button>
 
 
-                        <button id="saveButton" type="submit" 
+                        <button id="saveButton" type="submit"
                             class="update_save_photo bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition shadow hidden w-full">
                             Save Photo
                         </button>
@@ -56,7 +61,7 @@
                     </div>
                 </form>
 
-             
+
 
                 <!-- Photo Popup Modal -->
                 <div id="photoModal"
@@ -190,7 +195,7 @@
                     </div>
                 </form>
 
-               
+
 
                 @if ($default_address)
                 <div class="address-card bg-white rounded-xl  border border-lav2 p-4 relative max-w-md my-6 ">
@@ -243,7 +248,7 @@
                     </div>
                 </div>
 
-                
+
                 @else
                 <a href="/add_address_form">
                     <div class="address-card bg-white hover:bg-red-50 rounded-xl  border border-lav2 p-4 relative max-w-md text-center">
@@ -255,7 +260,7 @@
                 @endif
 
 
-                 @if(Auth::check())
+                @if(Auth::check())
                 <form action="/logout" method="post" class="mt-6">
                     @csrf
                     <button type="submit" class="logout bg-red-800 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition shadow">
