@@ -204,7 +204,7 @@ class UserController extends Controller
 
                 // return redirect('/login');
             } else {
-                if (Auth::attempt($login_data, , $request->remember)) {
+                if (Auth::attempt($login_data,  $request->remember)) {
 
                     // $request->remember
 
