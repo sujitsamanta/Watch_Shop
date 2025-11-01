@@ -210,7 +210,8 @@ class UserController extends Controller
                 // return redirect('/login');
             } else {
                 // Auth::attempt($login_data,  $request->remember)
-                if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
+
+                // if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
                     // !Hash::check($request->password, $user->password)
                     // notify()->error('Enter curect data ⚡️');
 
@@ -218,12 +219,12 @@ class UserController extends Controller
 
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
-                } else {
+                // } else {
 
-                    // $request->remember
-                    flash()->addError('Enter curect data ⚡️');
-                    return redirect()->back();
-                }
+                //     // $request->remember
+                //     flash()->addError('Enter curect data ⚡️');
+                //     return redirect()->back();
+                // }
             }
         } else {
 
