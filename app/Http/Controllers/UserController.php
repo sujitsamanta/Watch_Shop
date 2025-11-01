@@ -56,7 +56,7 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            $signin_data['password'] = bcrypt($signin_data['password']);
+            $signin_data['password'] = Hash::make($signin_data['password']);
 
             $user = User::create($signin_data);
 
@@ -176,7 +176,7 @@ class UserController extends Controller
         $user = User::where('email', $login_data['email'])->first();
 
 
-        $login_data = $request->only('email', 'password');
+        // $login_data = $request->only('email', 'password');
 
         if ($user) {
             // Check if user is verified
@@ -210,8 +210,7 @@ class UserController extends Controller
                 // return redirect('/login');
             } else {
                 // Auth::attempt($login_data,  $request->remember)
-
-                // if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
+                if (Auth::attempt($login_data, $request->remember)) {
                     // !Hash::check($request->password, $user->password)
                     // notify()->error('Enter curect data ⚡️');
 
@@ -219,12 +218,12 @@ class UserController extends Controller
 
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
-                // } else {
+                } else {
 
-                //     // $request->remember
-                //     flash()->addError('Enter curect data ⚡️');
-                //     return redirect()->back();
-                // }
+                    // $request->remember
+                    flash()->addError('Enter curect data ⚡️');
+                    return redirect()->back();
+                }
             }
         } else {
 
