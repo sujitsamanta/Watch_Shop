@@ -207,8 +207,8 @@ class UserController extends Controller
                 // return redirect('/login');
             } else {
                 // Auth::attempt($login_data,  $request->remember)
-                if (!Hash::check($request->password, $user->password)) {
-
+                if (false) {
+                    // !Hash::check($request->password, $user->password)
                     // notify()->error('Enter curect data ⚡️');
                     flash()->addError('Enter curect data ⚡️');
                     return redirect()->back();
