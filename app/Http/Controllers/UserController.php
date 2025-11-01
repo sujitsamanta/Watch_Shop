@@ -56,6 +56,8 @@ class UserController extends Controller
 
         if ($signin_data) {
 
+            $signin_data['password'] = Hash::make($signin_data['password']);
+
             $user = User::create($signin_data);
 
             // Generate OTP
@@ -284,7 +286,7 @@ class UserController extends Controller
     public function account_photo_update(Request $request)
     {
 
-        
+
         if ($request->photo) {
             $user = Auth::user();
             $oldUrl = $user->photo_url;
