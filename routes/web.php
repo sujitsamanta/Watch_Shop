@@ -13,6 +13,7 @@ use App\Http\Middleware\UserMiddleware;
 
 // Route::view('/home-x', 'userpanel.home-x');
 Route::get('/home', [UserController::class,'home_check']);
+Route::get('/', [UserController::class,'home_check']);
 
 
 // single_product_view
