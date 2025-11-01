@@ -56,7 +56,7 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            $signin_data['password'] = bcrypt($signin_data['password']);
+            $signin_data['password'] = Hash::make($signin_data['password']);
 
             $user = User::create($signin_data);
 
@@ -210,7 +210,7 @@ class UserController extends Controller
                 // return redirect('/login');
             } else {
                 // Auth::attempt($login_data,  $request->remember)
-                if (Auth::attempt($login_data)) {
+                if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {
                     // !Hash::check($request->password, $user->password)
                     // notify()->error('Enter curect data ⚡️');
 
