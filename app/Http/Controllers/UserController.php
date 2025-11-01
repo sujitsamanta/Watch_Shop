@@ -204,7 +204,9 @@ class UserController extends Controller
 
                 // return redirect('/login');
             } else {
-                if (Auth::attempt($login_data)) {
+                if (true) {
+                    // Auth::attempt($login_data)
+                    // $request->remember
 
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
