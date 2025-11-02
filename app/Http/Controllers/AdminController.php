@@ -44,15 +44,15 @@ class AdminController extends Controller
 
         ]);
 
-        $admin = Admin::where('email', $login_data['email'])->first();
+        // $admin = Admin::where('email', $login_data['email'])->first();
+ $admin = Admin::where('email', $request->email)->first();
+        
+        if ($admin && $admin->password === $request->password) {
 
-        // Auth::guard('admin')->attempt($login_data)
-        if ($admin->password === $request->password) {
+            // Auth::login($admin);
 
-            Auth::login($admin);
-
-            $request->session()->regenerate();
-
+            // $request->session()->regenerate();
+Auth::guard('admin')->login($admin);
             // notify()->success('Account Login Succesful..⚡️');
             flash()->addSuccess('Account Login Succesful..⚡️');
 
