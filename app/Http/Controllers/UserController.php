@@ -56,7 +56,7 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            // $signin_data['password'] = Hash::make($signin_data['password']);
+            $signin_data['password'] = Hash::make($signin_data['password']);
 
             $user = User::create($signin_data);
 
@@ -211,7 +211,7 @@ class UserController extends Controller
             } else {
                 // Auth::attempt($login_data,  $request->remember)
                 // $login_data['password'] = Hash::make($login_data['password']);
-                if (Auth::attempt($login_data)) {
+                if (Auth::attempt($login_data, $request->remember)) {
                     // !Hash::check($request->password, $user->password)
                     // notify()->error('Enter curect data ⚡️');
 
