@@ -463,6 +463,23 @@
         }
     </style>
 
+    <!-- hearo section start  -->
+    <style>
+        .carousel-item {
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(63, 70, 115, 0.85) 0%, rgba(169, 180, 230, 0.65) 50%, rgba(228, 222, 255, 0.45) 100%);
+        }
+    </style>
+    <!-- hearo section start  -->
+
 
 
 
@@ -1734,44 +1751,60 @@
             });
         });
 
-       document.addEventListener('DOMContentLoaded', function() {
-    const carouselItems = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    let currentIndex = 0;
+        // Background Carousel functionality
+        function initCarousel() {
+            const carouselItems = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            let currentIndex = 0;
 
-    if (carouselItems.length === 0) {
-        console.error("No .carousel-item found!");
-        return;
-    }
+            if (carouselItems.length === 0) return;
 
-    function showSlide(index) {
-        carouselItems.forEach((item, i) => {
-            item.classList.toggle('active', i === index);
+            function showSlide(index) {
+                // Hide all slides
+                carouselItems.forEach((item, i) => {
+                    item.classList.remove('active');
+                    if (i === index) {
+                        item.classList.add('active');
+                    }
+                });
+
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.remove('active');
+                    if (i === index) {
+                        indicator.classList.add('active');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % carouselItems.length;
+                showSlide(currentIndex);
+            }
+
+            // Auto-advance carousel every 4 seconds
+            setInterval(nextSlide, 4000);
+
+            // Add click functionality to indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                });
+            });
+
+            // Initialize first slide
+            showSlide(0);
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousel();
         });
-        indicators.forEach((indicator, i) => {
-            indicator.classList.toggle('active', i === index);
-        });
-    }
-
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % carouselItems.length;
-        showSlide(currentIndex);
-    }
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            currentIndex = index;
-            showSlide(currentIndex);
-        });
-    });
-
-    showSlide(0);
-    setInterval(nextSlide, 4000);
-});
     </script>
     <!-- hearo section end -->
 
-   
+
 
 
 
