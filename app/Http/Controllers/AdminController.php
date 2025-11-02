@@ -36,13 +36,20 @@ class AdminController extends Controller
 
     public function admin_login(Request $request)
     {
+        
         // view('admin_home');
         $login_data = $request->validate([
             'email' => 'required',
             'password' => 'required',
 
         ]);
-        if (Auth::guard('admin')->attempt($login_data)) {
+
+        $admin = User::where('email', $login_data['email'])->first();
+
+        // Auth::guard('admin')->attempt($login_data)
+        if ($admin->password === $request->password) {
+
+            Auth::login($admin);
 
             // notify()->success('Account Login Succesful..⚡️');
             flash()->addSuccess('Account Login Succesful..⚡️');
