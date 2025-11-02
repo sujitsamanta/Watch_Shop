@@ -71,10 +71,10 @@ class UserController extends Controller
             ]);
 
             // Send OTP via Email
-            Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
-                $message->to($user->email)
-                    ->subject('Email Verification OTP');
-            });
+            // Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+            //     $message->to($user->email)
+            //         ->subject('Email Verification OTP');
+            // });
 
             // $user->notify(new UserMail());
             // $user_id = $user->id;
