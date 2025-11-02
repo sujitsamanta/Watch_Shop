@@ -56,7 +56,7 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            // $signin_data['password'] = Hash::make($signin_data['password']);
+            $signin_data['password'] = Hash::make($signin_data['password']);
 
             $user = User::create($signin_data);
 
