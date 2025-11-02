@@ -1,9 +1,9 @@
 <x-user_navbar>
     <x-slot name="body">
-  @php
-    $user = Auth::user();
-    @endphp
-     
+        @php
+        $user = Auth::user();
+        @endphp
+
         <!-- Hero Section -->
         <section class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
 
@@ -709,7 +709,7 @@
                     </form>
                     @endif
 
-                    {{--  Product Info --}}
+                    {{-- Product Info --}}
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
                             {{-- Product Image --}}
@@ -724,7 +724,7 @@
                                 {{ $product->name }}
                             </p>
 
-                            {{--  Product Description (short & trimmed) --}}
+                            {{-- Product Description (short & trimmed) --}}
                             <p class="text-xs text-gray-500 mt-1 line-clamp-2">
                                 {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
                             </p>
@@ -1036,7 +1036,7 @@
                     </form>
                     @endif
 
-                    {{--  Product Info --}}
+                    {{-- Product Info --}}
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="p-4">
                             {{-- Product Image --}}
@@ -1051,7 +1051,7 @@
                                 {{ $product->name }}
                             </p>
 
-                            {{--  Product Description (short & trimmed) --}}
+                            {{-- Product Description (short & trimmed) --}}
                             <p class="text-xs text-gray-500 mt-1 line-clamp-2">
                                 {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
                             </p>
@@ -1485,8 +1485,8 @@
             </div>
         </section>
 
-         <!-- Auto Carousel functionality start -->
-    <script>
+        <!-- Auto Carousel functionality start -->
+        <!-- <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
         const indicators = document.querySelectorAll('.carousel-indicator');
@@ -1521,8 +1521,45 @@
                 showSlide(currentSlide);
             });
         });
-    </script>
-    <!-- Auto Carousel functionality end -->
+    </script> -->
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let currentSlide = 0;
+                const slides = document.querySelectorAll('.carousel-item');
+                const indicators = document.querySelectorAll('.carousel-indicator');
+                const totalSlides = slides.length;
+
+                function showSlide(index) {
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    indicators.forEach(indicator => {
+                        indicator.classList.remove('active', 'bg-purple-light/70');
+                        indicator.classList.add('bg-white/30');
+                    });
+
+                    slides[index].classList.add('active');
+                    indicators[index].classList.remove('bg-white/30');
+                    indicators[index].classList.add('active', 'bg-purple-light/70');
+                }
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    showSlide(currentSlide);
+                }
+
+                setInterval(nextSlide, 5000);
+
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentSlide = index;
+                        showSlide(currentSlide);
+                    });
+                });
+            });
+        </script>
+
+        <!-- Auto Carousel functionality end -->
 
 
     </x-slot>
