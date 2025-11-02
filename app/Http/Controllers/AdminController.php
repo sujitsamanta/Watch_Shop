@@ -50,6 +50,8 @@ class AdminController extends Controller
         if ($admin->password === $request->password) {
 
             Auth::login($admin);
+            
+            $request->session()->regenerate();
 
             // notify()->success('Account Login Succesful..⚡️');
             flash()->addSuccess('Account Login Succesful..⚡️');
