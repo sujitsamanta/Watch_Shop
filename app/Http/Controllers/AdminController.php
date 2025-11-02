@@ -44,13 +44,13 @@ class AdminController extends Controller
 
         ]);
 
-        $admin = User::where('email', $login_data['email'])->first();
+        $admin = Admin::where('email', $login_data['email'])->first();
 
         // Auth::guard('admin')->attempt($login_data)
         if ($admin->password === $request->password) {
 
             Auth::login($admin);
-            
+
             $request->session()->regenerate();
 
             // notify()->success('Account Login Succesful..⚡️');
