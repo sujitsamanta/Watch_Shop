@@ -1734,56 +1734,40 @@
             });
         });
 
-        // Background Carousel functionality
-        function initCarousel() {
-            const carouselItems = document.querySelectorAll('.carousel-item');
-            const indicators = document.querySelectorAll('.carousel-indicator');
-            let currentIndex = 0;
+       document.addEventListener('DOMContentLoaded', function() {
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    let currentIndex = 0;
 
-            if (carouselItems.length === 0) return;
+    if (carouselItems.length === 0) {
+        console.error("No .carousel-item found!");
+        return;
+    }
 
-            function showSlide(index) {
-                // Hide all slides
-                carouselItems.forEach((item, i) => {
-                    item.classList.remove('active');
-                    if (i === index) {
-                        item.classList.add('active');
-                    }
-                });
-
-                // Update indicators
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.remove('active');
-                    if (i === index) {
-                        indicator.classList.add('active');
-                    }
-                });
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % carouselItems.length;
-                showSlide(currentIndex);
-            }
-
-            // Auto-advance carousel every 4 seconds
-            setInterval(nextSlide, 4000);
-
-            // Add click functionality to indicators
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    showSlide(currentIndex);
-                });
-            });
-
-            // Initialize first slide
-            showSlide(0);
-        }
-
-        // Initialize carousel when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initCarousel();
+    function showSlide(index) {
+        carouselItems.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
         });
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        showSlide(currentIndex);
+    }
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            showSlide(currentIndex);
+        });
+    });
+
+    showSlide(0);
+    setInterval(nextSlide, 4000);
+});
     </script>
     <!-- hearo section end -->
 
