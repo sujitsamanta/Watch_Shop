@@ -1192,7 +1192,7 @@
                 <!-- Product Cards Container -->
                 <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
 
-                    @foreach($products_data->take(12) as $product)
+                    @foreach($products_data->take(6) as $product)
                     <!-- Product 1: Galaxy S22 Ultra -->
                     <a href="/single_product_view/{{ $product->id }}">
                         <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
