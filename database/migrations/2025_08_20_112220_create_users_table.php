@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->text('bio')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_verified')->default(false);
+            $table->boolean('is_verified')->default(true);
 
             $table->rememberToken();
             $table->timestamps();
