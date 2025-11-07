@@ -178,6 +178,7 @@ class UserController extends Controller
 
         // $login_data = $request->only('email', 'password');
 
+        
         if ($user) {
             // Check if user is verified
             if (!$user->is_verified) {
