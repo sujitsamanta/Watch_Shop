@@ -4,6 +4,15 @@
         $user = Auth::user();
         @endphp
 
+          <!-- back to home -->
+    <!-- <a href="#home">
+      <button id="backToHomeBtn"
+        class="sticky w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 rounded-full flex items-center justify-center text-white opacity-100 visible transition-all duration-300 hover:scale-110 glow-effect z-50 shadow-lg"
+        href="#home" title="Back to Home" style="position: fixed; bottom: 20px; left: 20px">
+        <i class="fas fa-home text-lg"></i>
+      </button>
+    </a> -->
+
         <!-- Hero Section -->
         <section class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
 
