@@ -61,31 +61,31 @@ class UserController extends Controller
             $user = User::create($signin_data);
 
             // Generate OTP
-            $otp = rand(100000, 999999);
+            // $otp = rand(100000, 999999);
 
             // Store OTP in database
-            Otp::create([
-                'user_id' => $user->id,
-                'otp_code' => $otp,
-                'expires_at' => Carbon::now()->addMinutes(1),
-            ]);
+            // Otp::create([
+            //     'user_id' => $user->id,
+            //     'otp_code' => $otp,
+            //     'expires_at' => Carbon::now()->addMinutes(1),
+            // ]);
 
             // Send OTP via Email
-            Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
-                $message->to($user->email)
-                    ->subject('Email Verification OTP');
-            });
+            // Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+            //     $message->to($user->email)
+            //         ->subject('Email Verification OTP');
+            // });
 
             // $user->notify(new UserMail());
             // $user_id = $user->id;
 
-            session(['user_id' => $user->id]);
+            // session(['user_id' => $user->id]);
+            // flash()->addSuccess('OTP succesfuly send your email ⚡️');
+            // return view('userpanel.otp_verification_form');
 
-            flash()->addSuccess('OTP succesfuly send your email ⚡️');
-            return view('userpanel.otp_verification_form');
-            // flash()->addSuccess('Account created succesfuly ⚡️');
 
-            // return redirect('/login');
+            flash()->addSuccess('Account created succesfuly ⚡️');
+            return redirect('/login');
         } else {
             flash()->addError('Account Created Faild ⚡️');
 
@@ -184,27 +184,27 @@ class UserController extends Controller
                 // return redirect('/signin');
 
                 // Generate OTP
-                $otp = rand(100000, 999999);
+                // $otp = rand(100000, 999999);
 
                 // Store OTP in database
-                Otp::create([
-                    'user_id' => $user->id,
-                    'otp_code' => $otp,
-                    'expires_at' => Carbon::now()->addMinutes(1),
-                ]);
+                // Otp::create([
+                //     'user_id' => $user->id,
+                //     'otp_code' => $otp,
+                //     'expires_at' => Carbon::now()->addMinutes(1),
+                // ]);
 
                 // Send OTP via Email
-                Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
-                    $message->to($user->email)
-                        ->subject('Email Verification OTP');
-                });
+                // Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+                //     $message->to($user->email)
+                //         ->subject('Email Verification OTP');
+                // });
 
                 // $user->notify(new UserMail());
-                $user_id = $user->id;
+                // $user_id = $user->id;
 
-                flash()->addError('Ples verifide your email ⚡️');
-                flash()->addSuccess('OTP succesfuly send your email ⚡️');
-                return view('userpanel.otp_verification_form');
+                // flash()->addError('Ples verifide your email ⚡️');
+                // flash()->addSuccess('OTP succesfuly send your email ⚡️');
+                // return view('userpanel.otp_verification_form');
                 // flash()->addSuccess('Account created succesfuly ⚡️');
 
                 // return redirect('/login');
