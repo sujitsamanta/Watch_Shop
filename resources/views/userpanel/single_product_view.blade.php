@@ -222,9 +222,9 @@
 
                         <a href="/by_now/{{ $product_details->id }}">
 
-                        <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
-                            By Now
-                        </button>
+                            <button class="flex-1 bg-purple-darkest text-white py-3 px-6 rounded-lg font-medium hover:bg-purple-dark transition-colors shadow-lg">
+                                By Now
+                            </button>
                         </a>
 
 
@@ -389,7 +389,7 @@
                             </div>
                         </div>
 
-                       
+
 
                         <!-- Hidden Additional Specs -->
                         <div id="additionalSpecs" class="mt-6 space-y-6 ">
@@ -440,12 +440,12 @@
 
                         <!-- Rating Overview -->
                         @php
-                            $totalReviews = $reviews->count();
-                            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
-                            $ratingCounts = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
-                            foreach($reviews as $review) {
-                                $ratingCounts[$review->rating]++;
-                            }
+                        $totalReviews = $reviews->count();
+                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+                        $ratingCounts = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
+                        foreach($reviews as $review) {
+                        $ratingCounts[$review->rating]++;
+                        }
                         @endphp
                         <div class="flex items-center gap-6 mb-6 p-4 bg-purple-light rounded-lg">
                             <div class="text-center">
@@ -454,397 +454,393 @@
                                 <div class="flex justify-center">
                                     <div class="flex text-yellow-400 text-lg">
                                         @for($i = 1; $i <= 5; $i++)
-                                            @if($i <= round($averageRating))
-                                                ★
+                                            @if($i <=round($averageRating))
+                                            ★
                                             @else
-                                                ☆
+                                            ☆
                                             @endif
-                                        @endfor
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Rating Breakdown -->
-                            <div class="flex-1">
-                                <div class="space-y-1">
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">5 Stars</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[5] / $totalReviews) * 100 : 0 }}%"></div>
-                                        </div>
-                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[5] }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">4 Stars</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[4] / $totalReviews) * 100 : 0 }}%"></div>
-                                        </div>
-                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[4] }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">3 Stars</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[3] / $totalReviews) * 100 : 0 }}%"></div>
-                                        </div>
-                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[3] }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">2 Stars</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[2] / $totalReviews) * 100 : 0 }}%"></div>
-                                        </div>
-                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[2] }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-purple-dark font-medium w-16">1 Star</span>
-                                        <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                            <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
-                                                style="width: {{ $totalReviews > 0 ? ($ratingCounts[1] / $totalReviews) * 100 : 0 }}%"></div>
-                                        </div>
-                                        <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[1] }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        
-
-                        <!-- Leave Comment Section -->
-                        @if($canReview)
-                        <div class="mb-6">
-                            <form action="/submit_review/{{ $product_details->id }}" method="POST">
-                                @csrf
-                                <div class="mb-3">
-                                    <label class="block text-sm font-medium text-purple-darkest mb-2">Rating</label>
-                                    <div class="flex space-x-1 star-rating">
-                                        @for($i = 1; $i <= 5; $i++)
-                                        <input type="radio" name="rating" value="{{ $i }}" id="star{{ $i }}" class="hidden" required>
-                                        <label for="star{{ $i }}" class="cursor-pointer text-gray-300 text-2xl star" data-rating="{{ $i }}">★</label>
-                                        @endfor
-                                    </div>
-                                </div>
-                                <textarea name="review" id="commentInput" placeholder="Leave your review..."
-                                    class="w-full p-3 border border-gray-300 rounded-lg resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent placeholder-gray-400 text-sm" required></textarea>
-                                <div class="flex justify-end mt-2">
-                                    <button type="submit"
-                                        class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm">
-                                        Submit Review
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        @else
-                        <div class="mb-6 p-4 bg-gray-100 rounded-lg">
-                            <p class="text-gray-600 text-sm">You can only review products you have successfully ordered and received.</p>
-                        </div>
-                        @endif
-
-                        <!-- Reviews List with Scroll -->
-                        <div class="reviews-container">
-                            <div class="space-y-4" id="reviewsList">
-                                @forelse($reviews as $review)
-                                <div class="border-b border-gray-100 pb-4">
-                                    <div class="flex items-start gap-3">
-                                        <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            {{ substr($review->user->name, 0, 2) }}
-                                        </div>
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-start mb-1">
-                                                <h4 class="font-semibold text-purple-darkest text-sm">{{ $review->user->name }}</h4>
-                                                <span class="text-gray-400 text-xs">{{ $review->created_at->format('d M Y') }}</span>
+                                            @endfor
                                             </div>
-                                            <div class="flex text-yellow-400 mb-2 text-sm">
-                                                @for($i = 1; $i <= 5; $i++)
-                                                    @if($i <= $review->rating)
-                                                        ★
-                                                    @else
-                                                        ☆
-                                                    @endif
+                                    </div>
+                                </div>
+
+                                <!-- Rating Breakdown -->
+                                <div class="flex-1">
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="text-purple-dark font-medium w-16">5 Stars</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $totalReviews > 0 ? ($ratingCounts[5] / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[5] }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="text-purple-dark font-medium w-16">4 Stars</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $totalReviews > 0 ? ($ratingCounts[4] / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[4] }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="text-purple-dark font-medium w-16">3 Stars</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $totalReviews > 0 ? ($ratingCounts[3] / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[3] }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="text-purple-dark font-medium w-16">2 Stars</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $totalReviews > 0 ? ($ratingCounts[2] / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[2] }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="text-purple-dark font-medium w-16">1 Star</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-purple-medium h-full rounded-full transition-all duration-500"
+                                                    style="width: {{ $totalReviews > 0 ? ($ratingCounts[1] / $totalReviews) * 100 : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-purple-dark font-medium w-6">{{ $ratingCounts[1] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <!-- Leave Comment Section -->
+                            @if($canReview)
+                            <div class="mb-6">
+                                <form action="/submit_review/{{ $product_details->id }}" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label class="block text-sm font-medium text-purple-darkest mb-2">Rating</label>
+                                        <div class="flex space-x-1 star-rating">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <input type="radio" name="rating" value="{{ $i }}" id="star{{ $i }}" class="hidden" required>
+                                                <label for="star{{ $i }}" class="cursor-pointer text-gray-300 text-2xl star" data-rating="{{ $i }}">★</label>
                                                 @endfor
+                                        </div>
+                                    </div>
+                                    <textarea name="review" id="commentInput" placeholder="Leave your review..."
+                                        class="w-full p-3 border border-gray-300 rounded-lg resize-none h-20 focus:outline-none focus:ring-2 focus:ring-purple-medium focus:border-transparent placeholder-gray-400 text-sm" required></textarea>
+                                    <div class="flex justify-end mt-2">
+                                        <button type="submit"
+                                            class="bg-purple-medium hover:bg-purple-dark text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-sm">
+                                            Submit Review
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            @else
+                            <div class="mb-6 p-4 bg-gray-100 rounded-lg">
+                                <p class="text-gray-600 text-sm">You can only review products you have successfully ordered and received.</p>
+                            </div>
+                            @endif
+
+                            <!-- Reviews List with Scroll -->
+                            <div class="reviews-container">
+                                <div class="space-y-4" id="reviewsList">
+                                    @forelse($reviews as $review)
+                                    <div class="border-b border-gray-100 pb-4">
+                                        <div class="flex items-start gap-3">
+                                            <div class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
+                                                {{ substr($review->user->name, 0, 2) }}
                                             </div>
-                                            <p class="text-gray-700 leading-relaxed text-sm">
-                                                {{ $review->review }}
-                                            </p>
+                                            <div class="flex-1">
+                                                <div class="flex justify-between items-start mb-1">
+                                                    <h4 class="font-semibold text-purple-darkest text-sm">{{ $review->user->name }}</h4>
+                                                    <span class="text-gray-400 text-xs">{{ $review->created_at->format('d M Y') }}</span>
+                                                </div>
+                                                <div class="flex text-yellow-400 mb-2 text-sm">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        @if($i <=$review->rating)
+                                                        ★
+                                                        @else
+                                                        ☆
+                                                        @endif
+                                                        @endfor
+                                                </div>
+                                                <p class="text-gray-700 leading-relaxed text-sm">
+                                                    {{ $review->review }}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                @empty
-                              
+                                    @empty
 
 
-                                <div class="border-b border-gray-100 pb-4">
-                                    <div class="flex items-start gap-3">
-                                        <div
-                                            class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
-                                            SA
-                                        </div>
-                                        <div class="flex-1">
-                                           <h1>not</h1>
+
+                                    <div class="border-b border-gray-100 pb-4">
+                                        <div class="flex items-start gap-3">
+                                            <div
+                                                class="w-10 h-10 bg-purple-light rounded-full flex items-center justify-center text-purple-darkest font-bold text-sm">
+                                                SA
+                                            </div>
+                                            <div class="flex-1">
+                                                <h1>not</h1>
+                                            </div>
                                         </div>
                                     </div>
+                                    @endforelse
                                 </div>
-                                @endforelse
+
+
                             </div>
+                        </div>
 
-                            
+                    </div>
+                </div>
+
+                <!-- releted pproducts -->
+                <div class="max-w-7xl mx-auto mt-4">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
+                                Releted product's
+                                <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
+                            </h2>
+                        </div>
+                        <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
+                            View All
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+                        @foreach($related_products->take(10) as $item)
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
+
+                            {{-- ✅ Wishlist Button --}}
+                            @if($user && $user->wishlist()->where('product_id', $item->id)->exists())
+                            <form action="/remove_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                                @csrf
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                                </button>
+                            </form>
+                            @else
+                            <form action="/add_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                                @csrf
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
+                                </button>
+                            </form>
+                            @endif
+
+                            {{-- Product Info --}}
+                            <a href="/single_product_view/{{ $item->id }}">
+                                <div class="p-4">
+                                    {{-- Product Image --}}
+                                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                        <img src="{{ $item->photo_url }}"
+                                            alt="{{ $item->name }}"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                    </div>
+
+                                    {{-- Product Name --}}
+                                    <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                        {{ $item->name }}
+                                    </p>
+
+                                    {{-- Product Description (short & trimmed) --}}
+                                    <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                        {{ \Illuminate\Support\Str::limit($item->description, 60, '...') }}
+                                    </p>
+
+                                    {{-- Product Price --}}
+                                    <p class="text-sm font-bold text-purple-700 mt-2">
+                                        ₹{{ number_format($item->price, 2) }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+
+               
+
+               <!-- releted pproducts -->
+                <div class="max-w-7xl mx-auto mt-12">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
+                                Mix product's
+                                <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
+                            </h2>
+                        </div>
+                        <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
+                            View All
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+                        @foreach($all_products->take(10) as $item)
+                        <!-- Product Card -->
+                        <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
+
+                            {{-- ✅ Wishlist Button --}}
+                            @if($user && $user->wishlist()->where('product_id', $item->id)->exists())
+                            <form action="/remove_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                                @csrf
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                                </button>
+                            </form>
+                            @else
+                            <form action="/add_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                                @csrf
+                                <button type="submit"
+                                    class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                                    <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
+                                </button>
+                            </form>
+                            @endif
+
+                            {{-- Product Info --}}
+                            <a href="/single_product_view/{{ $item->id }}">
+                                <div class="p-4">
+                                    {{-- Product Image --}}
+                                    <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                        <img src="{{ $item->photo_url }}"
+                                            alt="{{ $item->name }}"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                    </div>
+
+                                    {{-- Product Name --}}
+                                    <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                        {{ $item->name }}
+                                    </p>
+
+                                    {{-- Product Description (short & trimmed) --}}
+                                    <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                        {{ \Illuminate\Support\Str::limit($item->description, 60, '...') }}
+                                    </p>
+
+                                    {{-- Product Price --}}
+                                    <p class="text-sm font-bold text-purple-700 mt-2">
+                                        ₹{{ number_format($item->price, 2) }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <section class="w-full px-4 py-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Catalogue Card -->
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                        <img
+                            src="../images/w11.jpg"
+                            alt="Watch mechanism"
+                            class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 text-white">
+                            <p class="text-sm font-light mb-2">Order a catalogue</p>
+                            <h2 class="text-2xl font-light mb-6">Glashütte Original catalogue</h2>
+                            <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                                Order now
+                            </button>
                         </div>
                     </div>
 
-                </div>
-            </div>
-
-            <!-- releted pproducts -->
-            <div class="max-w-7xl mx-auto">
-                <!-- Header -->
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
-                            Releted product's
-                            <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
-                        </h2>
-                    </div>
-                    <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
-                        View All
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-
-
-
-
-
-                <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-
-                    @foreach($related_products->take(10) as $item)
-                    <!-- Product Card -->
-                    <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
-
-                        {{-- ✅ Wishlist Button --}}
-                        @if($user && $user->wishlist()->where('product_id', $item->id)->exists())
-                        <form action="/remove_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
-                            @csrf
-                            <button type="submit"
-                                class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
-                                <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                    <!-- Newsletter Card -->
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                        <img
+                            src="../images/w12.jpg"
+                            alt="Watchmaker at work"
+                            class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 text-white">
+                            <p class="text-sm font-light mb-2">Receive exciting and exclusive news</p>
+                            <h2 class="text-2xl font-light mb-6">Subscribe to newsletter</h2>
+                            <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                                Subscribe now
                             </button>
-                        </form>
-                        @else
-                        <form action="/add_wishlist/{{ $item->id }}" method="POST" class="absolute right-3 top-3 z-10">
-                            @csrf
-                            <button type="submit"
-                                class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
-                                <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
-                            </button>
-                        </form>
-                        @endif
-
-                        {{-- Product Info --}}
-                        <a href="/single_product_view/{{ $item->id }}">
-                            <div class="p-4">
-                                {{-- Product Image --}}
-                                <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                                    <img src="{{ $item->photo_url }}"
-                                        alt="{{ $item->name }}"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                                </div>
-
-                                {{-- Product Name --}}
-                                <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
-                                    {{ $item->name }}
-                                </p>
-
-                                {{-- Product Description (short & trimmed) --}}
-                                <p class="text-xs text-gray-500 mt-1 line-clamp-2">
-                                    {{ \Illuminate\Support\Str::limit($item->description, 60, '...') }}
-                                </p>
-
-                                {{-- Product Price --}}
-                                <p class="text-sm font-bold text-purple-700 mt-2">
-                                    ₹{{ number_format($item->price, 2) }}
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    @endforeach
-                </div>
-
-            </div>
-
-            <!-- Grab the best deal start  -->
-            <div class="max-w-7xl mx-auto my-10">
-                <!-- Header -->
-                <div class="flex items-center justify-between mb-8">
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
-                            Mix product's
-                            <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
-                        </h2>
-                    </div>
-                    <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
-                        View All
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Product Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5"> -->
-                    @foreach($all_products as $item)
-                    <!-- Product 1: Galaxy S22 Ultra -->
-                    <a href="/single_product_view/{{ $item->id }}">
-                        <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                            <div class="relative mb-4">
-                                <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                    56% OFF
-                                </div>
-                                <div class="phone-image w-full h-48 flex items-center justify-center">
-                                    <img src="{{ $item->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-                                </div>
-                            </div>
-                            <p class="font-semibold text-gray-800 mb-2">{{ $item->name }}</p>
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xl font-bold text-gray-900">₹ {{ $item->price }}</span>
-                                <span class="text-sm text-gray-500 line-through">₹ {{ $item->price+700 }}</span>
-                            </div>
-                            <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
                         </div>
-                    </a>
-                    @endforeach
+                    </div>
 
-                </div>
-            </div>
-
-        </div>
-
-
-
-        <section class="w-full px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Catalogue Card -->
-                <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img
-                        src="../images/w11.jpg"
-                        alt="Watch mechanism"
-                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-8 text-white">
-                        <p class="text-sm font-light mb-2">Order a catalogue</p>
-                        <h2 class="text-2xl font-light mb-6">Glashütte Original catalogue</h2>
-                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
-                            Order now
-                        </button>
+                    <!-- Third Card -->
+                    <div class="relative overflow-hidden rounded-lg shadow-lg group">
+                        <img
+                            src="../images/w13.jpg"
+                            alt="Luxury watch"
+                            class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 text-white">
+                            <p class="text-sm font-light mb-2">Explore our collection</p>
+                            <h2 class="text-2xl font-light mb-6">Discover timepieces</h2>
+                            <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
+                                View more
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Newsletter Card -->
-                <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img
-                        src="../images/w12.jpg"
-                        alt="Watchmaker at work"
-                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-8 text-white">
-                        <p class="text-sm font-light mb-2">Receive exciting and exclusive news</p>
-                        <h2 class="text-2xl font-light mb-6">Subscribe to newsletter</h2>
-                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
-                            Subscribe now
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Third Card -->
-                <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img
-                        src="../images/w13.jpg"
-                        alt="Luxury watch"
-                        class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-8 text-white">
-                        <p class="text-sm font-light mb-2">Explore our collection</p>
-                        <h2 class="text-2xl font-light mb-6">Discover timepieces</h2>
-                        <button class="px-6 py-2.5 border-2 border-white text-white font-light rounded hover:bg-white hover:text-black transition-colors duration-300">
-                            View more
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
 
-        <script>
-            // Details and rating and feed back section start
-            function toggleAdditionalSpecs() {
-                const additionalSpecs = document.getElementById('additionalSpecs');
-                const chevronIcon = document.getElementById('chevronIcon');
-                const viewMoreText = document.getElementById('viewMoreText');
+            <script>
+                // Details and rating and feed back section start
+                function toggleAdditionalSpecs() {
+                    const additionalSpecs = document.getElementById('additionalSpecs');
+                    const chevronIcon = document.getElementById('chevronIcon');
+                    const viewMoreText = document.getElementById('viewMoreText');
 
-                if (additionalSpecs.classList.contains('hidden')) {
-                    additionalSpecs.classList.remove('hidden');
-                    chevronIcon.style.transform = 'rotate(180deg)';
-                    viewMoreText.textContent = 'View Less';
-                } else {
-                    additionalSpecs.classList.add('hidden');
-                    chevronIcon.style.transform = 'rotate(0deg)';
-                    viewMoreText.textContent = 'View More';
+                    if (additionalSpecs.classList.contains('hidden')) {
+                        additionalSpecs.classList.remove('hidden');
+                        chevronIcon.style.transform = 'rotate(180deg)';
+                        viewMoreText.textContent = 'View Less';
+                    } else {
+                        additionalSpecs.classList.add('hidden');
+                        chevronIcon.style.transform = 'rotate(0deg)';
+                        viewMoreText.textContent = 'View More';
+                    }
                 }
-            }
 
-            
-                
-    
 
-            // Star rating functionality
-            document.addEventListener('DOMContentLoaded', function() {
-                const stars = document.querySelectorAll('.star-rating .star');
-                const radioButtons = document.querySelectorAll('.star-rating input[type="radio"]');
 
-                stars.forEach(star => {
-                    star.addEventListener('click', function() {
-                        const rating = parseInt(this.getAttribute('data-rating'));
-                        // Update visual feedback
-                        stars.forEach((s, index) => {
-                            if (index < rating) {
-                                s.classList.add('text-yellow-400');
-                                s.classList.remove('text-gray-300');
-                            } else {
-                                s.classList.add('text-gray-300');
-                                s.classList.remove('text-yellow-400');
-                            }
-                        });
-                        // Check the corresponding radio button
-                        document.getElementById('star' + rating).checked = true;
-                    });
 
-                    star.addEventListener('mouseover', function() {
-                        const rating = parseInt(this.getAttribute('data-rating'));
-                        stars.forEach((s, index) => {
-                            if (index < rating) {
-                                s.classList.add('text-yellow-400');
-                                s.classList.remove('text-gray-300');
-                            } else {
-                                s.classList.add('text-gray-300');
-                                s.classList.remove('text-yellow-400');
-                            }
-                        });
-                    });
 
-                    star.addEventListener('mouseout', function() {
-                        // Reset to checked state or default
-                        const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
-                        if (checkedRadio) {
-                            const rating = parseInt(checkedRadio.value);
+                // Star rating functionality
+                document.addEventListener('DOMContentLoaded', function() {
+                    const stars = document.querySelectorAll('.star-rating .star');
+                    const radioButtons = document.querySelectorAll('.star-rating input[type="radio"]');
+
+                    stars.forEach(star => {
+                        star.addEventListener('click', function() {
+                            const rating = parseInt(this.getAttribute('data-rating'));
+                            // Update visual feedback
                             stars.forEach((s, index) => {
                                 if (index < rating) {
                                     s.classList.add('text-yellow-400');
@@ -854,32 +850,63 @@
                                     s.classList.remove('text-yellow-400');
                                 }
                             });
-                        } else {
-                            stars.forEach(s => {
-                                s.classList.add('text-gray-300');
-                                s.classList.remove('text-yellow-400');
+                            // Check the corresponding radio button
+                            document.getElementById('star' + rating).checked = true;
+                        });
+
+                        star.addEventListener('mouseover', function() {
+                            const rating = parseInt(this.getAttribute('data-rating'));
+                            stars.forEach((s, index) => {
+                                if (index < rating) {
+                                    s.classList.add('text-yellow-400');
+                                    s.classList.remove('text-gray-300');
+                                } else {
+                                    s.classList.add('text-gray-300');
+                                    s.classList.remove('text-yellow-400');
+                                }
                             });
-                        }
+                        });
+
+                        star.addEventListener('mouseout', function() {
+                            // Reset to checked state or default
+                            const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
+                            if (checkedRadio) {
+                                const rating = parseInt(checkedRadio.value);
+                                stars.forEach((s, index) => {
+                                    if (index < rating) {
+                                        s.classList.add('text-yellow-400');
+                                        s.classList.remove('text-gray-300');
+                                    } else {
+                                        s.classList.add('text-gray-300');
+                                        s.classList.remove('text-yellow-400');
+                                    }
+                                });
+                            } else {
+                                stars.forEach(s => {
+                                    s.classList.add('text-gray-300');
+                                    s.classList.remove('text-yellow-400');
+                                });
+                            }
+                        });
                     });
+
+                    // Initialize on page load
+                    const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
+                    if (checkedRadio) {
+                        const rating = parseInt(checkedRadio.value);
+                        stars.forEach((s, index) => {
+                            if (index < rating) {
+                                s.classList.add('text-yellow-400');
+                                s.classList.remove('text-gray-300');
+                            }
+                        });
+                    }
                 });
 
-                // Initialize on page load
-                const checkedRadio = document.querySelector('.star-rating input[type="radio"]:checked');
-                if (checkedRadio) {
-                    const rating = parseInt(checkedRadio.value);
-                    stars.forEach((s, index) => {
-                        if (index < rating) {
-                            s.classList.add('text-yellow-400');
-                            s.classList.remove('text-gray-300');
-                        }
-                    });
-                }
-            });
+                // Add enter key support for comment submission (removed as form handles it now)
 
-            // Add enter key support for comment submission (removed as form handles it now)
-
-            // Details and rating and feed back section end
-        </script>
+                // Details and rating and feed back section end
+            </script>
 
 
 
