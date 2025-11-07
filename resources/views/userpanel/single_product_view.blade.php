@@ -53,7 +53,7 @@
                                 {{ $product_details->description }}
                             </p>
                             <div class="flex items-center space-x-4">
-                                <span class="text-3xl font-bold text-purple-dark">${{ $product_details->price }}</span>
+                                <span class="text-3xl font-bold text-purple-dark">₹{{ $product_details->price }}</span>
                                 <span class="text-xl text-gray-500 line-through">$499</span>
                             </div>
                         </div>
