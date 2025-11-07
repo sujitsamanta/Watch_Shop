@@ -1169,73 +1169,64 @@
             </div>
         </div>
 
-        <!-- Grab the best deal start  -->
-        <div class="max-w-7xl mx-auto">
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
-                        Grab the best deal on
-                        <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
-                    </h2>
-                </div>
-                <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
-                    View All
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-            </div>
+          <div class="max-w-7xl mx-auto  py-8">
+            <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Price drop on electronics</h1>
 
-            <!-- Carousel -->
-            <div class="relative">
-                <!-- Product Cards Container -->
-                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
+            <!-- Product Grid: 2 columns on mobile, 3 on tablet, 4 on desktop -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                @foreach ($products_data->take(10) as $product)
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 relative group border border-gray-100">
 
-                    @foreach($products_data->take(6) as $product)
-                    <!-- Product 1: Galaxy S22 Ultra -->
+                    {{-- ✅ Wishlist Button --}}
+                    @if($user && $user->wishlist()->where('product_id', $product->id)->exists())
+                    <form action="/remove_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                        @csrf
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/90 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                        </button>
+                    </form>
+                    @else
+                    <form action="/add_wishlist/{{ $product->id }}" method="POST" class="absolute right-3 top-3 z-10">
+                        @csrf
+                        <button type="submit"
+                            class="w-10 h-10 flex items-center justify-center bg-white/80 rounded-full backdrop-blur-md shadow hover:scale-105 transition">
+                            <i class="fa-regular fa-heart text-lg group-hover:text-red-500 transition"></i>
+                        </button>
+                    </form>
+                    @endif
+
+                    {{-- Product Info --}}
                     <a href="/single_product_view/{{ $product->id }}">
-                        <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                            <div class="relative mb-4">
-                                <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                    56% OFF
-                                </div>
-                                <div class="phone-image w-full h-48 flex items-center justify-center">
-                                    <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
-                                        <div class="text-xs text-center">
-                                            <div class="mb-2">📱</div>
-                                            <div class="text-xs">Galaxy</div>
-                                            <div class="text-xs">S22 Ultra</div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                    <img src="{{ $product->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-
-
-                                </div>
+                        <div class="p-4">
+                            {{-- Product Image --}}
+                            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                                <img src="{{ $product->photo_url }}"
+                                    alt="{{ $product->name }}"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
                             </div>
-                            <p class="font-semibold text-gray-800 mb-2">{{ $product->name }}</p>
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
-                                <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
-                            </div>
-                            <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
+
+                            {{-- Product Name --}}
+                            <p class="text-sm font-semibold text-gray-900 mt-3 truncate">
+                                {{ $product->name }}
+                            </p>
+
+                            {{-- Product Description (short & trimmed) --}}
+                            <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+                                {{ \Illuminate\Support\Str::limit($product->description, 60, '...') }}
+                            </p>
+
+                            {{-- Product Price --}}
+                            <p class="text-sm font-bold text-purple-700 mt-2">
+                                ₹{{ number_format($product->price, 2) }}
+                            </p>
                         </div>
                     </a>
-                    @endforeach
-
-
-
                 </div>
+                @endforeach
+
             </div>
         </div>
-
-
-
-
-
-
 
 
         <div class="max-w-7xl mx-auto my-10">
@@ -1321,72 +1312,6 @@
         </div>
 
 
-
-
-        <!-- Grab the best deal start  -->
-        <div class="max-w-7xl mx-auto my-6">
-            <!-- Header -->
-            <div class="flex items-center justify-between mb-8">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-purple-darkest">
-                        Grab the best deal on
-                        <!-- <span class="text-purple-medium border-b-2 border-purple-medium">Smartphones</span> -->
-                    </h2>
-                </div>
-                <button class="flex items-center text-purple-medium hover:text-purple-dark font-medium">
-                    View All
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Carousel -->
-            <div class="relative">
-                <!-- Product Cards Container -->
-                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto px-12">
-
-                    @foreach($products_data->take(12) as $product)
-                    <!-- Product 1: Galaxy S22 Ultra -->
-                    <a href="/single_product_view/{{ $product->id }}">
-                        <div class="product-card bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-                            <div class="relative mb-4">
-                                <div class="discount-badge absolute top-2 right-2 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                                    56% OFF
-                                </div>
-                                <div class="phone-image w-full h-48 flex items-center justify-center">
-                                    <!-- <div class="phone-screen w-24 h-40 flex flex-col items-center justify-center text-white">
-                                    <div class="w-20 h-36 bg-gradient-to-b from-blue-400 to-green-500 rounded-lg flex items-center justify-center">
-                                        <div class="text-xs text-center">
-                                            <div class="mb-2">📱</div>
-                                            <div class="text-xs">Galaxy</div>
-                                            <div class="text-xs">S22 Ultra</div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                    <img src="{{ $product->photo_url }}" alt="Luxury Watch" class="h-56 mb-6 rounded-xl object-cover w-full group-hover:scale-110 group-hover:rotate-2 transition-all duration-700">
-
-
-                                </div>
-                            </div>
-                            <h3 class="font-semibold text-gray-800 mb-2">{{ $product->name }}</h3>
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-xl font-bold text-gray-900">₹ {{ $product->price }}</span>
-                                <span class="text-sm text-gray-500 line-through">₹ {{ $product->price+700 }}</span>
-                            </div>
-                            <p class="text-green-600 text-sm font-medium">Save - ₹700</p>
-                        </div>
-                    </a>
-                    @endforeach
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-
         <div class="container mx-auto px-4">
             <div class="text-center my-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-side mb-4">Featured Products</h2>
@@ -1432,6 +1357,8 @@
                 @endforeach
             </div>
         </div>
+
+
 
         <section class="w-full px-4 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
