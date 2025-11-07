@@ -480,9 +480,6 @@
     </style>
     <!-- hearo section start  -->
 
-
-
-
 </head>
 
 <body class="bg-lav1">
@@ -503,7 +500,7 @@
     <!-- @include('notify::components.notify') -->
 
     <!-- Main Navbar -->
-    <nav class="bg-purple-lightest shadow-card sticky top-0 z-50">
+    <nav id="nav" class="bg-purple-lightest shadow-card sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Top Row: Logo, Search, Icons -->
             <div class="flex items-center justify-between h-16">
@@ -1012,43 +1009,59 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/user_script.js') }}"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    const offset = 80; // Account for fixed navbar
+                    const elementPosition = target.offsetTop;
+                    const offsetPosition = elementPosition - offset;
 
-
-      <script>
-
-    (function () {
-      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
-        window.chatbase = (...arguments) => {
-          if (!window.chatbase.q) {
-            window.chatbase.q = [];
-          }
-          window.chatbase.q.push(arguments);
-        };
-        window.chatbase = new Proxy(window.chatbase, {
-          get(target, prop) {
-            if (prop === "q") {
-              return target.q;
-            }
-            return (...args) => target(prop, ...args);
-          },
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+                }
+            });
         });
-      }
+    </script>
 
-      const onLoad = function () {
-        const script = document.createElement("script");
-        script.src = "https://www.chatbase.co/embed.min.js";
-        script.id = "q9jdoSaYcZ7u5pzT_uhRk";
-        script.domain = "www.chatbase.co";
-        document.body.appendChild(script);
-      };
-      if (document.readyState === "complete") {
-        onLoad();
-      } else {
-        window.addEventListener("load", onLoad);
-      }
-    })();
+    <script>
+        (function() {
+            if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+                window.chatbase = (...arguments) => {
+                    if (!window.chatbase.q) {
+                        window.chatbase.q = [];
+                    }
+                    window.chatbase.q.push(arguments);
+                };
+                window.chatbase = new Proxy(window.chatbase, {
+                    get(target, prop) {
+                        if (prop === "q") {
+                            return target.q;
+                        }
+                        return (...args) => target(prop, ...args);
+                    },
+                });
+            }
 
-  </script>
+            const onLoad = function() {
+                const script = document.createElement("script");
+                script.src = "https://www.chatbase.co/embed.min.js";
+                script.id = "q9jdoSaYcZ7u5pzT_uhRk";
+                script.domain = "www.chatbase.co";
+                document.body.appendChild(script);
+            };
+            if (document.readyState === "complete") {
+                onLoad();
+            } else {
+                window.addEventListener("load", onLoad);
+            }
+        })();
+    </script>
 
 
     <!-- <script>
