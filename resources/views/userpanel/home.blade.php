@@ -14,7 +14,7 @@
     </a>
 
         <!-- Hero Section -->
-        <section class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
+        <section id="nav" class="relative  flex items-center justify-center px-8 py-20  overflow-hidden">
 
             <!-- Auto Carousel Background -->
             <div class="absolute inset-0 z-0">

@@ -500,7 +500,7 @@
     <!-- @include('notify::components.notify') -->
 
     <!-- Main Navbar -->
-    <nav id="nav" class="bg-purple-lightest shadow-card sticky top-0 z-50">
+    <nav  class="bg-purple-lightest shadow-card sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Top Row: Logo, Search, Icons -->
             <div class="flex items-center justify-between h-16">
