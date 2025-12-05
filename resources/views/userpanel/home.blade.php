@@ -1423,6 +1423,5 @@
 
 
 
-
     </x-slot>
 </x-user_navbar>

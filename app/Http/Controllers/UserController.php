@@ -56,36 +56,37 @@ class UserController extends Controller
 
         if ($signin_data) {
 
-            // $signin_data['password'] = Hash::make($signin_data['password']);
+            $signin_data['password'] = Hash::make($signin_data['password']);
 
             $user = User::create($signin_data);
 
             // Generate OTP
-            // $otp = rand(100000, 999999);
+            $otp = rand(100000, 999999);
 
             // Store OTP in database
-            // Otp::create([
-            //     'user_id' => $user->id,
-            //     'otp_code' => $otp,
-            //     'expires_at' => Carbon::now()->addMinutes(1),
-            // ]);
+            Otp::create([
+                'user_id' => $user->id,
+                'otp_code' => $otp,
+                'expires_at' => Carbon::now()->addMinutes(1),
+            ]);
 
             // Send OTP via Email
-            // Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
-            //     $message->to($user->email)
-            //         ->subject('Email Verification OTP');
-            // });
+            Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+                $message->to($user->email)
+                    ->subject('Email Verification OTP');
+            });
 
-            // $user->notify(new UserMail());
-            // $user_id = $user->id;
+            $user->notify(new UserMail());
+            $user_id = $user->id;
 
-            // session(['user_id' => $user->id]);
-            // flash()->addSuccess('OTP succesfuly send your email ⚡️');
-            // return view('userpanel.otp_verification_form');
+            session(['user_id' => $user->id]);
+            flash()->addSuccess('OTP succesfuly send your email ⚡️');
+            return view('userpanel.otp_verification_form');
 
 
-            flash()->addSuccess('Account created succesfuly ⚡️');
-            return redirect('/login');
+            // flash()->addSuccess('Account created succesfuly ⚡️');
+            // return redirect('/login');
+
         } else {
             flash()->addError('Account Created Faild ⚡️');
 
@@ -178,59 +179,65 @@ class UserController extends Controller
 
         // $login_data = $request->only('email', 'password');
 
-        
+
         if ($user) {
             // Check if user is verified
             if (!$user->is_verified) {
                 // return redirect('/signin');
 
                 // Generate OTP
-                // $otp = rand(100000, 999999);
+                $otp = rand(100000, 999999);
 
                 // Store OTP in database
-                // Otp::create([
-                //     'user_id' => $user->id,
-                //     'otp_code' => $otp,
-                //     'expires_at' => Carbon::now()->addMinutes(1),
-                // ]);
+                Otp::create([
+                    'user_id' => $user->id,
+                    'otp_code' => $otp,
+                    'expires_at' => Carbon::now()->addMinutes(1),
+                ]);
 
                 // Send OTP via Email
-                // Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
-                //     $message->to($user->email)
-                //         ->subject('Email Verification OTP');
-                // });
+                Mail::raw("Your verification OTP is: $otp (valid for 1 minutes)", function ($message) use ($user) {
+                    $message->to($user->email)
+                        ->subject('Email Verification OTP');
+                });
 
-                // $user->notify(new UserMail());
-                // $user_id = $user->id;
+                $user->notify(new UserMail());
+                $user_id = $user->id;
 
                 // flash()->addError('Ples verifide your email ⚡️');
-                // flash()->addSuccess('OTP succesfuly send your email ⚡️');
-                // return view('userpanel.otp_verification_form');
+                flash()->addSuccess('OTP succesfuly send your email ⚡️');
+                return view('userpanel.otp_verification_form');
                 // flash()->addSuccess('Account created succesfuly ⚡️');
 
                 // return redirect('/login');
             } else {
-                // Auth::attempt($login_data,  $request->remember)
                 // $login_data['password'] = Hash::make($login_data['password']);
-                if ($user->password === $request->password) {
+                // if ($user->password === $request->password) {
 
-                    
-                    // notify()->error('Enter curect data ⚡️');
 
-                    // Auth::login($user, $request->boolean('remember'));
-                    Auth::login($user, $request->boolean('remember'));
-                    
-                    $request->session()->regenerate();
+                // notify()->error('Enter curect data ⚡️');
 
+                // Auth::login($user, $request->boolean('remember'));
+                // Auth::login($user, $request->boolean('remember'));
+
+                // $request->session()->regenerate();
+
+                if (Auth::attempt($login_data,  $request->remember)) {
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
-                    
                 } else {
-
-                    // $request->remember
                     flash()->addError('Enter curect data ⚡️');
                     return redirect()->back();
                 }
+
+
+
+                // } else {
+
+                // $request->remember
+                // flash()->addError('Enter curect data ⚡️');
+                // return redirect()->back();
+                // }
             }
         } else {
 

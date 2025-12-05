@@ -66,7 +66,7 @@
         <div class="text-center mt-6">
             <p class="text-gray-600 text-sm mb-1">Didn’t receive the code?</p>
             <form action="/otp_verification_form_resubmit" method="get" class="inline">
-                <button type="submit" id="resend-btn"
+                <button  type="submit" id="resend-btn"
                     class="text-primary-dark font-semibold text-sm hover:text-primary-darker transition-colors">
                     Resend OTP <span id="timer" class="text-gray-500"></span>
                 </button>

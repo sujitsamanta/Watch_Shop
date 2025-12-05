@@ -45,14 +45,15 @@ class AdminController extends Controller
         ]);
 
         // $admin = Admin::where('email', $login_data['email'])->first();
- $admin = Admin::where('email', $request->email)->first();
+        // $admin = Admin::where('email', $request->email)->first();
         
-        if ($admin && $admin->password === $request->password) {
+        if (Auth::guard('admin')->attempt($login_data)) {
+            // Auth::attempt($login_data,  $request->remember);
 
             // Auth::login($admin);
 
             // $request->session()->regenerate();
-Auth::guard('admin')->login($admin);
+
             // notify()->success('Account Login Succesful..⚡️');
             flash()->addSuccess('Account Login Succesful..⚡️');
 
@@ -78,13 +79,26 @@ Auth::guard('admin')->login($admin);
     }
     public function admin_check()
     {
-        return view('adminpanel.admin_home');
+        $users_count = User::count();
+        $product_count = Product::count();
+
+        $total_revenue = Order::where('status', 'delivered')->sum('total');
+
+        $pending_orders = Order::where('status', 'pending')->count();
+
+          $orders = Order::with(['user', 'items.product']) // Eager load relations
+            ->orderBy('created_at', 'desc')
+            ->paginate(8);
+
+        // return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
+        return view('adminpanel.admin_home' , compact('users_count', 'product_count', 'total_revenue', 'pending_orders', 'orders'));
     }
     public function admin_customer_accounts_view()
     {
         //  $users_data = User::simplePaginate(7);
 
         $users_data = User::paginate(7);
+
 
         return view('adminpanel.admin_customer_accounts_view', compact('users_data'));
     }

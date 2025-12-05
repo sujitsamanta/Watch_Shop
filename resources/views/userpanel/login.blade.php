@@ -193,7 +193,7 @@
                     @enderror
                 </div>
             </div>
-              <!-- ✅ Remember Me -->
+              <!--  Remember Me -->
         <div class="flex items-center justify-between">
             <div class="flex items-center">
                 <input type="checkbox" id="remember" name="remember"
