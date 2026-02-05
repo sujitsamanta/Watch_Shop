@@ -223,7 +223,8 @@ class UserController extends Controller
                 // $request->session()->regenerate();
 
                 // Auth::attempt($login_data,  $request->remember)
-                if (Auth::login($user,  $request->remember)) {
+                if ($user && $request->password == $user->password) {
+                    Auth::login($user, $request->remember);
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
                 } else {
