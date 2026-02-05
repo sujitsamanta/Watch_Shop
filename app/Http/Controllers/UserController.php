@@ -177,7 +177,7 @@ class UserController extends Controller
         $user = User::where('email', $login_data['email'])->first();
 
 
-        // $login_data = $request->only('email', 'password');
+        $login_data = $request->only('email', 'password');
 
 
         if ($user) {
@@ -223,7 +223,7 @@ class UserController extends Controller
                 // $request->session()->regenerate();
 
                 // Auth::attempt($login_data,  $request->remember)
-                if (Auth::login($user)) {
+                if (Auth::login($user,  $request->remember)) {
                     flash()->addSuccess('Welcome to Watch Shop..⚡️');
                     return redirect('/home');
                 } else {
