@@ -48,6 +48,7 @@ class AdminController extends Controller
         // $admin = Admin::where('email', $request->email)->first();
         // Auth::guard('admin')->attempt($login_data)
         if ($admin && $admin->password == $login_data['password']) {
+            Auth::guard('admin')->login($admin);
             // Auth::attempt($login_data,  $request->remember);
 
             // Auth::login($admin);
